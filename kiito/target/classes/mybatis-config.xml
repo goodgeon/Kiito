@@ -6,15 +6,11 @@
   
   <typeAliases>
 		<typeAlias type="global.sesoc.kiito.vo.aaa" alias="aaa" />
-	
-
 	</typeAliases>
   
   
   
   	<mappers>
 		<mapper resource="mapper/kiitoMapper.xml" />
-	
-
 	</mappers>
   </configuration>
