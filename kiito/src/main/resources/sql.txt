@@ -1,0 +1,11 @@
+﻿CREATE TABLE customer (
+	seq		NUMBER		  PRIMARY KEY
+	,email	VARCHAR2(100) UNIQUE
+	,pw		VARCHAR2(100) NOT NULL
+	,name	VARCHAR2(100) NOT NULL
+	,nick	VARCHAR2(100) NOT NULL
+	
+);
+
+
+CREATE SEQUENCE customer_seq;
