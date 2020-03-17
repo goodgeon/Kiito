@@ -5,7 +5,7 @@
   <configuration>
   
   <typeAliases>
-		<typeAlias type="global.sesoc.kiito.vo.aaa" alias="aaa" />
+		<typeAlias type="global.sesoc.kiito.vo.User" alias="user" />
 	</typeAliases>
   
   
