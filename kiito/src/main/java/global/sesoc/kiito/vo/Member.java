@@ -12,7 +12,5 @@ public class Member {
 	private String nick;
 	
 	
-	
-
 
 }
