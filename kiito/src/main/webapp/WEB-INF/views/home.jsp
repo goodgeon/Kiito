@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 	<head>
-		<title>Pinball Website Template | Home :: w3layouts</title>
+		<title>Pinball Website Template | Home :: w3layoutsss</title>
 		<link href="resources/css/style.css" rel='stylesheet' type='text/css' />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="shortcut icon" type="image/x-icon" href="resources/images/fav-icon.png" />
