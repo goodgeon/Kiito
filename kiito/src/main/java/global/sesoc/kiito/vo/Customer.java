@@ -3,7 +3,7 @@ package global.sesoc.kiito.vo;
 import lombok.Data;
 
 @Data
-public class Member {
+public class Customer {
 	
 	private int seq;
 	private String email;

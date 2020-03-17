@@ -5,12 +5,12 @@
   <configuration>
   
   <typeAliases>
-		<typeAlias type="global.sesoc.kiito.vo.Member" alias="member" />
+		<typeAlias type="global.sesoc.kiito.vo.Customer" alias="customer" />
 	</typeAliases>
   
   
   
   	<mappers>
-		<mapper resource="mapper/MemberMapper.xml" />
+		<mapper resource="mapper/CustomerMapper.xml" />
 	</mappers>
   </configuration>

@@ -1,5 +1,5 @@
 package global.sesoc.kiito.dao;
 
-public interface MemberMapper {
+public interface CustomerMapper {
 
 }
