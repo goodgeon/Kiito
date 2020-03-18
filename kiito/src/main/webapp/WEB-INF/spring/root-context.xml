@@ -86,5 +86,18 @@
         <constructor-arg value="BJ_PtCQQLh-jeMtL7IQ9TMkW" />
  
     </bean>
+    
+    <!-- Facebook 소셜 로그인 연결 설정 -->
+    <bean id="connectionFactory"
+        class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
+        <constructor-arg value="554050265465837" />
+        <constructor-arg value="f2b7dc47425aaf000bd192b919d4d4e9" />
+    </bean>
+ 
+    <bean id="oAuth2Parameters"
+        class="org.springframework.social.oauth2.OAuth2Parameters">
+        <property name="scope" value="email" />
+        <property name="redirectUri" value="http://localhost:8888/kiito/facebook/facebookSignInCallback" />
+    </bean>
 
 </beans>

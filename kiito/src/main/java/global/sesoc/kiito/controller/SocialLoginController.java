@@ -16,8 +16,17 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.social.MissingAuthorizationException;
+import org.springframework.social.connect.Connection;
+import org.springframework.social.facebook.api.Facebook;
+import org.springframework.social.facebook.api.User;
+import org.springframework.social.facebook.api.UserOperations;
+import org.springframework.social.facebook.api.impl.FacebookTemplate;
+import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 import org.springframework.social.google.connect.GoogleOAuth2Template;
+import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.GrantType;
+import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +34,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -43,6 +53,12 @@ public class SocialLoginController {
     
     @Autowired
     private OAuth2Parameters googleOAuth2Parameters;
+    
+    @Autowired
+    private FacebookConnectionFactory connectionFactory;
+    
+    @Autowired
+    private OAuth2Parameters oAuth2Parameters;
 	
 	private static final Logger logger = LoggerFactory.getLogger(SocialLoginController.class);
 	
@@ -94,7 +110,57 @@ public class SocialLoginController {
         //없으면 DB에 insert하고 세션에 저장하고 홈화면
         
         
-        return "home";
+        return "redirect:/home";
+ 
+    }
+	
+	@RequestMapping(value = "/facebook/facebookSignInCallback", method = { RequestMethod.GET, RequestMethod.POST })
+    public String facebookSignInCallback(@RequestParam String code,HttpSession session) throws Exception {
+ 
+        try {
+             String redirectUri = oAuth2Parameters.getRedirectUri();
+            System.out.println("Redirect URI : " + redirectUri);
+            System.out.println("Code : " + code);
+ 
+            OAuth2Operations oauthOperations = connectionFactory.getOAuthOperations();
+            AccessGrant accessGrant = oauthOperations.exchangeForAccess(code, redirectUri, null);
+            String accessToken = accessGrant.getAccessToken();
+            System.out.println("AccessToken: " + accessToken);
+            Long expireTime = accessGrant.getExpireTime();
+        
+            
+            if (expireTime != null && expireTime < System.currentTimeMillis()) {
+                accessToken = accessGrant.getRefreshToken();
+                logger.info("accessToken is expired. refresh token = {}", accessToken);
+            };
+            
+        
+            Connection<Facebook> connection = connectionFactory.createConnection(accessGrant);
+            Facebook facebook = connection == null ? new FacebookTemplate(accessToken) : connection.getApi();
+            UserOperations userOperations = facebook.userOperations();
+            
+            try
+ 
+            {            
+                String [] fields = { "id", "email","name"};
+                User userProfile = facebook.fetchObject("me", User.class, fields);
+                System.out.println("유저 프로필사진 : " +"http://graph.facebook.com/"+userProfile.getId()+"/picture?type=large");
+                System.out.println("유저이메일 : " + userProfile.getEmail());
+                System.out.println("유저 id : " + userProfile.getId());
+                System.out.println("유저 name : " + userProfile.getName());
+                
+                
+            } catch (MissingAuthorizationException e) {
+                e.printStackTrace();
+            }
+ 
+        
+        } catch (Exception e) {
+ 
+            e.printStackTrace();
+ 
+        }
+        return "redirect:/home";
  
     }
 
