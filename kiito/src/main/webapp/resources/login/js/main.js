@@ -1,6 +1,10 @@
 
 (function ($) {
     "use strict";
+    
+    
+     
+     
 
 
     /*==================================================================
@@ -21,14 +25,36 @@
     [ Validate ]*/
     var input = $('.validate-input .input100');
 
-    $('.validate-form').on('submit',function(){
+    $('#loginBt').on('click',function(){
         var check = true;
+        var email = $('#email').val();
+        var pw = $('#pw').val();
 
         for(var i=0; i<input.length; i++) {
             if(validate(input[i]) == false){
                 showValidate(input[i]);
                 check=false;
             }
+        }
+        
+        if(check == true){
+        	$.ajax({
+        		url : "customer/login",
+        		type : "post",
+        		data : {
+        			'email' : email,
+        			'pw' : pw
+        		},
+        		success : function(result){
+        			alert(result);
+        			
+        			if(result == "success"){
+        				location.href = "home";
+        			}else if(result == "fail"){
+        				alert("ID 또는 비밀번호가 틀립니다. 다시 입력해주세요");
+        			}
+        		}
+        	});
         }
 
         return check;
