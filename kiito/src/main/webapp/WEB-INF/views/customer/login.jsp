@@ -1,4 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en">
 <head>
 	<title>Login V18</title>
@@ -26,6 +29,14 @@
 	<link rel="stylesheet" type="text/css" href="resources/login/css/util.css">
 	<link rel="stylesheet" type="text/css" href="resources/login/css/main.css">
 <!--===============================================================================================-->
+
+<script type="text/javascript">
+
+function join() {location.href = 'customer/agree';}	
+
+</script>
+
+
 </head>
 <body style="background-color: #666666;">
 	
@@ -73,6 +84,14 @@
 						</button>
 					</div>
 					
+					<br>
+					
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" onclick="join()">
+							Join
+						</button>
+					</div>
+					
 					<div class="text-center p-t-46 p-b-20">
 						<span class="txt2">
 							or sign up using
@@ -117,5 +136,4 @@
 <!--===============================================================================================-->
 	<script src="resources/login/js/main.js"></script>
 
-</body>
 </html>	
