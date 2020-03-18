@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html lang="en">
+
+<!DOCTYPE html>
 <head>
 	<title>Login V18</title>
 	<meta charset="UTF-8">
@@ -43,21 +43,21 @@ function join() {location.href = 'customer/agree';}
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" action = "customer/login" method = "POST">
 					<span class="login100-form-title p-b-43">
 						Login to continue
 					</span>
 					
 					
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email">
+						<input id = "email" class="input100" type="text" name="email">
 						<span class="focus-input100"></span>
 						<span class="label-input100">Email</span>
 					</div>
 					
 					
 					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="pass">
+						<input id = "pw" class="input100" type="password" name="pw">
 						<span class="focus-input100"></span>
 						<span class="label-input100">Password</span>
 					</div>
@@ -79,7 +79,7 @@ function join() {location.href = 'customer/agree';}
 			
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button type = "button" id = "loginBt" class="login100-form-btn">
 							Login
 						</button>
 					</div>
@@ -87,7 +87,7 @@ function join() {location.href = 'customer/agree';}
 					<br>
 					
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" onclick="join()">
+						<button type = "button" class="login100-form-btn" onclick="join()">
 							Join
 						</button>
 					</div>
