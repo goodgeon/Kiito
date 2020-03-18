@@ -103,8 +103,8 @@ function join() {location.href = 'customer/agree';}
 							<i class="fa fa-facebook-f" aria-hidden="true"></i>
 						</a>
 
-						<a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
-							<i class="fa fa-twitter" aria-hidden="true"></i>
+						<a href="${google_url}" class="login100-form-social-item flex-c-m bg2 m-r-5">
+							<i class="fa fa-google" aria-hidden="true"></i>
 						</a>
 					</div>
 				</form>

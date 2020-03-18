@@ -42,11 +42,6 @@ public class CustomerController {
 
 		Customer c = dao.getCustomer(email);
 
-		if(c != null) {
-			System.out.println("db : " + c.getPw());
-			System.out.println("customer : " + pw);
-		}
-		
 		if(c != null && c.getPw().equals(pw)) {
 			session.setAttribute("customer", customer);
 			return "success";
@@ -54,6 +49,8 @@ public class CustomerController {
 		
 		return "fail";
 	}
+	
+	
 	
 	
 	@RequestMapping(value = "/agree", method = RequestMethod.GET)
