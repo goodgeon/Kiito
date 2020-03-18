@@ -46,8 +46,6 @@
         			'pw' : pw
         		},
         		success : function(result){
-        			alert(result);
-        			
         			if(result == "success"){
         				location.href = "home";
         			}else if(result == "fail"){
