@@ -37,5 +37,8 @@ public class CustomerController {
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String join() {return "customer/join";}
 	
+	@RequestMapping(value = "/email", method = RequestMethod.GET)
+	public String email() {return "customer/email";}
+	
 
 }

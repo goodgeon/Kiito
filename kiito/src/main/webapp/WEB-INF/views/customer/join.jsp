@@ -29,7 +29,11 @@
 	<link rel="stylesheet" type="text/css" href="../resources/login/css/util.css">
 	<link rel="stylesheet" type="text/css" href="../resources/login/css/main.css">
 <!--===============================================================================================-->
+<script type="text/javascript">
 
+function email() {location.href = 'email';}	
+
+</script>
 </head>
 <body style="background-color: #f7f7f7;">
  
@@ -47,7 +51,7 @@
 					</div>
 					
 						<div>
-							<a href="#" class="txt1">
+							<a href="#" class="txt1" onclick="email()">
 								인증하기
 							</a>
 						</div>
