@@ -42,7 +42,7 @@ function join() {location.href = 'customer/agree';}
 	
 	<div class="limiter">
 		<div class="container-login100">
-			<div class="wrap-login100">
+			<div class="wrap-login100"  style="background-image: url('resources/login/images/bgimg4.png');">
 				<form class="login100-form validate-form" action = "customer/login" method = "POST">
 					<span class="login100-form-title p-b-43">
 						Login to continue
@@ -109,8 +109,7 @@ function join() {location.href = 'customer/agree';}
 					</div>
 				</form>
 
-				<div class="login100-more" style="background-image: url('resources/login/images/bg-01.jpg');">
-				</div>
+				
 			</div>
 		</div>
 	</div>
