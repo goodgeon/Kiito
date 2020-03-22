@@ -38,7 +38,7 @@ function join() {location.href = 'customer/agree';}
 
 
 </head>
-<body style="background-color: #666666;">
+<body>
 	
 	<div class="limiter">
 		<div class="container-login100">
@@ -115,7 +115,7 @@ function join() {location.href = 'customer/agree';}
 	</div>
 	
 	
-
+</body>
 	
 	
 <!--===============================================================================================-->

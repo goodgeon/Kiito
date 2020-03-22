@@ -259,13 +259,14 @@ iframe {
 [ Form ]*/
 
 .login100-form {
-  width: 560px;
+  width: 450px;
   min-height: 80vh;
   display: block;
   background-color:#E0E6F8;
   background-color: rgba( 255, 255, 255, 0.5 );
   padding: 20px 35px 15px 35px;
   border-radius : 20px;
+  margin-left: 700px;
 }
 
 .login100-form-title {
@@ -301,7 +302,7 @@ iframe {
 
 .label-input100 {
   font-family: Montserrat-Regular;
-  font-size: 18px;
+  font-size: 16px;
   color: #999999;
   line-height: 1.2;
 
