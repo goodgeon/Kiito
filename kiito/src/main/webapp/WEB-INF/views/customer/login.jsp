@@ -38,11 +38,11 @@ function join() {location.href = 'customer/agree';}
 
 
 </head>
-<body style="background-color: #666666;">
+<body>
 	
 	<div class="limiter">
 		<div class="container-login100">
-			<div class="wrap-login100">
+			<div class="wrap-login100"  style="background-image: url('resources/login/images/bgimg4.png');">
 				<form class="login100-form validate-form" action = "customer/login" method = "POST">
 					<span class="login100-form-title p-b-43">
 						Login to continue
@@ -99,24 +99,23 @@ function join() {location.href = 'customer/agree';}
 					</div>
 
 					<div class="login100-form-social flex-c-m">
-						<a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
+						<a href="${facebook_url}" class="login100-form-social-item flex-c-m bg1 m-r-5">
 							<i class="fa fa-facebook-f" aria-hidden="true"></i>
 						</a>
 
-						<a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
-							<i class="fa fa-twitter" aria-hidden="true"></i>
+						<a href="${google_url}" class="login100-form-social-item flex-c-m bg2 m-r-5">
+							<i class="fa fa-google" aria-hidden="true"></i>
 						</a>
 					</div>
 				</form>
 
-				<div class="login100-more" style="background-image: url('resources/login/images/bg-01.jpg');">
-				</div>
+				
 			</div>
 		</div>
 	</div>
 	
 	
-
+</body>
 	
 	
 <!--===============================================================================================-->
