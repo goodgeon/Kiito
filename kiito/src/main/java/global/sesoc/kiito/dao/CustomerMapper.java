@@ -6,4 +6,8 @@ public interface CustomerMapper {
 
 	Customer getCustomer(String email);
 
+	void insertC(Customer cus);
+
+
+
 }

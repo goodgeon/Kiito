@@ -2,148 +2,289 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html lang="en">
+<html>
 <head>
-<title>Join</title>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="../resources/login/images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../resources/login/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../resources/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../resources/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../resources/login/vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="../resources/login/vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../resources/login/vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../resources/login/vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="../resources/login/vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../resources/login/css/util.css">
-	<link rel="stylesheet" type="text/css" href="../resources/login/css/main.css">
-<!--===============================================================================================-->
+<title>Insert title here</title>
+
+
+<script src="../resources/js/jquery-3.4.1.js"></script>
 <script type="text/javascript">
 
-function email() {location.href = 'email';}	
 
-</script>
-</head>
-<body style="background-color: #f7f7f7;">
- 
-<body>
-<form class="login100-form validate-form">
-					<span class="login100-form-title p-b-43">
-						Login to continue
-					</span>
-					
-					
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email">
-						<span class="focus-input100"></span>
-						<span class="label-input100">Email</span>
-					</div>
-					
-						<div>
-							<a href="#" class="txt1" onclick="email()">
-								인증하기
-							</a>
-						</div>
-					
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="name">
-						<span class="focus-input100"></span>
-						<span class="label-input100">Name</span>
-					</div>
-					
-					
-					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="pass">
-						<span class="focus-input100"></span>
-						<span class="label-input100">Password</span>
-					</div>
-					
-					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="pass2">
-						<span class="focus-input100"></span>
-						<span class="label-input100">RePassword</span>
-					</div>
-					
+$(document).ready(function() {		
+		$("#euse").hide();$("#gologin").hide();
+		$("#submit").attr("disabled", "disabled");
+		$("#div8").hide();
+		$("#div9").hide();
+		$("#div6").hide();
+		$("#in").hide();
+		$("#div11").hide();$("#div12").hide();$("#div13").hide();$("#div14").hide();
+		$("#div0").hide();
+		$("#esubmit").hide();
+		$("#div1").hide();
+		$("#div2").hide();
+		$("#div3").hide();
+		$("#div4").hide();
+		$("input").keyup(function() {//비밀번호 유효성
+			var password = $("#password").val();
+			var password1 = $("#password1").val();
+			if (password != "" || password1 != "") {
+				if (password == password1) {
+				
+					$("#div1").show();
+					$("#div2").hide();
+					$("#submit").removeAttr("disabled");
+					presult="ok";
 
-					<div class="flex-sb-m w-full p-t-3 p-b-32">
-						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-								Remember me
-							</label>
-						</div>
+				} else {
+					presult="no";
+					$("#div1").hide();
+					$("#div2").show();
+					$("#submit").attr("disabled", "disabled");}}});
 
-					
-					</div>
+		$("#email").keyup(function() { //이메일 유효성
+			var email = $("#email").val();
+			$("#div11").hide();$("#div12").hide();$("#div13").hide();
+			if(chkValEmail(email)){$("#errMsg_02").hide();$("#submit").removeAttr("disabled");
 			
 
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Login
-						</button>
-					</div>
+			$.ajax({
+				url : 'findE',
+				type : 'POST',
+				data : {
+					email : email
+				},
+				dataType:'text',
+				success : function(b) {
+					if(b=="nai"){		
+						$("#in").hide();
+						$("#div3").show();
+						$("#div4").hide();
+						$("#esubmit").show();
+						$("#submit").attr("disabled", "disabled");$("#div0").hide();
+						
+						
+					}
+					else{
+						$("#div3").hide();
+						$("#div4").show();
+						$("#esubmit").hide();
+						$("#in").hide();
+						$("#submit").attr("disabled", "disabled");$("#div0").hide();
 					
-					<br>
-					
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" onclick="join()">
-							Join
-						</button>
-					</div>
-					
-					<div class="text-center p-t-46 p-b-20">
-						<span class="txt2">
-							or sign up using
-						</span>
-					</div>
+				
 
-					<div class="login100-form-social flex-c-m">
-						<a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
-							<i class="fa fa-facebook-f" aria-hidden="true"></i>
-						</a>
+				}
+				},
+				error : function(o) {
+					$("#div6").show();
+					$("#div4").hide();
+					$("#esubmit").show();
+					
+				}
+			});
+	
+			}
+			else{$("#errMsg_02").show();$("#errMsg_02").text("이메일 형식이 올바르지 않습니다");
+			event.preventDefault();	$("#submit").attr("disabled", "disabled");
+			$("#in").hide();
+			$("#esubmit").hide();
+			$("#div3").hide();$("#div0").hide();
+			$("#div4").hide();}});
 
-						<a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
-							<i class="fa fa-twitter" aria-hidden="true"></i>
-						</a>
-					</div>
-				</form>
+		var dicetest;
+		var email;
+		var presult;
+
+		
+		$("#esubmit").click(function() { //이메일 인증 받기 버튼 누르면
+			
+			email = $("#email").val();
+
+			$.ajax({
+				url : 'auth.do',
+				type : 'POST',
+				data : {
+					e_mail : email
+				},
+				dataType:'text',
+				success : function(b) {
+					$("#in").show();
+					$("#eeii").show();
+					$('#email_injeung').val('');
+					$("#div8").hide();
+					$("#div9").hide();
+					$("#euse").hide();
+					$("#div0").show();
+					
+				
+					dicetest = b;
+					
+				},
+				error : function(o) {
+					alert("실패");
+					$("#in").hide();$("#reesubmit").hide();
+				}
+			});});
+
+			
+		var result;
+		
+		
+	$("#eeii").click(function() { //이메일 인증 번호 누르면
+			
+			var email_injeung = $("#email_injeung").val();
+
+			$.ajax({
+				url : 'join_injeung.do',
+				type : 'POST',
+				data : {
+					email_injeung : email_injeung,
+					dice : dicetest
+				},
+				dataType:'text',
+				success : function(b) {
+
+					if(b=="good"){$("#div8").show();$("#div9").hide();$("#eeii").hide();$("#euse").show();$("#div0").hide();}
+					else{$("#div9").show();$("#div8").hide();$('#email_injeung').val('');$("#euse").hide();$("#div0").hide();}
+				},
+				error : function(o) {result = "bad";$("#div9").show();$("#div8").hide();$('#email_injeung').val('');}
+			});});
+
+
+	$("#euse").click(function() { //사용하기 누르면
+		$('#email').prop('readonly', true);result = "ok";
+		$("#div8").hide();$("#div3").hide();$("#esubmit").hide();$("#eeii").hide();$("#email_injeung").hide();$("#euse").hide();
+		
+	});
+
+	$("#gologin").click(function() { //회원 가입 완료 후 로그인 화면으로 이동
+		location.href = '/kiito/';});
+
+	
+	$("#submit").click(function() { //가입 버튼
+
+		if(result != "ok"){$("#div11").show();return;}
+		if(presult != "ok"){$("#div12").show();return;}
+		if(nresult != "ok"){$("#div13").show();return;}
+
+		var email = $('#email').val();var password = $('#password').val();var name = $('#name').val();
+		
+		$.ajax({
+			url : 'insertC',
+			type : 'POST',
+			data : {
+				email : email,
+				pw : password,
+				name : name,
+			},
+			dataType:'text',
+			success : function(b) {
+				$("#div14").show();$("#div00").hide();$("#submit").hide();$("#gologin").show()
+			},
+			error : function(o) {}
+		});});
+
+
+
+	
+
+
+
+	var nresult;
+
+	
+		$("#name").keyup(function() { //이름 유효성
+			var name = $("#name").val();
+			$("#div11").hide();$("#div12").hide();$("#div13").hide();
+			if(chkValName(name)){$("#errMsg_01").hide();$("#submit").removeAttr("disabled");nresult="ok";}
+			else{$("#errMsg_01").show();$("#errMsg_01").text("이름는 오직 한글만 입력가능");nresult="no";
+			event.preventDefault();	$("#submit").attr("disabled", "disabled");}});});
+
+	
+	
+
+	var chkValName = function(name){var patt = new RegExp(/^[가-힣]+$/);return patt.test(name);}		//이름 유효성
+	var chkValEmail = function(email){var patt = new RegExp(/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/);
+	return patt.test(email);} //이멜 유효성
+
+
+
+
+
+
+	
+
+
+
+	function main() {location.href = '/kiito/';}
+	
+	
+
+
+</script>
+
+</head>
+<body style="background-color: #f7f7f7;">
+<body>
+
+
+
+
+			<h1>회원가입</h1>
+ 				
+ 				<input type="email" name="e_mail" id="email" placeholder="email 중복확인 이용"> 
+				<span class="error" id="errMsg_02"></span>
+				<div id="div3">사용가능한 이메일입니다.</div>
+				<div id="div4">이미등록되어있슴</div>
+				<div id="div6">씨발</div>
+				<button type="submit" name="submit" id="esubmit">이메일 인증받기</button>
+				<div id="div0">전송되었습니다.</div>
 				
 				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				<!--===============================================================================================-->
-	<script src="../resources/login/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="../resources/login/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="../resources/login/vendor/bootstrap/js/popper.js"></script>
-	<script src="../resources/login/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="../resources/login/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="../resources/login/vendor/daterangepicker/moment.min.js"></script>
-	<script src="../resources/login/vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="../resources/login/vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-	<script src="../resources/login/js/main.js"></script>
+	
+			
+			
+			<div id="in">      
+			<br> 
+                  <div><input type="number" name="email_injeung" id="email_injeung" placeholder="인증번호를 입력하셍"> </div>                                      
+                        <button type="submit" name="submit" id="eeii">확인</button>
+                        	<div id="div8">일치합니다.</div> <button type="submit" name="euse" id="euse">사용하기</button>
+							<div id="div9">일치하지 않습니다.</div>
+            
+            </div>
+			
+			
+		
+
+				<br>
+
+			<input type="password" name="password" id="password"
+				placeholder="비밀번호 입력"><br> <input type="password"
+				name="password1" id="password1" placeholder="비밀번호 다시 입력"> <br>
+
+			<div id="div1">비밀번호가 일치합니다.</div>
+			<div id="div2">비밀번호가 일치하지 않습니다.</div>
+
+
+			<input type="text" name="name" id="name" placeholder="이름 입력"><br>
+			<span class="error" id="errMsg_01"></span>
+
+			<br> <br>
+			<br> 
+			<div id="div11">이메일을 확인해주세요.</div>
+			<div id="div12">비밀번호를을 확인해주세요.</div>
+			<div id="div13">이름을 확인해주세요.</div>
+			<div id="div14">가입 완료</div>
+			<input type="submit" value="가입하기" id="submit">
+			<input type="submit" value="로그인하러가기" id="gologin"> <br>
+			<br> <div id="div00">계정이 있으신 가요? <a href="#" class="txt1" id="aaa"
+				onclick="main()">로그인</a></div>
+
+
+
+
 </body>
 </html>

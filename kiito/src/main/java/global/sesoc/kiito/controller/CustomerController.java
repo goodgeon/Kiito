@@ -65,5 +65,33 @@ public class CustomerController {
 	@RequestMapping(value = "/email", method = RequestMethod.GET)
 	public String email() {return "customer/email";}
 	
+	@ResponseBody
+	@RequestMapping(value = "/findE", method = RequestMethod.POST)
+	public String findE(String email) {
+	    System.out.println(email);
+		Customer cu = dao.getCustomer(email);
+
+		String a = "nai";
+		String bb = "aru";
+		
+		if(cu!=null && cu.getEmail().equals(email)) {
+			return bb;
+		}
+		else
+		return a;
+		
+	}
+	
+	
+	@ResponseBody			//회원가입
+	@RequestMapping(value = "/insertC", method = RequestMethod.POST)
+	public void insertC(Customer cus) {
+		System.out.println(cus);
+		cus.setNick(cus.getName());
+		dao.insertC(cus);
+	}
+	
 
 }
+	
+

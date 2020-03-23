@@ -15,9 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import global.sesoc.kiito.dao.CustomerDAO;
@@ -38,8 +40,9 @@ public class EmailController {
     // memberservice; //서비스를 호출하기 위해 의존성을 주입
     
     // mailSending 코드
+	@ResponseBody
     @RequestMapping( value = "/auth.do" , method=RequestMethod.POST )
-    public ModelAndView mailSending(HttpServletRequest request, String e_mail, HttpServletResponse response_email) throws IOException {
+    public int mailSending(HttpServletRequest request, String e_mail, HttpServletResponse response_email,Model m) throws IOException {
 
         Random r = new Random();
         int dice = r.nextInt(4589362) + 49311; //이메일로 받는 인증코드 부분 (난수)
@@ -83,19 +86,21 @@ public class EmailController {
             System.out.println(e);
         }
         
-        ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.
-        mv.setViewName("customer/email_in");     //뷰의이름
-        mv.addObject("dice", dice);
+      //  ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.
+      //  mv.setViewName("customer/join");     //뷰의이름
+      //  mv.addObject("dice", dice);
+        m.addAttribute("dice", dice);
         
-        System.out.println("mv : "+mv);
+       //System.out.println("mv : "+mv);
+        System.out.println("dice : "+dice);
 
         response_email.setContentType("text/html; charset=UTF-8");
-        PrintWriter out_email = response_email.getWriter();
-        out_email.println("<script>alert('이메일이 발송되었습니다. 인증번호를 입력해주세요.');</script>");
-        out_email.flush();
+//        PrintWriter out_email = response_email.getWriter();
+//        out_email.println("<script>alert('이메일이 발송되었습니다. 인증번호를 입력해주세요.');</script>");
+//        out_email.flush();
         
         
-        return mv;
+        return dice;
         
     }
 
@@ -109,64 +114,23 @@ public String email() {
 //이메일로 받은 인증번호를 입력하고 전송 버튼을 누르면 맵핑되는 메소드.
 //내가 입력한 인증번호와 메일로 입력한 인증번호가 맞는지 확인해서 맞으면 회원가입 페이지로 넘어가고,
 //틀리면 다시 원래 페이지로 돌아오는 메소드
-@RequestMapping(value = "/join_injeung.do{dice}", method = RequestMethod.POST)
-public ModelAndView join_injeung(String email_injeung, @PathVariable String dice, HttpServletResponse response_equals) throws IOException {
+@ResponseBody
+@RequestMapping(value = "/join_injeung.do", method = RequestMethod.POST)
+public String join_injeung(String email_injeung,String dice, HttpServletResponse response_equals) throws IOException {
 
     
-    
-    
+    String a ="good"; String b = "bad";
     System.out.println("마지막 : email_injeung : "+email_injeung);
-    
     System.out.println("마지막 : dice : "+dice);
     
-    
-    //페이지이동과 자료를 동시에 하기위해 ModelAndView를 사용해서 이동할 페이지와 자료를 담음
-     
-    ModelAndView mv = new ModelAndView();
-    
-    mv.setViewName("/customer/join.do");
-    
-    mv.addObject("e_mail",email_injeung);
-    
-    if (email_injeung.equals(dice)) {
-        
-        //인증번호가 일치할 경우 인증번호가 맞다는 창을 출력하고 회원가입창으로 이동함
-        
-        
-        
-        mv.setViewName("customer/join");
-        
-        mv.addObject("e_mail",email_injeung);
-        
-        //만약 인증번호가 같다면 이메일을 회원가입 페이지로 같이 넘겨서 이메일을
-        //한번더 입력할 필요가 없게 한다.
-        
-        response_equals.setContentType("text/html; charset=UTF-8");
-        PrintWriter out_equals = response_equals.getWriter();
-        out_equals.println("<script>alert('인증번호가 일치하였습니다. 회원가입창으로 이동합니다.');</script>");
-        out_equals.flush();
-
-        return mv;
-        
-        
+   
+    if (email_injeung.equals(dice)) { 
+        System.out.println("일치 합니다.");
+        return a;
     }else if (email_injeung != dice) {
-        
-        
-        ModelAndView mv2 = new ModelAndView(); 
-        
-        mv2.setViewName("customer/email_in");
-        
-        response_equals.setContentType("text/html; charset=UTF-8");
-        PrintWriter out_equals = response_equals.getWriter();
-        out_equals.println("<script>alert('인증번호가 일치하지않습니다. 인증번호를 다시 입력해주세요.'); history.go(-1);</script>");
-        out_equals.flush();
-        
-
-        return mv2;
-        
+        System.out.println("일치 하지 않습니다.");
+        return b;
     }    
-
-    return mv;
-
+    return a;
 }
 }

@@ -12,13 +12,18 @@ public class CustomerDAO {
 	@Autowired
 	private SqlSession session;
 
-	public Customer getCustomer(String email) {
+	public Customer getCustomer(String email) {			//고객불러오기
 		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
-		
 		Customer customer = mapper.getCustomer(email);
-		
-		
 		return customer;
+	}
+	
+	
+
+	public void insertC(Customer cus) {			//고객회원가입
+		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		mapper.insertC(cus);
+	
 	}
 
 }

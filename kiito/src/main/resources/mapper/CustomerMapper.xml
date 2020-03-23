@@ -7,5 +7,25 @@
 		from customer
 		where email = #{email}
 	</select>
+	
+	<insert id="insertC" parameterType="customer">
+		insert into
+		customer
+		(
+		seq
+		,pw
+		, name
+		, email
+		, nick)
+		
+		values
+		(
+		customer_seq.nextval
+		,#{pw}
+		,#{name}
+		,#{email}
+		,#{name}
+		)
+	</insert>
 
 </mapper>
