@@ -61,7 +61,7 @@
 				<div class="userinfo">
 					<div class="user">
 						<ul>
-							<li><a href="#"><img src="resources/images/user-pic.png" title="user-name" /><span>Ipsum</span></a></li>
+							<li><a href="#"><img src="${sessionScope.customer.profileImg }" title="user-name" style = "width : 43px; height : 43px;"/><span>${sessionScope.customer.name }</span></a></li>
 						</ul>
 					</div>
 				</div>

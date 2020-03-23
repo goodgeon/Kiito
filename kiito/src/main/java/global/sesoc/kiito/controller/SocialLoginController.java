@@ -40,6 +40,7 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import global.sesoc.kiito.socialLogin.AuthInfo;
+import global.sesoc.kiito.vo.Customer;
 
 
 @Controller
@@ -105,9 +106,21 @@ public class SocialLoginController {
         System.out.println(result.get("email"));
         System.out.println(result.get("sub"));
         System.out.println(result.get("name"));
+        System.out.println(result);
+        
         
         //result.get("email")이 DB에 있으면 세션에 저장하고 홈화면
+        
+        
+       
+        
+        
         //없으면 DB에 insert하고 세션에 저장하고 홈화면
+        Customer customer = new Customer();
+        customer.setEmail(result.get("email"));
+        customer.setName(result.get("name"));
+        customer.setProfileImg(result.get("picture"));
+        session.setAttribute("customer", customer);
         
         
         return "redirect:/home";
@@ -148,7 +161,11 @@ public class SocialLoginController {
                 System.out.println("유저이메일 : " + userProfile.getEmail());
                 System.out.println("유저 id : " + userProfile.getId());
                 System.out.println("유저 name : " + userProfile.getName());
-                
+                Customer customer = new Customer();
+                customer.setEmail(userProfile.getEmail());
+                customer.setName(userProfile.getName());
+                customer.setProfileImg("http://graph.facebook.com/"+userProfile.getId()+"/picture?type=large");
+                session.setAttribute("customer", customer);
                 
             } catch (MissingAuthorizationException e) {
                 e.printStackTrace();
