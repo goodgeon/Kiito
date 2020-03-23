@@ -8,6 +8,30 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="../resources/login/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../resources/login/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../resources/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../resources/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../resources/login/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="../resources/login/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../resources/login/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../resources/login/vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="../resources/login/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../resources/login/css/util.css">
+	<link rel="stylesheet" type="text/css" href="../resources/login/css/main.css">
+<!--===============================================================================================-->
+
+
 
 <script src="../resources/js/jquery-3.4.1.js"></script>
 <script type="text/javascript">
@@ -188,11 +212,6 @@ $(document).ready(function() {
 		});});
 
 
-
-	
-
-
-
 	var nresult;
 
 	
@@ -203,26 +222,14 @@ $(document).ready(function() {
 			else{$("#errMsg_01").show();$("#errMsg_01").text("이름는 오직 한글만 입력가능");nresult="no";
 			event.preventDefault();	$("#submit").attr("disabled", "disabled");}});});
 
-	
-	
 
 	var chkValName = function(name){var patt = new RegExp(/^[가-힣]+$/);return patt.test(name);}		//이름 유효성
 	var chkValEmail = function(email){var patt = new RegExp(/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/);
 	return patt.test(email);} //이멜 유효성
 
 
-
-
-
-
-	
-
-
-
 	function main() {location.href = '/kiito/';}
 	
-	
-
 
 </script>
 
@@ -232,10 +239,11 @@ $(document).ready(function() {
 
 
 
-
-			<h1>회원가입</h1>
- 				
- 				<input type="email" name="e_mail" id="email" placeholder="email 중복확인 이용"> 
+<span class="login100-form-title p-b-43">회원가입</span>
+			
+ 					
+				
+ 				<input type="email" name="e_mail" id="email" placeholder="email 중복확인 이용" class="wrap-input100 validate-input"> 
 				<span class="error" id="errMsg_02"></span>
 				<div id="div3">사용가능한 이메일입니다.</div>
 				<div id="div4">이미등록되어있슴</div>
@@ -249,7 +257,8 @@ $(document).ready(function() {
 			
 			<div id="in">      
 			<br> 
-                  <div><input type="number" name="email_injeung" id="email_injeung" placeholder="인증번호를 입력하셍"> </div>                                      
+                  <div><input type="number" name="email_injeung" id="email_injeung" 
+                  class="wrap-input100 validate-input" placeholder="인증번호를 입력하셍"> </div>                                      
                         <button type="submit" name="submit" id="eeii">확인</button>
                         	<div id="div8">일치합니다.</div> <button type="submit" name="euse" id="euse">사용하기</button>
 							<div id="div9">일치하지 않습니다.</div>
@@ -261,15 +270,15 @@ $(document).ready(function() {
 
 				<br>
 
-			<input type="password" name="password" id="password"
-				placeholder="비밀번호 입력"><br> <input type="password"
+			<input type="password" name="password" id="password" class="wrap-input100 validate-input"
+				placeholder="비밀번호 입력"><br> <input type="password" class="wrap-input100 validate-input"
 				name="password1" id="password1" placeholder="비밀번호 다시 입력"> <br>
 
 			<div id="div1">비밀번호가 일치합니다.</div>
 			<div id="div2">비밀번호가 일치하지 않습니다.</div>
 
 
-			<input type="text" name="name" id="name" placeholder="이름 입력"><br>
+			<input type="text" name="name" id="name" placeholder="이름 입력" class="wrap-input100 validate-input"><br>
 			<span class="error" id="errMsg_01"></span>
 
 			<br> <br>
@@ -278,10 +287,31 @@ $(document).ready(function() {
 			<div id="div12">비밀번호를을 확인해주세요.</div>
 			<div id="div13">이름을 확인해주세요.</div>
 			<div id="div14">가입 완료</div>
-			<input type="submit" value="가입하기" id="submit">
-			<input type="submit" value="로그인하러가기" id="gologin"> <br>
-			<br> <div id="div00">계정이 있으신 가요? <a href="#" class="txt1" id="aaa"
+			<div class="container-login100-form-btn">
+				<input type="submit" value="JOIN" id="submit" class="login100-form-btn">
+				</div>
+		
+			<input type="submit" value="로그인하러가기" id="gologin"> 
+			
+			<div id="div00" class="text-center p-t-46 p-b-20">계정이 있으신 가요? <a href="#" class="txt1" id="aaa" 
 				onclick="main()">로그인</a></div>
+				
+<!--===============================================================================================-->
+	<script src="../resources/login/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../resources/login/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../resources/login/vendor/bootstrap/js/popper.js"></script>
+	<script src="../resources/login/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../resources/login/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../resources/login/vendor/daterangepicker/moment.min.js"></script>
+	<script src="../resources/login/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="../resources/login/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="../resources/login/js/main.js"></script>
 
 
 
