@@ -83,6 +83,7 @@
 	
 	</head>
 	<body>
+	
 		<!---start-wrap---->
 			<!---start-header---->
 			<div class="header">
@@ -96,7 +97,6 @@
 					</form>
 					
 				</div>
-				
 				<div class="userinfo">
 					<div class="user">
 						<ul> <!-- <input type="button" value="글쓰기" onclick="write()"> -->
@@ -109,6 +109,7 @@
 				<div class="clear"> </div>
 			</div>
 		</div>
+		
 		<!---//End-header---->
 		<!---start-content---->
 		<div class="content">
@@ -135,23 +136,27 @@
 			        		</div>
 			        	</div>
 			        </li>
-		
 
 			        <!-- End of grid blocks -->
 			      </ul>
 			    </div>
 			</div>
 		</div>
-		
-		
 		<!-- write form -->
 		<div class="container-contact100" style = "position : absolute; width : 100%; height : 100vh; z-index : 1060; top : 0; justify-content : center; align-items : center; background-color : rgba(0,0,0,0.7);">
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form">
-				<span class="contact100-form-title">글쓰기</span>
+				<span class="contact100-form-title">글쓰기<input type = "button" id = "closeWrite" value = "닫기"></span>
+				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
+					<input class="input100" type="text" name="checkin" id="checkin" value="checkin" onclick="checki()">
+					<!-- 같은 이름 ㄴㄴ -->
+					<span class="focus-input100"></span>
+				</div>
+				
+				<div style = "display : flex; justify-content : center"><div id="map"></div></div>
 				
 				<div class="wrap-input100 validate-input" data-validate = "Please enter your message">
-					<textarea class="input100" name="message" placeholder="Your Message"></textarea>
+					<textarea class="input100" name="message" placeholder="Your Message" style = "resize : none"></textarea>
 					<span class="focus-input100"></span>
 				</div>
 				
@@ -161,11 +166,7 @@
 					<span class="focus-input100"></span>
 				</div>
 				
-				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
-					<input class="input100" type="button" name="checkin" id="checkin" value="checkin" onclick="checki()">
-					<!-- 같은 이름 ㄴㄴ -->
-					<span class="focus-input100"></span>
-				</div>
+				
 
 				<div class="wrap-input100 validate-input" data-validate="이거 왜뜨지 씨발">
 					<input class="input100" type="button" name="tag" id="tag" value="tag" onclick="tagg()">
@@ -185,17 +186,9 @@
 	</div>
 	
 	<!-- kakao map -->
-	<div id="map" style="width:500px;height:400px; display : none"></div>
+	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab38e188d1015fa32fe5df13ab040fa"></script>
-	<script>
-		var container = document.getElementById('map');
-		var options = {
-			center: new kakao.maps.LatLng(33.450701, 126.570667),
-			level: 3
-		};
-		
-		var map = new kakao.maps.Map(container, options);
-	</script>
+	
 		<!---//End-content---->
 		
 		

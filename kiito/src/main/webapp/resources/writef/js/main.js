@@ -19,15 +19,38 @@ $('#writeBt').on('click', function(){
 		  event.stopPropagation();
 		  return false;
 	});
-	$('body').css('overflow','hidden');
+	//$('body').css('overflow','hidden');
 	
 	//Check in
+	var container = document.getElementById('map');
+	var options = {
+		center: new kakao.maps.LatLng(33.450701, 126.570667),
+		level: 3
+	};
 	
+	var map = new kakao.maps.Map(container, options);
+
+	container.style.width = '300px';
+	container.style.height = '240px';
+
+	map.relayout();
 });
+
+
+$('#closeWrite').on('click', function(){
+	$('.container-contact100').toggle();
+});
+
+$('#checkin').on('click',function(){
+	$('#map').fadeToggle();
+})
+
 
 
 (function ($) {
     "use strict";
+    
+    
     
 
     /*==================================================================
