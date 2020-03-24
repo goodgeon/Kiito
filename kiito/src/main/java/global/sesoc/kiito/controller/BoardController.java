@@ -18,6 +18,8 @@ public class BoardController {
 	@Autowired	
 	private BoardDAO dao;
 	
+	final String uploadPath = "/boardfile";			//파일이 저장될 위치.
+	
 	@RequestMapping(value = "write", method = RequestMethod.GET)
 	public String write() {return "board/write";}
 
