@@ -263,13 +263,16 @@ $(document).ready(function() {
 
 
 
-
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100"  style="background-image: url('../resources/login/images/bgimg4.png');">
 			<form class="login100-form validate-form" >
-			<h1>회원가입</h1>
- 				<input type="email" name="e_mail" id="email" placeholder="email 중복확인 이용"> 
+			<span class="login100-form-title p-b-43">회원가입</span>
+				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+ 				<input type="email" name="e_mail" id="email" class="input100"> 
+ 				<span class="focus-input100"></span>
+				<span class="label-input100">Email</span>
+ 				</div>
 				<span class="error" id="errMsg_02"></span>
 				<div id="div3">사용가능한 이메일입니다.</div>
 				<div id="div4">이미등록되어있슴</div>
@@ -290,16 +293,26 @@ $(document).ready(function() {
 		
 
 				<br>
-
-			<input type="password" name="password" id="password" class="wrap-input100 validate-input"
-				placeholder="비밀번호 입력"><br> <input type="password" class="wrap-input100 validate-input"
-				name="password1" id="password1" placeholder="비밀번호 다시 입력"> <br>
+			<div class="wrap-input100 validate-input" data-validate="Password is required">
+			<input type="password" name="password" id="password" class="input100">
+				<span class="focus-input100"></span>
+				<span class="label-input100">Password</span>
+					</div>
+				<div class="wrap-input100 validate-input" data-validate="Password is required">
+				<input type="password" class="input100"
+				name="password1" id="password1" > 
+				<span class="focus-input100"></span>
+				<span class="label-input100">Password</span>
+				</div>
 
 			<div id="div1">비밀번호가 일치합니다.</div>
 			<div id="div2">비밀번호가 일치하지 않습니다.</div>
 
-
-			<input type="text" name="name" id="name" placeholder="이름 입력" class="wrap-input100 validate-input"><br>
+			<div class="wrap-input100 validate-input" data-validate="Name is required">
+			<input type="text" name="name" id="name" class="input100">
+							<span class="focus-input100"></span>
+				<span class="label-input100">Name</span>
+			</div>
 			<span class="error" id="errMsg_01"></span>
 
 			<br> <br>
@@ -319,10 +332,26 @@ $(document).ready(function() {
 				</form>
 
 
-</div></div></div>
+		</div>
+		</div></div>
+	</body>		
+<!--===============================================================================================-->
+	<script src="../resources/login/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../resources/login/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../resources/login/vendor/bootstrap/js/popper.js"></script>
+	<script src="../resources/login/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../resources/login/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../resources/login/vendor/daterangepicker/moment.min.js"></script>
+	<script src="../resources/login/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="../resources/login/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="../resources/login/js/main.js"></script>
 
-
-</body>
 <!--===============================================================================================-->
 	<script src="resources/login/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->

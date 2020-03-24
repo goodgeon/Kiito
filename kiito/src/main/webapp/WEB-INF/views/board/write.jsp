@@ -27,11 +27,40 @@
 	<link rel="stylesheet" type="text/css" href="resources/writef/css/util.css">
 	<link rel="stylesheet" type="text/css" href="resources/writef/css/main.css">
 <!--===============================================================================================-->
-
+<script src="resources/js/jquery-3.4.1.js"></script>
 <script type="text/javascript">
 
 function checki() {location.href = 'customer/agree';}	
-function tagg() {location.href = 'customer/agree';}	
+
+$(document).ready(function() {	
+
+	$("#tag1").hide();$("#tag2").hide();$("#tag3").hide();$("#tag4").hide();$("#tag5").hide();$("#tag6").hide();$("#tag7").hide();
+
+	$("#tag").click(function() { 
+		$("#tag1").show();
+		$("#tag").click(function() {
+			$("#tag2").show();
+			 $("#tag").click(function() {
+				 $("#tag3").show();
+				 $("#tag").click(function() {
+					 $("#tag4").show(); 
+					 $("#tag").click(function() {
+						 $("#tag5").show(); 
+						 $("#tag").click(function() {
+							 $("#tag6").show();
+							 $("#tag").click(function() {
+								 $("#tag7").show();
+								 })
+							 })
+						 })
+					 })
+				 })
+
+
+				 })
+		
+	
+});})
 
 
 </script>
@@ -54,6 +83,7 @@ function tagg() {location.href = 'customer/agree';}
 					<span class="focus-input100"></span>
 				</div>
 				
+
 				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
 				<br>
 					<input class="input100" type="file" name="upload" id="file" value="파일선택" size="30">
@@ -69,9 +99,20 @@ function tagg() {location.href = 'customer/agree';}
 					
 
 				<div class="wrap-input100 validate-input" data-validate="이거 왜뜨지 씨발">
-					<input class="input100" type="button" name="tag" id="tag" value="tag" onclick="tagg()">
+					<input class="input100" type="button" name="tag" id="tag" value="tag">
 					<span class="focus-input100"></span>
 				</div>
+				
+				<input type="text" name="tag1" id="tag1" class="input100" placeholder="tag입력">
+				<input type="text" name="tag2" id="tag2" class="input100" placeholder="tag입력">
+				<input type="text" name="tag3" id="tag3" class="input100" placeholder="tag입력">
+				<input type="text" name="tag4" id="tag4" class="input100" placeholder="tag입력">
+				<input type="text" name="tag5" id="tag5" class="input100" placeholder="tag입력">
+				<input type="text" name="tag6" id="tag6" class="input100" placeholder="tag입력">
+				<input type="text" name="tag7" id="tag7" class="input100" placeholder="tag입력">
+				
+				
+				
 
 				<div class="container-contact100-form-btn">
 					<button class="contact100-form-btn">
