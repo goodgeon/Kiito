@@ -136,13 +136,14 @@ iframe {
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
-  display: flex;
+  display:none;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   padding: 15px;
   position: relative;
   background-color: #f2f2f2;
+  
 }
 
 .wrap-contact100 {
@@ -156,7 +157,7 @@ iframe {
 [ Form ]*/
 
 .contact100-form {
-  width: 100%;
+  //width: 30%;
 }
 
 .contact100-form-title {

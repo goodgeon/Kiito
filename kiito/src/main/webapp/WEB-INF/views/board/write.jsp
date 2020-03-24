@@ -54,16 +54,11 @@ function tagg() {location.href = 'customer/agree';}
 					<span class="focus-input100"></span>
 				</div>
 				
-				
-				
 				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
 				<br>
 					<input class="input100" type="file" name="upload" id="file" value="파일선택" size="30">
 					<span class="focus-input100"></span>
 				</div>
-				
-				
-				
 				
 				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
 					<input class="input100" type="button" name="checkin" id="checkin" value="checkin" onclick="checki()">

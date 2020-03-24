@@ -1,6 +1,34 @@
+function checki() {
+	
+
+}	
+function tagg() {location.href = 'customer/agree';}	
+
+function write() {
+	
+		
+}
+
+$('#writeBt').on('click', function(){
+	
+	$('.container-contact100').css('display','flex');
+	
+	//스크롤방지
+	$('.container-contact100').on('scroll touchmove mousewheel', function(event) {
+		  event.preventDefault();
+		  event.stopPropagation();
+		  return false;
+	});
+	$('body').css('overflow','hidden');
+	
+	//Check in
+	
+});
+
 
 (function ($) {
     "use strict";
+    
 
     /*==================================================================
     [ Validate ]*/

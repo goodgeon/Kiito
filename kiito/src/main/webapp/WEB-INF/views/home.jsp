@@ -11,6 +11,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="shortcut icon" type="image/x-icon" href="resources/images/fav-icon.png" />
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		
+		
+		
 
 		<!----webfonts---->
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -47,12 +50,37 @@
 			function write() {location.href = '/kiito/board/write';};
 				
 		</script>
+		<script type="text/javascript"></script>
 		
-		<script>
-			
-		</script>
         <!----//End-dropdown--->
 		<!---//End-click-drop-down-menu----->
+		
+		<!-- write Form  -->
+		<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="resources/writef/images/icons/favicon.ico"/>
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="resources/writef/vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="resources/writef/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="resources/writef/vendor/animate/animate.css">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="resources/writef/vendor/css-hamburgers/hamburgers.min.css">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="resources/writef/vendor/animsition/css/animsition.min.css">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="resources/writef/vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="resources/writef/vendor/daterangepicker/daterangepicker.css">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="resources/writef/css/util.css">
+		<link rel="stylesheet" type="text/css" href="resources/writef/css/main.css">
+	<!--===============================================================================================-->
+	<script type="text/javascript">
+		//function checki() {location.href = 'customer/agree';}	
+		//function tagg() {location.href = 'customer/agree';}	
+	</script>
+	
 	</head>
 	<body>
 		<!---start-wrap---->
@@ -68,18 +96,16 @@
 					</form>
 					
 				</div>
+				
 				<div class="userinfo">
 					<div class="user">
-					
-					
 						<ul> <!-- <input type="button" value="글쓰기" onclick="write()"> -->
-							<li><a href="write"><button type="button" onclick="write()">글쓰기</button></a></li>
+							<li><button id = "writeBt" type="button">글쓰기</button></li>
 							<li><a href="#"><img src="${sessionScope.customer.profileImg }" title="user-name" style = "width : 43px; height : 43px;"/><span>${sessionScope.customer.name }</span></a></li>
-							
 						</ul>
-						
 					</div>
 				</div>
+				
 				<div class="clear"> </div>
 			</div>
 		</div>
@@ -116,7 +142,64 @@
 			    </div>
 			</div>
 		</div>
+		
+		
+		<!-- write form -->
+		<div class="container-contact100" style = "position : absolute; width : 100%; height : 100vh; z-index : 1060; top : 0; justify-content : center; align-items : center; background-color : rgba(0,0,0,0.7);">
+		<div class="wrap-contact100">
+			<form class="contact100-form validate-form">
+				<span class="contact100-form-title">글쓰기</span>
+				
+				<div class="wrap-input100 validate-input" data-validate = "Please enter your message">
+					<textarea class="input100" name="message" placeholder="Your Message"></textarea>
+					<span class="focus-input100"></span>
+				</div>
+				
+				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
+				<br>
+					<input class="input100" type="file" name="upload" id="file" value="파일선택" size="30">
+					<span class="focus-input100"></span>
+				</div>
+				
+				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
+					<input class="input100" type="button" name="checkin" id="checkin" value="checkin" onclick="checki()">
+					<!-- 같은 이름 ㄴㄴ -->
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="이거 왜뜨지 씨발">
+					<input class="input100" type="button" name="tag" id="tag" value="tag" onclick="tagg()">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="container-contact100-form-btn">
+					<button class="contact100-form-btn">
+						<span>
+							<i class="fa fa-paper-plane-o m-r-6" aria-hidden="true"></i>
+							게시
+						</span>
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<!-- kakao map -->
+	<div id="map" style="width:500px;height:400px; display : none"></div>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab38e188d1015fa32fe5df13ab040fa"></script>
+	<script>
+		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(33.450701, 126.570667),
+			level: 3
+		};
+		
+		var map = new kakao.maps.Map(container, options);
+	</script>
 		<!---//End-content---->
+		
+		
+		
 		<!----wookmark-scripts---->
 		  <script src="resources/js/jquery.imagesloaded.js"></script>
 		  <script src="resources/js/jquery.wookmark.js"></script>
@@ -183,5 +266,33 @@
 
 
 		<!---//End-wrap---->
+		
+		<!-- writeForm -->
+		<!--===============================================================================================-->
+	<script src="resources/writef/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+		<script src="resources/writef/vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+		<script src="resources/writef/vendor/bootstrap/js/popper.js"></script>
+		<script src="resources/writef/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+		<script src="resources/writef/vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+		<script src="resources/writef/vendor/daterangepicker/moment.min.js"></script>
+		<script src="resources/writef/vendor/daterangepicker/daterangepicker.js"></script>
+	<!--===============================================================================================-->
+		<script src="resources/writef/vendor/countdowntime/countdowntime.js"></script>
+	<!--===============================================================================================-->
+		<script src="resources/writef/js/main.js"></script>
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'UA-23581568-13');
+	</script>
 	</body>
 </html>
