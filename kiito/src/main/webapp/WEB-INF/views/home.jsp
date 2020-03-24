@@ -41,6 +41,15 @@
 				});
 									
 			});
+
+				
+
+			function write() {location.href = '/kiito/board/write';};
+				
+		</script>
+		
+		<script>
+			
 		</script>
         <!----//End-dropdown--->
 		<!---//End-click-drop-down-menu----->
@@ -57,12 +66,18 @@
 					<form>
 						<input type="text" /><input type="submit" value="" />
 					</form>
+					
 				</div>
 				<div class="userinfo">
 					<div class="user">
-						<ul>
+					
+					
+						<ul> <!-- <input type="button" value="글쓰기" onclick="write()"> -->
+							<li><a href="write"><button type="button" onclick="write()">글쓰기</button></a></li>
 							<li><a href="#"><img src="${sessionScope.customer.profileImg }" title="user-name" style = "width : 43px; height : 43px;"/><span>${sessionScope.customer.name }</span></a></li>
+							
 						</ul>
+						
 					</div>
 				</div>
 				<div class="clear"> </div>

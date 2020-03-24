@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 <head>
-	<title>Login V18</title>
+	<title>Login KIITO</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -33,6 +33,7 @@
 <script type="text/javascript">
 
 function join() {location.href = 'customer/agree';}	
+
 
 </script>
 
