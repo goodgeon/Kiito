@@ -5,7 +5,31 @@
 <html>
 <head>
 
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="resources/login/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="resources/login/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="resources/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="resources/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="resources/login/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="resources/login/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="resources/login/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="resources/login/vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="resources/login/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="resources/login/css/util.css">
+	<link rel="stylesheet" type="text/css" href="resources/login/css/main.css">
+<!--===============================================================================================-->
+
 <title>Insert title here</title>
 
 <!--===============================================================================================-->	
@@ -239,11 +263,21 @@ $(document).ready(function() {
 
 
 
+<<<<<<< HEAD
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100"  style="background-image: url('../resources/login/images/bgimg4.png');">
+			<form class="login100-form validate-form" >
+			<h1>회원가입</h1>
+ 				
+ 				<input type="email" name="e_mail" id="email" placeholder="email 중복확인 이용"> 
+=======
 <span class="login100-form-title p-b-43">회원가입</span>
 			
  					
 				
  				<input type="email" name="e_mail" id="email" placeholder="email 중복확인 이용" class="wrap-input100 validate-input"> 
+>>>>>>> 644d91020527c834332990024f47d14f90114f52
 				<span class="error" id="errMsg_02"></span>
 				<div id="div3">사용가능한 이메일입니다.</div>
 				<div id="div4">이미등록되어있슴</div>
@@ -295,6 +329,9 @@ $(document).ready(function() {
 			
 			<div id="div00" class="text-center p-t-46 p-b-20">계정이 있으신 가요? <a href="#" class="txt1" id="aaa" 
 				onclick="main()">로그인</a></div>
+<<<<<<< HEAD
+				</form>
+=======
 				
 <!--===============================================================================================-->
 	<script src="../resources/login/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -312,9 +349,26 @@ $(document).ready(function() {
 	<script src="../resources/login/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="../resources/login/js/main.js"></script>
+>>>>>>> 644d91020527c834332990024f47d14f90114f52
 
-
+</div></div></div>
 
 
 </body>
+<!--===============================================================================================-->
+	<script src="resources/login/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/login/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/login/vendor/bootstrap/js/popper.js"></script>
+	<script src="resources/login/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/login/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/login/vendor/daterangepicker/moment.min.js"></script>
+	<script src="resources/login/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/login/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/login/js/main.js"></script>
 </html>
