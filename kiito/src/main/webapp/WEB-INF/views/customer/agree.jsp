@@ -4,7 +4,32 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<meta charset="utf-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="../resources/login/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../resources/login/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../resources/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../resources/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../resources/login/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="../resources/login/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../resources/login/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../resources/login/vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="../resources/login/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../resources/login/css/util.css">
+	<link rel="stylesheet" type="text/css" href="../resources/login/css/main.css">
+<!--===============================================================================================-->
+
+
 <title>..</title>
 <link rel="stylesheet" media="all" href="../resources/css/agree.css" />
 <style>
@@ -23,9 +48,10 @@ body {
 <body>
 
 
-	<h1>KIITO</h1>
-
-	<form action="join" method="get" id="form1">
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100"  style="background-image: url('../resources/login/images/bgimg4.png');">
+				<form class="login100-form validate-form" action="join" method="get" id="form1">
 		<!-- <h2>참고문서</h2>
 	<ul>
 		<li><a href="#">KIITO 이용약관 동의</a> 문서</li>
@@ -33,22 +59,16 @@ body {
 		<li><a href="#">위치정보 이용약관 동의</a> 문서</li>
 	</ul> -->
 
-		<p>
+		<span class="agree-button">
 			<label> <input type="checkbox" name="all" id="all">
 				전체동의
 			</label>
-		</p>
+		</span>
 
+		<br>
 
-		<p>
-			<label> <input type="checkbox" name="c1" id="c1">
-				이용약관 동의(필수)
-			</label>
-			<div class="term_box">
-			
-			
-			<div class="article">
-			<p class="article_text">KIITO 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다.
+			<div class="agree-content">
+			<p style="width: 400px; height: 100px; overflow: auto;" class="article_text">KIITO 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다.
 				본 약관은 다양한 KIITO 서비스의 이용과 관련하여 네이버 서비스를 제공하는 KIITO 주식회사(이하 ‘KIITO’)와
 				이를 이용하는 KIITO 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 KIITO 서비스
 				이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다. KIITO 서비스를 이용하시거나 KIITO 서비스 회원으로
@@ -182,35 +202,17 @@ body {
 				또는 네이버 서비스와 관련된 여러분과 KIITO와의 관계에는 대한민국의 법령이 적용됩니다. 그리고 본 약관 또는 네이버
 				서비스와 관련하여 여러분과 네이버 사이에 분쟁이 발생할 경우, 그 분쟁의 처리는 대한민국 '민사소송법'에서 정한 절차를
 				따릅니다. 서비스와 관련하여 궁금하신 사항이 있으시면 고객센터로 문의주시기 바랍니다.</p>
-
-
 		</div>
-			
-			</div>
-			
-		
-
-
-		</p>
-
-
-
-
-
-
-
-
-
-
-
-		<p>
-			<label> <input type="checkbox" name="c2" id="c2">
-				개인정보 수집 및 이용에 대한 안내(필수)
+		<br>
+				<span class="agree-button">
+			<label> <input type="checkbox" name="c1" id="c1">
+				이용약관 동의(필수)
 			</label>
-				<div class="term_box">
-				
-				<div class="article">
-			<p class="article_text">정보통신망법 규정에 따라 네이버에 회원가입 신청하시는 분께 수집하는
+			</span>
+
+		<br>
+		<div class="agree-content">
+			<p style="width: 400px; height: 100px; overflow: auto;" class="article_text">정보통신망법 규정에 따라 네이버에 회원가입 신청하시는 분께 수집하는
 				개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간을 안내 드리오니 자세히 읽은 후 동의하여
 				주시기 바랍니다. 1. 수집하는 개인정보 이용자는 회원가입을 하지 않아도 정보 검색, 등 대부분의 KIITO 서비스를
 				회원과 동일하게 이용할 수 있습니다. 이용자가 개인화 혹은 회원제 서비스를 이용하기 위해 회원가입을 할 경우, KIITO는
@@ -245,24 +247,20 @@ body {
 				지체없이 재생이 불가능한 방법으로 파기합니다. 전자적 파일 형태의 경우 복구 및 재생이 되지 않도록 기술적인 방법을
 				이용하여 안전하게 삭제하며, 출력물 등은 분쇄하거나 소각하는 방식 등으로 파기합니다.
 				</p>
-
-		</div>
-				
-				</div>
-		
-		</p>
-
-
-
-
-
-		<p>
-			<label> <input type="checkbox" name="c3" id="c3">
-				위치정보 이용약관 동의(선택)
+			</div>
+			<br>
+					<span class="agree-button">
+			<label> <input type="checkbox" name="c2" id="c2">
+				개인정보 수집 및 이용에 대한 안내(필수)
 			</label>
-				<div class="term_box">
-					<div class="article">
-			<p class="article_text">
+			</span>
+
+		<br>
+
+
+
+		<div class="agree-content">
+			<p style="width: 400px; height: 100px; overflow: auto;" class="article_text">
 				위치정보 이용약관에 동의하시면, 위치를 활용한 광고 정보 수신 등을
 				포함하는 KIITO 위치기반 서비스를 이용할 수 있습니다. 제 1 조 (목적) 이 약관은 KIITO 주식회사 (이하 “회사”)가
 				제공하는 위치정보사업 또는 위치기반서비스사업과 관련하여 회사와 개인위치정보주체와의 권리, 의무 및 책임사항, 기타 필요한
@@ -291,21 +289,22 @@ body {
 				서비스를 제공하는 경우에는 제공 받는 자 및 제공목적을 사전에 개인위치정보주체에게 고지하고 동의를 받습니다. ②회사는
 				개인위치정보를 개인위치정보주체가 지정하는 제3자에게 제공하는 경우에는 개인위치정보를 수집한 당해 통신단말장치로 매회
 				개인위치정보주체에게 제공받는 자, 제공일시 및 제공목적을 즉시 통보합니다. </p>
-		</div>
-				
 				</div>
-	
-
-
-		</p>
-
-		<p>
-			<input type="button" value="취소" onclick="gohome()"> <input
-				type="submit" value="확인">
-
-		</p>
+			<br>
+			<span class="agree-button">
+			<label> <input type="checkbox" name="c3" id="c3">
+				위치정보 이용약관 동의(선택)
+			</label>
+				</span>
+	<br>
+		<div class="agree-yn">
+			<input class="agree-yes-no" type="button" value="취소" onclick="gohome()"> 
+			<input class="agree-yes-no" type="submit" value="확인">
+			</div>
 	</form>
-
+			</div>
+		</div>
+	</div>
 
 
 
@@ -398,4 +397,21 @@ body {
 		};
 	</script>
 </body>
+<!--===============================================================================================-->
+	<script src="resources/login/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/login/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/login/vendor/bootstrap/js/popper.js"></script>
+	<script src="resources/login/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/login/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/login/vendor/daterangepicker/moment.min.js"></script>
+	<script src="resources/login/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/login/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/login/js/main.js"></script>
+
 </html>
