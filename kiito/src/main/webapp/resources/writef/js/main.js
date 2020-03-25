@@ -1,8 +1,90 @@
-function checki() {
-	
+function checki() {}	
 
-}	
-function tagg() {location.href = 'customer/agree';}	
+$(document).ready(function() {	
+
+	$("#tag1").hide();$("#tag2").hide();$("#tag3").hide();$("#tag4").hide();$("#tag5").hide();$("#tag6").hide();$("#tag7").hide();
+	$("#sc1").hide();$("#sc2").hide();$("#sc3").hide();$("#sc4").hide();$("#sc5").hide();$("#sc6").hide();$("#sc7").hide();
+	$("#tag").click(function() { 
+		$("#tag1").show();$("#sc1").show();
+		});
+	
+	$("#tag1").keydown(function(e){if(e.keyCode == 13){
+		$('#tag1').prop('readonly', true);$("#tag2").show(); $("#tag2").focus();$("#sc2").show();
+		event.preventDefault();}});
+	
+	$("#tag2").keydown(function(e){if(e.keyCode == 13){
+		$('#tag2').prop('readonly', true);$("#tag3").show(); $("#tag3").focus();$("#sc3").show();
+		event.preventDefault();}});
+	
+	$("#tag3").keydown(function(e){if(e.keyCode == 13){
+		$('#tag3').prop('readonly', true);$("#tag4").show(); $("#tag4").focus();$("#sc4").show();
+		event.preventDefault();}});
+	
+	$("#tag4").keydown(function(e){if(e.keyCode == 13){
+		$('#tag4').prop('readonly', true);$("#tag5").show(); $("#tag5").focus();$("#sc5").show();
+		event.preventDefault();}});
+	
+	$("#tag5").keydown(function(e){if(e.keyCode == 13){
+		$('#tag5').prop('readonly', true);$("#tag6").show(); $("#tag6").focus();$("#sc6").show();
+		event.preventDefault();}});
+	
+	$("#tag6").keydown(function(e){if(e.keyCode == 13){
+		$('#tag5').prop('readonly', true);$("#tag7").show(); $("#tag7").focus();$("#sc7").show();
+		event.preventDefault();}});
+	
+	$("#tag7").keydown(function(e){if(e.keyCode == 13){
+		$('#tag7').prop('readonly', true);}});
+})
+
+
+var $ipt1 = $('#tag1'),
+$clearIpt1 = $('#sc1');
+$ipt1.keyup(function(){$("#sc1").toggle(Boolean($(this).val()));});
+$clearIpt1.toggle(Boolean($ipt1.val()));
+$clearIpt1.click(function(){$("#tag1").val('').focus();$(this).hide();$("#tag1").hide();});
+
+
+var $ipt2 = $('#tag2'),
+$clearIpt2 = $('#sc2');
+$ipt2.keyup(function(){$("#sc2").toggle(Boolean($(this).val()));});
+$clearIpt2.toggle(Boolean($ipt2.val()));
+$clearIpt2.click(function(){$("#tag2").val('').focus();$(this).hide();$("#tag2").hide();});
+
+var $ipt3 = $('#tag3'),
+$clearIpt3 = $('#sc3');
+$ipt3.keyup(function(){$("#sc3").toggle(Boolean($(this).val()));});
+$clearIpt3.toggle(Boolean($ipt3.val()));
+$clearIpt3.click(function(){$("#tag3").val('').focus();$(this).hide();$("#tag3").hide();});
+
+var $ipt4 = $('#tag4'),
+$clearIpt4 = $('#sc4');
+$ipt4.keyup(function(){$("#sc4").toggle(Boolean($(this).val()));});
+$clearIpt4.toggle(Boolean($ipt4.val()));
+$clearIpt4.click(function(){$("#tag4").val('').focus();$(this).hide();$("#tag4").hide();});
+
+var $ipt5 = $('#tag5'),
+$clearIpt5 = $('#sc5');
+$ipt5.keyup(function(){$("#sc5").toggle(Boolean($(this).val()));});
+$clearIpt5.toggle(Boolean($ipt5.val()));
+$clearIpt5.click(function(){$("#tag5").val('').focus();$(this).hide();$("#tag5").hide();});
+
+var $ipt6 = $('#tag6'),
+$clearIpt6 = $('#sc6');
+$ipt2.keyup(function(){$("#sc6").toggle(Boolean($(this).val()));});
+$clearIpt6.toggle(Boolean($ipt6.val()));
+$clearIpt6.click(function(){$("#tag6").val('').focus();$(this).hide();$("#tag6").hide();});
+
+var $ipt7 = $('#tag7'),
+$clearIpt7 = $('#sc7');
+$ipt7.keyup(function(){$("#sc7").toggle(Boolean($(this).val()));});
+$clearIpt7.toggle(Boolean($ipt7.val()));
+$clearIpt7.click(function(){$("#tag7").val('').focus();$(this).hide();$("#tag7").hide();});
+	
+								 
+								 
+								 
+
+
 
 function write() {
 	
@@ -51,8 +133,6 @@ $('#checkin').on('click',function(){
     "use strict";
     
     
-    
-
     /*==================================================================
     [ Validate ]*/
     var input = $('.validate-input .input100');
