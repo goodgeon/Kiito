@@ -79,52 +79,18 @@ $clearIpt7 = $('#sc7');
 $ipt7.keyup(function(){$("#sc7").toggle(Boolean($(this).val()));});
 $clearIpt7.toggle(Boolean($ipt7.val()));
 $clearIpt7.click(function(){$("#tag7").val('').focus();$(this).hide();$("#tag7").hide();});
-	
-								 
-								 
-								 
 
-
-
-function write() {
-	
-		
-}
-
-$('#writeBt').on('click', function(){
-	
-	$('.container-contact100').css('display','flex');
-	
-	//스크롤방지
-	$('.container-contact100').on('scroll touchmove mousewheel', function(event) {
-		  event.preventDefault();
-		  event.stopPropagation();
-		  return false;
-	});
-	//$('body').css('overflow','hidden');
-	
-	//Check in
-	var container = document.getElementById('map');
-	var options = {
-		center: new kakao.maps.LatLng(33.450701, 126.570667),
-		level: 3
-	};
-	
-	var map = new kakao.maps.Map(container, options);
-
-	container.style.width = '300px';
-	container.style.height = '240px';
-
-	map.relayout();
-});
 
 
 $('#closeWrite').on('click', function(){
+	$('#checkin').val('');
+	$('#contents').val('');
+	$("#file").val('');
 	$('.container-contact100').toggle();
 });
 
 $('#checkin').on('click',function(){
-	$('#map').fadeToggle();
+	//$('#map').fadeToggle();
 })
 
 
