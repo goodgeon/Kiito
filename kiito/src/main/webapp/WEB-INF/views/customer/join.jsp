@@ -266,8 +266,8 @@ $(document).ready(function() {
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100"  style="background-image: url('../resources/login/images/bgimg4.png');">
-						<div style="font-size: 8ex; writing-mode: vertical-rl; text-orientation: mixed;"><span>君がいるところ</span></div>
-			<div style="font-size: 18ex; writing-mode: vertical-rl; text-orientation: mixed; margin-left: 100px; width: 400px"><span>キイト</span></div>
+			<div class="title1"><span>君がいるところ</span></div>
+			<div class="title2"><span>キイト</span></div>
 			<div>
 			<form class="login100-form validate-form" >
 			<span class="login100-form-title p-b-43">회원가입</span>

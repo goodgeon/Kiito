@@ -623,3 +623,20 @@ input.input100 {
   background: #333333;
   color: #fff;
 }
+
+
+
+
+/*===================================================================[로고]*/
+.title1{
+	 font-size: 8ex; 
+	 writing-mode: vertical-rl; 
+	 text-orientation: mixed;
+}
+.title2{
+	font-size: 18ex; 
+	writing-mode: vertical-rl; 
+	text-orientation: mixed; 
+	margin-left: 100px; 
+	width: 400px
+}
