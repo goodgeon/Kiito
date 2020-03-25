@@ -28,6 +28,8 @@
 	<link rel="stylesheet" type="text/css" href="../resources/login/css/util.css">
 	<link rel="stylesheet" type="text/css" href="../resources/login/css/main.css">
 <!--===============================================================================================-->
+<link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho" rel="stylesheet">
+<link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet">
 
     <style>
       .title1 {
@@ -66,7 +68,7 @@ body {
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100"  style="background-image: url('../resources/login/images/bgimg4.png');">
-			<div class="title1"><span>君がいるところ</span></div>
+			<div class="title1"><span>君　が 　い　る　と　こ　ろ</span></div>
 			<div class="title2"><span>キイト</span></div>
 			<div>
 			

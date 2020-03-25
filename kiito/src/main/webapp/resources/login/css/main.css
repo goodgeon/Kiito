@@ -633,6 +633,7 @@ input.input100 {
 	 writing-mode: vertical-rl; 
 	 text-orientation: mixed;
 	 color: #F2F2F2;
+	 font-family: "Sawarabi Mincho";
 	 
 }
 .title2{
@@ -642,4 +643,5 @@ input.input100 {
 	margin-left: 100px; 
 	width: 400px;
 	color: #F2F2F2;
+	font-family: "Hannari";
 }
