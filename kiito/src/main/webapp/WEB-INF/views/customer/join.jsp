@@ -56,10 +56,23 @@
 <!--===============================================================================================-->
 
 
-
+    <style>
+      .title1 {
+        display: none;
+      }
+       .title2 {
+        display: none;
+      }
+    </style>
+        <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="../resources/js/jquery-3.4.1.js"></script>
 <script type="text/javascript">
-
+$( document ).ready( function() {
+    $( '.title1' ).fadeIn( 2000 );
+  } );
+$( document ).ready( function() {
+    $( '.title2' ).fadeIn( 4000 );
+  } );
 
 $(document).ready(function() {		
 		$("#euse").hide();$("#gologin").hide();

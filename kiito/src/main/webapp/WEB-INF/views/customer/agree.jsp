@@ -29,7 +29,15 @@
 	<link rel="stylesheet" type="text/css" href="../resources/login/css/main.css">
 <!--===============================================================================================-->
 
-
+    <style>
+      .title1 {
+        display: none;
+      }
+       .title2 {
+        display: none;
+      }
+    </style>
+        <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <title>..</title>
 <link rel="stylesheet" media="all" href="../resources/css/agree.css" />
 <style>
@@ -42,6 +50,13 @@ body {
 	function gohome() {
 		location.href = "/kiito"
 	}
+
+	$( document ).ready( function() {
+	    $( '.title1' ).fadeIn( 2000 );
+	  } );
+	$( document ).ready( function() {
+	    $( '.title2' ).fadeIn( 4000 );
+	  } );
 </script>
 </head>
 <body style="background-color: #f7f7f7;">
