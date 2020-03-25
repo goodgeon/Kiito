@@ -51,6 +51,10 @@ body {
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100"  style="background-image: url('../resources/login/images/bgimg4.png');">
+			<div style="font-size: 8ex; writing-mode: vertical-rl; text-orientation: mixed;"><span>君がいるところ</span></div>
+			<div style="font-size: 18ex; writing-mode: vertical-rl; text-orientation: mixed; margin-left: 100px; width: 400px"><span>キイト</span></div>
+			<div>
+			
 				<form class="login100-form validate-form" action="join" method="get" id="form1">
 		<!-- <h2>참고문서</h2>
 	<ul>
@@ -302,6 +306,7 @@ body {
 			<input class="agree-yes-no" type="submit" value="확인">
 			</div>
 	</form>
+	</div>
 			</div>
 		</div>
 	</div>

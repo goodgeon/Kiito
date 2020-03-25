@@ -266,6 +266,9 @@ $(document).ready(function() {
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100"  style="background-image: url('../resources/login/images/bgimg4.png');">
+						<div style="font-size: 8ex; writing-mode: vertical-rl; text-orientation: mixed;"><span>君がいるところ</span></div>
+			<div style="font-size: 18ex; writing-mode: vertical-rl; text-orientation: mixed; margin-left: 100px; width: 400px"><span>キイト</span></div>
+			<div>
 			<form class="login100-form validate-form" >
 			<span class="login100-form-title p-b-43">회원가입</span>
 				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
@@ -280,7 +283,6 @@ $(document).ready(function() {
 				<button type="submit" name="submit" id="esubmit">이메일 인증받기</button>
 				<div id="div0">전송되었습니다.</div>
 			<div id="in">      
-			<br> 
                   <div><input type="number" name="email_injeung" id="email_injeung" 
                   class="wrap-input100 validate-input" placeholder="인증번호를 입력하셍"> </div>                                      
                         <button type="submit" name="submit" id="eeii">확인</button>
@@ -288,11 +290,7 @@ $(document).ready(function() {
 							<div id="div9">일치하지 않습니다.</div>
             
             </div>
-			
-			
 		
-
-				<br>
 			<div class="wrap-input100 validate-input" data-validate="Password is required">
 			<input type="password" name="password" id="password" class="input100">
 				<span class="focus-input100"></span>
@@ -315,7 +313,6 @@ $(document).ready(function() {
 			</div>
 			<span class="error" id="errMsg_01"></span>
 
-			<br> <br>
 			<br> 
 			<div id="div11">이메일을 확인해주세요.</div>
 			<div id="div12">비밀번호를을 확인해주세요.</div>
@@ -330,6 +327,7 @@ $(document).ready(function() {
 			<div id="div00" class="text-center p-t-46 p-b-20">계정이 있으신 가요? <a href="#" class="txt1" id="aaa" 
 				onclick="main()">로그인</a></div>
 				</form>
+				</div>
 
 
 		</div>
