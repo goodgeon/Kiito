@@ -144,6 +144,9 @@
 			    </div>
 			</div>
 		</div>
+		
+		
+		
 		<!-- write form -->
 		<div class="container-contact100">
 		<div class="wrap-contact100">
@@ -185,27 +188,11 @@
 		</div>
 	
 
-		<!-- <div class="wrap-input100 validate-input" data-validate="이거 왜뜨지 씨발">
-			<input class="input100" type="button" name="tag123" id="tag11" value="tag">
-			<span class="focus-input100"></span>
-		</div> -->
-
-				
 				
 			<ul id="tag-list">
        		 </ul>
    				
 
-				<!-- 
-				
-				<input type="text" name="tag1" id="tag1" class="input100" placeholder="tag입력"><span id="sc1">X</span>
-				<input type="text" name="tag2" id="tag2" class="input100" placeholder="tag입력"><span id="sc2">X</span> 	
-				<input type="text" name="tag3" id="tag3" class="input100" placeholder="tag입력"><span id="sc3">X</span> 
-				<input type="text" name="tag4" id="tag4" class="input100" placeholder="tag입력"><span id="sc4">X</span> 
-				<input type="text" name="tag5" id="tag5" class="input100" placeholder="tag입력"><span id="sc5">X</span> 
-				<input type="text" name="tag6" id="tag6" class="input100" placeholder="tag입력"><span id="sc6">X</span> 
-				<input type="text" name="tag7" id="tag7" class="input100" placeholder="tag입력"><span id="sc7">X</span> 
-				 -->
 		
 
 				<div class="container-contact100-form-btn">
