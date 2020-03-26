@@ -57,6 +57,11 @@
 
         return check;
     });
+    
+    $("#tag").on("keypress", function (e) {
+    	
+    	
+    })
 
 
     $('.validate-form .input100').each(function(){

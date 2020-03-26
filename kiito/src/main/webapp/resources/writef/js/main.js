@@ -66,10 +66,14 @@ $(document).ready(function() {
 })
 
 
+
+
 $('#closeWrite').on('click', function(){
 	$('#checkin').val('');
 	$('#contents').val('');
 	$("#file").val('');
+	$('#placesList').html('');
+	$('#pagination').html('');
 	$('.container-contact100').toggle();
 });
 

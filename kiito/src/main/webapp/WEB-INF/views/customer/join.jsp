@@ -218,7 +218,7 @@ $(document).ready(function() {
 
 
 	$("#euse").click(function() { //사용하기 누르면
-		$('#email').prop('readonly', true);result = "ok";
+		$('#email').prop('disabled', true);result = "ok";
 		$("#div8").hide();$("#div3").hide();$("#esubmit").hide();$("#eeii").hide();$("#email_injeung").hide();$("#euse").hide();
 		
 	});
