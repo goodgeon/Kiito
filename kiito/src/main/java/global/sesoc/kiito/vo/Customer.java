@@ -11,7 +11,5 @@ public class Customer {
 	private String name;
 	private String nick;
 	private String profileImg;
-	
-	
-
+	private int customer_type;
 }
