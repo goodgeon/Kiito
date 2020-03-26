@@ -88,6 +88,7 @@ var $ipt7 = $('#tag7'),
 $clearIpt7 = $('#sc7');
 $ipt7.keyup(function(){$("#sc7").toggle(Boolean($(this).val()));});
 $clearIpt7.toggle(Boolean($ipt7.val()));
+<<<<<<< HEAD
 $clearIpt7.click(function(){$("#tag7").val('').focus();$(this).hide();$("#tag7").hide();$('#tag7').prop('readonly',false);});
 	
 								 
@@ -124,17 +125,21 @@ $('#writeBt').on('click', function(){
 
 	container.style.width = '300px';
 	container.style.height = '240px';
+=======
+$clearIpt7.click(function(){$("#tag7").val('').focus();$(this).hide();$("#tag7").hide();});
+>>>>>>> 5f0f3ed26097b6eeabf6b02b4156ccf35586f183
 
-	map.relayout();
-});
 
 
 $('#closeWrite').on('click', function(){
+	$('#checkin').val('');
+	$('#contents').val('');
+	$("#file").val('');
 	$('.container-contact100').toggle();
 });
 
 $('#checkin').on('click',function(){
-	$('#map').fadeToggle();
+	//$('#map').fadeToggle();
 })
 
 

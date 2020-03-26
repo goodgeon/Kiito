@@ -6,6 +6,8 @@
 	<head>
 
 		<title>KIITO</title>
+		
+		
 
 		<link href="resources/css/style.css" rel='stylesheet' type='text/css' />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,6 +77,7 @@
 	<!--===============================================================================================-->
 		<link rel="stylesheet" type="text/css" href="resources/writef/css/util.css">
 		<link rel="stylesheet" type="text/css" href="resources/writef/css/main.css">
+		<link rel="stylesheet" type="text/css" href="resources/writef/css/kakaomap.css">
 	<!--===============================================================================================-->
 	<script type="text/javascript">
 
@@ -142,35 +145,42 @@
 			</div>
 		</div>
 		<!-- write form -->
-		<div class="container-contact100" style = "position : absolute; width : 100%; height : 100vh; z-index : 1060; top : 0; justify-content : center; align-items : center; background-color : rgba(0,0,0,0.7);">
+		<div class="container-contact100">
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form">
 				<span class="contact100-form-title">글쓰기<input type = "button" id = "closeWrite" value = "닫기"></span>
 				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
-					<input class="input100" type="text" name="checkin" id="checkin" value="checkin" onclick="checki()">
+					<input class="input100" type="text" name="checkin" id="checkin" placeholder = "검색어를 입력하세요">
+					<input id = "checkinBt" type = "button" value = "검색">
 					<!-- 같은 이름 ㄴㄴ -->
 					<span class="focus-input100"></span>
 				</div>
 				
-				<div style = "display : flex; justify-content : center"><div id="map"></div></div>
+		<div class="map_wrap">
+		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+		
+		    <div id="menu_wrap" class="bg_white">
+		        <hr>
+		        <ul id="placesList"></ul>
+		        <div id="pagination"></div>
+		    </div>
+		</div>
 				
-				<div class="wrap-input100 validate-input" data-validate = "Please enter your message">
-					<textarea class="input100" name="message" placeholder="Your Message" style = "resize : none"></textarea>
-					<span class="focus-input100"></span>
-				</div>
-				
-				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
-				<br>
-					<input class="input100" type="file" name="upload" id="file" value="파일선택" size="30">
-					<span class="focus-input100"></span>
-				</div>
-				
-				
+		<div class="wrap-input100 validate-input" data-validate = "Please enter your message">
+			<textarea id = "contents" class="input100" name="message" placeholder="Your Message" style = "resize : none"></textarea>
+			<span class="focus-input100"></span>
+		</div>
+		
+		<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
+		<br>
+			<input class="input100" type="file" name="upload" id="file" value="파일선택" size="30">
+			<span class="focus-input100"></span>
+		</div>
 
-				<div class="wrap-input100 validate-input" data-validate="이거 왜뜨지 씨발">
-					<input class="input100" type="button" name="tag" id="tag" value="tag">
-					<span class="focus-input100"></span>
-				</div>
+		<div class="wrap-input100 validate-input" data-validate="이거 왜뜨지 씨발">
+			<input class="input100" type="button" name="tag" id="tag" value="tag">
+			<span class="focus-input100"></span>
+		</div>
 				
 				
 			씨발
@@ -207,7 +217,7 @@
 	
 	<!-- kakao map -->
 	
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab38e188d1015fa32fe5df13ab040fa"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab38e188d1015fa32fe5df13ab040fa&libraries=services,clusterer,drawing"></script>
 	
 		<!---//End-content---->
 		
@@ -297,6 +307,8 @@
 		<script src="resources/writef/vendor/countdowntime/countdowntime.js"></script>
 	<!--===============================================================================================-->
 		<script src="resources/writef/js/main.js"></script>
+		<script src="resources/writef/js/kakaomap.js"></script>
+
 	
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
