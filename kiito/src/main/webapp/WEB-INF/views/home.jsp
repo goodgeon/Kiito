@@ -173,12 +173,16 @@
 				</div>
 				
 				
-			
+			씨발
+   			 <div id="tagdiv">
     
+    		
+    
+   			 </div>
    				
 
 				
-				
+				<!-- 
 				<input type="text" name="tag1" id="tag1" class="input100" placeholder="tag입력"><span id="sc1">X</span>
 				<input type="text" name="tag2" id="tag2" class="input100" placeholder="tag입력"><span id="sc2">X</span> 	
 				<input type="text" name="tag3" id="tag3" class="input100" placeholder="tag입력"><span id="sc3">X</span> 
@@ -187,7 +191,7 @@
 				<input type="text" name="tag6" id="tag6" class="input100" placeholder="tag입력"><span id="sc6">X</span> 
 				<input type="text" name="tag7" id="tag7" class="input100" placeholder="tag입력"><span id="sc7">X</span> 
 				
-			
+			 -->
 
 				<div class="container-contact100-form-btn">
 					<button class="contact100-form-btn">
