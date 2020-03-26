@@ -39,6 +39,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import global.sesoc.kiito.dao.CustomerDAO;
 import global.sesoc.kiito.socialLogin.AuthInfo;
 import global.sesoc.kiito.vo.Customer;
 
@@ -63,6 +64,8 @@ public class SocialLoginController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(SocialLoginController.class);
 	
+	@Autowired	
+	private CustomerDAO dao;
 	
 	
 	@RequestMapping(value = "/google/googleSignInCallback")
@@ -110,21 +113,24 @@ public class SocialLoginController {
         
         
         //result.get("email")이 DB에 있으면 세션에 저장하고 홈화면
-        
-        
-       
-        
-        
-        //없으면 DB에 insert하고 세션에 저장하고 홈화면
         Customer customer = new Customer();
         customer.setEmail(result.get("email"));
+        customer.setPw("aweoigjiowaegioawegjoiawejgioawejiogawejiogawejiogaweijog");
         customer.setName(result.get("name"));
         customer.setProfileImg(result.get("picture"));
+        customer.setCustomer_type(1);
+        
+
+        if(dao.getGoogleCustomer(customer.getEmail()) != null) {
+        	session.setAttribute("customer", customer);
+        	return "redirect:/home";
+        }
+        
+        //없으면 DB에 insert하고 세션에 저장하고 홈화면
+        dao.insertC(customer);
         session.setAttribute("customer", customer);
         
-        
         return "redirect:/home";
- 
     }
 	
 	@RequestMapping(value = "/facebook/facebookSignInCallback", method = { RequestMethod.GET, RequestMethod.POST })
@@ -161,10 +167,20 @@ public class SocialLoginController {
                 System.out.println("유저이메일 : " + userProfile.getEmail());
                 System.out.println("유저 id : " + userProfile.getId());
                 System.out.println("유저 name : " + userProfile.getName());
+                
                 Customer customer = new Customer();
                 customer.setEmail(userProfile.getEmail());
+                customer.setPw("aweoigjiowaegioawegjoiawejgioawejiogawejiogawejiogaweijog");
                 customer.setName(userProfile.getName());
                 customer.setProfileImg("http://graph.facebook.com/"+userProfile.getId()+"/picture?type=large");
+                customer.setCustomer_type(2);
+                
+                if(dao.getFacebookCustomer(customer.getEmail()) != null) {
+                	session.setAttribute("customer", customer);
+                	return "redirect:/home";
+                }
+                
+                dao.insertC(customer);
                 session.setAttribute("customer", customer);
                 
             } catch (MissingAuthorizationException e) {

@@ -26,4 +26,20 @@ public class CustomerDAO {
 	
 	}
 
+
+
+	public Object getGoogleCustomer(String email) {
+		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		Customer customer = mapper.getGoogleCustomer(email);
+		return customer;
+	}
+
+
+
+	public Object getFacebookCustomer(String email) {
+		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		Customer customer = mapper.getFacebookCustomer(email);
+		return customer;
+	}
+
 }

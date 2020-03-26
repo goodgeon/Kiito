@@ -43,7 +43,8 @@ public class CustomerController {
 		Customer c = dao.getCustomer(email);
 
 		if(c != null && c.getPw().equals(pw)) {
-			session.setAttribute("customer", customer);
+			session.setAttribute("customer", c);
+			System.out.println("로그인정보 : " + c.toString());
 			return "success";
 		}
 		
@@ -85,6 +86,7 @@ public class CustomerController {
 	public void insertC(Customer cus) {
 		System.out.println(cus);
 		cus.setNick(cus.getName());
+		cus.setCustomer_type(0);
 		dao.insertC(cus);
 	}
 	

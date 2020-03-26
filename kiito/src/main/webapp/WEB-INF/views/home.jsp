@@ -103,7 +103,16 @@
 					<div class="user">
 						<ul> <!-- <input type="button" value="글쓰기" onclick="write()"> -->
 							<li><button id = "writeBt" type="button">글쓰기</button></li>
-							<li><a href="#"><img src="${sessionScope.customer.profileImg }" title="user-name" style = "width : 43px; height : 43px;"/><span>${sessionScope.customer.name }</span></a></li>
+							<li><a href="#">
+							<c:if test="${sessionScope.customer.profileImg == null }">
+								<img src="resources/login/images/profileImg_null2.png" style = "width : 43px; height : 43px;"/>
+							</c:if>
+							<c:if test="${sessionScope.customer.profileImg != null }">
+								<img src="${sessionScope.customer.profileImg }" title="user-name" style = "width : 43px; height : 43px;"/>
+							</c:if>
+							
+							
+							<span>${sessionScope.customer.name }</span></a></li>
 						</ul>
 					</div>
 				</div>

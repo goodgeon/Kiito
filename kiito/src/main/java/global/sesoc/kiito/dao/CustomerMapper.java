@@ -8,6 +8,10 @@ public interface CustomerMapper {
 
 	void insertC(Customer cus);
 
+	Customer getGoogleCustomer(String email);
+
+	Customer getFacebookCustomer(String email);
+
 
 
 }

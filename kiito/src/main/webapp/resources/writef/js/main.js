@@ -67,12 +67,13 @@ $(document).ready(function() {
 
 
 $('#closeWrite').on('click', function(){
+	$('#checkin').val('');
+	$('#contents').val('');
+	$("#file").val('');
 	$('.container-contact100').toggle();
 });
 
-$('#checkin').on('click',function(){
-	$('#map').fadeToggle();
-})
+
 
 
 

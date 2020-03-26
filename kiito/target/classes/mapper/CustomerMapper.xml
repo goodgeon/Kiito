@@ -5,7 +5,19 @@
 	<select id="getCustomer" parameterType = "String" resultType="customer">
 		select *
 		from customer
-		where email = #{email}
+		where email = #{email} and customer_type = 0
+	</select>
+	
+	<select id="getGoogleCustomer" parameterType = "String" resultType="customer">
+		select *
+		from customer
+		where email = #{email} and customer_type = 1
+	</select>
+	
+	<select id="getFacebookCustomer" parameterType = "String" resultType="customer">
+		select *
+		from customer
+		where email = #{email} and customer_type = 2
 	</select>
 	
 	<insert id="insertC" parameterType="customer">
@@ -16,7 +28,8 @@
 		,pw
 		, name
 		, email
-		, nick)
+		, nick
+		, customer_type)
 		
 		values
 		(
@@ -25,6 +38,7 @@
 		,#{name}
 		,#{email}
 		,#{name}
+		,#{customer_type}
 		)
 	</insert>
 
