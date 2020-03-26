@@ -229,9 +229,9 @@ $(document).ready(function() {
 	
 	$("#submit").click(function() { //가입 버튼
 
-		if(result != "ok"){$("#div11").show();return;}
+		/* if(result != "ok"){$("#div11").show();return;}
 		if(presult != "ok"){$("#div12").show();return;}
-		if(nresult != "ok"){$("#div13").show();return;}
+		if(nresult != "ok"){$("#div13").show();return;} */
 
 		var email = $('#email').val();var password = $('#password').val();var name = $('#name').val();
 		
@@ -245,7 +245,8 @@ $(document).ready(function() {
 			},
 			dataType:'text',
 			success : function(b) {
-				$("#div14").show();$("#div00").hide();$("#submit").hide();$("#gologin").show()
+				$("#div14").show();$("#div00").hide();$("#submit").hide();//$("#gologin").show();
+				location.href = '/kiito';
 			},
 			error : function(o) {}
 		});});
@@ -295,13 +296,13 @@ $(document).ready(function() {
 				<div id="div3">사용가능한 이메일입니다.</div>
 				<div id="div4">이미등록되어있슴</div>
 				<div id="div6">씨발</div>
-				<button type="submit" name="submit" id="esubmit">이메일 인증받기</button>
+				<button type="button" name="submit" id="esubmit">이메일 인증받기</button>
 				<div id="div0">전송되었습니다.</div>
 			<div id="in">      
                   <div><input type="number" name="email_injeung" id="email_injeung" 
                   class="wrap-input100 validate-input" placeholder="인증번호를 입력하셍"> </div>                                      
-                        <button type="submit" name="submit" id="eeii">확인</button>
-                        	<div id="div8">일치합니다.</div> <button type="submit" name="euse" id="euse">사용하기</button>
+                        <button type="button" name="submit" id="eeii">확인</button>
+                        	<div id="div8">일치합니다.</div> <button type="button" name="euse" id="euse">사용하기</button>
 							<div id="div9">일치하지 않습니다.</div>
             
             </div>
@@ -332,9 +333,9 @@ $(document).ready(function() {
 			<div id="div11">이메일을 확인해주세요.</div>
 			<div id="div12">비밀번호를을 확인해주세요.</div>
 			<div id="div13">이름을 확인해주세요.</div>
-			<div id="div14">가입 완료</div>
+			<!-- <div id="div14">가입 완료</div> -->
 			<div class="container-login100-form-btn">
-				<input type="submit" value="JOIN" id="submit" class="login100-form-btn">
+				<input type="button" value="JOIN" id="submit" class="login100-form-btn">
 				</div>
 		
 			<input type="submit" value="로그인하러가기" id="gologin"> 

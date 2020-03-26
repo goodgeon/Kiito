@@ -88,46 +88,14 @@ var $ipt7 = $('#tag7'),
 $clearIpt7 = $('#sc7');
 $ipt7.keyup(function(){$("#sc7").toggle(Boolean($(this).val()));});
 $clearIpt7.toggle(Boolean($ipt7.val()));
-<<<<<<< HEAD
+
+
 $clearIpt7.click(function(){$("#tag7").val('').focus();$(this).hide();$("#tag7").hide();$('#tag7').prop('readonly',false);});
 	
 								 
-								 
-								 
 
-
-
-function write() {
-	
-		
-}
-
-$('#writeBt').on('click', function(){
-	
-	$('.container-contact100').css('display','flex');
-	
-	//스크롤방지
-	$('.container-contact100').on('scroll touchmove mousewheel', function(event) {
-		  event.preventDefault();
-		  event.stopPropagation();
-		  return false;
-	});
-	//$('body').css('overflow','hidden');
-	
-	//Check in
-	var container = document.getElementById('map');
-	var options = {
-		center: new kakao.maps.LatLng(33.450701, 126.570667),
-		level: 3
-	};
-	
-	var map = new kakao.maps.Map(container, options);
-
-	container.style.width = '300px';
-	container.style.height = '240px';
-=======
 $clearIpt7.click(function(){$("#tag7").val('').focus();$(this).hide();$("#tag7").hide();});
->>>>>>> 5f0f3ed26097b6eeabf6b02b4156ccf35586f183
+
 
 
 
