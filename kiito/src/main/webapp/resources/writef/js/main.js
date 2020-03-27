@@ -77,6 +77,10 @@ $('#closeWrite').on('click', function(){
 	$('.container-contact100').toggle();
 });
 
+$('#submitFeed').on('click', function(){
+	$('#writeForm').submit();
+})
+
 
 
 

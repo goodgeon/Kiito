@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="global.sesoc.kiito.dao.FeedMapper">
+	<insert id="insertFeed" parameterType="feed">
+		insert into feed
+		(feed_seq,
+		customer_seq,
+		checkin,
+		contents,
+		congestion
+		)
+		values(
+		feed_seq.nextval,
+		#{customer_seq},
+		#{checkin},
+		#{contents},
+		#{congestion}
+		)
+	</insert>
+
+</mapper>

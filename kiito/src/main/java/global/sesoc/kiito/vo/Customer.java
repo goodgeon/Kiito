@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Customer {
 	
-	private int seq;
+	private int customer_seq;
 	private String email;
 	private String pw;
 	private String name;
