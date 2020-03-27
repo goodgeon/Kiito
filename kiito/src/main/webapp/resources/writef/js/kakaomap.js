@@ -90,22 +90,29 @@ function displayPlaces(places) {
             itemEl.onclick =  function () {
             	var selectedItem = getListItem(0,places[j]);
             	
+            	//원래있던 마커, 검색목록html 삭제
             	removeMarker();
             	$('#placesList').html('');
             	
+            	//선택된 장소 검색목록에 추가
             	fragment.appendChild(selectedItem);
             	listEl.appendChild(fragment);
             	
+            	//pagination 다시
             	var paginationEl = document.getElementById('pagination');
             	while (paginationEl.hasChildNodes()) {
                     paginationEl.removeChild (paginationEl.lastChild);
                 }
             	
+            	//새로운 마커생성
             	placePosition = new kakao.maps.LatLng(places[j].y, places[j].x);
             	
-            	var selectedMarker = addMarker(placePosition, j);
+            	var selectedMarker = addMarker(placePosition, 0);
             	displayInfowindow(selectedMarker, title);
 
+            	//맵 중심이동
+            	map.setCenter(placePosition);
+            	//map.setLevel(3);
             	
             	$('#dataSelected').val(places[j].place_name);
             	$('#dataSelected').css('display','block');
@@ -260,7 +267,7 @@ $('#writeBt').on('click', function(){
 
 	map.relayout();
 	
-	infowindow = new kakao.maps.InfoWindow({zIndex:1});
+	/*infowindow = new kakao.maps.InfoWindow({zIndex:1});
 	container = document.getElementById('map');
 
 	options = {
@@ -268,7 +275,7 @@ $('#writeBt').on('click', function(){
 			level: 3
 	};
 		
-	map = new kakao.maps.Map(container, options);
+	map = new kakao.maps.Map(container, options);*/
 	
 	//스크롤방지
 //	$('.container-contact100').on('scroll touchmove mousewheel', function(event) {

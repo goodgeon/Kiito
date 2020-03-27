@@ -1,5 +1,5 @@
 ﻿CREATE TABLE customer (
-	seq		NUMBER		  PRIMARY KEY
+	customer_seq NUMBER PRIMARY KEY
 	,email	VARCHAR2(100)
 	,pw		VARCHAR2(100) NOT NULL
 	,name	VARCHAR2(100) NOT NULL
@@ -12,11 +12,12 @@
 
 CREATE SEQUENCE customer_seq;
 
-
+drop table customer;
+drop table feed;
 
 create table feed(
-feed_num number(38) PRIMARY key,
-seq NUMBER REFERENCES customer(seq),
+feed_seq number(38) PRIMARY key,
+customer_seq NUMBER REFERENCES customer(customer_seq) on delete cascade,
 checkin varchar2(100) not null,
 contents varchar2(200) not null,
 congestion number(1) not null,

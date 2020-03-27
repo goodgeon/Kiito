@@ -24,13 +24,13 @@
 		insert into
 		customer
 		(
-		seq
+		customer_seq
 		,pw
 		, name
 		, email
 		, nick
-		, customer_type)
-		
+		, customer_type
+		)
 		values
 		(
 		customer_seq.nextval

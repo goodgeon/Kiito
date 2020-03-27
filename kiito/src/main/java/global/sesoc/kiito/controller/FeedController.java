@@ -7,20 +7,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import global.sesoc.kiito.dao.BoardDAO;
+import global.sesoc.kiito.dao.FeedDAO;
+import global.sesoc.kiito.vo.Feed;
 
 @Controller
-
-public class BoardController {
+@RequestMapping("feed")
+public class FeedController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
+	private static final Logger logger = LoggerFactory.getLogger(FeedController.class);
 	
 	@Autowired	
-	private BoardDAO dao;
+	private FeedDAO dao;
 	
 	final String uploadPath = "/boardfile";			//파일이 저장될 위치.
 	
 	@RequestMapping(value = "write", method = RequestMethod.GET)
 	public String write() {return "board/write";}
+	
+	@RequestMapping(value = "/insertFeed", method = RequestMethod.POST)
+	public String insertFeed(Feed feed) {
+		dao.insertFeed(feed);
+		return "redirect:/";
+	}
 
 }

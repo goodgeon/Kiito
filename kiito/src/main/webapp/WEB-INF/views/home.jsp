@@ -156,12 +156,13 @@
 		<!-- write form -->
 		<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form">
+			<form class="contact100-form validate-form" id = "writeForm" action = "feed/insertFeed" method = "POST">
+			<input type = "hidden" name = "customer_seq" value = "${sessionScope.customer.customer_seq }">
 				<span class="contact100-form-title">글쓰기<input type = "button" id = "closeWrite" value = "닫기"></span>
 				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
 					<input class="input100" type="text" name="checkin" id="checkin" placeholder = "검색어를 입력하세요">
 					
-					<input id = "checkinBt" type = "button" value = "검색">
+					<input class = "input100" id = "checkinBt" type = "button" value = "검색">
 					<!-- 같은 이름 ㄴㄴ -->
 					<span class="focus-input100"></span>
 				</div>
@@ -175,25 +176,30 @@
 				        <ul id="placesList"></ul>
 				        <div id="pagination"></div>
 				    </div>
-		</div>
+				</div>
+				<div class = "wrap-input100">
+					<input type = "radio" name = "congestion" value = "3" checked = "checked" style = "margin-left : 20px;">혼잡
+					<input type = "radio" name = "congestion" value = "2">보통
+					<input type = "radio" name = "congestion" value = "1">한산
+				</div>
+						
+				<div class="wrap-input100 validate-input" data-validate = "Please enter your message">
+					<textarea id = "contents" class="input100" name="contents" placeholder="Your Message" style = "resize : none"></textarea>
+					<span class="focus-input100"></span>
+				</div>
 				
-		<div class="wrap-input100 validate-input" data-validate = "Please enter your message">
-			<textarea id = "contents" class="input100" name="message" placeholder="Your Message" style = "resize : none"></textarea>
-			<span class="focus-input100"></span>
-		</div>
-		
-		<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
-		<br>
-			<input class="input100" type="file" name="upload" id="file" value="파일선택" size="30">
-			<span class="focus-input100"></span>
-		</div>
-		
-		
-		<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
-		<br>
-				<input type="text" id="tag" class="input100" placeholder="태그입력" />
-			<span class="focus-input100"></span>
-		</div>
+				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
+				<br>
+					<input class="input100" type="file" name="upload" id="file" value="파일선택" size="30">
+					<span class="focus-input100"></span>
+				</div>
+				
+				
+				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
+				<br>
+						<input type="text" id="tag" class="input100" placeholder="태그입력" />
+					<span class="focus-input100"></span>
+				</div>
 	
 
 		<!-- <div class="wrap-input100 validate-input" data-validate="이거 왜뜨지 씨발">
@@ -205,8 +211,6 @@
 				
 			<ul id="tag-list">
        		 </ul>
-   				
-
 				<!-- 
 				
 				<input type="text" name="tag1" id="tag1" class="input100" placeholder="tag입력"><span id="sc1">X</span>
@@ -220,7 +224,7 @@
 		
 
 				<div class="container-contact100-form-btn">
-					<button class="contact100-form-btn">
+					<button id = "submitFeed"class="contact100-form-btn">
 						<span>
 							<i class="fa fa-paper-plane-o m-r-6" aria-hidden="true"></i>
 							게시

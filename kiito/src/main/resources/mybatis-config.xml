@@ -6,11 +6,14 @@
   
   <typeAliases>
 		<typeAlias type="global.sesoc.kiito.vo.Customer" alias="customer" />
+		<typeAlias type="global.sesoc.kiito.vo.Feed" alias="feed" />
+		
 	</typeAliases>
   
   
   
   	<mappers>
 		<mapper resource="mapper/CustomerMapper.xml" />
+		<mapper resource="mapper/FeedMapper.xml" />
 	</mappers>
   </configuration>
