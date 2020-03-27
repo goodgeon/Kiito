@@ -54,7 +54,6 @@ function placesSearchCB(data, status, pagination) {
 
 //검색 결과 목록과 마커를 표출하는 함수입니다
 function displayPlaces(places) {
-
     var listEl = document.getElementById('placesList'), 
     menuEl = document.getElementById('menu_wrap'),
     fragment = document.createDocumentFragment(), 
@@ -66,7 +65,6 @@ function displayPlaces(places) {
 
     // 지도에 표시되고 있는 마커를 제거합니다
     removeMarker();
-    
     for ( var i=0; i<places.length; i++ ) {
 
         // 마커를 생성하고 지도에 표시합니다
@@ -78,11 +76,48 @@ function displayPlaces(places) {
         // LatLngBounds 객체에 좌표를 추가합니다
         bounds.extend(placePosition);
 
+        
         // 마커와 검색결과 항목에 mouseover 했을때
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
         // mouseout 했을 때는 인포윈도우를 닫습니다
         (function(marker, title) {
-            kakao.maps.event.addListener(marker, 'mouseover', function() {
+    
+        	
+        	
+       ///////////////////////////////////////////////////////////////////////////	
+     
+        	var j = i;
+            itemEl.onclick =  function () {
+            	var selectedItem = getListItem(0,places[j]);
+            	
+            	removeMarker();
+            	$('#placesList').html('');
+            	
+            	fragment.appendChild(selectedItem);
+            	listEl.appendChild(fragment);
+            	
+            	var paginationEl = document.getElementById('pagination');
+            	while (paginationEl.hasChildNodes()) {
+                    paginationEl.removeChild (paginationEl.lastChild);
+                }
+            	
+            	placePosition = new kakao.maps.LatLng(places[j].y, places[j].x);
+            	
+            	var selectedMarker = addMarker(placePosition, j);
+            	displayInfowindow(selectedMarker, title);
+
+            	
+            	$('#dataSelected').val(places[j].place_name);
+            	$('#dataSelected').css('display','block');
+            	
+            };
+        ///////////////////////////////////////////////////////////////////////////	
+     
+            
+            console.log('zzzzz');
+            
+            
+        	kakao.maps.event.addListener(marker, 'mouseover', function() {
                 displayInfowindow(marker, title);
             });
 
@@ -95,8 +130,12 @@ function displayPlaces(places) {
             };
 
             itemEl.onmouseout =  function () {
+            	console.log('mouseout');
                 infowindow.close();
             };
+            
+            
+            
         })(marker, places[i].place_name);
 
         fragment.appendChild(itemEl);
@@ -213,16 +252,9 @@ function removeAllChildNods(el) {
 $('#writeBt').on('click', function(){
 	
 	$('.container-contact100').css('display','flex');
+	$('.map_wrap').css('display','none');
 	
-	//스크롤방지
-//	$('.container-contact100').on('scroll touchmove mousewheel', function(event) {
-//		  event.preventDefault();
-//		  event.stopPropagation();
-//		  return false;
-//	});
-	$('body').css('overflow','hidden');
-	
-	//Check in
+	$('.map_wrap').css('display','flex');
 	container.style.width = '300px';
 	container.style.height = '240px';
 
@@ -237,6 +269,15 @@ $('#writeBt').on('click', function(){
 	};
 		
 	map = new kakao.maps.Map(container, options);
+	
+	//스크롤방지
+//	$('.container-contact100').on('scroll touchmove mousewheel', function(event) {
+//		  event.preventDefault();
+//		  event.stopPropagation();
+//		  return false;
+//	});
+	$('body').css('overflow','hidden');
+	
 });
 
 
@@ -260,4 +301,23 @@ $('#checkin').keydown(function (e){
 		event.preventDefault();
 		$('#checkinBt').click();
 	}
+})
+
+$('#checkin').focus(function(){
+	/*$('.map_wrap').css('display','flex');
+	container.style.width = '300px';
+	container.style.height = '240px';
+
+	map.relayout();
+	
+	infowindow = new kakao.maps.InfoWindow({zIndex:1});
+	container = document.getElementById('map');
+
+	options = {
+			center: new kakao.maps.LatLng(33.450701, 126.570667),
+			level: 3
+	};
+		
+	map = new kakao.maps.Map(container, options);*/
+	
 })

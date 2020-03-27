@@ -1,11 +1,27 @@
 ﻿CREATE TABLE customer (
 	seq		NUMBER		  PRIMARY KEY
-	,email	VARCHAR2(100) UNIQUE
+	,email	VARCHAR2(100)
 	,pw		VARCHAR2(100) NOT NULL
 	,name	VARCHAR2(100) NOT NULL
 	,nick	VARCHAR2(100) NOT NULL
 	,profileImg VARCHAR2(100)
+    ,customer_type Number(1) NOT NULL
+    ,UNIQUE(email,customer_type)
 );
 
 
 CREATE SEQUENCE customer_seq;
+
+
+
+create table feed(
+feed_num number(38) PRIMARY key,
+seq NUMBER REFERENCES customer(seq),
+checkin varchar2(100) not null,
+contents varchar2(200) not null,
+congestion number(1) not null,
+likes number(38) default 0,
+inputdate date default sysdate
+);
+
+CREATE SEQUENCE feed_seq;
