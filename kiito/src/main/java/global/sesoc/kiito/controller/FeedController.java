@@ -46,16 +46,18 @@ public class FeedController {
 	@RequestMapping(value = "/hashtag", method = RequestMethod.POST)
 	@ResponseBody
 	public String hashtag(String[] arr,Hashtag hash) {
-		String aa ="ok";
-		System.out.println("글번호 : " + feed_seq);
-		System.out.println("고객번호: " + customer_seq);
-		System.out.println(arr[0]);
+	
+	
+		hash.setCustomer_seq(customer_seq);
+		hash.setFeed_seq(feed_seq);
+		
 		for(int i=0;i<arr.length;i++) {
 			
-			hash.setCustomer_seq(customer_seq);
-			hash.setFeed_seq(feed_seq);
+		
 			hash.setContents(arr[i]);
-			dao2.insertH(hash);
+			System.out.println(hash.toString());
+			//dao2.insertH(hash);
+			dao.insertHash(hash);
 		
 		}
 		
