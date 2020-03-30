@@ -209,6 +209,9 @@
 			<ul id="tag-list">
        		 </ul>
 
+
+			<input type="hidden" value="" name="tag" id="rdTag" />
+			
 		
 
 				<div class="container-contact100-form-btn">
@@ -222,6 +225,8 @@
 			</form>
 		</div>
 	</div>
+	
+	
 	
 	<!-- kakao map -->
 	

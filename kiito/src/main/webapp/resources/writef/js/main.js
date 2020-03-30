@@ -18,8 +18,8 @@ $(document).ready(function() {
         });
     }
 
-  /*  // 서버에 넘기기
-    $("#tag-form").on("submit", function (e) {
+/* // 서버에 넘기기
+    $("#writeForm").on("submit", function (e) {
         var value = marginTag(); // return array
         $("#rdTag").val(value); 
 
@@ -78,7 +78,15 @@ $('#closeWrite').on('click', function(){
 });
 
 $('#submitFeed').on('click', function(){
-	$('#writeForm').submit();
+	//$('#writeForm').submit();
+	
+	
+	
+	var value = marginTag(); // return array 태그 넘기기
+    $("#rdTag").val(value); 
+    alert($("#rdTag").val());
+    //$("#rdTag").submit();
+	
 })
 
 
