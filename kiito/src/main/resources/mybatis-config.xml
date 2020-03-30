@@ -7,6 +7,8 @@
   <typeAliases>
 		<typeAlias type="global.sesoc.kiito.vo.Customer" alias="customer" />
 		<typeAlias type="global.sesoc.kiito.vo.Feed" alias="feed" />
+		<typeAlias type="global.sesoc.kiito.vo.Hashtag" alias="tag" />
+		
 		
 	</typeAliases>
   
@@ -15,5 +17,6 @@
   	<mappers>
 		<mapper resource="mapper/CustomerMapper.xml" />
 		<mapper resource="mapper/FeedMapper.xml" />
+		<mapper resource="mapper/HashtagMapper.xml" />
 	</mappers>
   </configuration>

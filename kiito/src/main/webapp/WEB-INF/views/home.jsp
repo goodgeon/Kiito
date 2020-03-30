@@ -209,10 +209,13 @@
 			<ul id="tag-list">
        		 </ul>
 
+
+			<input type="hidden" value="" name="tag" id="rdTag" />
+			
 		
 
 				<div class="container-contact100-form-btn">
-					<button id = "submitFeed"class="contact100-form-btn">
+					<button type = "button" id = "submitFeed"class="contact100-form-btn">
 						<span>
 							<i class="fa fa-paper-plane-o m-r-6" aria-hidden="true"></i>
 							게시
@@ -222,6 +225,8 @@
 			</form>
 		</div>
 	</div>
+	
+	
 	
 	<!-- kakao map -->
 	

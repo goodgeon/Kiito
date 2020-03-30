@@ -2,24 +2,9 @@ function checki() {}
 
 $(document).ready(function() {	
 	
-    var tag = {};
-    var counter = 0;
 
-    // 태그를 추가한다.
-    function addTag (value) {
-        tag[counter] = value; // 태그를 Object 안에 추가
-        counter++; // counter 증가 삭제를 위한 del-btn 의 고유 id 가 된다.
-    }
-
-    // 최종적으로 서버에 넘길때 tag 안에 있는 값을 array type 으로 만들어서 넘긴다.
-    function marginTag () {
-        return Object.values(tag).filter(function (word) {
-            return word !== "";
-        });
-    }
-
-  /*  // 서버에 넘기기
-    $("#tag-form").on("submit", function (e) {
+/* // 서버에 넘기기
+    $("#writeForm").on("submit", function (e) {
         var value = marginTag(); // return array
         $("#rdTag").val(value); 
 
@@ -77,8 +62,45 @@ $('#closeWrite').on('click', function(){
 	$('.container-contact100').toggle();
 });
 
+var tag = {};
+var counter = 0;
+
+// 태그를 추가한다.
+function addTag (value) {
+    tag[counter] = value; // 태그를 Object 안에 추가
+    counter++; // counter 증가 삭제를 위한 del-btn 의 고유 id 가 된다.
+}
+
+// 최종적으로 서버에 넘길때 tag 안에 있는 값을 array type 으로 만들어서 넘긴다.
+function marginTag () {
+    return Object.values(tag).filter(function (word) {
+        return word !== "";
+    });
+}
+
 $('#submitFeed').on('click', function(){
 	$('#writeForm').submit();
+	
+	
+	
+	var value = marginTag(); // return array 태그 넘기기
+    $("#rdTag").val(value); 
+    var arr = $("#rdTag").val();
+    alert(arr);
+    console.log(typeof(arr));
+    
+    $.ajax({
+    	url : "feed/hashtag",
+    	type : "POST",
+    	data : {
+    		arr : arr
+    	},
+    	success : function(result){
+			alert(result);
+		}
+    })
+    //$("#rdTag").submit();
+	
 })
 
 

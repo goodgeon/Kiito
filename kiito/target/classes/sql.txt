@@ -26,3 +26,13 @@ inputdate date default sysdate
 );
 
 CREATE SEQUENCE feed_seq;
+
+
+CREATE TABLE hashtag (
+   hashtag_seq NUMBER PRIMARY KEY
+   ,customer_seq NUMBER REFERENCES customer(customer_seq) on delete cascade
+   ,feed_seq NUMBER REFERENCES feed(feed_seq) on delete cascade
+   ,contents   VARCHAR2(100) NOT NULL 
+);
+
+CREATE SEQUENCE hashtag_seq;
