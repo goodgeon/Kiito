@@ -19,11 +19,7 @@ public class FeedDAO {
 		return session.insert("insertFeed",feed);
 	}
 
-	public void insertHash(Hashtag hash) {
-		FeedMapper mapper = session.getMapper(FeedMapper.class);
-		mapper.insertHash(hash);
-				
-	}
+
 
 	
 

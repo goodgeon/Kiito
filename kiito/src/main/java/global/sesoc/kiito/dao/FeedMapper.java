@@ -7,6 +7,6 @@ public interface FeedMapper {
 
 	int insertFeed(Feed feed);
 
-	void insertHash(Hashtag hash);
+
 
 }

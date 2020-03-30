@@ -26,6 +26,7 @@ public class FeedController {
 	
 	@Autowired	
 	private FeedDAO dao;
+	@Autowired	
 	private HashtagDAO dao2;
 	private int feed_seq;
 	private int customer_seq;
@@ -56,8 +57,8 @@ public class FeedController {
 		
 			hash.setContents(arr[i]);
 			System.out.println(hash.toString());
-			//dao2.insertH(hash);
-			dao.insertHash(hash);
+			dao2.insertH(hash);
+			//dao.insertHash(hash);
 		
 		}
 		

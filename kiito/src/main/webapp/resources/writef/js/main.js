@@ -87,7 +87,7 @@ $('#submitFeed').on('click', function(){
 	var value = marginTag(); // return array 태그 넘기기
     $("#rdTag").val(value); 
     var arr = $("#rdTag").val();
-    alert(arr);
+   // alert(arr);
     console.log(typeof(arr));
     
     $.ajax({
@@ -97,7 +97,7 @@ $('#submitFeed').on('click', function(){
     		arr : arr
     	},
     	success : function(result){
-			alert(result);
+			alert("등록되었습니다.");
 		}
     })
     //$("#rdTag").submit();
