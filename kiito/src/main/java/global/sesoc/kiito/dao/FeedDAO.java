@@ -12,10 +12,10 @@ public class FeedDAO {
 	@Autowired
 	private SqlSession session;
 
-	public void insertFeed(Feed feed) {
+	public int insertFeed(Feed feed) {
 		FeedMapper mapper = session.getMapper(FeedMapper.class);
-		mapper.insertFeed(feed);
-		
+		//mapper.insertFeed(feed);
+		return session.insert("insertFeed",feed);
 	}
 
 	

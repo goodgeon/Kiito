@@ -107,7 +107,7 @@ $(document).ready(function() {
 					$("#div2").show();
 					$("#submit").attr("disabled", "disabled");}}});
 
-		$("#email").keyup(function() { //이메일 유효성
+		$("#email").on("propertychange change keyup paste input", function() { //이메일 유효성
 			var email = $("#email").val();
 			$("#div11").hide();$("#div12").hide();$("#div13").hide();
 			if(chkValEmail(email)){$("#errMsg_02").hide();$("#submit").removeAttr("disabled");

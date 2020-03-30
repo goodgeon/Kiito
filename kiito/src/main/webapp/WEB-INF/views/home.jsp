@@ -163,13 +163,13 @@
 			<input type = "hidden" name = "customer_seq" value = "${sessionScope.customer.customer_seq }">
 				<span class="contact100-form-title">글쓰기<input type = "button" id = "closeWrite" value = "닫기"></span>
 				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
-					<input class="input100" type="text" name="checkin" id="checkin" placeholder = "검색어를 입력하세요">
+					<input class="input100" type="text" id="checkin" placeholder = "검색어를 입력하세요">
 					
 					<input class = "input100" id = "checkinBt" type = "button" value = "검색">
 					<!-- 같은 이름 ㄴㄴ -->
 					<span class="focus-input100"></span>
 				</div>
-				<input type = "text" id = "dataSelected" style = "display : none;">
+				<input type = "text" id = "dataSelected" name = "checkin" style = "display : none;">
 				
 				<div class="map_wrap">
 				    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>

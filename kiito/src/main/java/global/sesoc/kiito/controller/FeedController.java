@@ -26,6 +26,7 @@ public class FeedController {
 	@Autowired	
 	private FeedDAO dao;
 	private HashtagDAO dao2;
+	private int feed_seq;
 	
 	final String uploadPath = "/boardfile";			//파일이 저장될 위치.
 	
@@ -35,15 +36,16 @@ public class FeedController {
 	@RequestMapping(value = "/insertFeed", method = RequestMethod.POST)
 	public String insertFeed(Feed feed) {
 		dao.insertFeed(feed);
+		feed_seq = feed.getFeed_seq();
 		return "redirect:/home";
 	}
 	
 	@RequestMapping(value = "/hashtag", method = RequestMethod.POST)
 	@ResponseBody
 	public String hashtag(String[] arr) {
-		
+		System.out.println("글번호 : " + feed_seq);
 		/*
-		 * String aa ="sucsex"; for(int i=0; i<arr.length; i++) { dao2.insertH(arr[i]);
+		 * String aa ="suc"; for(int i=0; i<arr.length; i++) { dao2.insertH(arr[i]);
 		 * }
 		 */
 		

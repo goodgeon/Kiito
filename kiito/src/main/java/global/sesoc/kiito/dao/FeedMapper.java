@@ -4,6 +4,6 @@ import global.sesoc.kiito.vo.Feed;
 
 public interface FeedMapper {
 
-	void insertFeed(Feed feed);
+	int insertFeed(Feed feed);
 
 }

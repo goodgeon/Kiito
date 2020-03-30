@@ -17,6 +17,9 @@
 		#{contents},
 		#{congestion}
 		)
+		<selectKey keyProperty="feed_seq" resultType = "int" order = "AFTER">
+			SELECT feed_seq.currval FROM dual
+		</selectKey>
 	</insert>
 
 </mapper>
