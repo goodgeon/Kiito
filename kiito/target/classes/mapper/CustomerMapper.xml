@@ -29,6 +29,7 @@
 		, name
 		, email
 		, nick
+		, profileImg
 		, customer_type
 		)
 		values
@@ -38,6 +39,7 @@
 		,#{name}
 		,#{email}
 		,#{name}
+		,#{profileImg}
 		,#{customer_type}
 		)
 	</insert>

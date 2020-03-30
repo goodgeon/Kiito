@@ -120,15 +120,19 @@ public class SocialLoginController {
         customer.setProfileImg(result.get("picture"));
         customer.setCustomer_type(1);
         
+        Customer login_customer = new Customer();
 
         if(dao.getGoogleCustomer(customer.getEmail()) != null) {
-        	session.setAttribute("customer", customer);
+        	login_customer = (Customer) dao.getGoogleCustomer(customer.getEmail());
+        	session.setAttribute("customer", login_customer);
         	return "redirect:/home";
         }
         
         //없으면 DB에 insert하고 세션에 저장하고 홈화면
+        System.out.println("가입 : " + customer.toString());
         dao.insertC(customer);
-        session.setAttribute("customer", customer);
+        login_customer = (Customer) dao.getGoogleCustomer(customer.getEmail());
+        session.setAttribute("customer", login_customer);
         
         return "redirect:/home";
     }

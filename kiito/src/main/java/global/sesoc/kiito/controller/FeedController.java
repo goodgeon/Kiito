@@ -26,8 +26,9 @@ public class FeedController {
 	
 	@RequestMapping(value = "/insertFeed", method = RequestMethod.POST)
 	public String insertFeed(Feed feed) {
+		System.out.println(feed.toString());
 		dao.insertFeed(feed);
-		return "redirect:/";
+		return "redirect:/home";
 	}
 
 }
