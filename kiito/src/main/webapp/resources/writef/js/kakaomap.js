@@ -284,6 +284,8 @@ $('#writeBt').on('click', function(){
 //		  return false;
 //	});
 	$('body').css('overflow','hidden');
+	$('.container-contact100').css('position','fixed');
+	$('.container-contact100').css('overflow','scroll');
 	
 });
 

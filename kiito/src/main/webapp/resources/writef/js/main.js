@@ -60,6 +60,7 @@ $('#closeWrite').on('click', function(){
 	$('#placesList').html('');
 	$('#pagination').html('');
 	$('.container-contact100').toggle();
+	$('body').css('overflow','scroll');
 });
 
 var tag = {};
