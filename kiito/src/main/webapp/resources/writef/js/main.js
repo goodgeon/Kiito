@@ -97,6 +97,7 @@ $('#submitFeed').on('click', function(){
     		arr : arr
     	},
     	success : function(result){
+    		if(result=="aa")
 			alert("등록되었습니다.");
 		}
     })

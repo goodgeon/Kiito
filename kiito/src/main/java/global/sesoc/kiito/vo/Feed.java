@@ -12,4 +12,6 @@ public class Feed {
 	private int congestion;
 	private int likes;
 	private String inputdate;
+	private String originalfile;
+	private String savedfile;
 }

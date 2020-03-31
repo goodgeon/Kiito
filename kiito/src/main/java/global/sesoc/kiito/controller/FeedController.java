@@ -3,6 +3,7 @@ package global.sesoc.kiito.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,11 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import global.sesoc.kiito.dao.FeedDAO;
 import global.sesoc.kiito.dao.HashtagDAO;
 import global.sesoc.kiito.vo.Feed;
 import global.sesoc.kiito.vo.Hashtag;
+import global.sesoc.kiito.util.FileService;
 
 @Controller
 @RequestMapping("feed")
@@ -37,7 +40,16 @@ public class FeedController {
 	public String write() {return "board/write";}
 	
 	@RequestMapping(value = "/insertFeed", method = RequestMethod.POST)
-	public String insertFeed(Feed feed) {
+	public String insertFeed(Feed feed,HttpSession session, MultipartFile upload) {
+		
+		
+		if(!upload.isEmpty()) {
+			String savedFile = FileService.saveFile(upload, uploadPath);
+			feed.setOriginalfile(upload.getOriginalFilename());
+			feed.setSavedfile(savedFile);
+	}
+		
+		
 		dao.insertFeed(feed);
 		feed_seq = feed.getFeed_seq();
 		customer_seq = feed.getCustomer_seq();
@@ -47,19 +59,13 @@ public class FeedController {
 	@RequestMapping(value = "/hashtag", method = RequestMethod.POST)
 	@ResponseBody
 	public String hashtag(String[] arr,Hashtag hash) {
-	
-	
 		hash.setCustomer_seq(customer_seq);
 		hash.setFeed_seq(feed_seq);
 		
 		for(int i=0;i<arr.length;i++) {
-			
-		
 			hash.setContents(arr[i]);
 			System.out.println(hash.toString());
 			dao2.insertH(hash);
-			//dao.insertHash(hash);
-		
 		}
 		
 		return "aa";

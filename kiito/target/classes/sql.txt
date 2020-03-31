@@ -21,6 +21,8 @@ customer_seq NUMBER REFERENCES customer(customer_seq) on delete cascade,
 checkin varchar2(100) not null,
 contents varchar2(200) not null,
 congestion number(1) not null,
+originalfile varchar2(200),
+savedfile varchar2(200),
 likes number(38) default 0,
 inputdate date default sysdate
 );

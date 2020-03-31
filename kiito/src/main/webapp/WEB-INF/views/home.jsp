@@ -159,7 +159,7 @@
 		<!-- write form -->
 		<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" id = "writeForm" action = "feed/insertFeed" method = "POST">
+			<form class="contact100-form validate-form" id = "writeForm" action = "feed/insertFeed" method = "POST" enctype="multipart/form-data" >
 			<input type = "hidden" name = "customer_seq" value = "${sessionScope.customer.customer_seq }">
 				<span class="contact100-form-title">글쓰기<input type = "button" id = "closeWrite" value = "닫기"></span>
 				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">

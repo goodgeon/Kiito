@@ -9,6 +9,10 @@
 		checkin,
 		contents,
 		congestion
+			<if test="originalfile != null and originalfile != null">		<!-- 빈칸을 해주기.!!!!!!!!!!!!!!! -->
+			,originalfile
+			,savedfile
+		</if>
 		)
 		values(
 		feed_seq.nextval,
@@ -16,6 +20,10 @@
 		#{checkin},
 		#{contents},
 		#{congestion}
+		<if test="originalfile != null and originalfile != null">		<!-- 빈칸을 해주기.!!!!!!!!!!!!!!! -->
+			,#{originalfile}
+			,#{savedfile}
+		</if>
 		)
 		<selectKey keyProperty="feed_seq" resultType = "int" order = "AFTER">
 			SELECT feed_seq.currval FROM dual
