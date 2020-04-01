@@ -175,7 +175,7 @@
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form" id = "writeForm" action = "feed/insertFeed" method = "POST" enctype="multipart/form-data" >
 			<input type = "hidden" name = "customer_seq" value = "${sessionScope.customer.customer_seq }">
-				<span class="contact100-form-title">글쓰기<input type = "button" id = "closeWrite" value = "닫기"></span>
+				<span class="contact100-form-title">글쓰기</span>
 				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
 					<input class="input100" type="text" id="checkin" placeholder = "검색어를 입력하세요">
 					
@@ -235,6 +235,7 @@
 							게시
 						</span>
 					</button>
+					<span><input type = "button" id = "closeWrite" value = "닫기"></span>
 				</div>
 			</form>
 		</div>
