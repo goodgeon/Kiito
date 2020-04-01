@@ -1,8 +1,10 @@
 package global.sesoc.kiito.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -17,8 +19,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import global.sesoc.kiito.dao.FeedDAO;
 import global.sesoc.kiito.dao.HashtagDAO;
+import global.sesoc.kiito.dao.LikesDAO;
 import global.sesoc.kiito.vo.Feed;
 import global.sesoc.kiito.vo.Hashtag;
+import global.sesoc.kiito.vo.Likes;
 import global.sesoc.kiito.util.FileService;
 
 @Controller
@@ -31,6 +35,9 @@ public class FeedController {
 	private FeedDAO dao;
 	@Autowired	
 	private HashtagDAO dao2;
+	
+	@Autowired	
+	private LikesDAO dao3;
 	private int feed_seq;
 	private int customer_seq;
 	
@@ -70,13 +77,35 @@ public class FeedController {
 		
 		for(int i=0;i<arr.length;i++) {
 			hash.setContents(arr[i]);
-			System.out.println(hash.toString());
+			//System.out.println(hash.toString());
 			dao2.insertH(hash);
 		}
 		
 		//return "aa";
 	}
 	
+	
+	@ResponseBody
+	@RequestMapping(value = "/likes", method = RequestMethod.POST)
+	public String likes(int feed_seq,int customer_seq) {
+
+		Likes likes = dao3.getLikes(feed_seq,customer_seq);
+		
+		if(likes!=null) {
+			System.out.println("감소됬나");
+			dao3.deleteL(feed_seq,customer_seq);
+			dao.downLike(feed_seq);
+			return "down";
+		}
+		else {
+			System.out.println("좋아ㅇ");
+		dao3.insertL(feed_seq,customer_seq);
+		dao.updateL(feed_seq);
+	    
+		return "up";
+		}
+	   
+	}
 	
 	
 

@@ -29,6 +29,18 @@ public class FeedDAO {
 		return r;
 	}
 
+	public void updateL(int feed_seq) {			//좋아요 올리기
+		FeedMapper mapper = session.getMapper(FeedMapper.class);
+		mapper.updateL(feed_seq);
+		
+	}
+
+	public void downLike(int feed_seq) {		//좋아요 내리기
+		FeedMapper mapper = session.getMapper(FeedMapper.class);
+		mapper.downLike(feed_seq);
+		
+	}
+
 
 
 	

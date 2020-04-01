@@ -11,6 +11,10 @@ public interface FeedMapper {
 
 	ArrayList<Feed> feedList();
 
+	void updateL(int feed_seq);
+
+	void downLike(int feed_seq);
+
 
 
 }

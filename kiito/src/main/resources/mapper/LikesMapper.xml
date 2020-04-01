@@ -3,5 +3,36 @@
 
 <mapper namespace="global.sesoc.kiito.dao.LikesMapper">
 
+<select id="getLikes" parameterType="map" resultType="likes">
+
+	select * from likes where feed_seq = #{feed_seq} and customer_seq = #{customer_seq}
+
+
+</select>
+
+<insert id="insertL" parameterType="map">
+
+insert into
+		likes
+		(
+		likes_seq
+		,feed_seq
+		,customer_seq
+		)
+		values
+		(
+		likes_seq.nextval
+		,#{feed_seq}
+		,#{customer_seq}
+		)
+
+</insert>
+
+<delete id="deleteL" parameterType="map">
+
+delete from likes where feed_seq = #{feed_seq} and customer_seq = #{customer_seq}
+
+</delete>
+
 
 </mapper>

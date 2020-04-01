@@ -57,23 +57,25 @@
 				var fs;
 			$(document).ready(function() {
 				var cs= $("#cs").val();
-				fs = $(".fs").val();
+				fs = $(".fs").val();			//씨발 왜 다 똑깥ㅇ누
 
 				$('.good').on('click', function(){
 					alert(fs);
 				    
-				 /*    $.ajax({
+				  $.ajax({
 				    	url : "feed/likes",
 				    	type : "POST",
 				    	data : {
-				    		feed_seq : arr,
-				    		customer_seq : 
+				    		feed_seq : fs,
+				    		customer_seq : cs 
 				    	},
 				    	success : function(result){
-				    		if(result=="aa")
-							alert("등록되었습니다.");
+				    		if(result=="up")
+							alert("조아영");
+				    		else
+					    		alert("조아여취소")
 						}
-				    }) */
+				    }) 
 
 					
 
@@ -175,7 +177,7 @@
 								<p>번호 : ${s.feed_seq} <br></p>
 								<input type = "hidden" name = "feed_seq" value = "${s.feed_seq}" class="fs"> 
 								<p>혼잡도 : ${s.congestion} <br></p>
-
+								<p>좋아요 : ${s.likes} <br></p>
 								<p>체크인 : ${s.checkin} <br></p>
 								<p>
 								해시태그 : <c:forEach var = "hashtag" items="${hashtag}">

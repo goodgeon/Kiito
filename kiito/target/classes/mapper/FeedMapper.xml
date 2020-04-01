@@ -37,6 +37,28 @@
 	
 	</select>
 	
+	<update id="updateL" parameterType="int">
+
+		update feed set
+		likes =
+		likes+1
+
+		where feed_seq = #{feed_seq}
+
+
+	</update>
+	
+	<update id="downLike" parameterType="int">
+
+		update feed set
+		likes =
+		likes-1
+
+		where feed_seq = #{feed_seq}
+
+
+	</update>
+	
 	
 	
 
