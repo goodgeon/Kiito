@@ -52,14 +52,13 @@ public class FeedController {
 		
 		dao.insertFeed(feed);
 		feed_seq = feed.getFeed_seq();
-		customer_seq = feed.getCustomer_seq();
+		
 		return "redirect:/home";
 	}
 	
 	@RequestMapping(value = "/hashtag", method = RequestMethod.POST)
 	@ResponseBody
 	public String hashtag(String[] arr,Hashtag hash) {
-		hash.setCustomer_seq(customer_seq);
 		hash.setFeed_seq(feed_seq);
 		
 		for(int i=0;i<arr.length;i++) {

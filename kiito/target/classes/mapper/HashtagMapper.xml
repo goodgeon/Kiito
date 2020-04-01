@@ -11,14 +11,12 @@
 		(
 		hashtag_seq
 		,feed_seq
-		,customer_seq
 		,contents
 		)
 		values
 		(
 		hashtag_seq.nextval
 		,#{feed_seq}
-		,#{customer_seq}
 		,#{contents}
 		)
 	</insert>

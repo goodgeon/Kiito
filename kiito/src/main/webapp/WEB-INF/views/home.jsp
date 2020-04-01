@@ -52,10 +52,21 @@
 
 				
 
-			function write() {location.href = '/kiito/board/write';};
+			function good() {location.href = '/kiito/';};
+
+
+			$(document).ready(function() {
+
+
+				$('#good').on('click', function(){
+					location.href = '/kiito/';
+				});
+
+					})
+			
 				
 		</script>
-		<script type="text/javascript"></script>
+		
 		
         <!----//End-dropdown--->
 		<!---//End-click-drop-down-menu----->
@@ -133,7 +144,7 @@
 			      <ul id="tiles">
 			        <!-- These are our grid blocks -->
 			        <c:forEach var="s" items="${feed}">
-			        <li onclick="location.href='single-page.html';">
+			       <li id="good">     <!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
 			        	<img src="resources/images/img1.jpg" width="282" height="118">
 			        	<div class="post-info">
 			        		<div class="post-basic-info">
@@ -153,9 +164,11 @@
 			        			<div class="rateit">
 			        				<span> </span>
 			        			</div>
-			        			<div class="post-share">		<!-- 좋아요버튼 -->
-			        				<span> </span>
+			        			<div class="post-share">		
+			        				<span> </span>				
+			        				
 			        			</div>
+			        			
 			        			<div class="clear"> </div>
 			        		</div>
 			        	</div>

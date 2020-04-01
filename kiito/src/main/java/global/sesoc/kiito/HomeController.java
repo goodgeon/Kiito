@@ -60,6 +60,7 @@ public class HomeController {
 	public String home(Model model) {
 		
 		ArrayList<Feed> ff = dao.feedList();
+		
 		model.addAttribute("feed",ff);
 		
 		return "home";
