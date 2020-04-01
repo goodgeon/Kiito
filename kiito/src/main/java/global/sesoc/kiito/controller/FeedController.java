@@ -40,26 +40,28 @@ public class FeedController {
 	public String write() {return "board/write";}
 	
 	@RequestMapping(value = "/insertFeed", method = RequestMethod.POST)
-	public String insertFeed(Feed feed,HttpSession session, MultipartFile upload) {
+	public String insertFeed(Feed feed,HttpSession session, MultipartFile upload, String[] arr) {
 		
 		
 		if(!upload.isEmpty()) {
 			String savedFile = FileService.saveFile(upload, uploadPath);
 			feed.setOriginalfile(upload.getOriginalFilename());
 			feed.setSavedfile(savedFile);
-	}
+		}
 		
 		
 		dao.insertFeed(feed);
 		feed_seq = feed.getFeed_seq();
 		customer_seq = feed.getCustomer_seq();
+		
+		hashtag(arr);
 		return "redirect:/home";
 	}
 	
 	@RequestMapping(value = "/hashtag", method = RequestMethod.POST)
-	@ResponseBody
-	public String hashtag(String[] arr,Hashtag hash) {
-		hash.setCustomer_seq(customer_seq);
+	//@ResponseBody
+	public void hashtag(String[] arr) {
+		Hashtag hash = new Hashtag();
 		hash.setFeed_seq(feed_seq);
 		
 		for(int i=0;i<arr.length;i++) {
@@ -68,7 +70,7 @@ public class FeedController {
 			dao2.insertH(hash);
 		}
 		
-		return "aa";
+		//return "aa";
 	}
 	
 	

@@ -80,17 +80,21 @@ function marginTag () {
 }
 
 $('#submitFeed').on('click', function(){
-	$('#writeForm').submit();
-	
-	
 	
 	var value = marginTag(); // return array 태그 넘기기
     $("#rdTag").val(value); 
     var arr = $("#rdTag").val();
-   // alert(arr);
     console.log(typeof(arr));
     
-    $.ajax({
+	$('#writeForm').submit();
+	
+	
+	
+	
+   // alert(arr);
+    
+    
+    /*$.ajax({
     	url : "feed/hashtag",
     	type : "POST",
     	data : {
@@ -100,7 +104,13 @@ $('#submitFeed').on('click', function(){
     		if(result=="aa")
 			alert("등록되었습니다.");
 		}
-    })
+    })*/
+    
+    /*$.post("feed/hashtag",function(arr){
+    	console.log(arr);
+    })*/
+    
+    
     //$("#rdTag").submit();
 	
 })

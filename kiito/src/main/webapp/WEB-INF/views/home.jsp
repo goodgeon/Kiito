@@ -133,7 +133,7 @@
 			      <ul id="tiles">
 			        <!-- These are our grid blocks -->
 			        <c:forEach var="s" items="${feed}">
-			        <li onclick="location.href='single-page.html';">
+			        <li onclick="location.href='single-page.html';" data-feedId="${s.feed_seq}">
 			        	<img src="resources/images/img1.jpg" width="282" height="118">
 			        	<div class="post-info">
 			        		<div class="post-basic-info">
@@ -144,6 +144,7 @@
 								<p>번호 : ${s.feed_seq} <br></p>
 								<p>혼잡도 : ${s.congestion} <br></p>
 								<p>체크인 : ${s.checkin} <br></p>
+								<p>해시태그 : </p>
 							
 			
 							
@@ -222,7 +223,7 @@
        		 </ul>
 
 
-			<input type="hidden" value="" name="tag" id="rdTag" />
+			<input type="hidden" value="" name="arr" id="rdTag" />
 			
 		
 
@@ -344,6 +345,16 @@
 	  gtag('js', new Date());
 	
 	  gtag('config', 'UA-23581568-13');
+	</script>
+	
+	<script>
+		
+		
+		for ( var i = 0; i < $("#tiles").children().length; i++ ){
+		    var feedId = $("#tiles").children().eq(i).attr("data-feedId");
+		    
+		}
+		
 	</script>
 	</body>
 </html>
