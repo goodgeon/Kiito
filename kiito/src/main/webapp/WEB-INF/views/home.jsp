@@ -126,23 +126,29 @@
 		
 		<!---//End-header---->
 		<!---start-content---->
+		
+		
+		
 		<div class="content">
 			<div class="wrap">
 			 <div id="main" role="main">
 			      <ul id="tiles">
 			        <!-- These are our grid blocks -->
+			        <c:forEach var="s" items="${feed}">
 			        <li onclick="location.href='single-page.html';">
 			        	<img src="resources/images/img1.jpg" width="282" height="118">
 			        	<div class="post-info">
 			        		<div class="post-basic-info">
-				        		<h3><a href="#">Animation films</a></h3>
+				        		<h3><a href="#">콘텐츠 : ${s.contents}</a></h3>
 				        		<span><a href="#"><label> </label>Movies</a></span>
-				        		<p><c:forEach var="s" items="${feed}">
+				        		
 
-								<p>번호 : ${s.checkin} <br></p>
+								<p>번호 : ${s.feed_seq} <br></p>
+								<p>혼잡도 : ${s.congestion} <br></p>
+								<p>체크인 : ${s.checkin} <br></p>
 							
 			
-								</c:forEach></p>
+							
 			        		</div>
 			        		<div class="post-info-rate-share">
 			        			<div class="rateit">
@@ -155,13 +161,13 @@
 			        		</div>
 			        	</div>
 			        </li>
-
+				</c:forEach>
 			        <!-- End of grid blocks -->
 			      </ul>
 			    </div>
 			</div>
 		</div>
-		
+	
 		
 		
 		<!-- write form -->
