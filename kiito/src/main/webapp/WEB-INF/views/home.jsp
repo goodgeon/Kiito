@@ -54,12 +54,30 @@
 
 			function good() {location.href = '/kiito/';};
 
-
+				var fs;
 			$(document).ready(function() {
+				var cs= $("#cs").val();
+				fs = $(".fs").val();
 
+				$('.good').on('click', function(){
+					alert(fs);
+				    
+				 /*    $.ajax({
+				    	url : "feed/likes",
+				    	type : "POST",
+				    	data : {
+				    		feed_seq : arr,
+				    		customer_seq : 
+				    	},
+				    	success : function(result){
+				    		if(result=="aa")
+							alert("등록되었습니다.");
+						}
+				    }) */
 
-				$('#good').on('click', function(){
-					location.href = '/kiito/';
+					
+
+					
 				});
 
 					})
@@ -115,7 +133,7 @@
 				</div>
 				<div class="userinfo">
 					<div class="user">
-						<ul> <!-- <input type="button" value="글쓰기" onclick="write()"> -->
+						<ul>
 							<li><img id = "writeBt" src="resources/images/upload.png" style = "cursor: pointer;"> </li>
 							<li><a href="#">
 							<c:if test="${sessionScope.customer.profileImg == null }">
@@ -144,11 +162,9 @@
 			      <ul id="tiles">
 			        <!-- These are our grid blocks -->
 			        <c:forEach var="s" items="${feed}">
-<<<<<<< HEAD
-			       <li id="good">     <!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-=======
-			        <li onclick="location.href='single-page.html';" data-feedId="${s.feed_seq}">
->>>>>>> 6a32152a9c677453d7333f40a6994ed5bf3ff9b0
+
+			        <li  data-feedId="${s.feed_seq}">
+
 			        	<img src="resources/images/img1.jpg" width="282" height="118">
 			        	<div class="post-info">
 			        		<div class="post-basic-info">
@@ -157,11 +173,9 @@
 				        		
 
 								<p>번호 : ${s.feed_seq} <br></p>
+								<input type = "hidden" name = "feed_seq" value = "${s.feed_seq}" class="fs"> 
 								<p>혼잡도 : ${s.congestion} <br></p>
-<<<<<<< HEAD
-								<p>좋아요 : ${s.likes} <br></p>
-							
-=======
+
 								<p>체크인 : ${s.checkin} <br></p>
 								<p>
 								해시태그 : <c:forEach var = "hashtag" items="${hashtag}">
@@ -170,9 +184,8 @@
 									</c:if>
 								</c:forEach> 
 								</p>
->>>>>>> 6a32152a9c677453d7333f40a6994ed5bf3ff9b0
-							
-			
+
+		
 							
 			        		</div>
 			        		<div class="post-info-rate-share">
@@ -180,7 +193,8 @@
 			        				<span> </span>
 			        			</div>
 			        			<div class="post-share">		
-			        				<span> </span>				
+			        				<span> </span>	
+			        				<input type="button" class="good" value="조아요">			
 			        				
 			        			</div>
 			        			
@@ -195,13 +209,14 @@
 			</div>
 		</div>
 	
-		
+			
+			
 		
 		<!-- write form -->
 		<div class="container-contact100">
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form" id = "writeForm" action = "feed/insertFeed" method = "POST" enctype="multipart/form-data" >
-			<input type = "hidden" name = "customer_seq" value = "${sessionScope.customer.customer_seq }">
+			<input type = "hidden" name = "customer_seq" value = "${sessionScope.customer.customer_seq }" id="cs">
 				<span class="contact100-form-title">글쓰기</span>
 				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
 					<input class="input100" type="text" id="checkin" placeholder = "검색어를 입력하세요">

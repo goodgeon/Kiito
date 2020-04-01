@@ -38,3 +38,12 @@ CREATE TABLE hashtag (
 );
 
 CREATE SEQUENCE hashtag_seq;
+
+
+CREATE TABLE likes (
+   likes_seq NUMBER PRIMARY KEY
+   ,feed_seq NUMBER REFERENCES feed(feed_seq) on delete cascade
+   ,customer_seq NUMBER REFERENCES customer(customer_seq) on delete cascade
+);
+
+CREATE SEQUENCE likes_seq;

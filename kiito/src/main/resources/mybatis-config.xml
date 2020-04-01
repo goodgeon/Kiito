@@ -2,21 +2,24 @@
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
-  <configuration>
-  
-  <typeAliases>
-		<typeAlias type="global.sesoc.kiito.vo.Customer" alias="customer" />
+<configuration>
+
+	<typeAliases>
+		<typeAlias type="global.sesoc.kiito.vo.Customer"
+			alias="customer" />
 		<typeAlias type="global.sesoc.kiito.vo.Feed" alias="feed" />
 		<typeAlias type="global.sesoc.kiito.vo.Hashtag" alias="hash" />
-		
-		
+		<typeAlias type="global.sesoc.kiito.vo.Likes" alias="likes" />
+
+
 	</typeAliases>
-  
-  
-  
-  	<mappers>
+
+
+
+	<mappers>
 		<mapper resource="mapper/CustomerMapper.xml" />
 		<mapper resource="mapper/FeedMapper.xml" />
 		<mapper resource="mapper/HashtagMapper.xml" />
+		<mapper resource="mapper/LikesMapper.xml" />
 	</mappers>
-  </configuration>
+</configuration>
