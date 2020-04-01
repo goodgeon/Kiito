@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
@@ -134,7 +137,12 @@
 			        		<div class="post-basic-info">
 				        		<h3><a href="#">Animation films</a></h3>
 				        		<span><a href="#"><label> </label>Movies</a></span>
-				        		<p>Lorem Ipsum is simply dummy text of the printing & typesetting industry.</p>
+				        		<p><c:forEach var="s" items="${feed}">
+
+								<p>번호 : ${s.checkin} <br></p>
+							
+			
+								</c:forEach></p>
 			        		</div>
 			        		<div class="post-info-rate-share">
 			        			<div class="rateit">

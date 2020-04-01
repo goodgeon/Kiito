@@ -1,5 +1,7 @@
 package global.sesoc.kiito;
 
+import java.util.ArrayList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +15,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import global.sesoc.kiito.dao.FeedDAO;
+import global.sesoc.kiito.vo.Feed;
+
 
 @Controller
 public class HomeController {
+	
+	@Autowired	
+	private FeedDAO dao;
+	
+	
 	@Autowired
     private GoogleOAuth2Template googleOAuth2Template;
     
@@ -47,7 +57,10 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "home", method = RequestMethod.GET)
-	public String home() {
+	public String home(Model model) {
+		
+		ArrayList<Feed> ff = dao.feedList();
+		model.addAttribute("feed",ff);
 		
 		return "home";
 	}

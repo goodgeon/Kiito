@@ -30,6 +30,13 @@
 		</selectKey>
 	</insert>
 	
+	<select id="feedList" resultType="feed">
+	
+	select * from feed
+	
+	
+	</select>
+	
 	
 	
 
