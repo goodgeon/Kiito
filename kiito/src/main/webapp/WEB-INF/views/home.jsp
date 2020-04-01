@@ -144,7 +144,13 @@
 								<p>번호 : ${s.feed_seq} <br></p>
 								<p>혼잡도 : ${s.congestion} <br></p>
 								<p>체크인 : ${s.checkin} <br></p>
-								<p>해시태그 : </p>
+								<p>
+								해시태그 : <c:forEach var = "hashtag" items="${hashtag}">
+									<c:if test="${hashtag.feed_seq == s.feed_seq}">
+										<span>#${hashtag.contents}</span>
+									</c:if>
+								</c:forEach> 
+								</p>
 							
 			
 							
@@ -352,6 +358,7 @@
 		
 		for ( var i = 0; i < $("#tiles").children().length; i++ ){
 		    var feedId = $("#tiles").children().eq(i).attr("data-feedId");
+		    
 		    
 		}
 		

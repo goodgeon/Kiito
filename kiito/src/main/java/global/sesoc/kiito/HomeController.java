@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import global.sesoc.kiito.dao.FeedDAO;
+import global.sesoc.kiito.dao.HashtagDAO;
 import global.sesoc.kiito.vo.Feed;
+import global.sesoc.kiito.vo.Hashtag;
 
 
 @Controller
@@ -24,6 +26,9 @@ public class HomeController {
 	
 	@Autowired	
 	private FeedDAO dao;
+	
+	@Autowired
+	private HashtagDAO hashtagdao;
 	
 	
 	@Autowired
@@ -61,6 +66,10 @@ public class HomeController {
 		
 		ArrayList<Feed> ff = dao.feedList();
 		model.addAttribute("feed",ff);
+		
+		ArrayList<Hashtag> hashtagList = hashtagdao.getList();
+		System.out.println(hashtagList);
+		model.addAttribute("hashtag",hashtagList);
 		
 		return "home";
 	}
