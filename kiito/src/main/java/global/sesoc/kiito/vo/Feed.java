@@ -14,4 +14,6 @@ public class Feed {
 	private String inputdate;
 	private String originalfile;
 	private String savedfile;
+	private String nick;
+	private String profileImg;
 }

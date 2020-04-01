@@ -140,12 +140,13 @@
 			        	<div class="post-info">
 			        		<div class="post-basic-info">
 				        		<h3><a href="#">콘텐츠 : ${s.contents}</a></h3>
-				        		<span><a href="#"><label> </label>Movies</a></span>
+				        		<span><a href="#"><label> </label>${s.checkin}</a></span>
 				        		
 
 								<p>번호 : ${s.feed_seq} <br></p>
 								<p>혼잡도 : ${s.congestion} <br></p>
-								<p>체크인 : ${s.checkin} <br></p>
+								<p>좋아요 : ${s.likes} <br></p>
+							
 							
 			
 							
@@ -154,7 +155,7 @@
 			        			<div class="rateit">
 			        				<span> </span>
 			        			</div>
-			        			<div class="post-share">
+			        			<div class="post-share">		<!-- 좋아요버튼 -->
 			        				<span> </span>
 			        			</div>
 			        			<div class="clear"> </div>
