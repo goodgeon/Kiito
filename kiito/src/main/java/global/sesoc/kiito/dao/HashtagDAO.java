@@ -1,5 +1,7 @@
 package global.sesoc.kiito.dao;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,6 +20,13 @@ public class HashtagDAO {
 		HashtagMapper mapper = session.getMapper(HashtagMapper.class);
 		mapper.insertH(hash);
 		
+	}
+
+	public ArrayList<Hashtag> getList() {
+		ArrayList<Hashtag> list = null;
+		HashtagMapper mapper = session.getMapper(HashtagMapper.class);
+		list = mapper.getList();
+		return list;
 	}
 
 

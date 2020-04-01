@@ -144,7 +144,11 @@
 			      <ul id="tiles">
 			        <!-- These are our grid blocks -->
 			        <c:forEach var="s" items="${feed}">
+<<<<<<< HEAD
 			       <li id="good">     <!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+=======
+			        <li onclick="location.href='single-page.html';" data-feedId="${s.feed_seq}">
+>>>>>>> 6a32152a9c677453d7333f40a6994ed5bf3ff9b0
 			        	<img src="resources/images/img1.jpg" width="282" height="118">
 			        	<div class="post-info">
 			        		<div class="post-basic-info">
@@ -154,8 +158,19 @@
 
 								<p>번호 : ${s.feed_seq} <br></p>
 								<p>혼잡도 : ${s.congestion} <br></p>
+<<<<<<< HEAD
 								<p>좋아요 : ${s.likes} <br></p>
 							
+=======
+								<p>체크인 : ${s.checkin} <br></p>
+								<p>
+								해시태그 : <c:forEach var = "hashtag" items="${hashtag}">
+									<c:if test="${hashtag.feed_seq == s.feed_seq}">
+										<span>#${hashtag.contents}</span>
+									</c:if>
+								</c:forEach> 
+								</p>
+>>>>>>> 6a32152a9c677453d7333f40a6994ed5bf3ff9b0
 							
 			
 							
@@ -236,7 +251,7 @@
        		 </ul>
 
 
-			<input type="hidden" value="" name="tag" id="rdTag" />
+			<input type="hidden" value="" name="arr" id="rdTag" />
 			
 		
 
@@ -358,6 +373,17 @@
 	  gtag('js', new Date());
 	
 	  gtag('config', 'UA-23581568-13');
+	</script>
+	
+	<script>
+		
+		
+		for ( var i = 0; i < $("#tiles").children().length; i++ ){
+		    var feedId = $("#tiles").children().eq(i).attr("data-feedId");
+		    
+		    
+		}
+		
 	</script>
 	</body>
 </html>

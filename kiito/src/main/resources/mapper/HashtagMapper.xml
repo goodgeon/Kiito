@@ -20,6 +20,11 @@
 		,#{contents}
 		)
 	</insert>
+	
+	<select id="getList" resultType="hash">
+		select *
+		from hashtag
+	</select>
 
 
 
