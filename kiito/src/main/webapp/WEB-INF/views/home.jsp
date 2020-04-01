@@ -91,10 +91,10 @@
 	
 		<!---start-wrap---->
 			<!---start-header---->
-			<div class="header">
+			<div class="header" >
 				<div class="wrap">
 				<div class="logo">
-					<a href="index.html"><img src="resources/images/logo.png" title="pinbal" /></a>
+					<a href="/kiito/home"><img src="resources/images/logo.png" title="pinbal" /></a>
 				</div>     	  
 				<div class="top-searchbar">
 					<form>
@@ -105,7 +105,7 @@
 				<div class="userinfo">
 					<div class="user">
 						<ul> <!-- <input type="button" value="글쓰기" onclick="write()"> -->
-							<li><button id = "writeBt" type="button">글쓰기</button></li>
+							<li><img id = "writeBt" src="resources/images/upload.png"> </li>
 							<li><a href="#">
 							<c:if test="${sessionScope.customer.profileImg == null }">
 								<img src="resources/login/images/profileImg_null2.png" style = "width : 43px; height : 43px;"/>
