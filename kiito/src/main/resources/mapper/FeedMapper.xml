@@ -60,6 +60,13 @@
 	</update>
 	
 	
+	<select id="getFeed" parameterType="int" resultType="feed">
+	
+	select * from feed where feed_seq = #{feed_seq}
+	
+	
+	</select>
+	
 	
 
 </mapper>

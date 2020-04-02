@@ -55,13 +55,15 @@
 			function good() {location.href = '/kiito/';};
 
 				var fs;
+				var str='';
 			$(document).ready(function() {
 				var cs= $("#cs").val();
-				fs = $(".fs").val();			//씨발 왜 다 똑깥ㅇ누
+							//씨발 왜 다 똑깥ㅇ누
+				
 
 				$('.good').on('click', function(){
-					alert(fs);
-				    
+					fs = $(this).parents('li').attr("data-feedId");
+					var lik = $('li[data-feedId="'+fs+'"]').attr("data-likes");
 				  $.ajax({
 				    	url : "feed/likes",
 				    	type : "POST",
@@ -70,10 +72,29 @@
 				    		customer_seq : cs 
 				    	},
 				    	success : function(result){
-				    		if(result=="up")
-							alert("조아영");
-				    		else
-					    		alert("조아여취소")
+				    		$('li[data-feedId="'+fs+'"] .likes').html(result);
+					    	
+
+				    		/* if(result=="up"){
+				    			alert("조아영");
+				    			
+				    			lik++;
+				    			//str += '씨발ㅈ';
+				    		 
+					    		$('#goods').html(lik);
+					    		console.log(lik);
+					    		console.log($('li[data-feedId="'+fs+'"] .likes').html(lik));
+					    		}
+							
+				    		else{
+				    			alert("조아여취소");
+				    			lik--;
+				    			str = '${likes}';
+				    			//str = 'ㅡㅡ';
+				    			$('#goods').html('');
+					    		$('#goods').html(str);
+					    		} */
+					    		
 						}
 				    }) 
 
@@ -165,7 +186,7 @@
 			        <!-- These are our grid blocks -->
 			        <c:forEach var="s" items="${feed}">
 
-			        <li  data-feedId="${s.feed_seq}">
+			        <li  data-feedId="${s.feed_seq}" data-likes="${s.likes}">
 
 			        	<img src="resources/images/img1.jpg" width="282" height="118">
 			        	<div class="post-info">
@@ -174,11 +195,10 @@
 				        		<span><a href="#"><label> </label>${s.checkin}</a></span>
 				        		
 
-								<p>번호 : ${s.feed_seq} <br></p>
-								<input type = "hidden" name = "feed_seq" value = "${s.feed_seq}" class="fs"> 
-								<p>혼잡도 : ${s.congestion} <br></p>
-								<p>좋아요 : ${s.likes} <br></p>
-								<p>체크인 : ${s.checkin} <br></p>
+								<p>번호 : ${s.feed_seq}</p>
+								<p>혼잡도 : ${s.congestion} </p>
+								<p>좋아요 : <span class = 'likes'>${s.likes}</span></p>
+								<p>체크인 : ${s.checkin}</p>
 								<p>
 								해시태그 : <c:forEach var = "hashtag" items="${hashtag}">
 									<c:if test="${hashtag.feed_seq == s.feed_seq}">
@@ -196,7 +216,8 @@
 			        			</div>
 			        			<div class="post-share">		
 			        				<span> </span>	
-			        				<input type="button" class="good" value="조아요">			
+			        				<input type="button" class="good" value="조아요">		
+			        				<div id="goods"></div>	
 			        				
 			        			</div>
 			        			

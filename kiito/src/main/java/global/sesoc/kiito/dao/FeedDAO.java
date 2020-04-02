@@ -41,6 +41,13 @@ public class FeedDAO {
 		
 	}
 
+	public Feed getFeed(int feed_seq) {
+		
+		FeedMapper mapper = session.getMapper(FeedMapper.class);
+		Feed feed = mapper.getFeed(feed_seq);
+		return feed;
+	}
+
 
 
 	

@@ -87,22 +87,25 @@ public class FeedController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/likes", method = RequestMethod.POST)
-	public String likes(int feed_seq,int customer_seq) {
+	public int likes(int feed_seq,int customer_seq,Model model) {
 
 		Likes likes = dao3.getLikes(feed_seq,customer_seq);
-		
+		Feed feed = dao.getFeed(feed_seq);
 		if(likes!=null) {
 			System.out.println("감소됬나");
 			dao3.deleteL(feed_seq,customer_seq);
 			dao.downLike(feed_seq);
-			return "down";
+			model.addAttribute("likes",feed.getLikes());
+			return feed.getLikes();
 		}
 		else {
 			System.out.println("좋아ㅇ");
 		dao3.insertL(feed_seq,customer_seq);
 		dao.updateL(feed_seq);
+		System.out.println("feed getlikes " + feed.getLikes());
+		model.addAttribute("likes",feed.getLikes());
 	    
-		return "up";
+		return feed.getLikes();
 		}
 	   
 	}

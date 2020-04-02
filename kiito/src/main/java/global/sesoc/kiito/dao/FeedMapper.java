@@ -15,6 +15,8 @@ public interface FeedMapper {
 
 	void downLike(int feed_seq);
 
+	Feed getFeed(int feed_seq);
+
 
 
 }
