@@ -359,7 +359,7 @@
 			 <a href="#"><img class="img-responsive img-circle" src="${feed.profileImg }" alt="User"></a>
 			</div>
             <div class="media-body">
-             <p class="m-0">${feed.customer_seq }</p>
+             <p class="m-0">${feed.nick }</p>
 			 <small><span>10 hours ago</span></small>
             </div>
            </div><!--/ media -->
