@@ -12,9 +12,9 @@ public class CustomerDAO {
 	@Autowired
 	private SqlSession session;
 
-	public Customer getCustomer(String email) {			//고객불러오기
+	public Customer getCustomer(int customer_seq) {			//고객불러오기
 		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
-		Customer customer = mapper.getCustomer(email);
+		Customer customer = mapper.getCustomer(customer_seq);
 		return customer;
 	}
 	
@@ -39,6 +39,14 @@ public class CustomerDAO {
 	public Object getFacebookCustomer(String email) {
 		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
 		Customer customer = mapper.getFacebookCustomer(email);
+		return customer;
+	}
+
+
+
+	public Customer getCustomerByMail(String email) {
+		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		Customer customer = mapper.getCustomerByMail(email);
 		return customer;
 	}
 

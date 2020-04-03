@@ -39,8 +39,13 @@ public class CustomerController {
 	public String login(Customer customer, HttpSession session) {
 		String email = customer.getEmail();
 		String pw = customer.getPw();
-
-		Customer c = dao.getCustomer(email);
+		
+		System.out.println("email : " + email);
+		System.out.println("pw : " + pw);
+		
+		Customer c = dao.getCustomerByMail(email);
+		
+		System.out.println("c.getPw() : " + c.getPw());
 
 		if(c != null && c.getPw().equals(pw)) {
 			session.setAttribute("customer", c);
@@ -67,7 +72,7 @@ public class CustomerController {
 	@RequestMapping(value = "/findE", method = RequestMethod.POST)
 	public String findE(String email) {
 	    System.out.println(email);
-		Customer cu = dao.getCustomer(email);
+		Customer cu = dao.getCustomerByMail(email);
 
 		String a = "nai";
 		String bb = "aru";
@@ -87,6 +92,7 @@ public class CustomerController {
 		System.out.println(cus);
 		cus.setNick(cus.getName());
 		cus.setCustomer_type(0);
+		cus.setProfileImg("");
 		dao.insertC(cus);
 	}
 	

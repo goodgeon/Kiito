@@ -2,7 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="global.sesoc.kiito.dao.CustomerMapper">
-	<select id="getCustomer" parameterType = "String" resultType="customer">
+	<select id="getCustomer" parameterType = "int" resultType="customer">
+		select *
+		from customer
+		where customer_seq = #{customer_seq}
+	</select>
+	
+	<select id="getCustomerByMail" parameterType="String" resultType="customer">
 		select *
 		from customer
 		where email = #{email} and customer_type = 0

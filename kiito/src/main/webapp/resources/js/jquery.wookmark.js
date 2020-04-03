@@ -255,7 +255,7 @@
           height = containerHeight - top - innerOffset;
 
           $placeholder.css({
-            position: 'absolute',
+            //position: 'absolute',
             display: height > 0 ? 'block' : 'none',
             left: i * columnWidth + sideOffset,
             top: top,
@@ -418,7 +418,7 @@
         (itemBulkCSS[i] = {
           obj: $item,
           css: {
-            position: 'absolute',
+            //position: 'absolute',
             top: shortest
           }
         }).css[this.direction] = sideOffset;
