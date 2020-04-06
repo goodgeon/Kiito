@@ -210,7 +210,7 @@
 		   <a class="dropdown-item" href="#"><span>Settings</span></a> 
 		   <a class="dropdown-item" href="#">Need help?</a> 
 		   <div class="dropdown-divider"></div>
-		   <a class="dropdown-item" href="#">Sign out</a>
+		   <a class="dropdown-item" href="customer/logout">Sign out</a>
 		  </div>
 		 </li><!-- /navbar-item -->	
 		 

@@ -95,7 +95,16 @@ public class CustomerController {
 		cus.setProfileImg("");
 		dao.insertC(cus);
 	}
+
 	
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession hh) {
+		
+		hh.removeAttribute("customer");
+
+		return "redirect:/";		
+	}
 
 }
 	
