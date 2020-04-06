@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html>
+<html lang="en">
   <head>
 
 	    <!-- ==============================================
@@ -14,7 +12,7 @@
 		<meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">  
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>KIITO</title>
+        <title>Fluffs - Ultimate Bootstrap Social Network UI Kit</title>
 		<meta name="description" content="" />
         <meta name="keywords" content="" />
         <meta property="og:title" content="" />
@@ -24,20 +22,20 @@
 		<!-- ==============================================
 		Favicons
 		=============================================== --> 
-		<link rel="icon" href="resources/assets/img/logo.jpg">
-		<link rel="apple-touch-icon" href="resources/assets/img/favicons/apple-touch-icon.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="resources/assets/img/favicons/apple-touch-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="resources/assets/img/favicons/apple-touch-icon-114x114.png">
+		<link rel="icon" href="assets/img/logo.jpg">
+		<link rel="apple-touch-icon" href="../img/favicons/apple-touch-icon.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="../img/favicons/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="../img/favicons/apple-touch-icon-114x114.png">
 		
 	    <!-- ==============================================
 		CSS
 		=============================================== -->
-        <link type="text/css" href="resources/assets/css/demos/photo.css" rel="stylesheet" />
+        <link type="text/css" href="../resources/assets/css/demos/photo.css" rel="stylesheet" />
 				
 		<!-- ==============================================
 		Feauture Detection
 		=============================================== -->
-		<script src="resources/assets/js/modernizr-custom.js"></script>
+		<script src="../resources/assets/js/modernizr-custom.js"></script>
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -62,7 +60,7 @@
 		  <span class="icon-bar"></span>
 		  <span class="icon-bar"></span>
 		 </button>
-		 <a class="navbar-brand" href="/kiito/home"><i class="fab fa-instagram"></i> KIITO</a>
+		 <a class="navbar-brand" href="index.html"><i class="fab fa-instagram"></i> Fluffs</a>
 		</div><!-- /.navbar-header -->
 		<div class="navbar-left">
 		 <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -152,27 +150,27 @@
 			  <div class="slimscroll" style="max-height: 230px; overflow: hidden; width: auto; height: 416.983px;">
 			   <div id="Slim2">
 				<a href="javascript:void(0);" class="dropdown-item notify-item nav-user">
-				 <div class="notify-icon"><img src="resources/assets/img/users/1.jpg" class="img-responsive img-circle" alt=""> </div>
+				 <div class="notify-icon"><img src="../resources/assets/img/users/1.jpg" class="img-responsive img-circle" alt=""> </div>
 				 <p class="notify-details">Cristina Pride</p>
 				 <p class="text-muted font-13 mb-0 user-msg">Hi, How are you? What about our next meeting</p>
 				</a><!--/ dropdown-item-->
 				<a href="javascript:void(0);" class="dropdown-item notify-item nav-user">
-				 <div class="notify-icon"><img src="resources/assets/img/users/2.jpg" class="img-responsive img-circle" alt=""> </div>
+				 <div class="notify-icon"><img src="../resources/assets/img/users/2.jpg" class="img-responsive img-circle" alt=""> </div>
 				 <p class="notify-details">Sam Garret</p>
 				 <p class="text-muted font-13 mb-0 user-msg">Yeah everything is fine</p>
 				</a><!--/ dropdown-item-->
 				<a href="javascript:void(0);" class="dropdown-item notify-item nav-user">
-				 <div class="notify-icon"><img src="resources/assets/img/users/3.jpg" class="img-responsive img-circle" alt=""> </div>
+				 <div class="notify-icon"><img src="../resources/assets/img/users/3.jpg" class="img-responsive img-circle" alt=""> </div>
 				 <p class="notify-details">Karen Robinson</p>
 				 <p class="text-muted font-13 mb-0 user-msg">Wow that's great</p>
 				</a><!--/ dropdown-item-->
 				<a href="javascript:void(0);" class="dropdown-item notify-item nav-user">
-				 <div class="notify-icon"><img src="resources/assets/img/users/4.jpg" class="img-responsive img-circle" alt=""> </div>
+				 <div class="notify-icon"><img src="../resources/assets/img/users/4.jpg" class="img-responsive img-circle" alt=""> </div>
 				 <p class="notify-details">Sherry Marshall</p>
 				 <p class="text-muted font-13 mb-0 user-msg">Hi, How are you? What about our next meeting</p>
 				</a><!--/ dropdown-item-->
 				<a href="javascript:void(0);" class="dropdown-item notify-item nav-user">
-				 <div class="notify-icon"><img src="resources/assets/img/users/5.jpg" class="img-responsive img-circle" alt=""> </div>
+				 <div class="notify-icon"><img src="../resources/assets/img/users/5.jpg" class="img-responsive img-circle" alt=""> </div>
 				 <p class="notify-details">Shawn Millard</p>
 				 <p class="text-muted font-13 mb-0 user-msg">Yeah everything is fine</p>
 				</a><!--/ dropdown-item-->
@@ -189,28 +187,21 @@
 		  
 		 <li class="dropdown mega-avatar">
 		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-		   <span class="avatar w-32">
-		   	<c:if test="${sessionScope.customer.profileImg == null }">
-								<img src="resources/login/images/profileImg_null2.png" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
-			</c:if>
-			<c:if test="${sessionScope.customer.profileImg != null }">
-				<img src="${sessionScope.customer.profileImg }" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
-			</c:if>
-		   </span>
+		   <span class="avatar w-32"><img src="../resources/assets/img/users/2.jpg" class="img-resonsive img-circle" width="25" height="25" alt="..."></span>
 		   <!-- hidden-xs hides the username on small devices so only the image appears. -->
 		   <span class="hidden-xs">
-			${sessionScope.customer.name }
+			Alex Grantte
 		   </span>
 		  </a>
 		  <div class="dropdown-menu w dropdown-menu-scale pull-right">
 		   <a class="dropdown-item" href="#"><span>New Story</span></a> 
 		   <a class="dropdown-item" href="#"><span>Become a Member</span></a> 
 		   <div class="dropdown-divider"></div>
-		   <a class="dropdown-item" href="customer/profile"><span>Profile</span></a> 
+		   <a class="dropdown-item" href="#"><span>Profile</span></a> 
 		   <a class="dropdown-item" href="#"><span>Settings</span></a> 
 		   <a class="dropdown-item" href="#">Need help?</a> 
 		   <div class="dropdown-divider"></div>
-		   <a class="dropdown-item" href="customer/logout">Sign out</a>
+		   <a class="dropdown-item" href="#">Sign out</a>
 		  </div>
 		 </li><!-- /navbar-item -->	
 		 
@@ -225,8 +216,8 @@
 	 =============================================== -->
 	<section class="nav-sec">
 	  <div class="d-flex justify-content-between">
-	   <div class="p-2 nav-icon-lg mint-green">
-	   <a class="nav-icon" href="/kiito/home"><em class="fa fa-home"></em>
+	   <div class="p-2 nav-icon-lg dark-black">
+	   <a class="nav-icon" href="photo_home.html"><em class="fa fa-home"></em>
 		<span>Home</span>
 	   </a>
 	   </div>
@@ -245,8 +236,8 @@
 		<span>Stories</span>
 	   </a>
 	   </div>
-	   <div class="p-2 nav-icon-lg dark-black">
-	   <a class="nav-icon" href="customer/profile"><em class="fa fa-user"></em>
+	   <div class="p-2 nav-icon-lg mint-green">
+	   <a class="nav-icon" href="photo_profile.html"><em class="fa fa-user"></em>
 		<span>Profile</span>
 	   </a>
 	   </div>
@@ -256,175 +247,211 @@
 	 <!-- ==============================================
 	 News Feed Section
 	 =============================================== --> 
-	 <section class="newsfeed">
+	 <section class="profile-two">
 	  <div class="container-fluid">
 	   <div class="row">
-	    <div class="col-lg-3">
-		
-		 <a href="#">
-		 <div class="storybox" 
-		   style="background: linear-gradient( rgba(34,34,34,0.78), rgba(34,34,34,0.78)), url('assets/img/posts/2.gif') no-repeat;
-		          background-size: cover;
-                  background-position: center center;
-                  -webkit-background-size: cover;
-                  -moz-background-size: cover;
-                  -o-background-size: cover;">
-          <div class="story-body text-center">
-           <div class=""><img class="img-circle" src="resources/assets/img/users/10.jpg" alt="user"></div>
-           <h4>Clifford Graham</h4>
-           <p>2 hours ago</p>
-          </div>		  
-		 </div>
-		 </a>
-		
-		 <a href="#">
-		 <div class="storybox" 
-		   style="background: linear-gradient( rgba(34,34,34,0.78), rgba(34,34,34,0.78)), url('assets/img/posts/3.gif') no-repeat;
-		          background-size: cover;
-                  background-position: center center;
-                  -webkit-background-size: cover;
-                  -moz-background-size: cover;
-                  -o-background-size: cover;">
-          <div class="story-body text-center">
-           <div class=""><img class="img-circle" src="resources/assets/img/users/13.jpeg" alt="user"></div>
-           <h4>Eleanor Harper</h4>
-           <p>4 hours ago</p>
-          </div>		  
-		 </div>
-		 </a>
-		
-		 <a href="#">
-		 <div class="storybox" 
-		   style="background: linear-gradient( rgba(34,34,34,0.78), rgba(34,34,34,0.78)), url('assets/img/posts/4.jpg') no-repeat;
-		          background-size: cover;
-                  background-position: center center;
-                  -webkit-background-size: cover;
-                  -moz-background-size: cover;
-                  -o-background-size: cover;">
-          <div class="story-body text-center">
-           <div class=""><img class="img-circle" src="resources/assets/img/users/12.jpg" alt="user"></div>
-           <h4>Sean Coleman</h4>
-           <p>5 hours ago</p>
-          </div>		  
-		 </div>
-		 </a>
-		
-		 <a href="#">
-		 <div class="storybox" 
-		   style="background: linear-gradient( rgba(34,34,34,0.78), rgba(34,34,34,0.78)), url('assets/img/posts/15.jpg') no-repeat;
-		          background-size: cover;
-                  background-position: center center;
-                  -webkit-background-size: cover;
-                  -moz-background-size: cover;
-                  -o-background-size: cover;">
-          <div class="story-body text-center">
-           <div class=""><img class="img-circle" src="resources/assets/img/users/15.jpg" alt="user"></div>
-           <h4>Vanessa Wells</h4>
-           <p>5 hours ago</p>
-          </div>		  
-		 </div>
-		 </a>
 
-        <div class="trending-box hidden-xs hidden-md">
-		 <div class="row">
-		  <div class="col-lg-12">
-		    <a href="photo_stories.html"><h4>More stories</h4></a>
-		  </div>
-		 </div>
-        </div>
-		 
-		</div><!--/ col-lg-3 -->
-		
-<!------------------------FEED---------------------------------->
-	    <div class="col-lg-6">
-		
-        <c:forEach var = "feed" items="${feed}">
-         <div class="cardbox">
-		 
-          <div class="cardbox-heading">
-           <!-- START dropdown-->
-           <div class="dropdown pull-right">
-            <button class="btn btn-secondary btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false">
-		     <em class="fa fa-ellipsis-h"></em>
-			</button>
-            <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu" style="position: absolute; transform: translate3d(-136px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
-	         <a class="dropdown-item" href="#">Hide post</a>
-			 <a class="dropdown-item" href="#">Stop following</a>
-			 <a class="dropdown-item" href="#">Report</a>
-            </div>
-           </div><!--/ dropdown -->
-           <!-- END dropdown-->
-           <div class="media m-0">
-            <div class="d-flex mr-3">
-			 <a href="#"><img class="img-responsive img-circle" src="${feed.profileImg }" alt="User"></a>
+		<div class="col-lg-3">
+         <aside id="leftsidebar" class="sidebar">		  
+		  <ul class="list">
+           <li>
+			<div class="user-info">
+			 <div class="image">
+		      <a href="photo_profile_two.html">
+			   <img src="../resources/assets/img/users/1.jpg" class="img-responsive img-circle" alt="User">
+			   <span class="online-status online"></span>
+			  </a>
+			 </div>
+		     <div class="detail">
+			  <h4>Vanessa Wells</h4>
+			  <small>@vanessa</small>                        
+			 </div>
+			 <div class="row">
+			  <div class="col-12">
+			   <a title="facebook" href="#" class=" waves-effect waves-block"><i class="fab fa-facebook"></i></a>
+			   <a title="twitter" href="#" class=" waves-effect waves-block"><i class="fab fa-twitter"></i></a>
+			   <a title="instagram" href="#" class=" waves-effect waves-block"><i class="fab fa-instagram"></i></a>
+			  </div>                                
+			 </div>
 			</div>
-            <div class="media-body">
-             <p class="m-0">${feed.nick }</p>
-			 <small><span>10 hours ago</span></small>
-            </div>
-           </div><!--/ media -->
-          </div><!--/ cardbox-heading -->
-          
-		  <div class="cardbox-item">
-		   <a href="#myModal" data-toggle="modal">
-		    <img class="img-responsive" src="resources/assets/img/posts/1.jpg" alt="MaterialImg">
-		   </a> 
-          </div><!--/ cardbox-item -->
-	      <div class="cardbox-base">
-		   <ul>
-			<li><a href="#"><img src="resources/assets/img/users/1.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/2.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/3.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/4.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/5.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/6.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/7.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/8.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/9.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/10.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		   </ul>
-		  </div><!--/ cardbox-base -->
-          <div class="cardbox-like">
-		   <ul>
-			<li><a href="#"><i class="fa fa-heart"></i></a><span> 786,286</span></li>
-		    <li><a href="#" title="" class="com"><i class="fa fa-comments"></i></a> <span class="span-last"> 126,400</span></li>
-		   </ul>
-          </div><!--/ cardbox-like -->			  
-                
-		 </div><!--/ cardbox -->	
-		</c:forEach>
+           </li>
+           <li>
+            <small class="text-muted"><a href="photo_profile_two.html">320 Posts <em class="fa fa-angle-right pull-right"></em></a> </small><br/>
+            <small class="text-muted"><a href="photo_followers.html">2456 Followers <em class="fa fa-angle-right pull-right"></em></a> </small><br/>
+            <small class="text-muted"><a href="photo_followers.html">456 Following <em class="fa fa-angle-right pull-right"></em></a> </small>
+            <hr>
+            <small class="text-muted">Bio: </small>
+            <p>795 Folsom Ave, Suite 600 San Francisco, CADGE 94107</p>
+            <hr>
+            <small class="text-muted">Website: </small>
+            <p>http://www.themashabrand.com </p> 
+            <hr>                      
+           </li>                    
+          </ul>
+         </aside>				
+		</div><!--/ col-lg-3-->
 		
-		</div><!--/ col-lg-6 -->
+		<div class="col-lg-6" style="background: #fff;">
+		 
+		 <div class="row">
+		 
+		  <div class="col-lg-6">
+			 <a href="#myModal" data-toggle="modal">
+			 <div class="explorebox" 
+			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/6.jpg') no-repeat;
+					  background-size: cover;
+					  background-position: center center;
+					  -webkit-background-size: cover;
+					  -moz-background-size: cover;
+					  -o-background-size: cover;">
+			  <div class="explore-top">
+			   <div class="explore-like"><i class="fa fa-heart"></i> <span>312</span></div>
+			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
+			  </div>		  
+			 </div>
+			 </a>
+		  </div>
+		 
+		  <div class="col-lg-6">
+			 <a href="#myModal" data-toggle="modal">
+			 <div class="explorebox" 
+			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/9.jpg') no-repeat;
+					  background-size: cover;
+					  background-position: center center;
+					  -webkit-background-size: cover;
+					  -moz-background-size: cover;
+					  -o-background-size: cover;">
+			  <div class="explore-top">
+			   <div class="explore-like"><i class="fa fa-heart"></i> <span>624</span></div>
+			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
+			  </div>		  
+			 </div>
+			 </a>
+		  </div>
+		  
+		 </div><!--/ row -->
+		 
+		 <div class="row">
+		 
+		  <div class="col-lg-6">
+			 <a href="#myModal" data-toggle="modal">
+			 <div class="explorebox" 
+			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/32.jpg') no-repeat;
+					  background-size: cover;
+					  background-position: center center;
+					  -webkit-background-size: cover;
+					  -moz-background-size: cover;
+					  -o-background-size: cover;">
+			  <div class="explore-top">
+			   <div class="explore-like"><i class="fa fa-heart"></i> <span>12</span></div>
+			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
+			  </div>		  
+			 </div>
+			 </a>
+		  </div>
+		 
+		  <div class="col-lg-6">
+			 <a href="#myModal" data-toggle="modal">
+			 <div class="explorebox" 
+			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/30.jpg') no-repeat;
+					  background-size: cover;
+					  background-position: center center;
+					  -webkit-background-size: cover;
+					  -moz-background-size: cover;
+					  -o-background-size: cover;">
+			  <div class="explore-top">
+			   <div class="explore-like"><i class="fa fa-heart"></i> <span>1499</span></div>
+			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
+			  </div>		  
+			 </div>
+			 </a>
+		  </div>
+		  
+		 </div><!--/ row -->
+		 
+		 <div class="row">
+		 
+		  <div class="col-lg-6">
+			 <a href="#myModal" data-toggle="modal">
+			 <div class="explorebox" 
+			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/19.jpg') no-repeat;
+					  background-size: cover;
+					  background-position: center center;
+					  -webkit-background-size: cover;
+					  -moz-background-size: cover;
+					  -o-background-size: cover;">
+			  <div class="explore-top">
+			   <div class="explore-like"><i class="fa fa-heart"></i> <span>1742</span></div>
+			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
+			  </div>		  
+			 </div>
+			 </a>
+		  </div>
+		 
+		  <div class="col-lg-6">
+			 <a href="#myModal" data-toggle="modal">
+			 <div class="explorebox" 
+			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/8.jpg') no-repeat;
+					  background-size: cover;
+					  background-position: center center;
+					  -webkit-background-size: cover;
+					  -moz-background-size: cover;
+					  -o-background-size: cover;">
+			  <div class="explore-top">
+			   <div class="explore-like"><i class="fa fa-heart"></i> <span>1269</span></div>
+			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
+			  </div>		  
+			 </div>
+			 </a>
+		  </div>
+		  
+		 </div><!--/ row -->
+		 
+		 <div class="row">
+		 
+		  <div class="col-lg-6">
+			 <a href="#myModal" data-toggle="modal">
+			 <div class="explorebox" 
+			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/36.jpg') no-repeat;
+					  background-size: cover;
+					  background-position: center center;
+					  -webkit-background-size: cover;
+					  -moz-background-size: cover;
+					  -o-background-size: cover;">
+			  <div class="explore-top">
+			   <div class="explore-like"><i class="fa fa-heart"></i> <span>12456</span></div>
+			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
+			  </div>		  
+			 </div>
+			 </a>
+		  </div>
+		 
+		  <div class="col-lg-6">
+			 <a href="#myModal" data-toggle="modal">
+			 <div class="explorebox" 
+			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/25.jpg') no-repeat;
+					  background-size: cover;
+					  background-position: center center;
+					  -webkit-background-size: cover;
+					  -moz-background-size: cover;
+					  -o-background-size: cover;">
+			  <div class="explore-top">
+			   <div class="explore-like"><i class="fa fa-heart"></i> <span>10945</span></div>
+			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
+			  </div>		  
+			 </div>
+			 </a>
+		  </div>
+		  
+		 </div><!--/ row -->
+		
+		</div>
 		<div class="col-lg-3">
 		
          <div class="suggestion-box full-width">
 			<div class="suggestions-list">
 				<div class="suggestion-body">
-					<img class="img-responsive img-circle" src="resources/assets/img/users/17.jpeg" alt="Image">
-					<div class="name-box">
-						<h4>Anthony McCartney</h4>
-						<span>@antony</span>
-					</div>
-					<span><i class="fa fa-plus"></i></span>
-				</div>
-				<div class="suggestion-body">
-					<img class="img-responsive img-circle" src="resources/assets/img/users/16.jpg" alt="Image">
-					<div class="name-box">
-						<h4>Sean Coleman</h4>
-						<span>@sean</span>
-					</div>
-					<span><i class="fa fa-plus"></i></span>
-				</div>
-				<div class="suggestion-body">
-					<img class="img-responsive img-circle" src="resources/assets/img/users/14.jpg" alt="Image">
-					<div class="name-box">
-						<h4>Francis Long</h4>
-						<span>@francis</span>
-					</div>
-					<span><i class="fa fa-plus"></i></span>
-				</div>
-				<div class="suggestion-body">
-					<img class="img-responsive img-circle" src="resources/assets/img/users/11.jpg" alt="Image">
+					<img class="img-responsive img-circle" src="../resources/assets/img/users/1.jpg" alt="">
 					<div class="name-box">
 						<h4>Vanessa Wells</h4>
 						<span>@vannessa</span>
@@ -432,7 +459,15 @@
 					<span><i class="fa fa-plus"></i></span>
 				</div>
 				<div class="suggestion-body">
-					<img class="img-responsive img-circle" src="resources/assets/img/users/9.jpg" alt="Image">
+					<img class="img-responsive img-circle" src="../resources/assets/img/users/2.jpg" alt="">
+					<div class="name-box">
+						<h4>Anthony McCartney</h4>
+						<span>@antony</span>
+					</div>
+					<span><i class="fa fa-plus"></i></span>
+				</div>
+				<div class="suggestion-body">
+					<img class="img-responsive img-circle" src="../resources/assets/img/users/3.jpg" alt="">
 					<div class="name-box">
 						<h4>Anna Morgan</h4>
 						<span>@anna</span>
@@ -440,7 +475,23 @@
 					<span><i class="fa fa-plus"></i></span>
 				</div>
 				<div class="suggestion-body">
-					<img class="img-responsive img-circle" src="resources/assets/img/users/8.jpg" alt="Image">
+					<img class="img-responsive img-circle" src="../resources/assets/img/users/4.jpg" alt="">
+					<div class="name-box">
+						<h4>Sean Coleman</h4>
+						<span>@sean</span>
+					</div>
+					<span><i class="fa fa-plus"></i></span>
+				</div>
+				<div class="suggestion-body">
+					<img class="img-responsive img-circle" src="../resources/assets/img/users/5.jpg" alt="">
+					<div class="name-box">
+						<h4>Grace Karen</h4>
+						<span>@grace</span>
+					</div>
+					<span><i class="fa fa-plus"></i></span>
+				</div>
+				<div class="suggestion-body">
+					<img class="img-responsive img-circle" src="../resources/assets/img/users/6.jpg" alt="">
 					<div class="name-box">
 						<h4>Clifford Graham</h4>
 						<span>@clifford</span>
@@ -461,26 +512,26 @@
         <div class="trending-box">
 		 <div class="row">
 		  <div class="col-lg-6">
-		   <a href="#"><img src="resources/assets/img/posts/17.jpg" class="img-responsive" alt="Image"/></a>
+		   <a href="#"><img src="../resources/assets/img/posts/17.jpg" class="img-responsive" alt="Image"/></a>
 		  </div>
 		  <div class="col-lg-6">
-		   <a href="#"><img src="resources/assets/img/posts/12.jpg" class="img-responsive" alt="Image"/></a>
-		  </div>
-		 </div>
-		 <div class="row">
-		  <div class="col-lg-6">
-		   <a href="#"><img src="resources/assets/img/posts/21.gif" class="img-responsive" alt="Image"/></a>
-		  </div>
-		  <div class="col-lg-6">
-		   <a href="#"><img src="resources/assets/img/posts/23.gif" class="img-responsive" alt="Image"/></a>
+		   <a href="#"><img src="../resources/assets/img/posts/12.jpg" class="img-responsive" alt="Image"/></a>
 		  </div>
 		 </div>
 		 <div class="row">
 		  <div class="col-lg-6">
-		   <a href="#"><img src="resources/assets/img/posts/11.jpg" class="img-responsive" alt="Image"/></a>
+		   <a href="#"><img src="../resources/assets/img/posts/21.gif" class="img-responsive" alt="Image"/></a>
 		  </div>
 		  <div class="col-lg-6">
-		   <a href="#"><img src="resources/assets/img/posts/20.jpg" class="img-responsive" alt="Image"/></a>
+		   <a href="#"><img src="../resources/assets/img/posts/23.gif" class="img-responsive" alt="Image"/></a>
+		  </div>
+		 </div>
+		 <div class="row">
+		  <div class="col-lg-6">
+		   <a href="#"><img src="../resources/assets/img/posts/11.jpg" class="img-responsive" alt="Image"/></a>
+		  </div>
+		  <div class="col-lg-6">
+		   <a href="#"><img src="../resources/assets/img/posts/20.jpg" class="img-responsive" alt="Image"/></a>
 		  </div>
 		 </div>
         </div>		
@@ -488,9 +539,9 @@
 		
 		</div>
 		
-	   </div><!--/ row -->
+       </div><!--/ row-->	
 	  </div><!--/ container -->
-	 </section><!--/ newsfeed -->
+	 </section><!--/ profile -->
   
 	 <!-- ==============================================
 	 Modal Section
@@ -503,7 +554,7 @@
          <div class="row">
 		 
           <div class="col-md-8 modal-image">
-           <img class="img-responsive" src="resources/assets/img/posts/1.jpg" alt="Image"/>
+           <img class="img-responsive" src="../resources/assets/img/posts/9.jpg" alt="Image"/>
           </div><!--/ col-md-8 -->
           <div class="col-md-4 modal-meta">
            <div class="modal-meta-top">
@@ -511,7 +562,7 @@
 			 <span aria-hidden="true">×</span><span class="sr-only">Close</span>
 			</button><!--/ button -->
             <div class="img-poster clearfix">
-             <a href=""><img class="img-responsive img-circle" src="resources/assets/img/users/18.jpg" alt="Image"/></a>
+             <a href=""><img class="img-responsive img-circle" src="../resources/assets/img/users/18.jpg" alt="Image"/></a>
              <strong><a href="">Benjamin</a></strong>
              <span>12 minutes ago</span><br/>
 		     <a href="" class="kafe kafe-btn-mint-small"><i class="fa fa-check-square"></i> Following</a>
@@ -520,7 +571,7 @@
             <ul class="img-comment-list">
              <li>
               <div class="comment-img">
-               <img src="resources/assets/img/users/17.jpeg" class="img-responsive img-circle" alt="Image"/>
+               <img src="../resources/assets/img/users/17.jpeg" class="img-responsive img-circle" alt="Image"/>
               </div>
               <div class="comment-text">
                <strong><a href="">Anthony McCartney</a></strong>
@@ -529,7 +580,7 @@
              </li><!--/ li -->
              <li>
               <div class="comment-img">
-               <img src="resources/assets/img/users/15.jpg" class="img-responsive img-circle" alt="Image"/>
+               <img src="../resources/assets/img/users/15.jpg" class="img-responsive img-circle" alt="Image"/>
               </div>
               <div class="comment-text">
                <strong><a href="">Vanessa Wells</a></strong>
@@ -538,7 +589,7 @@
              </li><!--/ li -->
              <li>
               <div class="comment-img">
-               <img src="resources/assets/img/users/14.jpg" class="img-responsive img-circle" alt="Image"/>
+               <img src="../resources/assets/img/users/14.jpg" class="img-responsive img-circle" alt="Image"/>
               </div>
               <div class="comment-text">
                <strong><a href="">Sean Coleman</a></strong>
@@ -547,7 +598,7 @@
              </li><!--/ li -->
              <li>
               <div class="comment-img">
-               <img src="resources/assets/img/users/13.jpeg" class="img-responsive img-circle" alt="Image"/>
+               <img src="../resources/assets/img/users/13.jpeg" class="img-responsive img-circle" alt="Image"/>
               </div>
               <div class="comment-text">
                <strong><a href="">Anna Morgan</a></strong>
@@ -556,7 +607,7 @@
              </li><!--/ li -->
              <li>
               <div class="comment-img">
-               <img src="resources/assets/img/users/3.jpg" class="img-responsive img-circle" alt="Image"/>
+               <img src="../resources/assets/img/users/3.jpg" class="img-responsive img-circle" alt="Image"/>
               </div>
               <div class="comment-text">
                <strong><a href="">Allison Fowler</a></strong>
@@ -571,7 +622,7 @@
 			      <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span> 786,286</span> </li>
 			  <li>
 			   <span class="thumb-xs">
-				<img class="img-responsive img-circle" src="resources/assets/img/users/13.jpeg" alt="Image">
+				<img class="img-responsive img-circle" src="../resources/assets/img/users/13.jpeg" alt="Image">
 			   </span>
 			   <div class="comment-body">
 				 <input class="form-control input-sm" type="text" placeholder="Write your comment...">
@@ -588,16 +639,15 @@
 		
        </div><!--/ modal-content -->
       </div><!--/ modal-dialog -->
-     </div><!--/ modal -->
-	 
-	 
+     </div><!--/ modal -->	 
+	   
      <!-- ==============================================
 	 Scripts
 	 =============================================== -->
-	<script src="resources/assets/js/jquery.min.js"></script>
-	<script src="resources/assets/js/bootstrap.min.js"></script>
-	<script src="resources/assets/js/base.js"></script>
-	<script src="resources/assets/plugins/slimscroll/jquery.slimscroll.js"></script>
+	<script src="../resources/assets/js/jquery.min.js"></script>
+	<script src="../resources/assets/js/bootstrap.min.js"></script>
+	<script src="../resources/assets/js/base.js"></script>
+	<script src="../resources/assets/plugins/slimscroll/jquery.slimscroll.js"></script>
 	<script>
 	$('#Slim,#Slim2').slimScroll({
 	        height:"auto",

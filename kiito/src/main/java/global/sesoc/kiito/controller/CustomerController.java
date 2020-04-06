@@ -98,13 +98,17 @@ public class CustomerController {
 
 	
 	
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	@RequestMapping(value = "/logout", method = RequestMethod.GET) //로그아웃
 	public String logout(HttpSession hh) {
 		
 		hh.removeAttribute("customer");
 
 		return "redirect:/";		
 	}
+	
+	
+	@RequestMapping(value = "/profile", method = RequestMethod.GET)
+	public String profile() {return "customer/profile";}
 
 }
 	
