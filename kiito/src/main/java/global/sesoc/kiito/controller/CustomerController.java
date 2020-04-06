@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +24,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import global.sesoc.kiito.dao.CustomerDAO;
+import global.sesoc.kiito.dao.FeedDAO;
 import global.sesoc.kiito.vo.Customer;
+import global.sesoc.kiito.vo.Feed;
 
 @Controller
 @RequestMapping("customer")
@@ -33,6 +36,9 @@ public class CustomerController {
 
 	@Autowired	
 	private CustomerDAO dao;
+	
+	@Autowired	
+	private FeedDAO dao1;
 	
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -108,7 +114,15 @@ public class CustomerController {
 	
 	
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
-	public String profile() {return "customer/profile";}
+	public String profile(HttpSession hh,Model model) {
+		
+		
+		///Feed feed = dao1.getFeed1(hh.getAttribute("customer"));
+		
+		
+		
+		
+		return "customer/profile";}
 
 }
 	

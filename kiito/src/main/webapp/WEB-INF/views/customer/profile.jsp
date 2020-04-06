@@ -60,7 +60,7 @@
 		  <span class="icon-bar"></span>
 		  <span class="icon-bar"></span>
 		 </button>
-		 <a class="navbar-brand" href="index.html"><i class="fab fa-instagram"></i> Fluffs</a>
+		 <a class="navbar-brand" href="index.html"><i class="fab fa-instagram"></i> KIITO</a>
 		</div><!-- /.navbar-header -->
 		<div class="navbar-left">
 		 <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -197,11 +197,11 @@
 		   <a class="dropdown-item" href="#"><span>New Story</span></a> 
 		   <a class="dropdown-item" href="#"><span>Become a Member</span></a> 
 		   <div class="dropdown-divider"></div>
-		   <a class="dropdown-item" href="#"><span>Profile</span></a> 
+		   <a class="dropdown-item" href="profile"><span>Profile</span></a> 
 		   <a class="dropdown-item" href="#"><span>Settings</span></a> 
 		   <a class="dropdown-item" href="#">Need help?</a> 
 		   <div class="dropdown-divider"></div>
-		   <a class="dropdown-item" href="#">Sign out</a>
+		   <a class="dropdown-item" href="customer/logout">Sign out</a>
 		  </div>
 		 </li><!-- /navbar-item -->	
 		 
@@ -217,7 +217,7 @@
 	<section class="nav-sec">
 	  <div class="d-flex justify-content-between">
 	   <div class="p-2 nav-icon-lg dark-black">
-	   <a class="nav-icon" href="photo_home.html"><em class="fa fa-home"></em>
+	   <a class="nav-icon" href="/kiito/home"><em class="fa fa-home"></em>
 		<span>Home</span>
 	   </a>
 	   </div>
@@ -237,7 +237,7 @@
 	   </a>
 	   </div>
 	   <div class="p-2 nav-icon-lg mint-green">
-	   <a class="nav-icon" href="photo_profile.html"><em class="fa fa-user"></em>
+	   <a class="nav-icon" href="profile"><em class="fa fa-user"></em>
 		<span>Profile</span>
 	   </a>
 	   </div>
@@ -255,16 +255,16 @@
          <aside id="leftsidebar" class="sidebar">		  
 		  <ul class="list">
            <li>
-			<div class="user-info">
+			<div class="user-info">			<!-- 	자기 프로필 -->
 			 <div class="image">
 		      <a href="photo_profile_two.html">
-			   <img src="../resources/assets/img/users/1.jpg" class="img-responsive img-circle" alt="User">
+			   <img src="${sessionScope.customer.profileImg }" class="img-responsive img-circle" alt="User">		ㅅ
 			   <span class="online-status online"></span>
 			  </a>
 			 </div>
 		     <div class="detail">
-			  <h4>Vanessa Wells</h4>
-			  <small>@vanessa</small>                        
+			  <h4>${sessionScope.customer.name }</h4>
+			  <small>@${sessionScope.customer.nick }</small>                        
 			 </div>
 			 <div class="row">
 			  <div class="col-12">
@@ -291,11 +291,16 @@
          </aside>				
 		</div><!--/ col-lg-3-->
 		
+		
+		<!-- 자기가 쓴 글 -->
+		
 		<div class="col-lg-6" style="background: #fff;">
 		 
 		 <div class="row">
 		 
 		  <div class="col-lg-6">
+		  
+		     <c:forEach var="s" items="${feed}">
 			 <a href="#myModal" data-toggle="modal">
 			 <div class="explorebox" 
 			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/6.jpg') no-repeat;
@@ -305,11 +310,16 @@
 					  -moz-background-size: cover;
 					  -o-background-size: cover;">
 			  <div class="explore-top">
-			   <div class="explore-like"><i class="fa fa-heart"></i> <span>312</span></div>
+			   <div class="explore-like"><i class="fa fa-heart"></i> <span>${s.likes}</span></div>
+			   			<p>체크인 : ${s.checkin}</p>
+									<p>번호 : ${s.feed_seq}</p>
+								<p>혼잡도 : ${s.congestion} </p>
 			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
 			  </div>		  
 			 </div>
 			 </a>
+			 
+			 	</c:forEach> 
 		  </div>
 		 
 		  <div class="col-lg-6">
