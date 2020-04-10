@@ -53,15 +53,7 @@ $(document).ready(function() {
 
 
 
-$('#closeWrite').on('click', function(){
-	$('#checkin').val('');
-	$('#contents').val('');
-	$("#file").val('');
-	$('#placesList').html('');
-	$('#pagination').html('');
-	$('.container-contact100').toggle();
-	$('body').css('overflow','scroll');
-});
+
 
 var tag = {};
 var counter = 0;

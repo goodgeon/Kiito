@@ -256,8 +256,40 @@ function removeAllChildNods(el) {
  }
 }
 
-$('#writeBt').on('click', function(){
+function writeBt(){
+
+	$('.container-contact100').css('display','flex');
+	$('.map_wrap').css('display','none');
 	
+	$('.map_wrap').css('display','flex');
+	container.style.width = '300px';
+	container.style.height = '240px';
+
+	map.relayout();
+	
+	/*infowindow = new kakao.maps.InfoWindow({zIndex:1});
+	container = document.getElementById('map');
+
+	options = {
+			center: new kakao.maps.LatLng(33.450701, 126.570667),
+			level: 3
+	};
+		
+	map = new kakao.maps.Map(container, options);*/
+	
+	//스크롤방지
+//	$('.container-contact100').on('scroll touchmove mousewheel', function(event) {
+//		  event.preventDefault();
+//		  event.stopPropagation();
+//		  return false;
+//	});
+	$('body').css('overflow','hidden');
+	$('.container-contact100').css('position','fixed');
+	$('.container-contact100').css('overflow','scroll');
+}
+
+$('#writeBt').on('click', function(){
+	alert('sss');
 	$('.container-contact100').css('display','flex');
 	$('.map_wrap').css('display','none');
 	
@@ -287,6 +319,16 @@ $('#writeBt').on('click', function(){
 	$('.container-contact100').css('position','fixed');
 	$('.container-contact100').css('overflow','scroll');
 	
+});
+
+$('#closeWrite').on('click', function(){
+	$('#checkin').val('');
+	$('#contents').val('');
+	$("#file").val('');
+	$('#placesList').html('');
+	$('#pagination').html('');
+	$('.container-contact100').toggle();
+	$('body').css('overflow','scroll');
 });
 
 

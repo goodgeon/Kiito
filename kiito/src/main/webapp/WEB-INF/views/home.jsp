@@ -33,7 +33,8 @@
 		CSS
 		=============================================== -->
         <link type="text/css" href="resources/assets/css/demos/photo.css" rel="stylesheet" />
-				
+		<link rel="stylesheet" href="resources/writef/css/main.css">
+		<link rel="stylesheet" type="text/css" href="resources/writef/css/kakaomap.css">
 		<!-- ==============================================
 		Feauture Detection
 		=============================================== -->
@@ -44,6 +45,9 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->	
+		
+		
+			
 		
   </head>
 
@@ -204,7 +208,7 @@
 		  </a>
 		  <div class="dropdown-menu w dropdown-menu-scale pull-right">
 		   <a class="dropdown-item" href="#"><span>New Story</span></a> 
-		   <a class="dropdown-item" href="#"><span>Become a Member</span></a> 
+		 <!--   <a class="dropdown-item" href="#"><span>Become a Member</span></a>  -->
 		   <div class="dropdown-divider"></div>
 		   <a class="dropdown-item" href="customer/profile"><span>Profile</span></a> 
 		   <a class="dropdown-item" href="#"><span>Settings</span></a> 
@@ -236,7 +240,7 @@
 	   </a>
 	   </div>
 	   <div class="p-2 nav-icon-lg dark-black">
-	   <a class="nav-icon" style="cursor:pointer" onclick="writeBt()"><em class="fab fa-instagram" onclick="writeBt()"></em>
+	   <a class="nav-icon" onclick = "writeBt()" style="cursor:pointer"><em class="fab fa-instagram"  ></em>
 		<span>Upload</span>
 	   </a>
 	   </div>
@@ -594,6 +598,8 @@
      <!-- ==============================================
 	 Scripts
 	 =============================================== -->
+	 
+	 
 	<script src="resources/assets/js/jquery.min.js"></script>
 	<script src="resources/assets/js/bootstrap.min.js"></script>
 	<script src="resources/assets/js/base.js"></script>
@@ -607,40 +613,9 @@
 			size:"8px",
 		});	
 
-		
-	function writeBt() {
 
-		
-		$('.container-contact100').css('display','flex');
-		$('.map_wrap').css('display','none');
-		
-		$('.map_wrap').css('display','flex');
-		container.style.width = '300px';
-		container.style.height = '240px';
-
-		map.relayout();
-		
-		/*infowindow = new kakao.maps.InfoWindow({zIndex:1});
-		container = document.getElementById('map');
-
-		options = {
-				center: new kakao.maps.LatLng(33.450701, 126.570667),
-				level: 3
-		};
-			
-		map = new kakao.maps.Map(container, options);*/
-		
-		//스크롤방지
-//		$('.container-contact100').on('scroll touchmove mousewheel', function(event) {
-//			  event.preventDefault();
-//			  event.stopPropagation();
-//			  return false;
-//		});
-		$('body').css('overflow','hidden');
-		$('.container-contact100').css('position','fixed');
-		$('.container-contact100').css('overflow','scroll');
-		
-	});
+	
+	
 		
 	</script>
 
@@ -651,11 +626,11 @@
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form" id = "writeForm" action = "feed/insertFeed" method = "POST" enctype="multipart/form-data" >
 			<input type = "hidden" name = "customer_seq" value = "${sessionScope.customer.customer_seq }" id="cs">
-				<span class="contact100-form-title">글쓰기</span>
+				<span class="contact100-form-title">Upload</span>
 				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
-					<input class="input100" type="text" id="checkin" placeholder = "검색어를 입력하세요">
+					<input class="input100" type="text" id="checkin" placeholder = "Please enter a search term">
 					
-					<input class = "input100" id = "checkinBt" type = "button" value = "검색">
+					<input class = "input100" id = "checkinBt" type = "button" value = "search">
 					<!-- 같은 이름 ㄴㄴ -->
 					<span class="focus-input100"></span>
 				</div>
@@ -671,9 +646,9 @@
 				    </div>
 				</div>
 				<div class = "wrap-input100">
-					<input type = "radio" name = "congestion" value = "3" checked = "checked" style = "margin-left : 20px;">혼잡
-					<input type = "radio" name = "congestion" value = "2">보통
-					<input type = "radio" name = "congestion" value = "1">한산
+					<input type = "radio" name = "congestion" value = "3" checked = "checked" style = "margin-left : 20px;">congestion
+					<input type = "radio" name = "congestion" value = "2">smoothness
+					<input type = "radio" name = "congestion" value = "1">dullness
 				</div>
 						
 				<div class="wrap-input100 validate-input" data-validate = "Please enter your message">
@@ -690,7 +665,7 @@
 				
 				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
 				<br>
-						<input type="text" id="tag" class="input100" placeholder="태그입력" />
+						<input type="text" id="tag" class="input100" placeholder="tag" />
 					<span class="focus-input100"></span>
 				</div>
 	
@@ -708,16 +683,19 @@
 					<button type = "button" id = "submitFeed"class="contact100-form-btn">
 						<span>
 							<i class="fa fa-paper-plane-o m-r-6" aria-hidden="true"></i>
-							게시
+							submit
 						</span>
 					</button>
-					<span><input type = "button" id = "closeWrite" value = "닫기"></span>
+					<span><input type = "button" id = "closeWrite" value = "close"></span>
 				</div>
 			</form>
 		</div>
 	</div>
 	
-
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab38e188d1015fa32fe5df13ab040fa&libraries=services,clusterer,drawing"></script>
+		<script src = "resources/writef/js/kakaomap.js"></script>
+		
+		<script src="resources/writef/js/main.js"></script>
 
 
   </body>

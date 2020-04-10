@@ -186,10 +186,11 @@
 				        		<span><a href="#"><label> </label>${s.checkin}</a></span>
 				        		
 
-								<p>번호 : ${s.feed_seq}</p>
-								<p>혼잡도 : ${s.congestion} </p>
+							
 								<p>좋아요 : <span class = 'likes'>${s.likes}</span></p>
 								<p>체크인 : ${s.checkin}</p>
+									<p>번호 : ${s.feed_seq}</p>
+								<p>혼잡도 : ${s.congestion} </p>
 								<p>
 								해시태그 : <c:forEach var = "hashtag" items="${hashtag}">
 									<c:if test="${hashtag.feed_seq == s.feed_seq}">

@@ -195,7 +195,7 @@
 		  </a>
 		  <div class="dropdown-menu w dropdown-menu-scale pull-right">
 		   <a class="dropdown-item" href="#"><span>New Story</span></a> 
-		   <a class="dropdown-item" href="#"><span>Become a Member</span></a> 
+		  <!--  <a class="dropdown-item" href="#"><span>Become a Member</span></a>  -->
 		   <div class="dropdown-divider"></div>
 		   <a class="dropdown-item" href="profile"><span>Profile</span></a> 
 		   <a class="dropdown-item" href="#"><span>Settings</span></a> 
