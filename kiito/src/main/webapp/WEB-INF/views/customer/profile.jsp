@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en">
   <head>
 
@@ -31,7 +33,9 @@
 		CSS
 		=============================================== -->
         <link type="text/css" href="../resources/assets/css/demos/photo.css" rel="stylesheet" />
-				
+       	<link rel="stylesheet" type="text/css" href="../resources/writef/css/kakaomap.css">
+       	<link rel="stylesheet" href="../resources/writef/css/main.css">
+			
 		<!-- ==============================================
 		Feauture Detection
 		=============================================== -->
@@ -195,7 +199,7 @@
 		  </a>
 		  <div class="dropdown-menu w dropdown-menu-scale pull-right">
 		   <a class="dropdown-item" href="#"><span>New Story</span></a> 
-		  <!--  <a class="dropdown-item" href="#"><span>Become a Member</span></a>  -->
+<!-- 		  // <a class="dropdown-item" href="#"><span>Become a Member</span></a>  -->
 		   <div class="dropdown-divider"></div>
 		   <a class="dropdown-item" href="profile"><span>Profile</span></a> 
 		   <a class="dropdown-item" href="#"><span>Settings</span></a> 
@@ -227,7 +231,7 @@
 	   </a>
 	   </div>
 	   <div class="p-2 nav-icon-lg dark-black">
-	   <a class="nav-icon" href="photo_upload.html"><em class="fab fa-instagram"></em>
+	   <a class="nav-icon" onclick = "writeBt()" style="cursor:pointer"><em class="fab fa-instagram"  ></em>
 		<span>Upload</span>
 	   </a>
 	   </div>
@@ -667,6 +671,81 @@
 			size:"8px",
 		});		
 	</script>
+<!-- write form -->
+		<div class="container-contact100">
+		<div class="wrap-contact100">
+			<form class="contact100-form validate-form" id = "writeForm" action = "feed/insertFeed" method = "POST" enctype="multipart/form-data" >
+			<input type = "hidden" name = "customer_seq" value = "${sessionScope.customer.customer_seq }" id="cs">
+				<span class="contact100-form-title">Upload</span>
+				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
+					<input class="input100" type="text" id="checkin" placeholder = "Please enter a search term">
+					
+					<input class = "input100" id = "checkinBt" type = "button" value = "search">
+					<!-- 같은 이름 ㄴㄴ -->
+					<span class="focus-input100"></span>
+				</div>
+				<input type = "text" id = "dataSelected" name = "checkin" style = "display : none;">
+				
+				<div class="map_wrap">
+				    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+				
+				    <div id="menu_wrap" class="bg_white">
+				        <hr>
+				        <ul id="placesList"></ul>
+				        <div id="pagination"></div>
+				    </div>
+				</div>
+				<div class = "wrap-input100">
+					<input type = "radio" name = "congestion" value = "3" checked = "checked" style = "margin-left : 20px;">congestion
+					<input type = "radio" name = "congestion" value = "2">smoothness
+					<input type = "radio" name = "congestion" value = "1">dullness
+				</div>
+						
+				<div class="wrap-input100 validate-input" data-validate = "Please enter your message">
+					<textarea id = "contents" class="input100" name="contents" placeholder="Your Message" style = "resize : none"></textarea>
+					<span class="focus-input100"></span>
+				</div>
+				
+				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
+				<br>
+					<input class="input100" type="file" name="upload" id="file" value="파일선택" size="30">
+					<span class="focus-input100"></span>
+				</div>
+				
+				
+				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
+				<br>
+						<input type="text" id="tag" class="input100" placeholder="tag" />
+					<span class="focus-input100"></span>
+				</div>
+	
+
+				
+			<ul id="tag-list">
+       		 </ul>
+
+
+			<input type="hidden" value="" name="arr" id="rdTag" />
+			
+		
+
+				<div class="container-contact100-form-btn">
+					<button type = "button" id = "submitFeed"class="contact100-form-btn">
+						<span>
+							<i class="fa fa-paper-plane-o m-r-6" aria-hidden="true"></i>
+							submit
+						</span>
+					</button>
+					<span><input type = "button" id = "closeWrite" value = "close"></span>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab38e188d1015fa32fe5df13ab040fa&libraries=services,clusterer,drawing"></script>
+		<script src = "../resources/writef/js/kakaomap.js"></script>
+		
+		<script src="../resources/writef/js/main.js"></script>
 
   </body>
 </html>
