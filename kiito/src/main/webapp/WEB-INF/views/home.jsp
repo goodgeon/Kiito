@@ -33,33 +33,27 @@
 		CSS
 		=============================================== -->
         <link type="text/css" href="resources/assets/css/demos/photo.css" rel="stylesheet" />
-        <link type="text/css" href="resources/assets/css/jquery-sakura.css" rel="stylesheet" />
 		<link rel="stylesheet" href="resources/writef/css/main.css">
 		<link rel="stylesheet" type="text/css" href="resources/writef/css/kakaomap.css">
 		<!-- ==============================================
 		Feauture Detection
 		=============================================== -->
 		<script src="resources/assets/js/modernizr-custom.js"></script>
-		<script src="resources/assets/js/jquery-sakura.js"></script>
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->	
-		
-		
-			
+		<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+$( document ).ready( function() {
+    $( '.title1' ).fadeIn(1200).fadeOut(1200);
+    $( '.title2' ).fadeOut(1200).fadeIn(1200);
+  } );
+</script>	
 		
   </head>
-  <script src="resources/assets/js/jquery-sakura.js"></script>
-
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script>
-$(window).load(function () {
-    $('body').sakura();
-});
-</script>
 <body>
 
      <!-- ==============================================
@@ -76,6 +70,7 @@ $(window).load(function () {
 		  <span class="icon-bar"></span>
 		 </button>
 		 <a class="navbar-brand" href="/kiito/home">KIITO</a>
+
 		</div><!-- /.navbar-header -->
 		<div class="navbar-left">
 		 <div class="collapse navbar-collapse" id="navbar-collapse">
