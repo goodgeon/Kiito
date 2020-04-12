@@ -33,12 +33,14 @@
 		CSS
 		=============================================== -->
         <link type="text/css" href="resources/assets/css/demos/photo.css" rel="stylesheet" />
+        <link type="text/css" href="resources/assets/css/jquery-sakura.css" rel="stylesheet" />
 		<link rel="stylesheet" href="resources/writef/css/main.css">
 		<link rel="stylesheet" type="text/css" href="resources/writef/css/kakaomap.css">
 		<!-- ==============================================
 		Feauture Detection
 		=============================================== -->
 		<script src="resources/assets/js/modernizr-custom.js"></script>
+		<script src="resources/assets/js/jquery-sakura.js"></script>
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -50,6 +52,12 @@
 			
 		
   </head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+$(window).load(function () {
+    $('body').sakura();
+});
+</script>
 
 <body>
 
@@ -686,7 +694,13 @@
 							submit
 						</span>
 					</button>
-					<span><input type = "button" id = "closeWrite" value = "close"></span>
+					　　
+					<button type = "button" id = "closeWrite"class="contact100-form-btn">
+						<span>
+							<i class="fa fa-paper-plane-o m-r-6" aria-hidden="true"></i>
+							close
+						</span>
+					</button>
 				</div>
 			</form>
 		</div>
