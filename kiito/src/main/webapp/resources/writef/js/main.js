@@ -1,4 +1,36 @@
-function checki() {}	
+
+
+///////////////////////////////////////////////////////////////////////사진업로드
+var sel_files = [];
+
+$(document).ready(function(){
+	$("#input_imgs").on("change", handleImgsFilesSelect);
+});
+
+function handleImgsFilesSelect(e){
+	var files = e.target.files;
+	var filesArr = Array.prototype.slice.call(files);
+
+	filesArr.forEach(function(f) {
+		if(!f.type.match("image.*")){
+			alert("확장자는 이미지 확장자만 가능합니다");
+			return;
+		}
+
+		sel_files.push(f);
+		console.log(sel_files);
+
+		var reader = new FileReader();
+		reader.onload = function(e){
+			var img_html = "<img src = \"" + e.target.result + "\" style = 'width : 240px; height : 240px;' />";
+			$(".imgs_wrap").append(img_html);
+		}
+		reader.readAsDataURL(f);
+	})
+}
+////////////////////////////////////////////////////////////
+
+
 
 $(document).ready(function() {	
 	
@@ -78,10 +110,23 @@ $('#submitFeed').on('click', function(){
     var arr = $("#rdTag").val();
     console.log(typeof(arr));
     
+    var checkin = $("#checkin").val();
+    var contents = $("#contents").val();
+    
+    
+    if(checkin == null || checkin == ""){
+    	alert("장소를 입력해주세요");
+    	$("#checkin").focus();
+    	return;
+    }
+    
+    if(contents == null || contents == ""){
+    	alert("내용을 입력해주세요");
+    	$("#contents").focus();
+    	return;
+    }
+    
 	$('#writeForm').submit();
-	
-	
-	
 	
    // alert(arr);
     

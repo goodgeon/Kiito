@@ -661,9 +661,20 @@ $( document ).ready( function() {
 				</div>
 				
 				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
-				<br>
-					<input class="input100" type="file" name="upload" id="file" value="파일선택" size="30">
-					<span class="focus-input100"></span>
+				
+				
+				<div>
+					<input type = "file" id = "input_imgs" name = "file" multiple value = "사진업로드" />
+				</div>
+				
+				
+					<!-- <input class="input100" multiple = "multiple" type="file" name="upload" id="file" value="파일선택" size="30">
+					<span class="focus-input100"></span> -->
+				</div>
+				<div>
+					<div class = "imgs_wrap" style = "margin-bottom : 10px;">
+					
+					</div>
 				</div>
 				
 				
@@ -702,11 +713,9 @@ $( document ).ready( function() {
 		</div>
 	</div>
 	
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab38e188d1015fa32fe5df13ab040fa&libraries=services,clusterer,drawing"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab38e188d1015fa32fe5df13ab040fa&libraries=services,clusterer,drawing"></script>
+		<script src="resources/writef/js/main.js"></script>
 		<script src = "resources/writef/js/kakaomap.js"></script>
 		
-		<script src="resources/writef/js/main.js"></script>
-
-
   </body>
 </html>

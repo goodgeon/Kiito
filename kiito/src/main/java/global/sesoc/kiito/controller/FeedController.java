@@ -2,6 +2,7 @@ package global.sesoc.kiito.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import global.sesoc.kiito.dao.FeedDAO;
 import global.sesoc.kiito.dao.HashtagDAO;
@@ -47,22 +49,45 @@ public class FeedController {
 	public String write() {return "board/write";}
 	
 	@RequestMapping(value = "/insertFeed", method = RequestMethod.POST)
-	public String insertFeed(Feed feed,HttpSession session, MultipartFile upload, String[] arr) {
+	public String insertFeed(Feed feed,HttpSession session, MultipartHttpServletRequest mtfRequest, String[] arr) {
 		
+		/*
+		 * if(!upload.isEmpty()) { String savedFile = FileService.saveFile(mf,
+		 * uploadPath); feed.setOriginalfile(mf.getOriginalFilename());
+		 * feed.setSavedfile(savedFile); }
+		 */
+		 
 		
-		if(!upload.isEmpty()) {
-			String savedFile = FileService.saveFile(upload, uploadPath);
-			feed.setOriginalfile(upload.getOriginalFilename());
-			feed.setSavedfile(savedFile);
-		}
+		List<MultipartFile> fileList = mtfRequest.getFiles("file");
 		
+		System.out.println("파일리스트크기 : " + fileList.size());
+        String src = mtfRequest.getParameter("src");
+        System.out.println("src value : " + src);
+
+        String path = uploadPath;
+        
+        if(fileList != null && fileList.size()>0) {
+        	for (MultipartFile mf : fileList) {
+                //String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+                //long fileSize = mf.getSize(); // 파일 사이즈
+                
+                String savedFile = FileService.saveFile(mf, uploadPath);
+                feed.setOriginalfile(mf.getOriginalFilename());
+                feed.setSavedfile(savedFile);
+            }
+        }
+
+        
 		
 		dao.insertFeed(feed);
 		feed_seq = feed.getFeed_seq();
 
 		customer_seq = feed.getCustomer_seq();
 		
-		hashtag(arr);
+		if(arr != null) {
+			hashtag(arr);
+		}
+		
 
 		return "redirect:/home";
 	}
@@ -72,6 +97,7 @@ public class FeedController {
 	//@ResponseBody
 	public void hashtag(String[] arr) {
 		Hashtag hash = new Hashtag();
+		
 
 		hash.setFeed_seq(feed_seq);
 		

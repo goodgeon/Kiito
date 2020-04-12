@@ -46,16 +46,17 @@ public class CustomerController {
 		String email = customer.getEmail();
 		String pw = customer.getPw();
 		
-		System.out.println("email : " + email);
-		System.out.println("pw : " + pw);
+		/*
+		 * System.out.println("email : " + email); System.out.println("pw : " + pw);
+		 */
 		
 		Customer c = dao.getCustomerByMail(email);
 		
-		System.out.println("c.getPw() : " + c.getPw());
+		//System.out.println("c.getPw() : " + c.getPw());
 
 		if(c != null && c.getPw().equals(pw)) {
 			session.setAttribute("customer", c);
-			System.out.println("로그인정보 : " + c.toString());
+			//System.out.println("로그인정보 : " + c.toString());
 			return "success";
 		}
 		

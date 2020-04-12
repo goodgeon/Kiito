@@ -329,6 +329,7 @@ $('#closeWrite').on('click', function(){
 	$('#pagination').html('');
 	$('.container-contact100').toggle();
 	$('body').css('overflow','scroll');
+	$('.imgs_wrap').html('');
 });
 
 
@@ -354,21 +355,3 @@ $('#checkin').keydown(function (e){
 	}
 })
 
-$('#checkin').focus(function(){
-	/*$('.map_wrap').css('display','flex');
-	container.style.width = '300px';
-	container.style.height = '240px';
-
-	map.relayout();
-	
-	infowindow = new kakao.maps.InfoWindow({zIndex:1});
-	container = document.getElementById('map');
-
-	options = {
-			center: new kakao.maps.LatLng(33.450701, 126.570667),
-			level: 3
-	};
-		
-	map = new kakao.maps.Map(container, options);*/
-	
-})

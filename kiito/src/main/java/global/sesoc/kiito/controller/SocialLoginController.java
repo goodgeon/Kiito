@@ -98,19 +98,21 @@ public class SocialLoginController {
         Base64 base64 = new Base64(true);
         String body = new String(base64.decode(tokens[1]));
         
-        System.out.println(tokens.length);
-        System.out.println(new String(Base64.decodeBase64(tokens[0]), "utf-8"));
-        System.out.println(new String(Base64.decodeBase64(tokens[1]), "utf-8"));
+		/*
+		 * System.out.println(tokens.length); System.out.println(new
+		 * String(Base64.decodeBase64(tokens[0]), "utf-8")); System.out.println(new
+		 * String(Base64.decodeBase64(tokens[1]), "utf-8"));
+		 */
  
         //Jackson을 사용한 JSON을 자바 Map 형식으로 변환
         ObjectMapper mapper = new ObjectMapper();
         Map<String, String> result = mapper.readValue(body, Map.class);
-        System.out.println("======================================");
-        System.out.println(result.get("email"));
-        System.out.println(result.get("sub"));
-        System.out.println(result.get("name"));
-        System.out.println(result);
-        
+		/*
+		 * System.out.println("======================================");
+		 * System.out.println(result.get("email"));
+		 * System.out.println(result.get("sub"));
+		 * System.out.println(result.get("name")); System.out.println(result);
+		 */
         
         //result.get("email")이 DB에 있으면 세션에 저장하고 홈화면
         Customer customer = new Customer();
@@ -142,9 +144,10 @@ public class SocialLoginController {
  
         try {
              String redirectUri = oAuth2Parameters.getRedirectUri();
-            System.out.println("Redirect URI : " + redirectUri);
-            System.out.println("Code : " + code);
- 
+			/*
+			 * System.out.println("Redirect URI : " + redirectUri);
+			 * System.out.println("Code : " + code);
+			 */
             OAuth2Operations oauthOperations = connectionFactory.getOAuthOperations();
             AccessGrant accessGrant = oauthOperations.exchangeForAccess(code, redirectUri, null);
             String accessToken = accessGrant.getAccessToken();
@@ -167,11 +170,13 @@ public class SocialLoginController {
             {            
                 String [] fields = { "id", "email","name"};
                 User userProfile = facebook.fetchObject("me", User.class, fields);
-                System.out.println("유저 프로필사진 : " +"http://graph.facebook.com/"+userProfile.getId()+"/picture?type=large");
-                System.out.println("유저이메일 : " + userProfile.getEmail());
-                System.out.println("유저 id : " + userProfile.getId());
-                System.out.println("유저 name : " + userProfile.getName());
-                
+				/*
+				 * System.out.println("유저 프로필사진 : "
+				 * +"http://graph.facebook.com/"+userProfile.getId()+"/picture?type=large");
+				 * System.out.println("유저이메일 : " + userProfile.getEmail());
+				 * System.out.println("유저 id : " + userProfile.getId());
+				 * System.out.println("유저 name : " + userProfile.getName());
+				 */   
                 Customer customer = new Customer();
                 customer.setEmail(userProfile.getEmail());
                 customer.setPw("aweoigjiowaegioawegjoiawejgioawejiogawejiogawejiogaweijog");
