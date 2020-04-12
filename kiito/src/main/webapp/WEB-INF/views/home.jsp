@@ -52,13 +52,14 @@
 			
 		
   </head>
+  <script src="resources/assets/js/jquery-sakura.js"></script>
+
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
 $(window).load(function () {
     $('body').sakura();
 });
 </script>
-
 <body>
 
      <!-- ==============================================
@@ -74,7 +75,7 @@ $(window).load(function () {
 		  <span class="icon-bar"></span>
 		  <span class="icon-bar"></span>
 		 </button>
-		 <a class="navbar-brand" href="/kiito/home"><i class="fab fa-instagram"></i> KIITO</a>
+		 <a class="navbar-brand" href="/kiito/home">KIITO</a>
 		</div><!-- /.navbar-header -->
 		<div class="navbar-left">
 		 <div class="collapse navbar-collapse" id="navbar-collapse">
