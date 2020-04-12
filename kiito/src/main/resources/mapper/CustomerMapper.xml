@@ -14,6 +14,8 @@
 		where email = #{email} and customer_type = 0
 	</select>
 	
+	
+	
 	<select id="getGoogleCustomer" parameterType = "String" resultType="customer">
 		select *
 		from customer

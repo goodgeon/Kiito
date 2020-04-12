@@ -364,19 +364,23 @@ $( document ).ready( function() {
            <!-- END dropdown-->
            <div class="media m-0">
             <div class="d-flex mr-3">
-			 <a href="#"><img class="img-responsive img-circle" src="${feed.profileImg }" alt="User"></a>
+			 <a href="#"><img class="img-responsive img-circle" src="${feed.customer.profileImg }" alt="User"></a>
 			</div>
             <div class="media-body">
-             <p class="m-0">${feed.nick }</p>
-			 <small><span>10 hours ago</span></small>
+             <p class="m-0">${feed.customer.nick }</p>
+			 <small><span>${feed.inputdate }</span></small>
             </div>
            </div><!--/ media -->
           </div><!--/ cardbox-heading -->
           
 		  <div class="cardbox-item">
 		   <a href="#myModal" data-toggle="modal">
-		    <img class="img-responsive" src="resources/assets/img/posts/1.jpg" alt="MaterialImg">
-		   </a> 
+		   	<c:forEach var = "imageFile" items = "${feed.imageFile}">
+	   			<img class="img-responsive" src="<c:url value = '/img/${imageFile.savedFilename }'/>" alt="MaterialImg">
+		   	</c:forEach>
+		    
+		   </a>
+		   <span>${feed.contents }</span> 
           </div><!--/ cardbox-item -->
 	      <div class="cardbox-base">
 		   <ul>

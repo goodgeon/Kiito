@@ -14,6 +14,9 @@ CREATE SEQUENCE customer_seq;
 
 drop table customer;
 drop table feed;
+drop table hashtag;
+drop table likes;
+drop table imageFile;
 
 create table feed(
 feed_seq number(38) PRIMARY key,
@@ -21,8 +24,6 @@ customer_seq NUMBER REFERENCES customer(customer_seq) on delete cascade,
 checkin varchar2(100) not null,
 contents varchar2(200) not null,
 congestion number(1) not null,
-originalfile varchar2(200),
-savedfile varchar2(200),
 likes number(38) default 0,
 inputdate date default sysdate
 );
@@ -32,7 +33,6 @@ CREATE SEQUENCE feed_seq;
 
 CREATE TABLE hashtag (
    hashtag_seq NUMBER PRIMARY KEY
-   ,customer_seq NUMBER REFERENCES customer(customer_seq) on delete cascade
    ,feed_seq NUMBER REFERENCES feed(feed_seq) on delete cascade
    ,contents   VARCHAR2(100) NOT NULL 
 );
@@ -47,3 +47,14 @@ CREATE TABLE likes (
 );
 
 CREATE SEQUENCE likes_seq;
+
+
+
+CREATE TABLE imageFile (
+    imageFile_seq NUMBER PRIMARY KEY,
+    feed_seq NUMBER REFERENCES feed(feed_seq) on delete cascade
+    ,originalFilename VARCHAR2(100)
+    ,savedFilename VARCHAR2(100)
+);
+
+CREATE SEQUENCE imageFile_seq;

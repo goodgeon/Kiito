@@ -2,6 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="global.sesoc.kiito.dao.FeedMapper">
+	<resultMap type="feed" id="feedMap">
+		 <id column="feed_seq" property = "feed_seq"/>
+		 <result column="checkin" property="checkin"/>
+		 <result column="contents" property="contents"/>
+		 <result column="congestion" property="congestion"/>
+		 <result column="likes" property="likes"/>
+		 <result column="inputdate" property="inputdate"/>
+		 
+		 
+		 <association javaType="customer" property="customer">
+		 	<id column="customer_seq" property="customer_seq"/>
+		 	<result column="email" property="email"/>
+		 	<result column="pw" property="pw"/>
+		 	<result column="name" property="name"/>
+		 	<result column="nick" property="nick"/>
+		 	<result column="profileImg" property="profileImg"/>
+		 	<result column="customer_type" property="customer_type"/>
+		 </association>
+		 
+		 <collection property="imageFile" column="feed_seq" javaType="java.util.ArrayList" ofType="imageFile" select="getImageList"/>
+	</resultMap>
+	
+	<select id="getImageList" resultType="imageFile">
+		select imageFile_seq, originalFilename, savedFilename
+		from imageFile
+		where feed_seq = #{feed_seq}
+	</select>
+
+
+
 	<insert id="insertFeed" parameterType="feed">
 		insert into feed
 		(feed_seq,
@@ -9,10 +39,6 @@
 		checkin,
 		contents,
 		congestion
-			<if test="originalfile != null and originalfile != null">		<!-- 빈칸을 해주기.!!!!!!!!!!!!!!! -->
-			,originalfile
-			,savedfile
-		</if>
 		)
 		values(
 		feed_seq.nextval,
@@ -20,51 +46,36 @@
 		#{checkin},
 		#{contents},
 		#{congestion}
-		<if test="originalfile != null and originalfile != null">		<!-- 빈칸을 해주기.!!!!!!!!!!!!!!! -->
-			,#{originalfile}
-			,#{savedfile}
-		</if>
 		)
 		<selectKey keyProperty="feed_seq" resultType = "int" order = "AFTER">
 			SELECT feed_seq.currval FROM dual
 		</selectKey>
 	</insert>
 	
-	<select id="feedList" resultType="feed">
-	
-	select * from feed
-	
-	
+	<select id="feedList" resultType="feed" resultMap="feedMap">
+	select f.feed_seq,f.customer_seq,f.checkin,f.contents,f.congestion,f.likes, f.inputdate, c.customer_seq, c.email, c.pw, c.name, c.nick, c.profileimg, c.customer_type 
+	from feed f,customer c
+	where f.customer_seq = c.customer_seq
 	</select>
 	
 	<update id="updateL" parameterType="int">
-
 		update feed set
 		likes =
 		likes+1
-
 		where feed_seq = #{feed_seq}
-
-
 	</update>
 	
 	<update id="downLike" parameterType="int">
-
 		update feed set
 		likes =
 		likes-1
-
 		where feed_seq = #{feed_seq}
-
-
 	</update>
 	
 	
 	<select id="getFeed" parameterType="int" resultType="feed">
-	
-	select * from feed where feed_seq = #{feed_seq}
-	
-	
+	select * from feed f,customer c 
+	where f.feed_seq = #{feed_seq} and f.customer_seq = c.customer_seq
 	</select>
 	
 	

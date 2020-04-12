@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import global.sesoc.kiito.dao.CustomerDAO;
 import global.sesoc.kiito.dao.FeedDAO;
 import global.sesoc.kiito.dao.HashtagDAO;
+import global.sesoc.kiito.dao.ImageFileDAO;
 import global.sesoc.kiito.vo.Customer;
 import global.sesoc.kiito.vo.Feed;
 import global.sesoc.kiito.vo.Hashtag;
+import global.sesoc.kiito.vo.ImageFile;
 
 
 @Controller
@@ -34,6 +36,9 @@ public class HomeController {
 	
 	@Autowired
 	private HashtagDAO hashtagdao;
+	
+	@Autowired
+	private ImageFileDAO imageFileDao;
 	
 	
 	@Autowired
@@ -71,18 +76,21 @@ public class HomeController {
 		
 		ArrayList<Feed> ff = dao.feedList();
 		
-		for(int i=0; i<ff.size(); i++) {
-			System.out.println(ff.get(i).getCustomer_seq());
-			Customer customer = customerDao.getCustomer(ff.get(i).getCustomer_seq());
-			ff.get(i).setNick(customer.getNick());
-			ff.get(i).setProfileImg(customer.getProfileImg());
-		}
+		/*
+		 * for(int i=0; i<ff.size(); i++) { Customer customer =
+		 * customerDao.getCustomer(ff.get(i).getCustomer().getCustomer_seq());
+		 * //ff.get(i).setNick(customer.getNick());
+		 * //ff.get(i).setProfileImg(customer.getProfileImg()); }
+		 */
 		
 		model.addAttribute("feed",ff);
 		
 		ArrayList<Hashtag> hashtagList = hashtagdao.getList();
-		System.out.println(hashtagList);
+		//System.out.println(hashtagList);
 		model.addAttribute("hashtag",hashtagList);
+		
+		ArrayList<ImageFile> imageList = imageFileDao.getList();
+		model.addAttribute("imageFile", imageList);
 		
 		return "home";
 	}

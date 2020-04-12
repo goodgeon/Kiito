@@ -1,5 +1,8 @@
 package global.sesoc.kiito.vo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -12,8 +15,6 @@ public class Feed {
 	private int congestion;
 	private int likes;
 	private String inputdate;
-	private String originalfile;
-	private String savedfile;
-	private String nick;
-	private String profileImg;
+	private Customer customer;
+	private ArrayList<ImageFile> imageFile;
 }
