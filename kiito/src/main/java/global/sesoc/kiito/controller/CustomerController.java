@@ -3,6 +3,7 @@ package global.sesoc.kiito.controller;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.inject.Inject;
@@ -25,8 +26,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import global.sesoc.kiito.dao.CustomerDAO;
 import global.sesoc.kiito.dao.FeedDAO;
+import global.sesoc.kiito.dao.HashtagDAO;
+import global.sesoc.kiito.dao.ImageFileDAO;
 import global.sesoc.kiito.vo.Customer;
 import global.sesoc.kiito.vo.Feed;
+import global.sesoc.kiito.vo.Hashtag;
+import global.sesoc.kiito.vo.ImageFile;
 
 @Controller
 @RequestMapping("customer")
@@ -36,6 +41,11 @@ public class CustomerController {
 
 	@Autowired	
 	private CustomerDAO dao;
+	
+	@Autowired
+	private HashtagDAO hashtagdao;
+	@Autowired
+	private ImageFileDAO imageFileDao;
 	
 	@Autowired	
 	private FeedDAO dao1;
@@ -117,10 +127,17 @@ public class CustomerController {
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String profile(HttpSession hh,Model model) {
 		
+		ArrayList<Feed> ff = dao1.feedList();
 		
-		///Feed feed = dao1.getFeed1(hh.getAttribute("customer"));
 		
+		model.addAttribute("feed",ff);
 		
+		ArrayList<Hashtag> hashtagList = hashtagdao.getList();
+		//System.out.println(hashtagList);
+		model.addAttribute("hashtag",hashtagList);
+		
+		ArrayList<ImageFile> imageList = imageFileDao.getList();
+		model.addAttribute("imageFile", imageList);
 		
 		
 		return "customer/profile";}

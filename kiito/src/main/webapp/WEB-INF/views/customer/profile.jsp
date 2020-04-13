@@ -326,7 +326,7 @@
 			 	</c:forEach> 
 		  </div>
 		 
-		  <div class="col-lg-6">
+	<!-- 	  <div class="col-lg-6">
 			 <a href="#myModal" data-toggle="modal">
 			 <div class="explorebox" 
 			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/9.jpg') no-repeat;
@@ -341,13 +341,13 @@
 			  </div>		  
 			 </div>
 			 </a>
-		  </div>
+		  </div> -->
 		  
 		 </div><!--/ row -->
 		 
 		 <div class="row">
 		 
-		  <div class="col-lg-6">
+		<!--   <div class="col-lg-6">
 			 <a href="#myModal" data-toggle="modal">
 			 <div class="explorebox" 
 			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/32.jpg') no-repeat;
@@ -362,9 +362,9 @@
 			  </div>		  
 			 </div>
 			 </a>
-		  </div>
+		  </div> -->
 		 
-		  <div class="col-lg-6">
+	<!-- 	  <div class="col-lg-6">
 			 <a href="#myModal" data-toggle="modal">
 			 <div class="explorebox" 
 			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/30.jpg') no-repeat;
@@ -379,11 +379,11 @@
 			  </div>		  
 			 </div>
 			 </a>
-		  </div>
+		  </div> -->
 		  
 		 </div><!--/ row -->
 		 
-		 <div class="row">
+		<!--  <div class="row">
 		 
 		  <div class="col-lg-6">
 			 <a href="#myModal" data-toggle="modal">
@@ -419,11 +419,11 @@
 			 </a>
 		  </div>
 		  
-		 </div><!--/ row -->
+		 </div>/ row -->
 		 
 		 <div class="row">
 		 
-		  <div class="col-lg-6">
+		<!--   <div class="col-lg-6">
 			 <a href="#myModal" data-toggle="modal">
 			 <div class="explorebox" 
 			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/36.jpg') no-repeat;
@@ -438,9 +438,9 @@
 			  </div>		  
 			 </div>
 			 </a>
-		  </div>
+		  </div> -->
 		 
-		  <div class="col-lg-6">
+	<!-- 	  <div class="col-lg-6">
 			 <a href="#myModal" data-toggle="modal">
 			 <div class="explorebox" 
 			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/25.jpg') no-repeat;
@@ -455,7 +455,7 @@
 			  </div>		  
 			 </div>
 			 </a>
-		  </div>
+		  </div> -->
 		  
 		 </div><!--/ row -->
 		
@@ -671,6 +671,8 @@
 			size:"8px",
 		});		
 	</script>
+
+
 <!-- write form -->
 		<div class="container-contact100">
 		<div class="wrap-contact100">
