@@ -145,5 +145,11 @@ public class FeedController {
 		}
 
 	}
+	
+	
+	@RequestMapping(value = "explore", method = RequestMethod.GET)
+	public String explore() {
+		return "board/explore";
+	}
 
 }

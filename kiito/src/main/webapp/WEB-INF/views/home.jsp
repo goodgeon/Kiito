@@ -14,7 +14,7 @@
 		<meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">  
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>KIITO</title>
+        <title>KIITO - 君がいるとごろ</title>
 		<meta name="description" content="" />
         <meta name="keywords" content="" />
         <meta property="og:title" content="" />
@@ -239,7 +239,7 @@ $( document ).ready( function() {
 	   </a>
 	   </div>
 	   <div class="p-2 nav-icon-lg clean-black">
-	   <a class="nav-icon" href="photo_explore.html"><em class="fa fa-crosshairs"></em>
+	   <a class="nav-icon" href="feed/explore"><em class="fa fa-crosshairs"></em>
 		<span>Explore</span>
 	   </a>
 	   </div>
@@ -362,6 +362,9 @@ $( document ).ready( function() {
             </div>
            </div><!--/ dropdown -->
            <!-- END dropdown-->
+           
+           
+           
            <div class="media m-0">
             <div class="d-flex mr-3">
 			 <a href="#"><img class="img-responsive img-circle" src="${feed.customer.profileImg }" alt="User"></a>
