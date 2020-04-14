@@ -47,12 +47,7 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->	
 		<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<script>
-$( document ).ready( function() {
-    $( '.title1' ).fadeIn(1200).fadeOut(1200);
-    $( '.title2' ).fadeOut(1200).fadeIn(1200);
-  } );
-</script>	
+	
 		
   </head>
 <body>
@@ -61,12 +56,12 @@ $( document ).ready( function() {
      Navigation Section
      =============================================== -->  
      <header class="tr-header">
+     <img alt="" src="resources/login/images/bgimg4.png" class="main-img">
+		 <a class="navbar-brand" href="/kiito/home">KIITO</a>
       <nav class="navbar navbar-default">
        <div class="container-fluid">
 	    <div class="navbar-header">
-		 <a class="navbar-brand" href="/kiito/home">キイト</a><br>
-		 <a class="navbar-brand2" href="/kiito/home">君　が 　い　る　と　こ　ろ</a>
-
+	    
 		</div><!-- /.navbar-header -->
 		<div class="navbar-left">
 		 <div class="collapse navbar-collapse" id="navbar-collapse">
