@@ -24,7 +24,7 @@
 		<!-- ==============================================
 		Favicons
 		=============================================== --> 
-		<link rel="icon" href="assets/img/logo.jpg">
+		<link rel="icon" href="../resources/assets/img/logo.jpg">
 		<link rel="apple-touch-icon" href="../img/favicons/apple-touch-icon.png">
 		<link rel="apple-touch-icon" sizes="72x72" href="../img/favicons/apple-touch-icon-72x72.png">
 		<link rel="apple-touch-icon" sizes="114x114" href="../img/favicons/apple-touch-icon-114x114.png">
@@ -262,12 +262,12 @@
 			<div class="user-info">			<!-- 	자기 프로필 -->
 			 <div class="image">
 		      <a href="photo_profile_two.html">
-			   <img src="${sessionScope.customer.profileImg }" class="img-responsive img-circle" alt="User">		ㅅ
+			   <img src="${sessionScope.customer.profileImg }" class="img-responsive img-circle" alt="User">	<br>	
 			   <span class="online-status online"></span>
 			  </a>
 			 </div>
 		     <div class="detail">
-			  <h4>${sessionScope.customer.name }</h4>
+			  <h4>${sessionScope.customer.name }</h4><br>
 			  <small>@${sessionScope.customer.nick }</small>                        
 			 </div>
 			 <div class="row">
@@ -280,15 +280,15 @@
 			</div>
            </li>
            <li>
-            <small class="text-muted"><a href="photo_profile_two.html">320 Posts <em class="fa fa-angle-right pull-right"></em></a> </small><br/>
-            <small class="text-muted"><a href="photo_followers.html">2456 Followers <em class="fa fa-angle-right pull-right"></em></a> </small><br/>
-            <small class="text-muted"><a href="photo_followers.html">456 Following <em class="fa fa-angle-right pull-right"></em></a> </small>
+            <small class="text-muted"><a href="profile">320 Posts <em class="fa fa-angle-right pull-right"></em></a> </small><br/>
+            <small class="text-muted"><a href="followers">2456 Followers <em class="fa fa-angle-right pull-right"></em></a> </small><br/>
+            <small class="text-muted"><a href="followers">456 Following <em class="fa fa-angle-right pull-right"></em></a> </small>
             <hr>
-            <small class="text-muted">Bio: </small>
+<!--             <small class="text-muted">Bio: </small>
             <p>795 Folsom Ave, Suite 600 San Francisco, CADGE 94107</p>
-            <hr>
-            <small class="text-muted">Website: </small>
-            <p>http://www.themashabrand.com </p> 
+            <hr> -->
+            <small class="text-muted">E-mail: </small>
+            <p>${sessionScope.customer.email } </p> 
             <hr>                      
            </li>                    
           </ul>
