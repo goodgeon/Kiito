@@ -35,6 +35,7 @@
         <link type="text/css" href="resources/assets/css/demos/photo.css" rel="stylesheet" />
 		<link rel="stylesheet" href="resources/writef/css/main.css">
 		<link rel="stylesheet" type="text/css" href="resources/writef/css/kakaomap.css">
+		<link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho" rel="stylesheet">
 		<!-- ==============================================
 		Feauture Detection
 		=============================================== -->
@@ -63,13 +64,8 @@ $( document ).ready( function() {
       <nav class="navbar navbar-default">
        <div class="container-fluid">
 	    <div class="navbar-header">
-		 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-		  <span class="sr-only">Toggle navigation</span>
-		  <span class="icon-bar"></span>
-		  <span class="icon-bar"></span>
-		  <span class="icon-bar"></span>
-		 </button>
-		 <a class="navbar-brand" href="/kiito/home">KIITO</a>
+		 <a class="navbar-brand" href="/kiito/home">キイト</a><br>
+		 <a class="navbar-brand2" href="/kiito/home">君　が 　い　る　と　こ　ろ</a>
 
 		</div><!-- /.navbar-header -->
 		<div class="navbar-left">
