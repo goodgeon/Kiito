@@ -35,6 +35,7 @@
         <link type="text/css" href="resources/assets/css/demos/photo.css" rel="stylesheet" />
 		<link rel="stylesheet" href="resources/writef/css/main.css">
 		<link rel="stylesheet" type="text/css" href="resources/writef/css/kakaomap.css">
+		<link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho" rel="stylesheet">
 		<!-- ==============================================
 		Feauture Detection
 		=============================================== -->
@@ -46,12 +47,7 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->	
 		<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<script>
-$( document ).ready( function() {
-    $( '.title1' ).fadeIn(1200).fadeOut(1200);
-    $( '.title2' ).fadeOut(1200).fadeIn(1200);
-  } );
-</script>	
+	
 		
   </head>
 <body>
@@ -60,17 +56,12 @@ $( document ).ready( function() {
      Navigation Section
      =============================================== -->  
      <header class="tr-header">
+     <img alt="" src="resources/login/images/bgimg4.png" class="main-img">
+		 <a class="navbar-brand" href="/kiito/home">KIITO</a>
       <nav class="navbar navbar-default">
        <div class="container-fluid">
 	    <div class="navbar-header">
-		 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-		  <span class="sr-only">Toggle navigation</span>
-		  <span class="icon-bar"></span>
-		  <span class="icon-bar"></span>
-		  <span class="icon-bar"></span>
-		 </button>
-		 <a class="navbar-brand" href="/kiito/home">KIITO</a>
-
+	    
 		</div><!-- /.navbar-header -->
 		<div class="navbar-left">
 		 <div class="collapse navbar-collapse" id="navbar-collapse">

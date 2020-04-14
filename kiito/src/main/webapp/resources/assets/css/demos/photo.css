@@ -31,8 +31,7 @@
 }
 .navbar-brand {
     font-family: 'Abhaya Libre', serif;
-    font-size: 32px;
-    color: #474B59 !important;
+    font-size: 150px;
     -webkit-transition-duration: 0;
     transition-duration: 0;
 }
