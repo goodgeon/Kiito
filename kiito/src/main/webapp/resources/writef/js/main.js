@@ -8,17 +8,26 @@ $(document).ready(function(){
 });
 
 function handleImgsFilesSelect(e){
+	
 	var files = e.target.files;
 	var filesArr = Array.prototype.slice.call(files);
+	var obj = document.getElementById("input_imgs");
+	console.log(files);
+	console.log(filesArr[0]);
 
 	filesArr.forEach(function(f) {
 		if(!f.type.match("image.*")){
 			alert("확장자는 이미지 확장자만 가능합니다");
-			return;
+			
+			e.target.files = null;
+			//$("#input_imgs").val('');
+			return false;
 		}
+		
 
 		sel_files.push(f);
 		console.log(sel_files);
+		
 
 		var reader = new FileReader();
 		reader.onload = function(e){

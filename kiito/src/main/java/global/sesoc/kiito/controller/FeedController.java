@@ -80,7 +80,9 @@ public class FeedController {
 
 		String path = uploadPath;
 
-		if (fileList != null && fileList.size() > 0) {
+		if (fileList != null && fileList.size() > 0 && fileList.get(0).getOriginalFilename() != "")  {
+			System.out.println("file if문");
+			System.out.println(fileList.get(0).getOriginalFilename());
 			for (MultipartFile mf : fileList) {
 				// String originFileName = mf.getOriginalFilename(); // 원본 파일 명
 				// long fileSize = mf.getSize(); // 파일 사이즈
