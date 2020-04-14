@@ -269,77 +269,7 @@ $( document ).ready( function() {
 	   <div class="row">
 	    <div class="col-lg-3">
 		
-		 <a href="#">
-		 <div class="storybox" 
-		   style="background: linear-gradient( rgba(34,34,34,0.78), rgba(34,34,34,0.78)), url('assets/img/posts/2.gif') no-repeat;
-		          background-size: cover;
-                  background-position: center center;
-                  -webkit-background-size: cover;
-                  -moz-background-size: cover;
-                  -o-background-size: cover;">
-          <div class="story-body text-center">
-           <div class=""><img class="img-circle" src="resources/assets/img/users/10.jpg" alt="user"></div>
-           <h4>Clifford Graham</h4>
-           <p>2 hours ago</p>
-          </div>		  
-		 </div>
-		 </a>
-		
-		 <a href="#">
-		 <div class="storybox" 
-		   style="background: linear-gradient( rgba(34,34,34,0.78), rgba(34,34,34,0.78)), url('assets/img/posts/3.gif') no-repeat;
-		          background-size: cover;
-                  background-position: center center;
-                  -webkit-background-size: cover;
-                  -moz-background-size: cover;
-                  -o-background-size: cover;">
-          <div class="story-body text-center">
-           <div class=""><img class="img-circle" src="resources/assets/img/users/13.jpeg" alt="user"></div>
-           <h4>Eleanor Harper</h4>
-           <p>4 hours ago</p>
-          </div>		  
-		 </div>
-		 </a>
-		
-		 <a href="#">
-		 <div class="storybox" 
-		   style="background: linear-gradient( rgba(34,34,34,0.78), rgba(34,34,34,0.78)), url('assets/img/posts/4.jpg') no-repeat;
-		          background-size: cover;
-                  background-position: center center;
-                  -webkit-background-size: cover;
-                  -moz-background-size: cover;
-                  -o-background-size: cover;">
-          <div class="story-body text-center">
-           <div class=""><img class="img-circle" src="resources/assets/img/users/12.jpg" alt="user"></div>
-           <h4>Sean Coleman</h4>
-           <p>5 hours ago</p>
-          </div>		  
-		 </div>
-		 </a>
-		
-		 <a href="#">
-		 <div class="storybox" 
-		   style="background: linear-gradient( rgba(34,34,34,0.78), rgba(34,34,34,0.78)), url('assets/img/posts/15.jpg') no-repeat;
-		          background-size: cover;
-                  background-position: center center;
-                  -webkit-background-size: cover;
-                  -moz-background-size: cover;
-                  -o-background-size: cover;">
-          <div class="story-body text-center">
-           <div class=""><img class="img-circle" src="resources/assets/img/users/15.jpg" alt="user"></div>
-           <h4>Vanessa Wells</h4>
-           <p>5 hours ago</p>
-          </div>		  
-		 </div>
-		 </a>
 
-        <div class="trending-box hidden-xs hidden-md">
-		 <div class="row">
-		  <div class="col-lg-12">
-		    <a href="photo_stories.html"><h4>More stories</h4></a>
-		  </div>
-		 </div>
-        </div>
 		 
 		</div><!--/ col-lg-3 -->
 		
@@ -412,102 +342,10 @@ $( document ).ready( function() {
 		 </div><!--/ cardbox -->	
 		</c:forEach>
 		
-		</div><!--/ col-lg-6 -->
-		<div class="col-lg-3">
-		
-         <div class="suggestion-box full-width">
-			<div class="suggestions-list">
-				<div class="suggestion-body">
-					<img class="img-responsive img-circle" src="resources/assets/img/users/17.jpeg" alt="Image">
-					<div class="name-box">
-						<h4>Anthony McCartney</h4>
-						<span>@antony</span>
-					</div>
-					<span><i class="fa fa-plus"></i></span>
-				</div>
-				<div class="suggestion-body">
-					<img class="img-responsive img-circle" src="resources/assets/img/users/16.jpg" alt="Image">
-					<div class="name-box">
-						<h4>Sean Coleman</h4>
-						<span>@sean</span>
-					</div>
-					<span><i class="fa fa-plus"></i></span>
-				</div>
-				<div class="suggestion-body">
-					<img class="img-responsive img-circle" src="resources/assets/img/users/14.jpg" alt="Image">
-					<div class="name-box">
-						<h4>Francis Long</h4>
-						<span>@francis</span>
-					</div>
-					<span><i class="fa fa-plus"></i></span>
-				</div>
-				<div class="suggestion-body">
-					<img class="img-responsive img-circle" src="resources/assets/img/users/11.jpg" alt="Image">
-					<div class="name-box">
-						<h4>Vanessa Wells</h4>
-						<span>@vannessa</span>
-					</div>
-					<span><i class="fa fa-plus"></i></span>
-				</div>
-				<div class="suggestion-body">
-					<img class="img-responsive img-circle" src="resources/assets/img/users/9.jpg" alt="Image">
-					<div class="name-box">
-						<h4>Anna Morgan</h4>
-						<span>@anna</span>
-					</div>
-					<span><i class="fa fa-plus"></i></span>
-				</div>
-				<div class="suggestion-body">
-					<img class="img-responsive img-circle" src="resources/assets/img/users/8.jpg" alt="Image">
-					<div class="name-box">
-						<h4>Clifford Graham</h4>
-						<span>@clifford</span>
-					</div>
-					<span><i class="fa fa-plus"></i></span>
-				</div>
-			</div><!--suggestions-list end-->
-		</div>	
-
-        <div class="trending-box">
-		 <div class="row">
-		  <div class="col-lg-12">
-		    <h4>Trending Photos</h4>
-		  </div>
-		 </div>
-        </div>
-		
-        <div class="trending-box">
-		 <div class="row">
-		  <div class="col-lg-6">
-		   <a href="#"><img src="resources/assets/img/posts/17.jpg" class="img-responsive" alt="Image"/></a>
-		  </div>
-		  <div class="col-lg-6">
-		   <a href="#"><img src="resources/assets/img/posts/12.jpg" class="img-responsive" alt="Image"/></a>
-		  </div>
-		 </div>
-		 <div class="row">
-		  <div class="col-lg-6">
-		   <a href="#"><img src="resources/assets/img/posts/21.gif" class="img-responsive" alt="Image"/></a>
-		  </div>
-		  <div class="col-lg-6">
-		   <a href="#"><img src="resources/assets/img/posts/23.gif" class="img-responsive" alt="Image"/></a>
-		  </div>
-		 </div>
-		 <div class="row">
-		  <div class="col-lg-6">
-		   <a href="#"><img src="resources/assets/img/posts/11.jpg" class="img-responsive" alt="Image"/></a>
-		  </div>
-		  <div class="col-lg-6">
-		   <a href="#"><img src="resources/assets/img/posts/20.jpg" class="img-responsive" alt="Image"/></a>
-		  </div>
-		 </div>
-        </div>		
-		
-		
 		</div>
-		
-	   </div><!--/ row -->
-	  </div><!--/ container -->
+
+
+	
 	 </section><!--/ newsfeed -->
   
 	 <!-- ==============================================
