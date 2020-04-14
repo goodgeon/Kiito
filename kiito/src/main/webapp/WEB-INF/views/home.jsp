@@ -304,9 +304,12 @@ $( document ).ready( function() {
           
 		  <div class="cardbox-item">
 		   <a href="#myModal" data-toggle="modal">
-		   	<c:forEach var = "imageFile" items = "${feed.imageFile}">
-	   			<img class="img-responsive" src="<c:url value = '/img/${imageFile.savedFilename }'/>" alt="MaterialImg">
-		   	</c:forEach>
+		   	<c:if test="${fn:length(feed.imageFile) > 0}">
+		   		<img class="img-responsive" src="<c:url value = '/img/${feed.imageFile[0].savedFilename}'/>" alt="MaterialImg">
+		   	</c:if>
+		   	
+	   			
+		   	
 		    
 		   </a>
 		   <span>${feed.contents }</span> 
@@ -505,7 +508,7 @@ $( document ).ready( function() {
 				
 				
 				<div>
-					<input type = "file" id = "input_imgs" name = "file" multiple value = "사진업로드" />
+					<input type = "file" id = "input_imgs" name = "file" multiple accept="image/gif, image/jpeg, image/png"/>
 				</div>
 				
 				

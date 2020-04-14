@@ -330,6 +330,7 @@ $('#closeWrite').on('click', function(){
 	$('.container-contact100').toggle();
 	$('body').css('overflow','scroll');
 	$('.imgs_wrap').html('');
+	$('#input_imgs').val('');
 });
 
 
