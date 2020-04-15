@@ -141,6 +141,14 @@ public class CustomerController {
 		
 		
 		return "customer/profile";}
+	
+	@RequestMapping(value = "/followers", method = RequestMethod.GET)
+	public String follwers(HttpSession hh,Model model) {
+		
+
+		
+		
+		return "customer/followers";}
 
 }
 	
