@@ -312,39 +312,46 @@
          
           
 		  <div class="cardbox-item">
-		   <a href="#myModal" data-toggle="modal" style = "display : flex; justify-content : center">
+		   
 		   	<c:if test="${fn:length(feed.imageFile) > 0}">
 		   		<ul class = "bxslider">
+		   		
 	           	<c:forEach var ="i" items = "${feed.imageFile}">
-					<li style = "display : flex; justify-content : center;"><img class="img-responsive" src="<c:url value = '/img/${i.savedFilename}'/>" alt="MaterialImg"></li>          	
+	           		
+					<li style = "display : flex; justify-content : center;">
+					
+					<img class="img-responsive" src="<c:url value = '/img/${i.savedFilename}'/>" alt="MaterialImg">
+					</li>          	
 	          	</c:forEach>
+	          	
 			   	</ul>
 		   	</c:if>
 		   	
 	   			
 		   	
 		    
-		   </a>
+		   
 		   <span>${feed.contents }</span> 
           </div><!--/ cardbox-item -->
+          
 	      <div class="cardbox-base">
 		   <ul>
-			<li><a href="#"><img src="resources/assets/img/users/1.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/2.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/3.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/4.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/5.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/6.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/7.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/8.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/9.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/10.jpg" class="img-responsive img-circle" alt="User"></a></li>
+			<li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/1.jpg" class="img-responsive img-circle" alt="User"></a></li>
+		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/2.jpg" class="img-responsive img-circle" alt="User"></a></li>
+		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/3.jpg" class="img-responsive img-circle" alt="User"></a></li>
+		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/4.jpg" class="img-responsive img-circle" alt="User"></a></li>
+		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/5.jpg" class="img-responsive img-circle" alt="User"></a></li>
+		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/6.jpg" class="img-responsive img-circle" alt="User"></a></li>
+		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/7.jpg" class="img-responsive img-circle" alt="User"></a></li>
+		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/8.jpg" class="img-responsive img-circle" alt="User"></a></li>
+		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/9.jpg" class="img-responsive img-circle" alt="User"></a></li>
+		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/10.jpg" class="img-responsive img-circle" alt="User"></a></li>
 		   </ul>
 		  </div><!--/ cardbox-base -->
           <div class="cardbox-like">
 		   <ul>
 			<li><a href="#"><i class="fa fa-heart"></i></a><span> 786,286</span></li>
-		    <li><a href="#" title="" class="com"><i class="fa fa-comments"></i></a> <span class="span-last"> 126,400</span></li>
+		    <li><a href="#" title="" class="com"><i class="fa fa-comments"></i></a> <a href="#myModal" data-toggle="modal" style = "display : flex; justify-content : center"><span class="span-last"> 126,400</span></a></li>
 		   </ul>
           </div><!--/ cardbox-like -->			  
                 
