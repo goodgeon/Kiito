@@ -11,6 +11,7 @@
 		<typeAlias type="global.sesoc.kiito.vo.Hashtag" alias="hash" />
 		<typeAlias type="global.sesoc.kiito.vo.Likes" alias="likes" />
 		<typeAlias type="global.sesoc.kiito.vo.ImageFile" alias="imageFile"/>
+		<typeAlias type="global.sesoc.kiito.vo.Comments" alias="comments" />
 	</typeAliases>
 
 
@@ -21,5 +22,6 @@
 		<mapper resource="mapper/HashtagMapper.xml" />
 		<mapper resource="mapper/LikesMapper.xml" />
 		<mapper resource="mapper/ImageFileMapper.xml" />
+		<mapper resource="mapper/CommentsMapper.xml" />
 	</mappers>
 </configuration>

@@ -576,8 +576,8 @@
 			 <span aria-hidden="true">×</span><span class="sr-only">Close</span>
 			</button><!--/ button -->
             <div class="img-poster clearfix">
-             <a href=""><img class="img-responsive img-circle" src="../resources/assets/img/users/18.jpg" alt="Image"/></a>
-             <strong><a href="">Benjamin</a></strong>
+             <a href=""><img class="img-responsive img-circle" src="${sessionScope.customer.profileImg }" alt="Image"/></a>
+             <strong><a href="">${sessionScope.customer.nick }</a></strong>
              <span>12 minutes ago</span><br/>
 		     <a href="" class="kafe kafe-btn-mint-small"><i class="fa fa-check-square"></i> Following</a>
             </div><!--/ img-poster -->

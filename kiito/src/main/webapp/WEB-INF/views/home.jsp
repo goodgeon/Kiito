@@ -359,8 +359,8 @@
 			</button><!--/ button -->
             <div class="img-poster clearfix">
              <a href=""><img class="img-responsive img-circle" src="resources/assets/img/users/18.jpg" alt="Image"/></a>
-             <strong><a href="">Benjamin</a></strong>
-             <span>12 minutes ago</span><br/>
+             <strong><a href="">글 작성자</a></strong>
+             <span>글 작성 시간</span><br/>
 		     <a href="" class="kafe kafe-btn-mint-small"><i class="fa fa-check-square"></i> Following</a>
             </div><!--/ img-poster -->
 			  
@@ -370,8 +370,8 @@
                <img src="resources/assets/img/users/17.jpeg" class="img-responsive img-circle" alt="Image"/>
               </div>
               <div class="comment-text">
-               <strong><a href="">Anthony McCartney</a></strong>
-               <p>Hello this is a test comment.</p> <span class="date sub-text">on December 5th, 2016</span>
+               <strong><a href="">작성자1111</a></strong>
+               <p>댓글내용11111111111</p> <span class="date sub-text">작성날짜</span>
               </div>
              </li><!--/ li -->
              <li>
@@ -379,8 +379,8 @@
                <img src="resources/assets/img/users/15.jpg" class="img-responsive img-circle" alt="Image"/>
               </div>
               <div class="comment-text">
-               <strong><a href="">Vanessa Wells</a></strong>
-               <p>Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p> <span>on December 5th, 2016</span>
+               <strong><a href="">작성자22222</a></strong>
+               <p>댓글내용</p> <span>작성날짜</span>
               </div>
              </li><!--/ li -->
              <li>
@@ -418,7 +418,7 @@
 			      <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span> 786,286</span> </li>
 			  <li>
 			   <span class="thumb-xs">
-				<img class="img-responsive img-circle" src="resources/assets/img/users/13.jpeg" alt="Image">
+				<img class="img-responsive img-circle" src="${sessionScope.customer.profileImg }" alt="Image">
 			   </span>
 			   <div class="comment-body">
 				 <input class="form-control input-sm" type="text" placeholder="Write your comment...">
