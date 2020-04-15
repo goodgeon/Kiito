@@ -20,6 +20,19 @@
         <meta property="og:title" content="" />
         <meta property="og:url" content="" />
         <meta property="og:description" content="" />		
+        
+        <!-- bxSlider -->
+		  <link rel="stylesheet" href="resources/assets/bxslider/jquery.bxslider.css">
+		  <script src="resources/assets/js/jquery.min.js"></script>
+		  <script src="resources/assets/bxslider/jquery.bxslider.js"></script>
+		
+		  <script>
+		    $(document).ready(function(){
+		      $('.bxslider').bxSlider({
+		    	  adaptiveHeight: true
+		    	});
+		    });
+		  </script>
 		
 		<!-- ==============================================
 		Favicons
@@ -46,11 +59,11 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->	
-		<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+		<!-- <script src="//code.jquery.com/jquery-3.3.1.min.js"></script> -->
 	
 		
   </head>
-<body>
+<body style = "overflow : auto">
 
      <!-- ==============================================
      Navigation Section
@@ -296,11 +309,16 @@
             </div>
            </div><!--/ media -->
           </div><!--/ cardbox-heading -->
+         
           
 		  <div class="cardbox-item">
-		   <a href="#myModal" data-toggle="modal">
+		   <a href="#myModal" data-toggle="modal" style = "display : flex; justify-content : center">
 		   	<c:if test="${fn:length(feed.imageFile) > 0}">
-		   		<img class="img-responsive" src="<c:url value = '/img/${feed.imageFile[0].savedFilename}'/>" alt="MaterialImg">
+		   		<ul class = "bxslider">
+	           	<c:forEach var ="i" items = "${feed.imageFile}">
+					<li style = "display : flex; justify-content : center;"><img class="img-responsive" src="<c:url value = '/img/${i.savedFilename}'/>" alt="MaterialImg"></li>          	
+	          	</c:forEach>
+			   	</ul>
 		   	</c:if>
 		   	
 	   			
@@ -443,7 +461,7 @@
 	 =============================================== -->
 	 
 	 
-	<script src="resources/assets/js/jquery.min.js"></script>
+	<!-- <script src="resources/assets/js/jquery.min.js"></script> -->
 	<script src="resources/assets/js/bootstrap.min.js"></script>
 	<script src="resources/assets/js/base.js"></script>
 	<script src="resources/assets/plugins/slimscroll/jquery.slimscroll.js"></script>
