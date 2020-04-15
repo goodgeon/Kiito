@@ -71,8 +71,10 @@ public class FeedController {
 		if (arr != null) {
 			hashtag(arr);
 		}
-
+		
 		List<MultipartFile> fileList = mtfRequest.getFiles("file");
+		
+		
 
 		System.out.println("파일리스트크기 : " + fileList.size());
 		String src = mtfRequest.getParameter("src");
@@ -81,14 +83,26 @@ public class FeedController {
 		String path = uploadPath;
 
 		if (fileList != null && fileList.size() > 0 && fileList.get(0).getOriginalFilename() != "")  {
-			System.out.println("file if문");
 			System.out.println(fileList.get(0).getOriginalFilename());
+			
+			int index;
+			String filetype;
+			
 			for (MultipartFile mf : fileList) {
 				// String originFileName = mf.getOriginalFilename(); // 원본 파일 명
 				// long fileSize = mf.getSize(); // 파일 사이즈
+				index = mf.getOriginalFilename().lastIndexOf('.');
+				filetype = mf.getOriginalFilename().substring(index+1);
+				
+				if(!filetype.toLowerCase().equals("jpg") &&!filetype.toLowerCase().equals("jpeg") && !filetype.toLowerCase().equals("png") && !filetype.toLowerCase().equals("gif")) {
+					System.out.println("이미지아님");
+					continue;
+				}
 
 				ImageFile imageFile = new ImageFile();
 				String savedFile = FileService.saveFile(mf, uploadPath);
+				
+				System.out.println("feed_seq : " + feed_seq);
 
 				imageFile.setFeed_seq(feed_seq);
 				imageFile.setOriginalFilename(mf.getOriginalFilename());
@@ -100,6 +114,8 @@ public class FeedController {
 				// feed.setSavedfile(savedFile);
 			}
 		}
+
+		
 
 		return "redirect:/home";
 	}
@@ -148,6 +164,49 @@ public class FeedController {
 
 	}
 	
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "/uploadImgFile", method = RequestMethod.POST) public
+	 * void uploadImgFile(MultipartHttpServletRequest mtfRequest) {
+	 * List<MultipartFile> fileList = mtfRequest.getFiles("files");
+	 * 
+	 * 
+	 * 
+	 * System.out.println("파일리스트크기 : " + fileList.size()); String src =
+	 * mtfRequest.getParameter("src"); System.out.println("src value : " + src);
+	 * 
+	 * String path = uploadPath;
+	 * 
+	 * if (fileList != null && fileList.size() > 0 &&
+	 * fileList.get(0).getOriginalFilename() != "") {
+	 * System.out.println(fileList.get(0).getOriginalFilename());
+	 * 
+	 * int index; String filetype;
+	 * 
+	 * for (MultipartFile mf : fileList) { // String originFileName =
+	 * mf.getOriginalFilename(); // 원본 파일 명 // long fileSize = mf.getSize(); // 파일
+	 * 사이즈 index = mf.getOriginalFilename().lastIndexOf('.'); filetype =
+	 * mf.getOriginalFilename().substring(index+1);
+	 * 
+	 * if(!filetype.equals("jpg") &&!filetype.equals("jpeg") &&
+	 * !filetype.equals("png") && !filetype.equals("gif")) {
+	 * System.out.println("이미지"); continue; }
+	 * 
+	 * ImageFile imageFile = new ImageFile(); String savedFile =
+	 * FileService.saveFile(mf, uploadPath);
+	 * 
+	 * System.out.println("feed_seq : " + feed_seq);
+	 * 
+	 * imageFile.setFeed_seq(feed_seq);
+	 * imageFile.setOriginalFilename(mf.getOriginalFilename());
+	 * imageFile.setSavedFilename(savedFile);
+	 * 
+	 * imgDao.insertImage(imageFile);
+	 * 
+	 * // feed.setOriginalfile(mf.getOriginalFilename()); //
+	 * feed.setSavedfile(savedFile); } } }
+	 */
 	
 	@RequestMapping(value = "explore", method = RequestMethod.GET)
 	public String explore() {

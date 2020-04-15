@@ -512,7 +512,7 @@ $( document ).ready( function() {
 				
 				
 				<div>
-					<input type = "file" id = "input_imgs" name = "file" multiple accept="image/gif, image/jpeg, image/png"/>
+					<input type = "file" id = "input_imgs" name = "file" multiple accept="image/gif, image/jpeg, image/png" />
 				</div>
 				
 				
