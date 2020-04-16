@@ -24,13 +24,13 @@
         <!-- bxSlider -->
 		  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		  <script src="resources/assets/bxslider/jquery.bxslider.js"></script>
+		  <!--  <script src="resources/assets/bxslider/jquery.bxslider.js"></script>-->
+		  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 		
 		  <script>
 		  
 		  
 		  	var slider = '';
-			var sliderModal = '';
 			
 			$(document).ready(function(){
 			    slider = $('.bxslider').bxSlider({
@@ -40,7 +40,8 @@
 			    sliderModal = $('.bxsliderModal').bxSlider({
 					adaptiveHeight : true
 			  	});
-			  //slider.reloadSlider();
+			  	
+				slider.reloadSlider();
 			});
 
 		function openModal(feedNum){
@@ -54,7 +55,7 @@
 			var ulId = "#sliderId" + feedNum;
 
 			setTimeout(function(){
-				sliderModal = $(ulId).reloadSlider(config); 
+				sliderModal.reloadSlider(config); 
 			}, 300);
 
 			  /* sliderModal = $('.bxsliderModal').bxSlider({
@@ -351,7 +352,7 @@
 	           		
 					<li style = "display : flex; justify-content : center;">
 					
-					<img class="img-responsive" src="<c:url value = '/img/${i.savedFilename}'/>" alt="MaterialImg">
+					<img class="img-responsive" src="resources/images/1.png" alt="MaterialImg">
 					</li>          	
 	          	</c:forEach>
 	          	
@@ -405,7 +406,7 @@
 			   		<ul id = "sliderId${feed.feed_seq}" class = "bxsliderModal">
 			           	<c:forEach var ="i" items = "${feed.imageFile}">
 							<li >
-							<img class="img-responsive" src="<c:url value = '/img/${i.savedFilename}'/>" alt="Image">
+							<img class="img-responsive" src="resources/images/1.png" alt="Image">
 							</li>          	
 			   	       	</c:forEach>
 				   	</ul>
