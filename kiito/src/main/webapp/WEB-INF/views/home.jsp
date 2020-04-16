@@ -24,47 +24,46 @@
         <!-- bxSlider -->
 		  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		  <!--  <script src="resources/assets/bxslider/jquery.bxslider.js"></script>-->
 		  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-		
+		  
 		  <script>
-		  
-		  
 		  	var slider = '';
-			
-			$(document).ready(function(){
+			 $(document).ready(function(){
 			    slider = $('.bxslider').bxSlider({
 				    adaptiveHeight: true
 				});
+
+			    /* sliderModal = $('.bxsliderModal').bxSlider({
+					adaptiveHeight : true
+			  	}); */
+			}); 
+
+			function openModal(feedNum){
+				var modalId = "#myModal"+feedNum;
+				$(modalId).modal("show");
+
 	
-			    sliderModal = $('.bxsliderModal').bxSlider({
+				var config = {
+					adaptiveHeight : true
+				}
+	
+				var ulId = "#sliderId" + feedNum;
+
+				sliderModal = $(ulId).bxSlider({
 					adaptiveHeight : true
 			  	});
-			  slider.reloadSlider();
 
-			});
-
-		function openModal(feedNum){
-			var modalId = "#myModal"+feedNum;
-			$(modalId).modal("show");
-
-			var config = {
-				adaptiveHeight : true
-			}
-
-			var ulId = "#sliderId" + feedNum;
-
-			setTimeout(function(){
-				sliderModal.reloadSlider(config); 
-			}, 300);
-
-			  /* sliderModal = $('.bxsliderModal').bxSlider({
-					adaptiveHeight : true
-			  }); */
-				 
+			  	//sliderModal.reloadSlider();
+	
+				 setTimeout(function(){
+					sliderModal.reloadSlider(config); 
+				}, 300); 
+					 
 			}
 				  	
 		  </script>
+				
+		  
 		
 		<!-- ==============================================
 		Favicons
@@ -344,9 +343,9 @@
          
           
 		  <div class="cardbox-item">
-		   
+		   <ul class = "bxslider">
 		   	<c:if test="${fn:length(feed.imageFile) > 0}">
-		   		<ul class = "bxslider">
+		   		
 		   		
 	           	<c:forEach var ="i" items = "${feed.imageFile}">
 	           		
@@ -356,9 +355,9 @@
 					</li>          	
 	          	</c:forEach>
 	          	
-			   	</ul>
+			   	
 		   	</c:if>
-		   	
+		   	</ul>
 	   			
 		   	
 		    
@@ -630,6 +629,7 @@
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab38e188d1015fa32fe5df13ab040fa&libraries=services,clusterer,drawing"></script>
 		<script src="resources/writef/js/main.js"></script>
 		<script src = "resources/writef/js/kakaomap.js"></script>
+		
 		
   </body>
 </html>
