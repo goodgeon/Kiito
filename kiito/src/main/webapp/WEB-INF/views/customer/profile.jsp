@@ -19,7 +19,6 @@
         <meta name="keywords" content="" />
         <meta property="og:title" content="" />
         <meta property="og:url" content="" />
-        <meta property="og:description" content="" />		
 		
 		<!-- ==============================================
 		Favicons
@@ -40,6 +39,7 @@
 		Feauture Detection
 		=============================================== -->
 		<script src="../resources/assets/js/modernizr-custom.js"></script>
+		
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -261,7 +261,7 @@
            <li>
 			<div class="user-info">			<!-- 	자기 프로필 -->
 			 <div class="image">
-		      <a href="photo_profile_two.html">
+		       <a href="#preview" data-toggle="modal" rel="modal:open">
 			   <img src="${sessionScope.customer.profileImg }" class="img-responsive img-circle" alt="User">	<br>	
 			   <span class="online-status online"></span>
 			  </a>
@@ -744,10 +744,71 @@
 		</div>
 	</div>
 	
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab38e188d1015fa32fe5df13ab040fa&libraries=services,clusterer,drawing"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab38e188d1015fa32fe5df13ab040fa&libraries=services,clusterer,drawing"></script>
 		<script src = "../resources/writef/js/kakaomap.js"></script>
 		
 		<script src="../resources/writef/js/main.js"></script>
+		
+		
+		
+		<div id="preview" class="modal">
+		<input type="file" name="" class="inp-img" accept=".gif, .jpg, .png"> 
+				  
+		<span class="btn-delete">delete</span>
+		<div class="modal-meta-top">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+			 <span aria-hidden="true">×xxxxxxxxxx</span><span class="sr-only">Close</span>
+			</button><!--/ button --></div>
+			<div id="ssss">
+				   <img src="${sessionScope.customer.profileImg }" class="img-responsive img-circle" alt="User">
+			
+			</div> 
+			
+			</div>
+		<script src="lib/jquery/2.2.3/jquery.min.js"></script>
+		<script type="text/javascript">
+          
+// 등록 이미지 등록 미리보기
+function readInputFile(input) {
+    if(input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#ssss').html("<img src="+ e.target.result +">");
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+ 
+$(".inp-img").on('change', function(){
+    readInputFile(this);
+});
+ 
+ 
+// 등록 이미지 삭제 ( input file reset )
+function resetInputFile($input, $preview) {
+    var agent = navigator.userAgent.toLowerCase();
+    if((navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1)) {
+        // ie 일때
+        $input.replaceWith($input.clone(true));
+        $preview.empty();
+    } else {
+        //other
+        $input.val("");
+        $preview.empty();
+    }       
+}
+ 
+$(".btn-delete").click(function(event) {
+    var $input = $(".inp-img");
+    var $preview = $('#preview');
+    resetInputFile($input, $preview);
+});
+</script>
+
+
+
+		
+		
 
   </body>
 </html>
