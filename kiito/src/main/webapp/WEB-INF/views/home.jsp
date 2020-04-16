@@ -40,7 +40,7 @@
 			    sliderModal = $('.bxsliderModal').bxSlider({
 					adaptiveHeight : true
 			  	});
-			  //slider.reloadSlider();
+			  slider.reloadSlider();
 			});
 
 		function openModal(feedNum){
@@ -54,7 +54,7 @@
 			var ulId = "#sliderId" + feedNum;
 
 			setTimeout(function(){
-				sliderModal = $(ulId).reloadSlider(config); 
+				sliderModal.reloadSlider(config); 
 			}, 300);
 
 			  /* sliderModal = $('.bxsliderModal').bxSlider({
