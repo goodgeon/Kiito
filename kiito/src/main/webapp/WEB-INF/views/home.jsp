@@ -24,13 +24,13 @@
         <!-- bxSlider -->
 		  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		  <script src="resources/assets/bxslider/jquery.bxslider.js"></script>
+		  <!--  <script src="resources/assets/bxslider/jquery.bxslider.js"></script>-->
+		  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 		
 		  <script>
 		  
 		  
 		  	var slider = '';
-			var sliderModal = '';
 			
 			$(document).ready(function(){
 			    slider = $('.bxslider').bxSlider({
@@ -41,6 +41,7 @@
 					adaptiveHeight : true
 			  	});
 			  slider.reloadSlider();
+
 			});
 
 		function openModal(feedNum){
