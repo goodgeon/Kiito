@@ -22,16 +22,47 @@
         <meta property="og:description" content="" />		
         
         <!-- bxSlider -->
-		  <link rel="stylesheet" href="resources/assets/bxslider/jquery.bxslider.css">
-		  <script src="resources/assets/js/jquery.min.js"></script>
+		  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		  <script src="resources/assets/bxslider/jquery.bxslider.js"></script>
 		
 		  <script>
-		    $(document).ready(function(){
-		      $('.bxslider').bxSlider({
-		    	  adaptiveHeight: true
-		    	});
-		    });
+		  
+		  
+		  	var slider = '';
+			var sliderModal = '';
+			
+			$(document).ready(function(){
+			    slider = $('.bxslider').bxSlider({
+				    adaptiveHeight: true
+				});
+	
+			    sliderModal = $('.bxsliderModal').bxSlider({
+					adaptiveHeight : true
+			  	});
+			  //slider.reloadSlider();
+			});
+
+		function openModal(feedNum){
+			var modalId = "#myModal"+feedNum;
+			$(modalId).modal("show");
+
+			var config = {
+				adaptiveHeight : true
+			}
+
+			var ulId = "#sliderId" + feedNum;
+
+			setTimeout(function(){
+				sliderModal = $(ulId).reloadSlider(config); 
+			}, 300);
+
+			  /* sliderModal = $('.bxsliderModal').bxSlider({
+					adaptiveHeight : true
+			  }); */
+				 
+			}
+				  	
 		  </script>
 		
 		<!-- ==============================================
@@ -351,23 +382,18 @@
           <div class="cardbox-like">
 		   <ul>
 			<li><a href="#"><i class="fa fa-heart"></i></a><span> 786,286</span></li>
-		    <li><a href="#" title="" class="com"><i class="fa fa-comments"></i></a> <a href="#myModal" data-toggle="modal" style = "display : flex; justify-content : center"><span class="span-last"> 126,400</span></a></li>
+		    <li><a href="#" title="" class="com"><i class="fa fa-comments"></i></a> <a onclick = "openModal(${feed.feed_seq })" data-toggle="modal" style = "display : flex; justify-content : center"><span class="span-last"> 126,400</span></a></li>
 		   </ul>
           </div><!--/ cardbox-like -->			  
                 
 		 </div><!--/ cardbox -->	
-		</c:forEach>
-		
-		</div>
-
-
-	
-	 </section><!--/ newsfeed -->
-  
-	 <!-- ==============================================
+		 
+		 
+		 
+		 <!-- ==============================================
 	 Modal Section
 	 =============================================== -->
-     <div id="myModal" class="modal fade">
+     <div id="myModal${feed.feed_seq }" class="modal fade" style = "z-index : 99999;">
       <div class="modal-dialog">
        <div class="modal-content">
         <div class="modal-body">
@@ -375,7 +401,17 @@
          <div class="row">
 		 
           <div class="col-md-8 modal-image">
-           <img class="img-responsive" src="resources/assets/img/posts/1.jpg" alt="Image"/>
+	           <c:if test="${fn:length(feed.imageFile) > 0}">
+			   		<ul id = "sliderId${feed.feed_seq}" class = "bxsliderModal">
+			           	<c:forEach var ="i" items = "${feed.imageFile}">
+							<li >
+							<img class="img-responsive" src="<c:url value = '/img/${i.savedFilename}'/>" alt="Image">
+							</li>          	
+			   	       	</c:forEach>
+				   	</ul>
+			   	</c:if>
+          	
+           <%--  <img class="img-responsive" src="<c:url value = '/img/20200415.png'/>" alt="Image"/>   --%>
           </div><!--/ col-md-8 -->
           <div class="col-md-4 modal-meta">
            <div class="modal-meta-top">
@@ -383,9 +419,10 @@
 			 <span aria-hidden="true">×</span><span class="sr-only">Close</span>
 			</button><!--/ button -->
             <div class="img-poster clearfix">
-             <a href=""><img class="img-responsive img-circle" src="resources/assets/img/users/18.jpg" alt="Image"/></a>
-             <strong><a href="">글 작성자</a></strong>
-             <span>글 작성 시간</span><br/>
+             <a href=""><img class="img-responsive img-circle" src="${feed.customer.profileImg }" alt="Image"/></a>
+             <strong><a href="">${feed.customer.nick }</a></strong>
+             <br>
+             <span>${feed.inputdate }</span><br/>
 		     <a href="" class="kafe kafe-btn-mint-small"><i class="fa fa-check-square"></i> Following</a>
             </div><!--/ img-poster -->
 			  
@@ -461,6 +498,18 @@
        </div><!--/ modal-content -->
       </div><!--/ modal-dialog -->
      </div><!--/ modal -->
+		 
+		 
+		 
+		</c:forEach>
+		
+		</div>
+
+
+	
+	 </section><!--/ newsfeed -->
+  
+	 
 	 
 	 
      <!-- ==============================================

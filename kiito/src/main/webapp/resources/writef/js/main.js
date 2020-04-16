@@ -8,6 +8,10 @@ $(document).ready(function(){
 	$("#input_imgs").on("change", handleImgsFilesSelect);
 });
 
+function modalA(){
+	
+}
+
 function handleImgsFilesSelect(e){
 	
 	var files = e.target.files;
