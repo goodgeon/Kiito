@@ -335,7 +335,15 @@
 			 <a href="#"><img class="img-responsive img-circle" src="${feed.customer.profileImg }" alt="User"></a>
 			</div>
             <div class="media-body">
-             <p class="m-0">${feed.customer.nick }</p>
+             <p class="m-0">${feed.customer.nick }</p><p>${feed.checkin}
+             <p>
+             <c:choose>
+             	<c:when test="${feed.congestion == 3 }">혼잡</c:when>
+             	<c:when test="${feed.congestion == 2 }">보통</c:when>
+             	<c:when test="${feed.congestion == 1 }">여유</c:when>
+             </c:choose>
+             </p>
+             </p>
 			 <small><span>${feed.inputdate }</span></small>
             </div>
            </div><!--/ media -->
@@ -343,10 +351,9 @@
          
           
 		  <div class="cardbox-item">
-		   <ul class = "bxslider">
-		   	<c:if test="${fn:length(feed.imageFile) > 0}">
-		   		
-		   		
+		   
+		   	<c:if test="${fn:length(feed.imageFile) > 0 || fn:length(feed.videoFile) > 0}">
+		   		<ul class = "bxslider">
 	           	<c:forEach var ="i" items = "${feed.imageFile}">
 	           		
 					<li style = "display : flex; justify-content : center;">
@@ -355,9 +362,17 @@
 					</li>          	
 	          	</c:forEach>
 	          	
-			   	
+	          	<c:forEach var ="i" items = "${feed.videoFile}">
+	           		
+					<li style = "display : flex; justify-content : center;">
+					
+					<video width="500" height="500" src="<c:url value = '/img/${i.savedFilename}'/>" controls></video>
+					</li>          	
+	          	</c:forEach>
+	          	</ul>
 		   	</c:if>
-		   	</ul>
+		   	
+		   	
 	   			
 		   	
 		    
@@ -380,9 +395,9 @@
 		   </ul>
 		  </div><!--/ cardbox-base -->
           <div class="cardbox-like">
-		   <ul>
-			<li><a href="#"><i class="fa fa-heart"></i></a><span> 786,286</span></li>
-		    <li><a href="#" title="" class="com"><i class="fa fa-comments"></i></a> <a onclick = "openModal(${feed.feed_seq })" data-toggle="modal" style = "display : flex; justify-content : center"><span class="span-last"> 126,400</span></a></li>
+		   <ul style = "display : flex; justify-content : center">
+			<li><a href="#" style = "padding-top : 6px;"><i class="fa fa-heart"></i><span> ${feed.likes }</span></a></li>
+		    <li><a href="#" title="" class="com"><i class="fa fa-comments"></i></a> <a href = "#" onclick = "openModal(${feed.feed_seq })" data-toggle="modal" style = "display : flex; justify-content : center"><span class="span-last"> 126,400</span></a></li>
 		   </ul>
           </div><!--/ cardbox-like -->			  
                 
@@ -401,15 +416,24 @@
          <div class="row">
 		 
           <div class="col-md-8 modal-image">
-	           <c:if test="${fn:length(feed.imageFile) > 0}">
-			   		<ul id = "sliderId${feed.feed_seq}" class = "bxsliderModal">
+          	
+	           <c:if test="${fn:length(feed.imageFile) > 0 || fn:length(feed.videoFile) > 0}">
+	           		<ul id = "sliderId${feed.feed_seq}" class = "bxsliderModal">
 			           	<c:forEach var ="i" items = "${feed.imageFile}">
 							<li >
 							<img class="img-responsive" src="<c:url value = '/img/${i.savedFilename}'/>" alt="Image">
 							</li>          	
 			   	       	</c:forEach>
-				   	</ul>
+			   	       	
+			   	       	<c:forEach var ="i" items = "${feed.videoFile}">
+							<li>
+							<video width="500" height="500" src="<c:url value = '/img/${i.savedFilename}'/>" controls></video>
+							</li>          	
+			   	       	</c:forEach>
+					</ul>   	
 			   	</c:if>
+			   	
+			
           	
            <%--  <img class="img-responsive" src="<c:url value = '/img/20200415.png'/>" alt="Image"/>   --%>
           </div><!--/ col-md-8 -->
@@ -476,7 +500,7 @@
 			  
             <div class="modal-meta-bottom">
 			 <ul>
-			  <li><a class="modal-like" href="#"><i class="fa fa-heart"></i></a><span class="modal-one"> 786,286</span> | 
+			  <li><a class="modal-like" href="#"><i class="fa fa-heart"></i></a><span class="modal-one"> ${feed.likes }</span> | 
 			      <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span> 786,286</span> </li>
 			  <li>
 			   <span class="thumb-xs">
@@ -577,7 +601,10 @@
 				
 				
 				<div>
-					<input type = "file" id = "input_imgs" name = "file" multiple accept="image/gif, image/jpeg, image/png" />
+					<input type = "file" id = "input_imgs" name = "imagefile" multiple accept="image/gif, image/jpeg, image/png" />
+				</div>
+				<div>
+					<input type = "file" id = "input_video" name = "videofile" multiple accept="video/*" />
 				</div>
 				
 				

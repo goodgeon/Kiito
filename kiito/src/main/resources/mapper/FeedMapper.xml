@@ -22,11 +22,18 @@
 		 </association>
 		 
 		 <collection property="imageFile" column="feed_seq" javaType="java.util.ArrayList" ofType="imageFile" select="getImageList"/>
+		 <collection property="videoFile" column="feed_seq" javaType="java.util.ArrayList" ofType="videoFile" select="getVideoList"/>
 	</resultMap>
 	
 	<select id="getImageList" resultType="imageFile">
 		select imageFile_seq, originalFilename, savedFilename
 		from imageFile
+		where feed_seq = #{feed_seq}
+	</select>
+	
+	<select id="getVideoList" resultType="videoFile">
+		select videoFile_seq, originalFilename, savedFilename
+		from videoFile
 		where feed_seq = #{feed_seq}
 	</select>
 

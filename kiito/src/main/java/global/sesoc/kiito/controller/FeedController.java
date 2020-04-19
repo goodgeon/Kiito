@@ -23,10 +23,12 @@ import global.sesoc.kiito.dao.FeedDAO;
 import global.sesoc.kiito.dao.HashtagDAO;
 import global.sesoc.kiito.dao.ImageFileDAO;
 import global.sesoc.kiito.dao.LikesDAO;
+import global.sesoc.kiito.dao.VideoFileDAO;
 import global.sesoc.kiito.vo.Feed;
 import global.sesoc.kiito.vo.Hashtag;
 import global.sesoc.kiito.vo.ImageFile;
 import global.sesoc.kiito.vo.Likes;
+import global.sesoc.kiito.vo.VideoFile;
 import global.sesoc.kiito.util.FileService;
 
 @Controller
@@ -41,6 +43,8 @@ public class FeedController {
 	private HashtagDAO dao2;
 	@Autowired
 	private ImageFileDAO imgDao;
+	@Autowired
+	private VideoFileDAO videoDao;
 
 	@Autowired
 	private LikesDAO dao3;
@@ -72,23 +76,26 @@ public class FeedController {
 			hashtag(arr);
 		}
 		
-		List<MultipartFile> fileList = mtfRequest.getFiles("file");
+		List<MultipartFile> imgfileList = mtfRequest.getFiles("imagefile");
+		List<MultipartFile> videofileList = mtfRequest.getFiles("videofile");
+		
 		
 		
 
-		System.out.println("파일리스트크기 : " + fileList.size());
+		System.out.println("이미지파일리스트크기 : " + imgfileList.size());
+		System.out.println("비디오파일리스트크기 : " + videofileList.size());
 		String src = mtfRequest.getParameter("src");
 		System.out.println("src value : " + src);
 
 		String path = uploadPath;
 
-		if (fileList != null && fileList.size() > 0 && fileList.get(0).getOriginalFilename() != "")  {
-			System.out.println(fileList.get(0).getOriginalFilename());
+		if (imgfileList != null && imgfileList.size() > 0 && imgfileList.get(0).getOriginalFilename() != "")  {
+			System.out.println(imgfileList.get(0).getOriginalFilename());
 			
 			int index;
 			String filetype;
 			
-			for (MultipartFile mf : fileList) {
+			for (MultipartFile mf : imgfileList) {
 				// String originFileName = mf.getOriginalFilename(); // 원본 파일 명
 				// long fileSize = mf.getSize(); // 파일 사이즈
 				index = mf.getOriginalFilename().lastIndexOf('.');
@@ -109,6 +116,39 @@ public class FeedController {
 				imageFile.setSavedFilename(savedFile);
 
 				imgDao.insertImage(imageFile);
+
+				// feed.setOriginalfile(mf.getOriginalFilename());
+				// feed.setSavedfile(savedFile);
+			}
+		}
+		
+		if (videofileList != null && videofileList.size() > 0 && videofileList.get(0).getOriginalFilename() != "")  {
+			System.out.println(videofileList.get(0).getOriginalFilename());
+			
+			int index;
+			String filetype;
+			
+			for (MultipartFile mf : videofileList) {
+				// String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+				// long fileSize = mf.getSize(); // 파일 사이즈
+				index = mf.getOriginalFilename().lastIndexOf('.');
+				filetype = mf.getOriginalFilename().substring(index+1);
+				
+				if(!filetype.toLowerCase().equals("mp4") && !filetype.toLowerCase().equals("mkv") && !filetype.toLowerCase().equals("mpg") && !filetype.toLowerCase().equals("mov") && !filetype.toLowerCase().equals("flv")) {
+					System.out.println("동영상아님");
+					continue;
+				}
+
+				VideoFile videoFile = new VideoFile();
+				String savedFile = FileService.saveFile(mf, uploadPath);
+				
+				System.out.println("feed_seq : " + feed_seq);
+
+				videoFile.setFeed_seq(feed_seq);
+				videoFile.setOriginalFilename(mf.getOriginalFilename());
+				videoFile.setSavedFilename(savedFile);
+
+				videoDao.insertVideo(videoFile);
 
 				// feed.setOriginalfile(mf.getOriginalFilename());
 				// feed.setSavedfile(savedFile);
