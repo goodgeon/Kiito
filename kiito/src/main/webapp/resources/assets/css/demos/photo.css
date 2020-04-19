@@ -902,9 +902,18 @@ a.navbar-brand:hover {
   padding: 0px !important;
 }
 .modal-meta-bottom .comment-body input{
-  width: 200px !important;
+  width: 140px !important;
 }
 
+.modal-meta-bottom .comment-body #commentSubmit{
+  width: 50px !important;
+  margin-left : 10px;
+  cursor: pointer;
+}
+
+.modal-meta-bottom .comment-body #commentForm{
+  display : flex;
+}
 
 /* ==========================================================================
    Media Queries for Modal

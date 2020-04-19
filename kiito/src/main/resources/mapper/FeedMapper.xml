@@ -23,6 +23,7 @@
 		 
 		 <collection property="imageFile" column="feed_seq" javaType="java.util.ArrayList" ofType="imageFile" select="getImageList"/>
 		 <collection property="videoFile" column="feed_seq" javaType="java.util.ArrayList" ofType="videoFile" select="getVideoList"/>
+		 <collection property="comments" column="feed_seq" javaType="java.util.ArrayList" ofType="comments" select="getCommentList"/>
 	</resultMap>
 	
 	<select id="getImageList" resultType="imageFile">
@@ -34,6 +35,12 @@
 	<select id="getVideoList" resultType="videoFile">
 		select videoFile_seq, originalFilename, savedFilename
 		from videoFile
+		where feed_seq = #{feed_seq}
+	</select>
+	
+	<select id="getCommentList" resultType = "comments">
+		select comments_seq, feed_seq, customer_seq, text, inputdate
+		from comments
 		where feed_seq = #{feed_seq}
 	</select>
 

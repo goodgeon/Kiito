@@ -109,7 +109,7 @@ public class CustomerController {
 		System.out.println(cus);
 		cus.setNick(cus.getName());
 		cus.setCustomer_type(0);
-		cus.setProfileImg("");
+		cus.setProfileImg("resources/login/images/profileImg_null2.png");
 		dao.insertC(cus);
 	}
 

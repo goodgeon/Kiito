@@ -76,5 +76,5 @@ CREATE TABLE comments (
    ,inputdate date default sysdate
 );
 
-CREATE SEQUENCE comments_seq
+CREATE SEQUENCE comments_seq;
 

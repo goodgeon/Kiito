@@ -184,13 +184,18 @@ public class SocialLoginController {
                 customer.setProfileImg("http://graph.facebook.com/"+userProfile.getId()+"/picture?type=large");
                 customer.setCustomer_type(2);
                 
+                Customer login_customer = new Customer();
+                
                 if(dao.getFacebookCustomer(customer.getEmail()) != null) {
-                	session.setAttribute("customer", customer);
+                	login_customer = (Customer) dao.getFacebookCustomer(customer.getEmail());
+                	System.out.println("페북로그인 customer_seq : " + login_customer);
+                	session.setAttribute("customer", login_customer);
                 	return "redirect:/home";
                 }
                 
                 dao.insertC(customer);
-                session.setAttribute("customer", customer);
+                login_customer = (Customer) dao.getFacebookCustomer(customer.getEmail());
+                session.setAttribute("customer", login_customer);
                 
             } catch (MissingAuthorizationException e) {
                 e.printStackTrace();
