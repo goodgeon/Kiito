@@ -736,7 +736,7 @@ a.navbar-brand:hover {
   color: #e16a70;
   font-size: 14px;
   float: left;
-  padding-top: 6px;
+  //padding-top: 6px;
   margin-right: 5px;
 }
 .cardbox-like li a:hover {
@@ -745,7 +745,7 @@ a.navbar-brand:hover {
 }
 .cardbox-like li span{
   font-family: 'Abhaya Libre', serif;	
-  float: left;
+  //float: left;
   color: #e16a70;
   font-size: 18px;
   padding-top: 6px;	
@@ -894,6 +894,7 @@ a.navbar-brand:hover {
 .modal-meta-bottom .thumb-xs img{
   width: 25px;
   height: 25px;  
+  margin-right : 11px;
 }
 .modal-meta-bottom .comment-body {
   float: right !important;
@@ -901,9 +902,18 @@ a.navbar-brand:hover {
   padding: 0px !important;
 }
 .modal-meta-bottom .comment-body input{
-  width: 200px !important;
+  width: 140px !important;
 }
 
+.modal-meta-bottom .comment-body #commentSubmit{
+  width: 50px !important;
+  margin-left : 10px;
+  cursor: pointer;
+}
+
+.modal-meta-bottom .comment-body #commentForm{
+  display : flex;
+}
 
 /* ==========================================================================
    Media Queries for Modal

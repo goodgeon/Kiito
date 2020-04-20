@@ -19,12 +19,11 @@
         <meta name="keywords" content="" />
         <meta property="og:title" content="" />
         <meta property="og:url" content="" />
-        <meta property="og:description" content="" />		
 		
 		<!-- ==============================================
 		Favicons
 		=============================================== --> 
-		<link rel="icon" href="assets/img/logo.jpg">
+		<link rel="icon" href="../resources/assets/img/logo.jpg">
 		<link rel="apple-touch-icon" href="../img/favicons/apple-touch-icon.png">
 		<link rel="apple-touch-icon" sizes="72x72" href="../img/favicons/apple-touch-icon-72x72.png">
 		<link rel="apple-touch-icon" sizes="114x114" href="../img/favicons/apple-touch-icon-114x114.png">
@@ -33,13 +32,14 @@
 		CSS
 		=============================================== -->
         <link type="text/css" href="../resources/assets/css/demos/photo.css" rel="stylesheet" />
-       	<link rel="stylesheet" type="text/css" href="../resources/writef/css/kakaomap.css">
        	<link rel="stylesheet" href="../resources/writef/css/main.css">
+       	<link rel="stylesheet" type="text/css" href="../resources/writef/css/kakaomap.css">
 			
 		<!-- ==============================================
 		Feauture Detection
 		=============================================== -->
 		<script src="../resources/assets/js/modernizr-custom.js"></script>
+		
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -49,22 +49,18 @@
 		
   </head>
 
-<body>
+<body style = "overflow : scroll">
 
      <!-- ==============================================
      Navigation Section
      =============================================== -->  
      <header class="tr-header">
+     <img alt="" src="../resources/login/images/bgimg4.png" class="main-img">
+		 <a class="navbar-brand" href="/kiito/home">KIITO</a>
       <nav class="navbar navbar-default">
        <div class="container-fluid">
 	    <div class="navbar-header">
-		 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-		  <span class="sr-only">Toggle navigation</span>
-		  <span class="icon-bar"></span>
-		  <span class="icon-bar"></span>
-		  <span class="icon-bar"></span>
-		 </button>
-		 <a class="navbar-brand" href="/kiito/home"><i class="fab fa-instagram"></i> KIITO</a>
+	    
 		</div><!-- /.navbar-header -->
 		<div class="navbar-left">
 		 <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -154,27 +150,27 @@
 			  <div class="slimscroll" style="max-height: 230px; overflow: hidden; width: auto; height: 416.983px;">
 			   <div id="Slim2">
 				<a href="javascript:void(0);" class="dropdown-item notify-item nav-user">
-				 <div class="notify-icon"><img src="../resources/assets/img/users/1.jpg" class="img-responsive img-circle" alt=""> </div>
+				 <div class="notify-icon"><img src="resources/assets/img/users/1.jpg" class="img-responsive img-circle" alt=""> </div>
 				 <p class="notify-details">Cristina Pride</p>
 				 <p class="text-muted font-13 mb-0 user-msg">Hi, How are you? What about our next meeting</p>
 				</a><!--/ dropdown-item-->
 				<a href="javascript:void(0);" class="dropdown-item notify-item nav-user">
-				 <div class="notify-icon"><img src="../resources/assets/img/users/2.jpg" class="img-responsive img-circle" alt=""> </div>
+				 <div class="notify-icon"><img src="resources/assets/img/users/2.jpg" class="img-responsive img-circle" alt=""> </div>
 				 <p class="notify-details">Sam Garret</p>
 				 <p class="text-muted font-13 mb-0 user-msg">Yeah everything is fine</p>
 				</a><!--/ dropdown-item-->
 				<a href="javascript:void(0);" class="dropdown-item notify-item nav-user">
-				 <div class="notify-icon"><img src="../resources/assets/img/users/3.jpg" class="img-responsive img-circle" alt=""> </div>
+				 <div class="notify-icon"><img src="resources/assets/img/users/3.jpg" class="img-responsive img-circle" alt=""> </div>
 				 <p class="notify-details">Karen Robinson</p>
 				 <p class="text-muted font-13 mb-0 user-msg">Wow that's great</p>
 				</a><!--/ dropdown-item-->
 				<a href="javascript:void(0);" class="dropdown-item notify-item nav-user">
-				 <div class="notify-icon"><img src="../resources/assets/img/users/4.jpg" class="img-responsive img-circle" alt=""> </div>
+				 <div class="notify-icon"><img src="resources/assets/img/users/4.jpg" class="img-responsive img-circle" alt=""> </div>
 				 <p class="notify-details">Sherry Marshall</p>
 				 <p class="text-muted font-13 mb-0 user-msg">Hi, How are you? What about our next meeting</p>
 				</a><!--/ dropdown-item-->
 				<a href="javascript:void(0);" class="dropdown-item notify-item nav-user">
-				 <div class="notify-icon"><img src="../resources/assets/img/users/5.jpg" class="img-responsive img-circle" alt=""> </div>
+				 <div class="notify-icon"><img src="resources/assets/img/users/5.jpg" class="img-responsive img-circle" alt=""> </div>
 				 <p class="notify-details">Shawn Millard</p>
 				 <p class="text-muted font-13 mb-0 user-msg">Yeah everything is fine</p>
 				</a><!--/ dropdown-item-->
@@ -191,21 +187,28 @@
 		  
 		 <li class="dropdown mega-avatar">
 		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-		   <span class="avatar w-32"><img src="${sessionScope.customer.profileImg }" class="img-resonsive img-circle" width="25" height="25" alt="..."></span>
+		   <span class="avatar w-32">
+		   	<c:if test="${sessionScope.customer.profileImg == null }">
+								<img src="resources/login/images/profileImg_null2.png" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+			</c:if>
+			<c:if test="${sessionScope.customer.profileImg != null }">
+				<img src="${sessionScope.customer.profileImg }" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+			</c:if>
+		   </span>
 		   <!-- hidden-xs hides the username on small devices so only the image appears. -->
 		   <span class="hidden-xs">
-			${sessionScope.customer.nick }
+			${sessionScope.customer.name }
 		   </span>
 		  </a>
 		  <div class="dropdown-menu w dropdown-menu-scale pull-right">
 		   <a class="dropdown-item" href="#"><span>New Story</span></a> 
-<!-- 		  // <a class="dropdown-item" href="#"><span>Become a Member</span></a>  -->
+		 <!--   <a class="dropdown-item" href="#"><span>Become a Member</span></a>  -->
 		   <div class="dropdown-divider"></div>
-		   <a class="dropdown-item" href="profile"><span>Profile</span></a> 
+		   <a class="dropdown-item" href="customer/profile"><span>Profile</span></a> 
 		   <a class="dropdown-item" href="#"><span>Settings</span></a> 
 		   <a class="dropdown-item" href="#">Need help?</a> 
 		   <div class="dropdown-divider"></div>
-		   <a class="dropdown-item" href="/kiito/customer/logout">Sign out</a>
+		   <a class="dropdown-item" href="customer/logout">Sign out</a>
 		  </div>
 		 </li><!-- /navbar-item -->	
 		 
@@ -261,13 +264,13 @@
            <li>
 			<div class="user-info">			<!-- 	자기 프로필 -->
 			 <div class="image">
-		      <a href="photo_profile_two.html">
-			   <img src="${sessionScope.customer.profileImg }" class="img-responsive img-circle" alt="User">		ㅅ
+		       <a href="#preview" data-toggle="modal" rel="modal:open">
+			   <img src="${sessionScope.customer.profileImg }" class="img-responsive img-circle" alt="User">	<br>	
 			   <span class="online-status online"></span>
 			  </a>
 			 </div>
 		     <div class="detail">
-			  <h4>${sessionScope.customer.name }</h4>
+			  <h4>${sessionScope.customer.name }</h4><br>
 			  <small>@${sessionScope.customer.nick }</small>                        
 			 </div>
 			 <div class="row">
@@ -280,15 +283,15 @@
 			</div>
            </li>
            <li>
-            <small class="text-muted"><a href="photo_profile_two.html">320 Posts <em class="fa fa-angle-right pull-right"></em></a> </small><br/>
-            <small class="text-muted"><a href="photo_followers.html">2456 Followers <em class="fa fa-angle-right pull-right"></em></a> </small><br/>
-            <small class="text-muted"><a href="photo_followers.html">456 Following <em class="fa fa-angle-right pull-right"></em></a> </small>
+            <small class="text-muted"><a href="profile">320 Posts <em class="fa fa-angle-right pull-right"></em></a> </small><br/>
+            <small class="text-muted"><a href="followers">2456 Followers <em class="fa fa-angle-right pull-right"></em></a> </small><br/>
+            <small class="text-muted"><a href="followers">456 Following <em class="fa fa-angle-right pull-right"></em></a> </small>
             <hr>
-            <small class="text-muted">Bio: </small>
+<!--             <small class="text-muted">Bio: </small>
             <p>795 Folsom Ave, Suite 600 San Francisco, CADGE 94107</p>
-            <hr>
-            <small class="text-muted">Website: </small>
-            <p>http://www.themashabrand.com </p> 
+            <hr> -->
+            <small class="text-muted">E-mail: </small>
+            <p>${sessionScope.customer.email } </p> 
             <hr>                      
            </li>                    
           </ul>
@@ -576,8 +579,8 @@
 			 <span aria-hidden="true">×</span><span class="sr-only">Close</span>
 			</button><!--/ button -->
             <div class="img-poster clearfix">
-             <a href=""><img class="img-responsive img-circle" src="../resources/assets/img/users/18.jpg" alt="Image"/></a>
-             <strong><a href="">Benjamin</a></strong>
+             <a href=""><img class="img-responsive img-circle" src="${sessionScope.customer.profileImg }" alt="Image"/></a>
+             <strong><a href="">${sessionScope.customer.nick }</a></strong>
              <span>12 minutes ago</span><br/>
 		     <a href="" class="kafe kafe-btn-mint-small"><i class="fa fa-check-square"></i> Following</a>
             </div><!--/ img-poster -->
@@ -738,16 +741,121 @@
 							submit
 						</span>
 					</button>
-					<span><input type = "button" id = "closeWrite" value = "close"></span>
+					　　
+					<button type = "button" id = "closeWrite"class="contact100-form-btn">
+						<span>
+							<i class="fa fa-paper-plane-o m-r-6" aria-hidden="true"></i>
+							close
+						</span>
+					</button>
 				</div>
 			</form>
 		</div>
 	</div>
 	
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab38e188d1015fa32fe5df13ab040fa&libraries=services,clusterer,drawing"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab38e188d1015fa32fe5df13ab040fa&libraries=services,clusterer,drawing"></script>
 		<script src = "../resources/writef/js/kakaomap.js"></script>
 		
 		<script src="../resources/writef/js/main.js"></script>
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+		
+		
+		
+	<div id="preview" class="modal">
+	
+		<form>
+	
+    <p>
+        <label for="image">Image:</label>
+        <br />
+        <input type="file" name="image" id="image" />
+    </p>
+ 
+    	</form>
+
+	<div class="modal-meta-top">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+			 <span aria-hidden="true">×××××××××</span><span class="sr-only">Close</span>
+			</button>/ button</div> 
+			
+			<div id="ssss">
+		
+				<img style = "width : 96px; height : 96px;" src="${sessionScope.customer.profileImg }" class="img-responsive img-circle" alt="User" id="base"> 
+			 <br />
+		
+        <a href="#">Remove</a>
+			</div>
+	
+   
+		</div>
+		<script src="lib/jquery/2.2.3/jquery.min.js"></script>
+
+
+    <script type="text/javascript">
+    var base = $("#base");
+
+    /** 
+    onchange event handler for the file input field.
+    It emplements very basic validation using the file extension.
+    If the filename passes validation it will show the image using it's blob URL  
+    and will hide the input field and show a delete button to allow the user to remove the image
+    */
+
+    $('#image').on('change', function() {
+        
+        ext = $(this).val().split('.').pop().toLowerCase(); //확장자
+        
+        //배열에 추출한 확장자가 존재하는지 체크
+        if($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+            resetFormElement($(this)); //폼 초기화
+            window.alert('이미지 파일이 아닙니다! (gif, png, jpg, jpeg 만 업로드 가능)');
+        } else {
+            file = $('#image').prop("files")[0];
+            blobURL = window.URL.createObjectURL(file);
+            $("#base").attr('src',blobURL);
+            $("#ssss").css('display','block');
+            //$('#image_preview img').attr('src', blobURL);
+            //$('#base').slideDown(); //업로드한 이미지 미리보기 
+            $(this).slideUp(); //파일 양식 감춤
+
+        	//base.hide();
+        }
+    });
+
+    /**
+    onclick event handler for the delete button.
+    It removes the image, clears and unhides the file input field.
+    */
+    $('#ssss a').bind('click', function() {
+    	
+        resetFormElement($('#image')); //전달한 양식 초기화
+        $('#image').slideDown(); //파일 양식 보여줌
+        $(this).parent().slideUp(); //미리 보기 영역 감춤
+        return false; //기본 이벤트 막음
+       
+    });
+        
+
+    /** 
+    * 폼요소 초기화 
+    * Reset form element
+    * 
+    * @param e jQuery object
+    */
+    function resetFormElement(e) {
+        e.wrap('<form>').closest('form').get(0).reset(); 
+        //리셋하려는 폼양식 요소를 폼(<form>) 으로 감싸고 (wrap()) , 
+        //요소를 감싸고 있는 가장 가까운 폼( closest('form')) 에서 Dom요소를 반환받고 ( get(0) ),
+        //DOM에서 제공하는 초기화 메서드 reset()을 호출
+        e.unwrap(); //감싼 <form> 태그를 제거
+
+     
+    }
+    </script>
+
+		
+		
 
   </body>
 </html>

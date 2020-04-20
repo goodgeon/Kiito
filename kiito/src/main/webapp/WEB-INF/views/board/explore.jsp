@@ -33,8 +33,9 @@
 		CSS
 		=============================================== -->
         <link type="text/css" href="../resources/assets/css/demos/photo.css" rel="stylesheet" />
-       	<link rel="stylesheet" type="text/css" href="../resources/writef/css/kakaomap.css">
        	<link rel="stylesheet" href="../resources/writef/css/main.css">
+       	<link rel="stylesheet" type="text/css" href="../resources/writef/css/kakaomap.css">
+       	<link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho" rel="stylesheet">
 				
 		<!-- ==============================================
 		Feauture Detection
@@ -49,22 +50,18 @@
 		
   </head>
 
-<body>
+<body style = "overflow : scroll">
 
      <!-- ==============================================
      Navigation Section
      =============================================== -->  
      <header class="tr-header">
+     <img alt="" src="../resources/login/images/bgimg4.png" class="main-img">
+		 <a class="navbar-brand" href="/kiito/home">KIITO</a>
       <nav class="navbar navbar-default">
        <div class="container-fluid">
 	    <div class="navbar-header">
-		 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-		  <span class="sr-only">Toggle navigation</span>
-		  <span class="icon-bar"></span>
-		  <span class="icon-bar"></span>
-		  <span class="icon-bar"></span>
-		 </button>
-		 <a class="navbar-brand" href="index.html"><i class="fab fa-instagram"></i> KIITO</a>
+	    
 		</div><!-- /.navbar-header -->
 		<div class="navbar-left">
 		 <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -154,27 +151,27 @@
 			  <div class="slimscroll" style="max-height: 230px; overflow: hidden; width: auto; height: 416.983px;">
 			   <div id="Slim2">
 				<a href="javascript:void(0);" class="dropdown-item notify-item nav-user">
-				 <div class="notify-icon"><img src="assets/img/users/1.jpg" class="img-responsive img-circle" alt=""> </div>
+				 <div class="notify-icon"><img src="resources/assets/img/users/1.jpg" class="img-responsive img-circle" alt=""> </div>
 				 <p class="notify-details">Cristina Pride</p>
 				 <p class="text-muted font-13 mb-0 user-msg">Hi, How are you? What about our next meeting</p>
 				</a><!--/ dropdown-item-->
 				<a href="javascript:void(0);" class="dropdown-item notify-item nav-user">
-				 <div class="notify-icon"><img src="assets/img/users/2.jpg" class="img-responsive img-circle" alt=""> </div>
+				 <div class="notify-icon"><img src="resources/assets/img/users/2.jpg" class="img-responsive img-circle" alt=""> </div>
 				 <p class="notify-details">Sam Garret</p>
 				 <p class="text-muted font-13 mb-0 user-msg">Yeah everything is fine</p>
 				</a><!--/ dropdown-item-->
 				<a href="javascript:void(0);" class="dropdown-item notify-item nav-user">
-				 <div class="notify-icon"><img src="assets/img/users/3.jpg" class="img-responsive img-circle" alt=""> </div>
+				 <div class="notify-icon"><img src="resources/assets/img/users/3.jpg" class="img-responsive img-circle" alt=""> </div>
 				 <p class="notify-details">Karen Robinson</p>
 				 <p class="text-muted font-13 mb-0 user-msg">Wow that's great</p>
 				</a><!--/ dropdown-item-->
 				<a href="javascript:void(0);" class="dropdown-item notify-item nav-user">
-				 <div class="notify-icon"><img src="assets/img/users/4.jpg" class="img-responsive img-circle" alt=""> </div>
+				 <div class="notify-icon"><img src="resources/assets/img/users/4.jpg" class="img-responsive img-circle" alt=""> </div>
 				 <p class="notify-details">Sherry Marshall</p>
 				 <p class="text-muted font-13 mb-0 user-msg">Hi, How are you? What about our next meeting</p>
 				</a><!--/ dropdown-item-->
 				<a href="javascript:void(0);" class="dropdown-item notify-item nav-user">
-				 <div class="notify-icon"><img src="assets/img/users/5.jpg" class="img-responsive img-circle" alt=""> </div>
+				 <div class="notify-icon"><img src="resources/assets/img/users/5.jpg" class="img-responsive img-circle" alt=""> </div>
 				 <p class="notify-details">Shawn Millard</p>
 				 <p class="text-muted font-13 mb-0 user-msg">Yeah everything is fine</p>
 				</a><!--/ dropdown-item-->
@@ -191,21 +188,28 @@
 		  
 		 <li class="dropdown mega-avatar">
 		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-		   <span class="avatar w-32"><img src="${sessionScope.customer.profileImg }" class="img-resonsive img-circle" width="25" height="25" alt="..."></span>
+		   <span class="avatar w-32">
+		   	<c:if test="${sessionScope.customer.profileImg == null }">
+								<img src="resources/login/images/profileImg_null2.png" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+			</c:if>
+			<c:if test="${sessionScope.customer.profileImg != null }">
+				<img src="${sessionScope.customer.profileImg }" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+			</c:if>
+		   </span>
 		   <!-- hidden-xs hides the username on small devices so only the image appears. -->
 		   <span class="hidden-xs">
-			${sessionScope.customer.nick }
+			${sessionScope.customer.name }
 		   </span>
 		  </a>
 		  <div class="dropdown-menu w dropdown-menu-scale pull-right">
 		   <a class="dropdown-item" href="#"><span>New Story</span></a> 
-<!-- 		   <a class="dropdown-item" href="#"><span>Become a Member</span></a>  -->
+		 <!--   <a class="dropdown-item" href="#"><span>Become a Member</span></a>  -->
 		   <div class="dropdown-divider"></div>
-		   <a class="dropdown-item" href="/kiito/customer/profile"><span>Profile</span></a> 
+		   <a class="dropdown-item" href="customer/profile"><span>Profile</span></a> 
 		   <a class="dropdown-item" href="#"><span>Settings</span></a> 
 		   <a class="dropdown-item" href="#">Need help?</a> 
 		   <div class="dropdown-divider"></div>
-		   <a class="dropdown-item" href="/kiito/customer/logout">Sign out</a>
+		   <a class="dropdown-item" href="customer/logout">Sign out</a>
 		  </div>
 		 </li><!-- /navbar-item -->	
 		 
@@ -738,7 +742,13 @@
 							submit
 						</span>
 					</button>
-					<span><input type = "button" id = "closeWrite" value = "close"></span>
+					　　
+					<button type = "button" id = "closeWrite"class="contact100-form-btn">
+						<span>
+							<i class="fa fa-paper-plane-o m-r-6" aria-hidden="true"></i>
+							close
+						</span>
+					</button>
 				</div>
 			</form>
 		</div>

@@ -2,33 +2,37 @@
 
 ///////////////////////////////////////////////////////////////////////사진업로드
 var sel_files = [];
+//var filesArrTemp = [];
 
 $(document).ready(function(){
 	$("#input_imgs").on("change", handleImgsFilesSelect);
 });
 
+function modalA(){
+	
+}
+
 function handleImgsFilesSelect(e){
 	
 	var files = e.target.files;
 	var filesArr = Array.prototype.slice.call(files);
-	var obj = document.getElementById("input_imgs");
-	console.log(files);
-	console.log(filesArr[0]);
-
+	/*for(var i=0; i<filesArr.length; i++){
+		filesArrTemp.push(filesArr[i]);
+	}*/
+	
+	
 	filesArr.forEach(function(f) {
 		if(!f.type.match("image.*")){
 			alert("확장자는 이미지 확장자만 가능합니다");
-			
-			e.target.files = null;
+			//filesArrTemp.pop(f);
+			//e.target.files = null;
 			//$("#input_imgs").val('');
 			return false;
 		}
 		
-
 		sel_files.push(f);
 		console.log(sel_files);
 		
-
 		var reader = new FileReader();
 		reader.onload = function(e){
 			var img_html = "<img src = \"" + e.target.result + "\" style = 'width : 240px; height : 240px;' />";
@@ -137,28 +141,36 @@ $('#submitFeed').on('click', function(){
     
 	$('#writeForm').submit();
 	
-   // alert(arr);
-    
-    
-    /*$.ajax({
-    	url : "feed/hashtag",
-    	type : "POST",
-    	data : {
-    		arr : arr
-    	},
-    	success : function(result){
-    		if(result=="aa")
-			alert("등록되었습니다.");
-		}
-    })*/
-    
-    /*$.post("feed/hashtag",function(arr){
-    	console.log(arr);
-    })*/
-    
-    
-    //$("#rdTag").submit();
+	/*var formData = new FormData();
+	 
+	// 파일 데이터
+	for(var i=0; i<filesArrTemp.length; i++) {
+	   formData.append("files", filesArrTemp[i]);
+	}
 	
+	
+	
+
+	$.ajax({
+	    type : "POST",
+	    url : "feed/uploadImgFile",
+	    data : formData,
+	    enctype: 'multipart/form-data',
+	    processData: false,
+	    contentType: false,
+	    success : function(data) {
+	        if(data.result){
+	            //alert("Success");
+	        }else{
+	            //alert(data.result);
+	        }
+	        
+	    },
+	    err : function(err) {
+	        alert(err.status);
+	    }
+	});*/
+
 })
 
 

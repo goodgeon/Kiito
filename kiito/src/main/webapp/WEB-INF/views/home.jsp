@@ -20,6 +20,49 @@
         <meta property="og:title" content="" />
         <meta property="og:url" content="" />
         <meta property="og:description" content="" />		
+        
+        <!-- bxSlider -->
+		  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+		  <script src = "resources/modal/js/modal.js"></script>	
+		  <script>
+		  	var slider = '';
+			 $(document).ready(function(){
+			    slider = $('.bxslider').bxSlider({
+				    adaptiveHeight: true
+				});
+
+			}); 
+
+			function openModal(feedNum){
+				var modalId = "#myModal"+feedNum;
+				$(modalId).modal("show");
+
+	
+				var config = {
+					adaptiveHeight : true
+				}
+	
+				var ulId = "#sliderId" + feedNum;
+
+				sliderModal = $(ulId).bxSlider({
+					adaptiveHeight : true
+			  	});
+
+			  	//sliderModal.reloadSlider();
+	
+				 setTimeout(function(){
+					sliderModal.reloadSlider(config); 
+				}, 300); 
+
+				getCommentList(feedNum);
+					 
+			}
+				  	
+		  </script>
+		  
+		  
 		
 		<!-- ==============================================
 		Favicons
@@ -46,11 +89,11 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->	
-		<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+		<!-- <script src="//code.jquery.com/jquery-3.3.1.min.js"></script> -->
 	
 		
   </head>
-<body>
+<body style = "overflow : auto">
 
      <!-- ==============================================
      Navigation Section
@@ -288,58 +331,85 @@
 			 <a href="#"><img class="img-responsive img-circle" src="${feed.customer.profileImg }" alt="User"></a>
 			</div>
             <div class="media-body">
-             <p class="m-0">${feed.customer.nick }</p>
+             <p class="m-0">${feed.customer.nick }</p><p>${feed.checkin}
+             <p>
+             <c:choose>
+             	<c:when test="${feed.congestion == 3 }">혼잡</c:when>
+             	<c:when test="${feed.congestion == 2 }">보통</c:when>
+             	<c:when test="${feed.congestion == 1 }">여유</c:when>
+             </c:choose>
+             </p>
+             </p>
 			 <small><span>${feed.inputdate }</span></small>
             </div>
            </div><!--/ media -->
           </div><!--/ cardbox-heading -->
+         
           
 		  <div class="cardbox-item">
-		   <a href="#myModal" data-toggle="modal">
-		   	<c:if test="${fn:length(feed.imageFile) > 0}">
-		   		<img class="img-responsive" src="<c:url value = '/img/${feed.imageFile[0].savedFilename}'/>" alt="MaterialImg">
+		   
+		   	<c:if test="${fn:length(feed.imageFile) > 0 || fn:length(feed.videoFile) > 0}">
+		   		<ul class = "bxslider">
+	           	<c:forEach var ="i" items = "${feed.imageFile}">
+	           		
+					<li style = "display : flex; justify-content : center;">
+					
+					<img class="img-responsive" src="<c:url value = '/img/${i.savedFilename}'/>" alt="MaterialImg">
+					</li>          	
+	          	</c:forEach>
+	          	
+	          	<c:forEach var ="i" items = "${feed.videoFile}">
+	           		
+					<li style = "display : flex; justify-content : center;">
+					
+					<video width="500" height="500" src="<c:url value = '/img/${i.savedFilename}'/>" controls></video>
+					</li>          	
+	          	</c:forEach>
+	          	</ul>
 		   	</c:if>
+		   	
 		   	
 	   			
 		   	
 		    
-		   </a>
+		   
 		   <span>${feed.contents }</span> 
           </div><!--/ cardbox-item -->
+          
 	      <div class="cardbox-base">
 		   <ul>
-			<li><a href="#"><img src="resources/assets/img/users/1.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/2.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/3.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/4.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/5.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/6.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/7.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/8.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/9.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#"><img src="resources/assets/img/users/10.jpg" class="img-responsive img-circle" alt="User"></a></li>
+		   	<%-- <c:forEach var="hashtag" items="${hashtag }">
+		   		<c:if test="${feed.feed_seq == hashtag.feed_seq }">
+		   			<li>#${hashtag.contents }</li>
+		   		</c:if>
+		   	</c:forEach> --%>
+			<li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/1.jpg" class="img-responsive img-circle" alt="User"></a></li>
+		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/2.jpg" class="img-responsive img-circle" alt="User"></a></li>
+		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/3.jpg" class="img-responsive img-circle" alt="User"></a></li>
+		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/4.jpg" class="img-responsive img-circle" alt="User"></a></li>
+		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/5.jpg" class="img-responsive img-circle" alt="User"></a></li>
+		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/6.jpg" class="img-responsive img-circle" alt="User"></a></li>
+		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/7.jpg" class="img-responsive img-circle" alt="User"></a></li>
+		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/8.jpg" class="img-responsive img-circle" alt="User"></a></li>
+		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/9.jpg" class="img-responsive img-circle" alt="User"></a></li>
+		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/10.jpg" class="img-responsive img-circle" alt="User"></a></li> 
 		   </ul>
 		  </div><!--/ cardbox-base -->
           <div class="cardbox-like">
-		   <ul>
-			<li><a href="#"><i class="fa fa-heart"></i></a><span> 786,286</span></li>
-		    <li><a href="#" title="" class="com"><i class="fa fa-comments"></i></a> <span class="span-last"> 126,400</span></li>
+		   <ul style = "display : flex; justify-content : center">
+			<li><a href="" style = "padding-top : 6px;"><i class="fa fa-heart"></i><span> ${feed.likes }</span></a></li>
+		    <li><a href="" title="" class="com"><i class="fa fa-comments"></i></a> <a href = "" onclick = "openModal(${feed.feed_seq })" data-toggle="modal" style = "display : flex; justify-content : center"><span id = "commentsCount${feed.feed_seq}" class="span-last"> ${fn:length(feed.comments)}</span></a></li>
 		   </ul>
           </div><!--/ cardbox-like -->			  
                 
 		 </div><!--/ cardbox -->	
-		</c:forEach>
-		
-		</div>
-
-
-	
-	 </section><!--/ newsfeed -->
-  
-	 <!-- ==============================================
+		 
+		 
+		 
+		 <!-- ==============================================
 	 Modal Section
 	 =============================================== -->
-     <div id="myModal" class="modal fade">
+     <div id="myModal${feed.feed_seq }" class="modal fade" style = "z-index : 99999;">
       <div class="modal-dialog">
        <div class="modal-content">
         <div class="modal-body">
@@ -347,7 +417,26 @@
          <div class="row">
 		 
           <div class="col-md-8 modal-image">
-           <img class="img-responsive" src="resources/assets/img/posts/1.jpg" alt="Image"/>
+          	
+	           <c:if test="${fn:length(feed.imageFile) > 0 || fn:length(feed.videoFile) > 0}">
+	           		<ul id = "sliderId${feed.feed_seq}" class = "bxsliderModal">
+			           	<c:forEach var ="i" items = "${feed.imageFile}">
+							<li >
+							<img class="img-responsive" src="<c:url value = '/img/${i.savedFilename}'/>" alt="Image">
+							</li>          	
+			   	       	</c:forEach>
+			   	       	
+			   	       	<c:forEach var ="i" items = "${feed.videoFile}">
+							<li>
+							<video width="500" height="500" src="<c:url value = '/img/${i.savedFilename}'/>" controls></video>
+							</li>          	
+			   	       	</c:forEach>
+					</ul>   	
+			   	</c:if>
+			   	
+			
+          	
+           <%--  <img class="img-responsive" src="<c:url value = '/img/20200415.png'/>" alt="Image"/>   --%>
           </div><!--/ col-md-8 -->
           <div class="col-md-4 modal-meta">
            <div class="modal-meta-top">
@@ -355,31 +444,32 @@
 			 <span aria-hidden="true">×</span><span class="sr-only">Close</span>
 			</button><!--/ button -->
             <div class="img-poster clearfix">
-             <a href=""><img class="img-responsive img-circle" src="resources/assets/img/users/18.jpg" alt="Image"/></a>
-             <strong><a href="">Benjamin</a></strong>
-             <span>12 minutes ago</span><br/>
+             <a href=""><img class="img-responsive img-circle" src="${feed.customer.profileImg }" alt="Image"/></a>
+             <strong><a href="">${feed.customer.nick }</a></strong>
+             <br>
+             <span>${feed.inputdate }</span><br/>
 		     <a href="" class="kafe kafe-btn-mint-small"><i class="fa fa-check-square"></i> Following</a>
             </div><!--/ img-poster -->
 			  
-            <ul class="img-comment-list">
-             <li>
+            <ul id = "commentListUl${feed.feed_seq }" class="img-comment-list">
+             <!-- <li>
               <div class="comment-img">
                <img src="resources/assets/img/users/17.jpeg" class="img-responsive img-circle" alt="Image"/>
               </div>
               <div class="comment-text">
-               <strong><a href="">Anthony McCartney</a></strong>
-               <p>Hello this is a test comment.</p> <span class="date sub-text">on December 5th, 2016</span>
+               <strong><a href="">작성자1111</a></strong>
+               <p>댓글내용11111111111</p> <span class="date sub-text">작성날짜</span>
               </div>
-             </li><!--/ li -->
+             </li>/ li
              <li>
               <div class="comment-img">
                <img src="resources/assets/img/users/15.jpg" class="img-responsive img-circle" alt="Image"/>
               </div>
               <div class="comment-text">
-               <strong><a href="">Vanessa Wells</a></strong>
-               <p>Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p> <span>on December 5th, 2016</span>
+               <strong><a href="">작성자22222</a></strong>
+               <p>댓글내용</p> <span>작성날짜</span>
               </div>
-             </li><!--/ li -->
+             </li>/ li
              <li>
               <div class="comment-img">
                <img src="resources/assets/img/users/14.jpg" class="img-responsive img-circle" alt="Image"/>
@@ -388,7 +478,7 @@
                <strong><a href="">Sean Coleman</a></strong>
                <p class="">Hello this is a test comment.</p> <span class="date sub-text">on December 5th, 2016</span>
               </div>
-             </li><!--/ li -->
+             </li>/ li
              <li>
               <div class="comment-img">
                <img src="resources/assets/img/users/13.jpeg" class="img-responsive img-circle" alt="Image"/>
@@ -397,7 +487,7 @@
                <strong><a href="">Anna Morgan</a></strong>
                <p class="">Hello this is a test comment.</p> <span class="date sub-text">on December 5th, 2016</span>
               </div>
-             </li><!--/ li -->
+             </li>/ li
              <li>
               <div class="comment-img">
                <img src="resources/assets/img/users/3.jpg" class="img-responsive img-circle" alt="Image"/>
@@ -406,19 +496,22 @@
                <strong><a href="">Allison Fowler</a></strong>
                <p class="">Hello this is a test comment.</p> <span class="date sub-text">on December 5th, 2016</span>
               </div>
-             </li><!--/ li -->
+             </li>/ li -->
             </ul><!--/ comment-list -->
 			  
             <div class="modal-meta-bottom">
 			 <ul>
-			  <li><a class="modal-like" href="#"><i class="fa fa-heart"></i></a><span class="modal-one"> 786,286</span> | 
-			      <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span> 786,286</span> </li>
+			  <li><a class="modal-like" href="#"><i class="fa fa-heart"></i></a><span class="modal-one"> ${feed.likes }</span> | 
+			      <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span id = "modalCommentsCount${feed.feed_seq }"> </span> </li>
 			  <li>
 			   <span class="thumb-xs">
-				<img class="img-responsive img-circle" src="resources/assets/img/users/13.jpeg" alt="Image">
+				<img class="img-responsive img-circle" src="${sessionScope.customer.profileImg }" alt="Image">
 			   </span>
 			   <div class="comment-body">
-				 <input class="form-control input-sm" type="text" placeholder="Write your comment...">
+			   	<div id = "commentForm">
+			   		<input id = "inputComment${feed.feed_seq}" class="form-control input-sm" type="text" name = "text" placeholder="Write your comment..." data-customer="${sessionScope.customer.customer_seq}" data-feed="${feed.feed_seq}">
+			   		<a href = "javacsript:void(0)" class="kafe kafe-btn-mint-small" id = "commentSubmit" onclick = "submitComment(${feed.feed_seq}, ${sessionScope.customer.customer_seq})">Submit</a>
+			   	</div>
 			   </div><!--/ comment-body -->	
               </li>				
              </ul>				
@@ -433,6 +526,18 @@
        </div><!--/ modal-content -->
       </div><!--/ modal-dialog -->
      </div><!--/ modal -->
+		 
+		 
+		 
+		</c:forEach>
+		
+		</div>
+
+
+	
+	 </section><!--/ newsfeed -->
+  
+	 
 	 
 	 
      <!-- ==============================================
@@ -440,7 +545,7 @@
 	 =============================================== -->
 	 
 	 
-	<script src="resources/assets/js/jquery.min.js"></script>
+	<!-- <script src="resources/assets/js/jquery.min.js"></script> -->
 	<script src="resources/assets/js/bootstrap.min.js"></script>
 	<script src="resources/assets/js/base.js"></script>
 	<script src="resources/assets/plugins/slimscroll/jquery.slimscroll.js"></script>
@@ -500,7 +605,10 @@
 				
 				
 				<div>
-					<input type = "file" id = "input_imgs" name = "file" multiple accept="image/gif, image/jpeg, image/png"/>
+					<input type = "file" id = "input_imgs" name = "imagefile" multiple accept="image/gif, image/jpeg, image/png" />
+				</div>
+				<div>
+					<input type = "file" id = "input_video" name = "videofile" multiple accept="video/*" />
 				</div>
 				
 				
@@ -552,6 +660,8 @@
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab38e188d1015fa32fe5df13ab040fa&libraries=services,clusterer,drawing"></script>
 		<script src="resources/writef/js/main.js"></script>
 		<script src = "resources/writef/js/kakaomap.js"></script>
+		
+		
 		
   </body>
 </html>

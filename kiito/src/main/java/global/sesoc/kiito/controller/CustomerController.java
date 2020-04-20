@@ -109,7 +109,7 @@ public class CustomerController {
 		System.out.println(cus);
 		cus.setNick(cus.getName());
 		cus.setCustomer_type(0);
-		cus.setProfileImg("");
+		cus.setProfileImg("resources/login/images/profileImg_null2.png");
 		dao.insertC(cus);
 	}
 
@@ -141,6 +141,14 @@ public class CustomerController {
 		
 		
 		return "customer/profile";}
+	
+	@RequestMapping(value = "/followers", method = RequestMethod.GET)
+	public String follwers(HttpSession hh,Model model) {
+		
+
+		
+		
+		return "customer/followers";}
 
 }
 	

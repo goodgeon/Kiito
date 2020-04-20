@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="global.sesoc.kiito.dao.CommentsMapper">
+	<resultMap type="comments" id="commentsMap">
+		 <id column="comments_seq" property = "comments_seq"/>
+		 <result column="feed_seq" property="feed_seq"/>
+		 <result column="customer_seq" property="customer_seq"/>
+		 <result column="text" property="text"/>
+		 <result column="inputdate" property="inputdate"/>
+		 
+		 
+		 <association javaType="customer" property="customer">
+		 	<id column="customer_seq" property="customer_seq"/>
+		 	<result column="email" property="email"/>
+		 	<result column="pw" property="pw"/>
+		 	<result column="name" property="name"/>
+		 	<result column="nick" property="nick"/>
+		 	<result column="profileImg" property="profileImg"/>
+		 	<result column="customer_type" property="customer_type"/>
+		 </association>
+		 
+	</resultMap>
+	<insert id="insertComment" parameterType="comments">
+		insert into comments
+		(comments_seq, feed_seq, customer_seq, text)
+		values
+		(comments_seq.nextval, #{feed_seq}, #{customer_seq}, #{text})
+	</insert>
+	
+	<select id="getCommentList" parameterType="int" resultType="comments" resultMap="commentsMap">
+		select co.comments_seq, co.feed_seq, co.customer_seq, co.text, co.inputdate, c.customer_seq, c.email, c.pw, c.name, c.nick, c.profileimg, c.customer_type
+		from comments co, customer c
+		where feed_seq = #{feed_seq} and co.customer_seq = c.customer_seq
+		order by co.inputdate desc
+	</select>
+
+
+</mapper>
