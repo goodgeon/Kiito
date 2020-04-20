@@ -12,5 +12,6 @@ public class Comments {
 	private int customer_seq;
 	private String text;
 	private String inputdate;
+	private Customer customer;
 
 }

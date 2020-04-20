@@ -17,4 +17,6 @@ public class Feed {
 	private String inputdate;
 	private Customer customer;
 	private ArrayList<ImageFile> imageFile;
+	private ArrayList<VideoFile> videoFile;
+	private ArrayList<Comments> comments;
 }
