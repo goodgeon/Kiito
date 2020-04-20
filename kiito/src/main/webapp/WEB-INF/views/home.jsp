@@ -102,7 +102,6 @@
      <img alt="" src="resources/login/images/bgimg4.png" class="main-img">
 		 <a class="navbar-brand" href="/kiito/home">KIITO</a>
       <nav class="navbar navbar-default">
-      	<section class="nav-sec">
 	  <div class="d-flex justify-content-between">
 	   <div class="p-2 nav-icon-lg mint-green">
 	   <a class="nav-icon" href="/kiito/home"><em class="fa fa-home"></em>
@@ -126,18 +125,7 @@
 	   </a>
 	   </div>
 	  </div>
-	</section>	
-       <div class="container-fluid">
-	    <div class="navbar-header">
-	    
-		</div><!-- /.navbar-header -->
-		<div class="navbar-left">
-		 <div class="collapse navbar-collapse" id="navbar-collapse">
-		  <ul class="nav navbar-nav">
-		  </ul>
-		 </div>
-		</div><!-- /.navbar-left -->
-		
+
 		<div class="navbar-right">                          
 		 <ul class="nav navbar-nav">
 		   <li>
@@ -284,10 +272,10 @@
 		 
 		 </ul><!-- /.sign-in -->   
 		</div><!-- /.nav-right -->
-       </div><!-- /.container -->
       </nav><!-- /.navbar -->
      </header><!-- Page Header --> 
-  
+  		       <div class="container-fluid">
+       </div><!-- /.container -->
 	 <!-- ==============================================
 	 Navbar Second Section
 	 =============================================== -->
