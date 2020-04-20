@@ -75,14 +75,17 @@ public class HomeController {
 	public String home(Model model) {
 		
 		ArrayList<Feed> ff = dao.feedList();
-		
+		String temp;
 		/*
 		 * for(int i=0; i<ff.size(); i++) { Customer customer =
 		 * customerDao.getCustomer(ff.get(i).getCustomer().getCustomer_seq());
 		 * //ff.get(i).setNick(customer.getNick());
 		 * //ff.get(i).setProfileImg(customer.getProfileImg()); }
 		 */
-		
+		for(int i=0; i<ff.size(); i++) {
+			temp = ff.get(i).getContents().replace("\r\n", "<br>");
+			ff.get(i).setContents(temp);
+		}
 		model.addAttribute("feed",ff);
 		
 		ArrayList<Hashtag> hashtagList = hashtagdao.getList();
