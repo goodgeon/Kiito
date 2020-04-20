@@ -13,6 +13,7 @@
 		<typeAlias type="global.sesoc.kiito.vo.ImageFile" alias="imageFile"/>
 		<typeAlias type="global.sesoc.kiito.vo.VideoFile" alias="videoFile"/>
 		<typeAlias type="global.sesoc.kiito.vo.Comments" alias="comments" />
+		<typeAlias type="global.sesoc.kiito.vo.Pfile" alias="pfile"/>
 	</typeAliases>
 
 
@@ -25,5 +26,6 @@
 		<mapper resource="mapper/ImageFileMapper.xml" />
 		<mapper resource="mapper/VideoFileMapper.xml" />
 		<mapper resource="mapper/CommentsMapper.xml" />
+		<mapper resource="mapper/PfileMapper.xml" />
 	</mappers>
 </configuration>
