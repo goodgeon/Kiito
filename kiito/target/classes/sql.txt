@@ -78,3 +78,13 @@ CREATE TABLE comments (
 
 CREATE SEQUENCE comments_seq;
 
+
+CREATE TABLE Pfile (
+    Pfile_seq NUMBER PRIMARY KEY
+  ,customer_seq NUMBER REFERENCES customer(customer_seq) on delete cascade
+    ,originalFilename VARCHAR2(100)
+    ,savedFilename VARCHAR2(100)
+);
+
+CREATE SEQUENCE Pfile_seq;
+

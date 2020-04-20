@@ -22,16 +22,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import global.sesoc.kiito.dao.CustomerDAO;
 import global.sesoc.kiito.dao.FeedDAO;
 import global.sesoc.kiito.dao.HashtagDAO;
 import global.sesoc.kiito.dao.ImageFileDAO;
+import global.sesoc.kiito.dao.PfileDAO;
 import global.sesoc.kiito.vo.Customer;
 import global.sesoc.kiito.vo.Feed;
 import global.sesoc.kiito.vo.Hashtag;
 import global.sesoc.kiito.vo.ImageFile;
+import global.sesoc.kiito.vo.Pfile;
 
 @Controller
 @RequestMapping("customer")
@@ -49,6 +52,9 @@ public class CustomerController {
 	
 	@Autowired	
 	private FeedDAO dao1;
+	
+	@Autowired	
+	private PfileDAO dao2;
 	
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -149,6 +155,17 @@ public class CustomerController {
 		
 		
 		return "customer/followers";}
+	
+	
+	@RequestMapping(value = "/changef", method = RequestMethod.POST)
+	public String changef(Pfile p,HttpSession session,MultipartFile upload) {
+		
+		
+		//String a = (String) session.getAttribute("customer");
+		//System.out.println(a);
+		
+		
+		return "customer/profile";}
 
 }
 	

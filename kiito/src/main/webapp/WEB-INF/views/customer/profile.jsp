@@ -759,17 +759,24 @@
 		<script src="../resources/writef/js/main.js"></script>
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
-		
+
+
+
+<!-- 프로필 사진 바꾸기 -->
 		
 		
 	<div id="preview" class="modal">
-	
-		<form>
+
+		<form id = "changef" action = "changef" method = "POST" enctype="multipart/form-data" >
 	
     <p>
         <label for="image">Image:</label>
         <br />
         <input type="file" name="image" id="image" />
+        
+        
+        <input type="submit" value="submit" />
+        
     </p>
  
     	</form>
