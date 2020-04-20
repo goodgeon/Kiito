@@ -62,7 +62,7 @@
 				  	
 		  </script>
 		  
-		  
+		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		
 		<!-- ==============================================
 		Favicons
@@ -421,7 +421,9 @@
 			   	       	</c:forEach>
 					</ul>   	
 			   	</c:if>
-			   	
+			   	<div id = "modalContents${feed.feed_seq }">${feed.contents }</div>
+			   	<div id = "modalCheckin${feed.feed_seq }">${feed.checkin }</div>
+			   	<div id = "modalCongestion${feed.feed_seq }">${feed.congestion }</div>
 			
           	
            <%--  <img class="img-responsive" src="<c:url value = '/img/20200415.png'/>" alt="Image"/>   --%>
@@ -437,7 +439,17 @@
              <br>
              <span>${feed.inputdate }</span><br/>
 		     <a href="" class="kafe kafe-btn-mint-small"><i class="fa fa-check-square"></i> Following</a>
+		     <a href="javascript:void(0)" onclick = "showInputNumber(${feed.feed_seq })" class="kafe kafe-btn-mint-small"><i class="fas fa-envelope-open"></i>문자전송</a>
             </div><!--/ img-poster -->
+            
+            <div id = "smsInput${feed.feed_seq }" class = "smsInput">
+           		전화번호를 입력해 주세요 : 
+            	<div style = "display : flex;">
+            		<input id = "smsPhoneNumber${feed.feed_seq }" type = "text" class = "form-control input-sm">
+            		<button type = "button" class="kafe kafe-btn-mint-small" onclick = "sendSms(${feed.feed_seq })">전송</button>
+            	</div>
+            	
+            </div>
 			  
             <ul id = "commentListUl${feed.feed_seq }" class="img-comment-list">
              <!-- <li>

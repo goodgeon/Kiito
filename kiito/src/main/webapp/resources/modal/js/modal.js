@@ -6,6 +6,35 @@ $(document).ready(function(){
 	
 	
 })
+function showInputNumber(feed_seq){
+	$("#smsInput"+feed_seq).toggle();
+}
+
+function sendSms(feed_seq){
+	var phoneNumber = $("#smsPhoneNumber"+feed_seq).val();
+	var checkin = $("#modalCheckin"+feed_seq).html();
+	var congestion = $("#modalCongestion"+feed_seq).html();
+	var contents = $("#modalContents"+feed_seq).html();
+	
+	console.log(phoneNumber);
+	console.log(checkin);
+	console.log(congestion);
+	console.log(contents);
+
+	$.ajax({
+		type : "POST",
+		url : "feed/sendSms",
+		data : {
+			phoneNumber : phoneNumber,
+			checkin : checkin,
+			congestion : congestion,
+			contents : contents
+		},
+		success : function(){
+			alert("문자전송번호 : " + phoneNumber);
+		}
+	})
+}
 
 
 function submitComment(feed_seq, customer_seq){
@@ -35,7 +64,6 @@ function getCommentList(feed_seq){
 			feed_seq : feed_seq
 		},
 		success : function(list){
-			console.log(list);
 			var html = '';
 			
 			$.each(list, function(key,item){

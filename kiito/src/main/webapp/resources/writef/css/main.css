@@ -517,3 +517,17 @@ textarea.input100 {
 		opacity: 1;
 	}
 }
+
+.smsInput{
+	display : none;
+	margin-bottom : 10px;
+}
+
+.smsInput input{
+	width : 170px;
+	margin-right : 10px;
+}
+
+.smsInput button{
+	border-radius : 3px;
+}

@@ -30,6 +30,7 @@ import global.sesoc.kiito.vo.ImageFile;
 import global.sesoc.kiito.vo.Likes;
 import global.sesoc.kiito.vo.VideoFile;
 import global.sesoc.kiito.util.FileService;
+import global.sesoc.kiito.util.SmsService;
 
 @Controller
 @RequestMapping("feed")
@@ -251,6 +252,15 @@ public class FeedController {
 	@RequestMapping(value = "explore", method = RequestMethod.GET)
 	public String explore() {
 		return "board/explore";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "sendSms", method = RequestMethod.POST)
+	public String sendSms(String phoneNumber, String checkin, int congestion, String contents) {
+		SmsService smsService = new SmsService();
+		smsService.sendSMS(phoneNumber, checkin, congestion, contents);
+		
+		return phoneNumber;
 	}
 
 }
