@@ -758,9 +758,9 @@
 		<div class="modal-meta-top">
 	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 			 <span aria-hidden="true">×xxxxxxxxxx</span><span class="sr-only">Close</span>
-			</button><!--/ button --></div>
+			</button>/ button</div> 
 			<div id="ssss">
-				   <img src="${sessionScope.customer.profileImg }" class="img-responsive img-circle" alt="User">
+				    <img src="${sessionScope.customer.profileImg }" class="img-responsive img-circle" alt="User"> 
 			
 			</div> 
 			
