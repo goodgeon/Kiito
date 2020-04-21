@@ -86,5 +86,17 @@
 		from follow
 		where customer_seq = #{customer_seq} and following_seq = #{following_seq}
 	</select>
+	
+	
+	<update id="updateP" parameterType="customer">
+
+		update customer set
+
+		 profileImg=#{profileImg}
+
+		where customer_seq like #{customer_seq}
+
+
+	</update>
 
 </mapper>

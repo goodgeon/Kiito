@@ -82,4 +82,13 @@ public class CustomerDAO {
 		return result;
 	}
 
+
+
+	public void updateP(Customer login_customer) {
+		
+		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		mapper.updateP(login_customer);
+		
+	}
+
 }

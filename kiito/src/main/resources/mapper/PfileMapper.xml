@@ -3,4 +3,39 @@
 
 <mapper namespace="global.sesoc.kiito.dao.PfileMapper">
 
+<insert id="insertp" parameterType="pfile">
+
+
+
+		insert into
+		pfile
+		
+		(
+
+			pFile_seq
+		,customer_seq
+
+		<if test="originalFilename != null and originalFilename != null">		<!-- 빈칸을 해주기.!!!!!!!!!!!!!!! -->
+			,originalFilename
+			,savedFilename
+		</if>
+
+		)
+		values
+
+		(
+		pFile_seq.nextval
+		,#{customer_seq}
+	
+		<if test="originalFilename != null and originalFilename != null">		<!-- 빈칸을 해주기.!!!!!!!!!!!!!!! -->
+			,#{originalFilename}
+			,#{savedFilename}
+		</if>
+
+
+		)
+
+
+	</insert>
+
 </mapper>

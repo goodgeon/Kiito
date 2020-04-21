@@ -767,6 +767,26 @@
 
 
 
+
+    <script type="text/javascript">
+
+
+    function changef(){
+    	var form = document.getElementById("hiddenF");
+    	var title1 = document.getElementById("title1").value;
+    	var contents1 = document.getElementById("contents1").value;
+    	var boardnum = document.getElementById("boardnum");
+
+    	title.value = title1
+    	contents.value=contents1
+    	boardnum.value = ${b.boardnum};
+    	form.submit();
+    }
+        
+
+    </script>
+
+
 <!-- 프로필 사진 바꾸기 -->
 		
 		
@@ -777,7 +797,8 @@
     <p>
         <label for="image">Image:</label>
         <br />
-        <input type="file" name="image" id="image" />
+        <input type="file" name="upload" id="image" />
+     
         
         
         <input type="submit" value="submit" />

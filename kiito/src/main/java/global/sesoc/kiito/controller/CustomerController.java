@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import global.sesoc.kiito.util.FileService;
 import global.sesoc.kiito.dao.CustomerDAO;
 import global.sesoc.kiito.dao.FeedDAO;
 import global.sesoc.kiito.dao.HashtagDAO;
@@ -56,6 +57,8 @@ public class CustomerController {
 	
 	@Autowired	
 	private PfileDAO dao2;
+	
+	final String uploadPath = "/boardfile";	
 	
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -163,8 +166,28 @@ public class CustomerController {
 	public String changef(Pfile p,HttpSession session,MultipartFile upload) {
 		
 		
-		//String a = (String) session.getAttribute("customer");
-		//System.out.println(a);
+		 Customer login_customer = (Customer) session.getAttribute("customer");
+		 p.setCustomer_seq(login_customer.getCustomer_seq());
+		 
+		 
+			if(!upload.isEmpty()) {
+				String savedFile = FileService.saveFile(upload, uploadPath);
+				System.out.println(savedFile);
+				p.setOriginalFilename(upload.getOriginalFilename());
+				p.setSavedFilename(savedFile);
+		}
+			
+			dao2.insertp(p);
+			String s = "C:\\boardfile\\";
+			String ex = p.getSavedFilename();
+			String sex = s+ex;
+			login_customer.setProfileImg(sex);
+			System.out.println(login_customer);
+			
+			dao.updateP(login_customer);			
+
+		 
+	
 		
 		
 		return "customer/profile";

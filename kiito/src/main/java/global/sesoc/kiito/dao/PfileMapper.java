@@ -1,5 +1,9 @@
 package global.sesoc.kiito.dao;
 
-public class PfileMapper {
+import global.sesoc.kiito.vo.Pfile;
+
+public interface PfileMapper {
+
+	void insertp(Pfile p);
 
 }

@@ -21,6 +21,8 @@ public interface CustomerMapper {
 
 	Follow checkFollowing(Follow follow);
 
+	void updateP(Customer login_customer);
+
 
 
 }
