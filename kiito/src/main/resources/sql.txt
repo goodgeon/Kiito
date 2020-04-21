@@ -88,3 +88,13 @@ CREATE TABLE Pfile (
 
 CREATE SEQUENCE Pfile_seq;
 
+
+CREATE TABLE FOLLOW (
+    follow_seq NUMBER PRIMARY KEY,
+    customer_seq REFERENCES CUSTOMER(customer_seq),
+    following_seq REFERENCES CUSTOMER(customer_seq),
+    UNIQUE(follower_seq,following_seq)
+);
+
+drop table follow;
+

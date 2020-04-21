@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import global.sesoc.kiito.vo.Customer;
+import global.sesoc.kiito.vo.Follow;
 
 @Repository
 public class CustomerDAO {
@@ -48,6 +49,37 @@ public class CustomerDAO {
 		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
 		Customer customer = mapper.getCustomerByMail(email);
 		return customer;
+	}
+
+
+
+	public void insertFollow(Follow follow) {
+		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		mapper.insertFollow(follow);
+		
+	}
+
+
+
+	public void deleteFollow(Follow follow) {
+		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		mapper.deleteFollow(follow);
+		
+	}
+
+
+
+	public int checkFollowing(Follow follow) {
+		int result=-1;
+		
+		Follow f = null;
+		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		f = mapper.checkFollowing(follow);
+		
+		if(f == null)result = 1;
+		else if(f != null) result = 0;
+		
+		return result;
 	}
 
 }

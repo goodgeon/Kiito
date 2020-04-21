@@ -14,6 +14,7 @@
 		<typeAlias type="global.sesoc.kiito.vo.VideoFile" alias="videoFile"/>
 		<typeAlias type="global.sesoc.kiito.vo.Comments" alias="comments" />
 		<typeAlias type="global.sesoc.kiito.vo.Pfile" alias="pfile"/>
+		<typeAlias type="global.sesoc.kiito.vo.Follow" alias="follow"/>
 	</typeAliases>
 
 

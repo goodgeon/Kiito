@@ -1,6 +1,7 @@
 package global.sesoc.kiito.dao;
 
 import global.sesoc.kiito.vo.Customer;
+import global.sesoc.kiito.vo.Follow;
 
 public interface CustomerMapper {
 
@@ -13,6 +14,12 @@ public interface CustomerMapper {
 	Customer getFacebookCustomer(String email);
 
 	Customer getCustomerByMail(String email);
+
+	void insertFollow(Follow follow);
+
+	void deleteFollow(Follow follow);
+
+	Follow checkFollowing(Follow follow);
 
 
 

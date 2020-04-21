@@ -2,13 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="global.sesoc.kiito.dao.CustomerMapper">
-	<select id="getCustomer" parameterType = "int" resultType="customer">
+	<resultMap type="customer" id="customerMap">
+		 <id column="customer_seq" property = "customer_seq"/>
+		 <result column="email" property="email"/>
+		 <result column="pw" property="pw"/>
+		 <result column="name" property="name"/>
+		 <result column="profileImg" property="profileImg"/>
+		 <result column="customer_type" property="customer_type"/>
+		 
+		 <collection property="follow" column="customer_seq" javaType="java.util.ArrayList" ofType="follow" select="getFollowList"/>
+	</resultMap>
+	
+	<select id="getFollowList" resultType="follow">
+		select follow_seq, customer_seq, following_seq
+		from follow
+		where customer_seq = #{customer_seq}
+	</select>
+	
+	<select id="getCustomer" parameterType = "int" resultType="customer" resultMap="customerMap">
 		select *
 		from customer
 		where customer_seq = #{customer_seq}
 	</select>
 	
-	<select id="getCustomerByMail" parameterType="String" resultType="customer">
+	<select id="getCustomerByMail" parameterType="String" resultType="customer" resultMap="customerMap">
 		select *
 		from customer
 		where email = #{email} and customer_type = 0
@@ -16,13 +33,13 @@
 	
 	
 	
-	<select id="getGoogleCustomer" parameterType = "String" resultType="customer">
+	<select id="getGoogleCustomer" parameterType = "String" resultType="customer" resultMap="customerMap">
 		select *
 		from customer
 		where email = #{email} and customer_type = 1
 	</select>
 	
-	<select id="getFacebookCustomer" parameterType = "String" resultType="customer">
+	<select id="getFacebookCustomer" parameterType = "String" resultType="customer" resultMap="customerMap">
 		select *
 		from customer
 		where email = #{email} and customer_type = 2
@@ -51,5 +68,23 @@
 		,#{customer_type}
 		)
 	</insert>
+	
+	<insert id="insertFollow" parameterType="follow">
+		insert into follow
+		(follow_seq, customer_seq, following_seq)
+		values
+		(follow_seq.nextval, #{customer_seq}, #{following_seq})
+	</insert>
+	
+	<delete id="deleteFollow" parameterType="follow">
+		delete from follow
+		where customer_seq = #{customer_seq} and following_seq = #{following_seq}
+	</delete>
+	
+	<select id="checkFollowing" parameterType="follow">
+		select *
+		from follow
+		where customer_seq = #{customer_seq} and following_seq = #{following_seq}
+	</select>
 
 </mapper>

@@ -32,6 +32,7 @@ import global.sesoc.kiito.dao.ImageFileDAO;
 import global.sesoc.kiito.dao.PfileDAO;
 import global.sesoc.kiito.vo.Customer;
 import global.sesoc.kiito.vo.Feed;
+import global.sesoc.kiito.vo.Follow;
 import global.sesoc.kiito.vo.Hashtag;
 import global.sesoc.kiito.vo.ImageFile;
 import global.sesoc.kiito.vo.Pfile;
@@ -73,6 +74,7 @@ public class CustomerController {
 		if(c != null && c.getPw().equals(pw)) {
 			session.setAttribute("customer", c);
 			//System.out.println("로그인정보 : " + c.toString());
+			//System.out.println(c.getFollow().size());
 			return "success";
 		}
 		
@@ -165,7 +167,43 @@ public class CustomerController {
 		//System.out.println(a);
 		
 		
-		return "customer/profile";}
+		return "customer/profile";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/follow", method = RequestMethod.POST)
+	public String follow(int follower_seq, int following_seq) {
+		Follow follow = new Follow();
+		follow.setCustomer_seq(follower_seq);
+		follow.setFollowing_seq(following_seq);
+		
+		dao.insertFollow(follow);
+		return null;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/cancleFollow", method = RequestMethod.POST)
+	public void cancleFollow(int customer_seq, int following_seq) {
+		Follow follow = new Follow();
+		follow.setCustomer_seq(customer_seq);
+		follow.setFollowing_seq(following_seq);
+		
+		dao.deleteFollow(follow);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/checkFollowing", method = RequestMethod.POST)
+	public int checkFollowing(int customer_seq, int following_seq) {
+		int result;
+		Follow follow = new Follow();
+		follow.setCustomer_seq(customer_seq);
+		follow.setFollowing_seq(following_seq);
+		
+		result = dao.checkFollowing(follow);
+		
+		
+		return result;
+	}
 
 }
 	

@@ -32,12 +32,31 @@
 			    slider = $('.bxslider').bxSlider({
 				    adaptiveHeight: true
 				});
+				
 
 			}); 
 
-			function openModal(feedNum){
+			function openModal(feedNum,customer_seq,following_seq){
 				var modalId = "#myModal"+feedNum;
 				$(modalId).modal("show");
+
+				$.ajax({
+					type : "POST",
+					url : "customer/checkFollowing",
+					data : {
+						customer_seq : customer_seq,
+						following_seq : following_seq
+					},
+					success : function(result){
+						if(result == 1){
+							$("#followBt"+feed_seq).css('background-color','#1fa881');
+							$("#followBt"+feed_seq).attr('onclick','following('+feed_seq+','+customer_seq+','+following_seq+')');
+						}else if(result == 0){
+							$("#followBt"+feed_seq).css('background-color','gray');
+							$("#followBt"+feed_seq).attr('onclick','cancleFollowing('+feed_seq+','+customer_seq+','+following_seq+')')
+						}
+					}
+				})
 
 	
 				var config = {
@@ -386,7 +405,7 @@
           <div class="cardbox-like">
 		   <ul style = "display : flex; justify-content : center">
 			<li><a href="" style = "padding-top : 6px;"><i class="fa fa-heart"></i><span> ${feed.likes }</span></a></li>
-		    <li><a href="" title="" class="com"><i class="fa fa-comments"></i></a> <a href = "" onclick = "openModal(${feed.feed_seq })" data-toggle="modal" style = "display : flex; justify-content : center"><span id = "commentsCount${feed.feed_seq}" class="span-last"> ${fn:length(feed.comments)}</span></a></li>
+		    <li><a href="" title="" class="com"><i class="fa fa-comments"></i></a> <a href = "" onclick = "openModal(${feed.feed_seq },${sessionScope.customer.customer_seq},${feed.customer.customer_seq})" data-toggle="modal" style = "display : flex; justify-content : center"><span id = "commentsCount${feed.feed_seq}" class="span-last"> ${fn:length(feed.comments)}</span></a></li>
 		   </ul>
           </div><!--/ cardbox-like -->			  
                 
@@ -438,7 +457,9 @@
              <strong><a href="">${feed.customer.nick }</a></strong>
              <br>
              <span>${feed.inputdate }</span><br/>
-		     <a href="" class="kafe kafe-btn-mint-small"><i class="fa fa-check-square"></i> Following</a>
+             <c:if test="${sessionScope.customer.customer_seq != feed.customer.customer_seq}">
+            	<a href="javascript:void(0)" id = "followBt${feed.feed_seq}" onclick = "following(${feed.feed_seq},${sessionScope.customer.customer_seq},${feed.customer.customer_seq})" class="kafe kafe-btn-mint-small"><i class="fa fa-check-square"></i> Following</a> 
+             </c:if>
 		     <a href="javascript:void(0)" onclick = "showInputNumber(${feed.feed_seq })" class="kafe kafe-btn-mint-small"><i class="fas fa-envelope-open"></i>문자전송</a>
             </div><!--/ img-poster -->
             

@@ -6,6 +6,42 @@ $(document).ready(function(){
 	
 	
 })
+
+function following(feed_seq, customer_seq, following_seq){
+	$.ajax({
+		type : "POST",
+		url : "customer/follow",
+		data : {
+			follower_seq : customer_seq,
+			following_seq : following_seq
+		},
+		success : function(){
+			alert("팔로우 성공");
+			$("#followBt"+feed_seq).css('background-color','gray');
+			$("#followBt"+feed_seq).attr('onclick','cancleFollowing('+feed_seq+','+customer_seq+','+following_seq+')')
+		}
+	})
+	
+}
+
+function cancleFollowing(feed_seq, customer_seq, following_seq){
+	$.ajax({
+		type : "POST",
+		url : "customer/cancleFollow",
+		data : {
+			customer_seq : customer_seq,
+			following_seq : following_seq
+		},
+		success : function(){
+			alert("팔로우 취소");
+			$("#followBt"+feed_seq).css('background-color','#1fa881');
+			$("#followBt"+feed_seq).attr('onclick','following('+feed_seq+','+customer_seq+','+following_seq+')');
+		}
+	})
+}
+
+
+
 function showInputNumber(feed_seq){
 	$("#smsInput"+feed_seq).toggle();
 }
