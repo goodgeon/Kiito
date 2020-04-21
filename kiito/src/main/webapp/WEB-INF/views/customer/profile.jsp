@@ -81,7 +81,7 @@
 	   </div>
 
 	   <div class="p-2 nav-icon-lg dark-black">
-	   <a class="nav-icon" href="customer/profile"><em class="fa fa-user"></em>
+	   <a class="nav-icon" href="profile"><em class="fa fa-user"></em>
 		<span>Profile</span>
 	   </a>
 	   </div>
