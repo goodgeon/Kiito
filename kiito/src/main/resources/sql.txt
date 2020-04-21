@@ -98,8 +98,6 @@ CREATE TABLE FOLLOW (
 CREATE SEQUENCE follow_seq;
 
 
-
 CREATE SEQUENCE following_seq;
 
-drop table follow;
 

@@ -20,6 +20,7 @@
         <meta property="og:title" content="" />
         <meta property="og:url" content="" />
         <meta property="og:description" content="" />		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		
 		<!-- ==============================================
 		Favicons
@@ -55,20 +56,34 @@
      <!-- ==============================================
      Navigation Section
      =============================================== -->  
-     <header class="tr-header">
+          <header class="tr-header">
      <img alt="" src="../resources/login/images/bgimg4.png" class="main-img">
 		 <a class="navbar-brand" href="/kiito/home">KIITO</a>
       <nav class="navbar navbar-default">
-       <div class="container-fluid">
-	    <div class="navbar-header">
-	    
-		</div><!-- /.navbar-header -->
-		<div class="navbar-left">
-		 <div class="collapse navbar-collapse" id="navbar-collapse">
-		  <ul class="nav navbar-nav">
-		  </ul>
-		 </div>
-		</div><!-- /.navbar-left -->
+	  <div class="d-flex justify-content-between">
+	   <div class="p-2 nav-icon-lg mint-green">
+	   <a class="nav-icon" href="/kiito/home"><em class="fa fa-home"></em>
+		<span>Home</span>
+	   </a>
+	   </div>
+	   <div class="p-2 nav-icon-lg clean-black">
+	   <a class="nav-icon" href="feed/explore"><em class="fa fa-crosshairs"></em>
+		<span>Explore</span>
+	   </a>
+	   </div>
+	   <div class="p-2 nav-icon-lg dark-black">
+	   <a class="nav-icon" onclick = "writeBt()" style="cursor:pointer"><em class="fab fa-instagram"  ></em>
+		<span>Upload</span>
+	   </a>
+	   </div>
+
+	   <div class="p-2 nav-icon-lg dark-black">
+	   <a class="nav-icon" href="customer/profile"><em class="fa fa-user"></em>
+		<span>Profile</span>
+	   </a>
+	   </div>
+	  </div>
+
 		<div class="navbar-right">                          
 		 <ul class="nav navbar-nav">
 		   <li>
@@ -215,42 +230,10 @@
 		 
 		 </ul><!-- /.sign-in -->   
 		</div><!-- /.nav-right -->
-       </div><!-- /.container -->
       </nav><!-- /.navbar -->
-     </header><!-- Page Header -->
-  
-	 <!-- ==============================================
-	 Navbar Second Section
-	 =============================================== -->
-	<section class="nav-sec">
-	  <div class="d-flex justify-content-between">
-	   <div class="p-2 nav-icon-lg dark-black">
-	   <a class="nav-icon" href="/kiito/home"><em class="fa fa-home"></em>
-		<span>Home</span>
-	   </a>
-	   </div>
-	   <div class="p-2 nav-icon-lg mint-green">
-	   <a class="nav-icon" href="explore"><em class="fa fa-crosshairs"></em>
-		<span>Explore</span>
-	   </a>
-	   </div>
-	   <div class="p-2 nav-icon-lg dark-black">
-	    <a class="nav-icon" onclick = "writeBt()" style="cursor:pointer"><em class="fab fa-instagram"  ></em>
-		<span>Upload</span>
-	   </a>
-	   </div>
-	   <div class="p-2 nav-icon-lg clean-black">
-	   <a class="nav-icon" href="photo_stories.html"><em class="fa fa-align-left"></em>
-		<span>Stories</span>
-	   </a>
-	   </div>
-	   <div class="p-2 nav-icon-lg dark-black">
-	   <a class="nav-icon" href="/kiito/customer/profile"><em class="fa fa-user"></em>
-		<span>Profile</span>
-	   </a>
-	   </div>
-	  </div>
-	</section>	
+     </header><!-- Page Header --> 
+  		       <div class="container-fluid">
+       </div><!-- /.container -->
   
 	 <!-- ==============================================
 	 News Feed Section
