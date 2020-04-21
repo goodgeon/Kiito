@@ -186,6 +186,7 @@ public class CustomerController {
 			
 			dao.updateP(login_customer);			
 
+			session.removeAttribute("customer");
 			session.setAttribute("customer", login_customer);
 	
 		
