@@ -93,7 +93,7 @@ CREATE TABLE FOLLOW (
     follow_seq NUMBER PRIMARY KEY,
     customer_seq REFERENCES CUSTOMER(customer_seq),
     following_seq REFERENCES CUSTOMER(customer_seq),
-    UNIQUE(follow_seq,following_seq)
+    UNIQUE(customer_seq,following_seq)
 );
 
 CREATE SEQUENCE follow_seq;
