@@ -1,5 +1,7 @@
 package global.sesoc.kiito.dao;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -89,6 +91,15 @@ public class CustomerDAO {
 		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
 		mapper.updateP(login_customer);
 		
+	}
+
+	public ArrayList<Customer> getFollowingList(int customer_seq) {
+		ArrayList<Customer> list = null;
+		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		
+		list = mapper.getFollowingList(customer_seq);
+		
+		return list;
 	}
 
 }
