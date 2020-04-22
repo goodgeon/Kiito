@@ -70,7 +70,7 @@
 	   </a>
 	   </div>
 	   <div class="p-2 nav-icon-lg clean-black">
-	   <a class="nav-icon" href="feed/explore"><em class="fa fa-crosshairs"></em>
+	   <a class="nav-icon" href="/kiito/feed/explore"><em class="fa fa-crosshairs"></em>
 		<span>Explore</span>
 	   </a>
 	   </div>
@@ -211,7 +211,7 @@
 								<img src="resources/login/images/profileImg_null2.png" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
 			</c:if>
 			<c:if test="${sessionScope.customer.profileImg != null }">
-				<img src="${sessionScope.customer.profileImg }" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+				<img  src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>"  class="img-resonsive img-circle" width="25" height="25" alt="..."/>
 			</c:if>
 		   </span>
 		   <!-- hidden-xs hides the username on small devices so only the image appears. -->
@@ -257,7 +257,7 @@
 			<div class="user-info">			<!-- 	자기 프로필 -->
 			 <div class="image">
 		       <a href="#preview" data-toggle="modal" rel="modal:open">
-			   <img src="${sessionScope.customer.profileImg }" class="img-responsive img-circle" alt="User">	<br>	
+			   <img src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>" class="img-responsive img-circle" alt="User">	<br>	
 			   <span class="online-status online"></span>
 			  </a>
 			 </div>
@@ -631,7 +631,7 @@
 			      <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span> 786,286</span> </li>
 			  <li>
 			   <span class="thumb-xs">
-				<img class="img-responsive img-circle" src="../resources/assets/img/users/13.jpeg" alt="Image">
+				<img class="img-responsive img-circle" src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>"  alt="Image">
 			   </span>
 			   <div class="comment-body">
 				 <input class="form-control input-sm" type="text" placeholder="Write your comment...">
@@ -758,18 +758,43 @@
     <script type="text/javascript">
 
 
-    function changef(){
-    	var form = document.getElementById("hiddenF");
-    	var title1 = document.getElementById("title1").value;
-    	var contents1 = document.getElementById("contents1").value;
-    	var boardnum = document.getElementById("boardnum");
+    $(document).ready(function() {
+		$('#sub').on('click', submit1);
+	})
 
-    	title.value = title1
-    	contents.value=contents1
-    	boardnum.value = ${b.boardnum};
-    	form.submit();
-    }
-        
+	function submit1() {
+	
+    	var form = $('#changef')[0];
+        var formData = new FormData(form);
+
+		$.ajax({
+			url : 'changef',
+			type : 'POST',
+			data : formData,
+	        contentType : false,
+	        processData : false, 
+
+
+
+			success : function(a) {
+				if(a=="ok"){		
+					alert("수정성공");
+					location.reload();
+				
+				}
+				else{
+					alert("개씨발");}
+			
+				
+			},
+			error : function(o) {
+				alert("걍 에러")
+			}
+		});
+
+	}
+
+
 
     </script>
 
@@ -779,7 +804,7 @@
 		
 	<div id="preview" class="modal">
 
-		<form id = "changef" action = "changef" method = "POST" enctype="multipart/form-data" >
+		<form id = "changef" >
 	
     <p>
         <label for="image">Image:</label>
@@ -788,7 +813,7 @@
      
         
         
-        <input type="submit" value="submit" />
+        <input type="button" value="submit" id="sub"/>
         
     </p>
  

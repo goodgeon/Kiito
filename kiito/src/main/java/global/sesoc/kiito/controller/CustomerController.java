@@ -162,10 +162,12 @@ public class CustomerController {
 		return "customer/followers";}
 	
 	
+	@ResponseBody
 	@RequestMapping(value = "/changef", method = RequestMethod.POST)
-	public String changef(Pfile p,HttpSession session,MultipartFile upload) {
+	public String changef(HttpSession session,MultipartFile upload) {
 		
-		
+		 
+		 Pfile p = new Pfile();
 		 Customer login_customer = (Customer) session.getAttribute("customer");
 		 p.setCustomer_seq(login_customer.getCustomer_seq());
 		 
@@ -178,10 +180,10 @@ public class CustomerController {
 		}
 			
 			dao2.insertp(p);
-			String s = "C:\\boardfile\\";
+			//String s = "C:\\boardfile\\";
 			String ex = p.getSavedFilename();
-			String sex = s+ex;
-			login_customer.setProfileImg(sex);
+			//String sex = s+ex;
+			login_customer.setProfileImg(ex);
 			System.out.println(login_customer);
 			
 			dao.updateP(login_customer);			
@@ -189,9 +191,9 @@ public class CustomerController {
 			session.removeAttribute("customer");
 			session.setAttribute("customer", login_customer);
 	
+		String a = "ok";
 		
-		
-		return "customer/profile";
+		return a;
 	}
 	
 	@ResponseBody
