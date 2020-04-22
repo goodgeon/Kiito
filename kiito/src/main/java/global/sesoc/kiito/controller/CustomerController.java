@@ -197,6 +197,21 @@ public class CustomerController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "/editP", method = RequestMethod.POST)
+	public void editP(String nick,String pw,HttpSession session) {
+		
+		Customer c = new Customer();
+		c.setNick(nick);  c.setPw(pw);
+		
+		 Customer login_customer = (Customer) session.getAttribute("customer");
+		 
+		// p.setCustomer_seq(login_customer.getCustomer_seq());
+
+		
+		return;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "/follow", method = RequestMethod.POST)
 	public String follow(int follower_seq, int following_seq) {
 		Follow follow = new Follow();
@@ -242,6 +257,10 @@ public class CustomerController {
 		Customer customer = (Customer) session.getAttribute("customer");
 		return customer.getCustomer_seq();
 	}
+	
+	
+	
+
 
 }
 	

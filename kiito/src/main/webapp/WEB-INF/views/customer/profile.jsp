@@ -262,14 +262,14 @@
 			  </a>
 			 </div>
 		     <div class="detail">
-			  <h4>${sessionScope.customer.name }</h4><br>
-			  <small>@${sessionScope.customer.nick }</small>                        
+			  <h4>${sessionScope.customer.nick }</h4><br>
+		<%-- 	  <small>@${sessionScope.customer.nick }</small>     --%>                    
 			 </div>
 			 <div class="row">
 			  <div class="col-12">
-			   <a title="facebook" href="#" class=" waves-effect waves-block"><i class="fab fa-facebook"></i></a>
-			   <a title="twitter" href="#" class=" waves-effect waves-block"><i class="fab fa-twitter"></i></a>
-			   <a title="instagram" href="#" class=" waves-effect waves-block"><i class="fab fa-instagram"></i></a>
+			<!--    <a title="facebook" href="#" class=" waves-effect waves-block"><i class="fab fa-facebook"></i></a> -->
+			   <a title="개인정보수정" href="#editp" data-toggle="modal" rel="modal:open" class=" waves-effect waves-block"><i class="fab fa-twitter"></i></a>
+		<!-- 	   <a title="instagram" href="#" class=" waves-effect waves-block"><i class="fab fa-instagram"></i></a> -->
 			  </div>                                
 			 </div>
 			</div>
@@ -760,6 +760,8 @@
 
     $(document).ready(function() {
 		$('#sub').on('click', submit1);
+		$('#bt3').on('click',submit4);
+		$('#bt7').on('click',submit7);
 	})
 
 	function submit1() {
@@ -794,7 +796,32 @@
 
 	}
 
+    function submit4() {
+    	var pw = $('#password').val();  var p1 = $('#password1').val();  var nick = $('#nick').val();
+ 
+    	if (p != p1) {alert('비밀번호가 일치하지 않아요');return;}
+    	if (n.length < 2) {alert('닉네임을 다시 입력해주세요');return;}
 
+    	$.ajax({
+    		url : 'editP',
+    		type : 'POST',
+    		data : {
+    			nick : nick,
+    			pw : pw
+    },
+    	
+    		success : function() {
+    				alert("성공");
+    				location.reload();
+    		},
+    		error : function() {
+    			alert("실패")
+    		}
+    	});
+
+    	
+
+    }
 
     </script>
 
@@ -898,6 +925,41 @@
      
     }
     </script>
+    
+    
+    
+    
+ <!--    개인정보수정 -->
+    <div id="editp" class="modal">
+	<form id="editForm">
+		<table border=1>
+
+			<tr>
+				<th>PASSWORD</th>
+				<td><input type="password" name="password" id="password"
+					placeholder="비밀번호 입력"><br> <input type="password"
+					name="password1" id="password1" placeholder="비밀번호 다시 입력"></td>
+			</tr>
+			<tr>
+				<th>NICKNAME</th>
+				<td><input type="text" name="nick" id="nick" value="${sessionScope.customer.nick }" ></td>
+			</tr>
+			
+	
+			<tr>
+				<th colspan="2"><input type="button" value="수정" id="bt3">   <input
+					type="reset" value="다시쓰기">    <input type="button" value="탈퇴" id="bt7"></th>
+			</tr>
+		</table>
+	</form>
+	
+		<div class="modal-meta-top">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+			 <span aria-hidden="true">×××××××××</span><span class="sr-only">Close</span>
+			</button>/ button</div> 
+
+
+</div>
 
 		
 		
