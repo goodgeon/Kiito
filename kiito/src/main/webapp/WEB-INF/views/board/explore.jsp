@@ -67,7 +67,7 @@
 	   </a>
 	   </div>
 	   <div class="p-2 nav-icon-lg clean-black">
-	   <a class="nav-icon" href="feed/explore"><em class="fa fa-crosshairs"></em>
+	   <a class="nav-icon" href="explore"><em class="fa fa-crosshairs"></em>
 		<span>Explore</span>
 	   </a>
 	   </div>
@@ -78,7 +78,7 @@
 	   </div>
 
 	   <div class="p-2 nav-icon-lg dark-black">
-	   <a class="nav-icon" href="customer/profile"><em class="fa fa-user"></em>
+	   <a class="nav-icon" href="/kiito/customer/profile"><em class="fa fa-user"></em>
 		<span>Profile</span>
 	   </a>
 	   </div>
