@@ -258,8 +258,19 @@ public class CustomerController {
 		return customer.getCustomer_seq();
 	}
 	
-	
-	
+
+	@ResponseBody
+	@RequestMapping(value = "/getFollowList", method = RequestMethod.GET)
+	public ArrayList<Customer> getFollowList(HttpSession session) {
+		ArrayList<Customer> list = null;
+		
+		Customer customer = (Customer) session.getAttribute("customer");
+		int customer_seq = customer.getCustomer_seq();
+		
+		list = dao.getFollowingList(customer_seq);
+		
+		return list;
+	}
 
 
 }

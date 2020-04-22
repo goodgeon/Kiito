@@ -19,6 +19,12 @@
 		where customer_seq = #{customer_seq}
 	</select>
 	
+	<select id="getFollowingList" parameterType="int" resultType="customer">
+		select c.customer_seq, c.email, c.pw, c.name, c.profileImg, c.customer_type
+		from customer c, follow f
+		where c.customer_seq = f.customer_seq
+	</select>
+	
 	<select id="getCustomer" parameterType = "int" resultType="customer" resultMap="customerMap">
 		select *
 		from customer

@@ -1,5 +1,7 @@
 package global.sesoc.kiito.dao;
 
+import java.util.ArrayList;
+
 import global.sesoc.kiito.vo.Customer;
 import global.sesoc.kiito.vo.Follow;
 
@@ -23,6 +25,6 @@ public interface CustomerMapper {
 
 	void updateP(Customer login_customer);
 
-
+	ArrayList<Customer> getFollowingList(int customer_seq);
 
 }

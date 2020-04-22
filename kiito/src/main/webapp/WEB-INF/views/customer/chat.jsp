@@ -47,16 +47,39 @@
 		<![endif]-->	
 		
 		<!-- socket.io -->
-        <script src="http://192.168.0.8:82/socket.io/socket.io.js"></script>
+        <script src="http://localhost:82/socket.io/socket.io.js"></script>
         <script>
             $(document).ready(function(){
-                var socket = io("http://192.168.0.8:82");
+                var socket = io("http://localhost:82");
                 var text = '';
                 var customer_seq = '';
                 
                 $.get('getCustomer_seq', function(data){
                     customer_seq = data;
-                })
+                });
+                
+                $.get('getFollowList', function(list){
+					var followingList = list;
+					console.log(followingList);
+					var str = '';
+					$.each(followingList, function(index,item){
+						str = '';
+						
+						str += '<li class="active">';
+						str += '<div class="user-message-details">';
+						str += '<div class="user-message-img">';
+						str += '<img src="../resources/assets/img/users/6.jpg" class="img-responsive img-circle" alt="">';
+						str += '<span class="user-online"></span></div>';
+						str += '<div class="user-message-info">';
+						str += '<h4>'+item.name+'</h4>';
+						str += '<p>Lorem ipsum dolor ...</p>';
+						str += '<span class="time-posted">1:55 PM</span></div>';
+						str += '<span class="message-notification">1</span>';
+						str += '</div></li>';
+						
+						$("#chat-list").append(str);
+					})
+                });
                 
                 console.log(customer_seq);
                 $("#msg").on('keydown',function(key){
@@ -130,7 +153,7 @@
 		  <span class="icon-bar"></span>
 		  <span class="icon-bar"></span>
 		 </button>
-		 <a class="navbar-brand" href="index.html"><i class="fab fa-instagram"></i> Fluffs</a>
+		 <a class="navbar-brand" href="index.html"><i class="fab fa-instagram"></i> KIITO</a>
 		</div><!-- /.navbar-header -->
 		<div class="navbar-left">
 		 <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -293,7 +316,7 @@
 	<section class="nav-sec">
 	  <div class="d-flex justify-content-between">
 	   <div class="p-2 nav-icon-lg dark-black">
-	   <a class="nav-icon" href="photo_home.html"><em class="fa fa-home"></em>
+	   <a class="nav-icon" href="/kiito/home"><em class="fa fa-home"></em>
 		<span>Home</span>
 	   </a>
 	   </div>
@@ -345,8 +368,8 @@
 			</div><!--/ message-header-->
 								
 			<div class="messages-list">
-			  <ul>
-			   <li class="active">
+			  <ul id = "chat-list">
+			   <!-- <li class="active">
 				<div class="user-message-details">
 				 <div class="user-message-img">
 				  <img src="../resources/assets/img/users/6.jpg" class="img-responsive img-circle" alt="">
@@ -356,9 +379,9 @@
 				  <h4>Anthony McCartney</h4>
 				  <p>Lorem ipsum dolor ...</p>
 				  <span class="time-posted">1:55 PM</span>
-			     </div><!--/ user-message-info -->
+			     </div>/ user-message-info
 				 <span class="message-notification">1</span>
-			    </div><!--/ user-message-details -->
+			    </div>/ user-message-details
 			   </li>
 			   <li>
 				<div class="user-message-details">
@@ -369,8 +392,8 @@
 				  <h4>Sean Coleman</h4>
 				  <p>Lorem ipsum dolor ...</p>
 				  <span class="time-posted">1:55 PM</span>
-			     </div><!--/ user-message-info -->
-			    </div><!--/ user-message-details -->
+			     </div>/ user-message-info
+			    </div>/ user-message-details
 			   </li>
 			   <li>
 				<div class="user-message-details">
@@ -381,8 +404,8 @@
 				  <h4>Vanessa Wells</h4>
 				  <p>Lorem ipsum dolor ...</p>
 				  <span class="time-posted">1:55 PM</span>
-			     </div><!--/ user-message-info -->
-			    </div><!--/ user-message-details -->
+			     </div>/ user-message-info
+			    </div>/ user-message-details
 			   </li>
 			   <li>
 				<div class="user-message-details">
@@ -393,8 +416,8 @@
 				  <h4>Clifford Graham</h4>
 				  <p>Lorem ipsum dolor ...</p>
 				  <span class="time-posted">1:55 PM</span>
-			     </div><!--/ user-message-info -->
-			    </div><!--/ user-message-details -->
+			     </div>/ user-message-info
+			    </div>/ user-message-details
 			   </li>
 			   <li>
 				<div class="user-message-details">
@@ -405,8 +428,8 @@
 				  <h4>Grace Karen</h4>
 				  <p>Lorem ipsum dolor ...</p>
 				  <span class="time-posted">1:55 PM</span>
-			     </div><!--/ user-message-info -->
-			    </div><!--/ user-message-details -->
+			     </div>/ user-message-info
+			    </div>/ user-message-details
 			   </li>
 			   <li>
 				<div class="user-message-details">
@@ -417,8 +440,8 @@
 				  <h4>Alex Grantte</h4>
 				  <p>Lorem ipsum dolor ...</p>
 				  <span class="time-posted">1:55 PM</span>
-			     </div><!--/ user-message-info -->
-			    </div><!--/ user-message-details -->
+			     </div>/ user-message-info
+			    </div>/ user-message-details
 			   </li>
 			   <li>
 				<div class="user-message-details">
@@ -429,8 +452,8 @@
 				  <h4>Anna Morgan</h4>
 				  <p>Lorem ipsum dolor ...</p>
 				  <span class="time-posted">1:55 PM</span>
-			     </div><!--/ user-message-info -->
-			    </div><!--/ user-message-details -->
+			     </div>/ user-message-info
+			    </div>/ user-message-details
 			   </li>
 			   <li>
 				<div class="user-message-details">
@@ -441,8 +464,8 @@
 				  <h4>Francis Long</h4>
 				  <p>Lorem ipsum dolor ...</p>
 				  <span class="time-posted">1:55 PM</span>
-			     </div><!--/ user-message-info -->
-			    </div><!--/ user-message-details -->
+			     </div>/ user-message-info
+			    </div>/ user-message-details
 			   </li>
 			   <li>
 				<div class="user-message-details">
@@ -453,9 +476,9 @@
 				  <h4>Eleanor Harper</h4>
 				  <p>Lorem ipsum dolor ...</p>
 				  <span class="time-posted">1:55 PM</span>
-			     </div><!--/ user-message-info -->
-			    </div><!--/ user-message-details -->
-			   </li>
+			     </div>/ user-message-info
+			    </div>/ user-message-details
+			   </li> -->
 										
 			  </ul>
 			</div><!--/ messages-list -->
