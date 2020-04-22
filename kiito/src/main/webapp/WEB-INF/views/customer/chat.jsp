@@ -65,7 +65,7 @@
 					$.each(followingList, function(index,item){
 						str = '';
 						
-						str += '<li class="active">';
+						str += '<li id = "customer-list'+item.customer_seq+'" class="active" onclick = "sendTo('+item.customer_seq+')">';
 						str += '<div class="user-message-details">';
 						str += '<div class="user-message-img">';
 						str += '<img src="../resources/assets/img/users/6.jpg" class="img-responsive img-circle" alt="">';
@@ -80,16 +80,16 @@
 						$("#chat-list").append(str);
 					})
                 });
-                
-                console.log(customer_seq);
+
                 $("#msg").on('keydown',function(key){
                 	text = $("#msg").val();    
                     
                     var msg = {
 						sender : customer_seq,
 						text : text,
-						receiver : 83
+						receiver : receiver
                     }
+                    
                     if(key.keyCode == 13){
                     	//소켓에 send_msg라는 이벤트로 input에 #msg의 벨류를 담고 보내준다.
                         socket.emit("send_msg", msg);
@@ -132,6 +132,13 @@
                     }
                 });
             });
+
+            var receiver;
+
+            function sendTo(num){
+                console.log(num);
+				receiver = num;
+            }
             
 
         </script>

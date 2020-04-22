@@ -267,6 +267,8 @@ public class CustomerController {
 		Customer customer = (Customer) session.getAttribute("customer");
 		int customer_seq = customer.getCustomer_seq();
 		
+		System.out.println(customer_seq);
+		
 		list = dao.getFollowingList(customer_seq);
 		
 		return list;
