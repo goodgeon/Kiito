@@ -631,7 +631,7 @@
 			      <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span> 786,286</span> </li>
 			  <li>
 			   <span class="thumb-xs">
-				<img class="img-responsive img-circle" src="../resources/assets/img/users/13.jpeg" alt="Image">
+				<img class="img-responsive img-circle" src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>"  alt="Image">
 			   </span>
 			   <div class="comment-body">
 				 <input class="form-control input-sm" type="text" placeholder="Write your comment...">
@@ -779,7 +779,8 @@
 			success : function(a) {
 				if(a=="ok"){		
 					alert("수정성공");
-					$('#preview').hide();//??????
+					location.reload();
+				
 				}
 				else{
 					alert("개씨발");}
@@ -792,6 +793,8 @@
 		});
 
 	}
+
+
 
     </script>
 
