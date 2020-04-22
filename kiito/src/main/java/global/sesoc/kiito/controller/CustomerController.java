@@ -217,6 +217,24 @@ public class CustomerController {
 		return a;
 	}
 	
+	/* 탈퇴 */
+	@ResponseBody
+	@RequestMapping(value = "/deru", method = RequestMethod.POST)
+	public String deru(String pw,HttpSession session) {
+		
+		 Customer login_customer = (Customer) session.getAttribute("customer");
+		 int customer_seq = login_customer.getCustomer_seq();
+		 String o = "ok"; String n="no";
+		 
+		 if(login_customer.getPw().equals(pw)) {
+			 dao.deru(customer_seq);
+			 session.removeAttribute("customer");
+			 return o;}
+		 else
+			 return n;
+		 
+	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/follow", method = RequestMethod.POST)
 	public String follow(int follower_seq, int following_seq) {

@@ -761,8 +761,7 @@
     $(document).ready(function() {
 		$('#sub').on('click', submit1);
 		$('#bt3').on('click',submit4);
-		$('#bt7').on('click',submit7);
-	})
+		$('#bt7').on('click',submit7);})
 
 	function submit1() {
 	
@@ -775,58 +774,36 @@
 			data : formData,
 	        contentType : false,
 	        processData : false, 
-
-
-
-			success : function(a) {
-				if(a=="ok"){		
-					alert("수정성공");
-					location.reload();
-				
-				}
-				else{
-					alert("개씨발");}
-			
-				
-			},
-			error : function(a) {
-				alert("걍 에러")
-			}
-		});
-
-	}
+			success : function(a) {if(a=="ok"){alert("수정성공");location.reload();}
+				else{alert("개씨발");}},
+			error : function(a) {alert("걍 에러");}});}
 
     function submit4() {
     	var pw = $('#password').val();  var p1 = $('#password1').val();  var nick = $('#nick').val();
- 
     	if (pw != p1) {alert('비밀번호가 일치하지 않아요');return;}
     	if (nick.length < 2) {alert('닉네임을 다시 입력해주세요');return;}
-
     	$.ajax({
     		url : 'editP',
     		type : 'POST',
-    		data : {
-    			nick : nick,
-    			pw : pw
-    },
-    	
-    		success : function(a) {
-    			if(a=="ok"){		
-					alert("수정성공");
-					location.reload();
-				
-				}
-				else{
-					alert("개씨발");}
-    		},
-    		error : function(a) {
-    			alert("걍 에러")
-    		}
-    	});
+    		data : {nick : nick,pw : pw},
+    		success : function(a) {if(a=="ok"){alert("수정성공");location.reload();}
+				else{alert("개씨발");}},
+    		error : function(a) {alert("걍 에러");}});}
 
-    	
+    function submit7(){
 
-    }
+    	var pw = $('#password').val(); var p1 = $('#password1').val();
+    	if (pw.length <1 || p1.length<1 || pw != p1) {alert('비밀번호 제대로 입력해주세요.');return;}
+
+    	$.ajax({
+    		url:'deru',
+    		type:'POST',
+    		data:{pw:pw},
+    		dataType:'text',
+    		success : function(e){
+    			if(e=="ok"){
+    				alert("탈퇴성공");location.href="/kiito";}else{alert("다시입력해주세요");};},
+    		error : function(n){alert("걍오류")}})}
 
     </script>
 

@@ -29,4 +29,6 @@ public interface CustomerMapper {
 
 	void updateC(Customer c);
 
+	void deru(int customer_seq);
+
 }

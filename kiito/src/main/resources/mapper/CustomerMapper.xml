@@ -107,21 +107,24 @@
 
 		where customer_seq like #{customer_seq}
 
-
 	</update>
 	
 	<!-- <프로필 나머지 업데이트 -->
 	<update id="updateC" parameterType="customer">
 
 		update customer set
-
-  			 nick=#{nick}, 
- 			 pw=#{pw}
-		 
-
+		
+		<if test="pw != null and pw != ''">		<!-- 빈칸을 해주기.!!!!!!!!!!!!!!! -->
+			pw=#{pw},
+		</if>
+  			 nick=#{nick}
 		where customer_seq like #{customer_seq}
 
-
 	</update>
+	
+<!-- 	탈퇴 -->
+<delete id="deru" parameterType="int">
+delete from customer where customer_seq like #{customer_seq}
+</delete>
 
 </mapper>

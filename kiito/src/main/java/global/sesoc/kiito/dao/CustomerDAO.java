@@ -114,4 +114,17 @@ public class CustomerDAO {
 		
 	}
 
+
+	
+
+
+
+	/* 탈퇴 */
+	public void deru(int customer_seq) {
+		
+		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		mapper.deru(customer_seq);
+		
+	}
+
 }
