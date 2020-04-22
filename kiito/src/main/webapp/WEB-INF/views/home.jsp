@@ -530,7 +530,7 @@
 			      <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span id = "modalCommentsCount${feed.feed_seq }"> </span> </li>
 			  <li>
 			   <span class="thumb-xs">
-				<img class="img-responsive img-circle" src="${sessionScope.customer.profileImg }" alt="Image">
+				<img class="img-responsive img-circle"  src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>"  alt="Image">
 			   </span>
 			   <div class="comment-body">
 			   	<div id = "commentForm">

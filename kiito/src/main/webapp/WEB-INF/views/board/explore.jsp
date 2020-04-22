@@ -208,7 +208,7 @@
 								<img src="resources/login/images/profileImg_null2.png" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
 			</c:if>
 			<c:if test="${sessionScope.customer.profileImg != null }">
-				<img src="${sessionScope.customer.profileImg }" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+				<img src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>"  class="img-resonsive img-circle" width="25" height="25" alt="..."/>
 			</c:if>
 		   </span>
 		   <!-- hidden-xs hides the username on small devices so only the image appears. -->
@@ -623,7 +623,7 @@
 			      <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span> 786,286</span> </li>
 			  <li>
 			   <span class="thumb-xs">
-				<img class="img-responsive img-circle" src="assets/img/users/13.jpeg" alt="Image">
+				<img class="img-responsive img-circle" src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>"  alt="Image">
 			   </span>
 			   <div class="comment-body">
 				 <input class="form-control input-sm" type="text" placeholder="Write your comment...">
