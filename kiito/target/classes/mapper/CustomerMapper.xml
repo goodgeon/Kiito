@@ -81,7 +81,7 @@
 		where customer_seq = #{customer_seq} and following_seq = #{following_seq}
 	</delete>
 	
-	<select id="checkFollowing" parameterType="follow">
+	<select id="checkFollowing" parameterType="follow" resultType="follow">
 		select *
 		from follow
 		where customer_seq = #{customer_seq} and following_seq = #{following_seq}

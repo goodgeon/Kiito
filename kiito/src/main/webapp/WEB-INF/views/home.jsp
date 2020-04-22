@@ -19,11 +19,13 @@
         <meta name="keywords" content="" />
         <meta property="og:title" content="" />
         <meta property="og:url" content="" />
-        <meta property="og:description" content="" />		
+        <meta property="og:description" content="" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        
         
         <!-- bxSlider -->
 		  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		  
 		  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 		  <script src = "resources/modal/js/modal.js"></script>	
 		  <script>
@@ -49,11 +51,13 @@
 					},
 					success : function(result){
 						if(result == 1){
-							$("#followBt"+feed_seq).css('background-color','#1fa881');
-							$("#followBt"+feed_seq).attr('onclick','following('+feed_seq+','+customer_seq+','+following_seq+')');
+							$("#followBt"+feedNum).css('background-color','#1fa881');
+							$("#followBt"+feedNum).attr('onclick','following('+feedNum+','+customer_seq+','+following_seq+')');
+							$("#followSpan"+feedNum).text("FOLLOW");
 						}else if(result == 0){
-							$("#followBt"+feed_seq).css('background-color','gray');
-							$("#followBt"+feed_seq).attr('onclick','cancleFollowing('+feed_seq+','+customer_seq+','+following_seq+')')
+							$("#followBt"+feedNum).css('background-color','gray');
+							$("#followBt"+feedNum).attr('onclick','cancleFollowing('+feedNum+','+customer_seq+','+following_seq+')');
+							$("#followSpan"+feedNum).text("UNFOLLOW");
 						}
 					}
 				})
@@ -256,7 +260,7 @@
 			   <div class="slimScrollRail" style="width: 8px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51) none repeat scroll 0% 0%; opacity: 0.2; z-index: 90; right: 1px;"></div>
 			  </div><!--/ slimscroll-->
 			 </div> <!--/ slimScrollDiv-->
-			 <a href="photo_chat.html" class="dropdown-item text-center notify-all">
+			 <a href="customer/chat" class="dropdown-item text-center notify-all">
 			  View all <i class="fa fa-arrow-right"></i>
 			 </a>
             </div><!--/ dropdown-menu-->
@@ -458,7 +462,7 @@
              <br>
              <span>${feed.inputdate }</span><br/>
              <c:if test="${sessionScope.customer.customer_seq != feed.customer.customer_seq}">
-            	<a href="javascript:void(0)" id = "followBt${feed.feed_seq}" onclick = "following(${feed.feed_seq},${sessionScope.customer.customer_seq},${feed.customer.customer_seq})" class="kafe kafe-btn-mint-small"><i class="fa fa-check-square"></i> Following</a> 
+            	<a href="javascript:void(0)" id = "followBt${feed.feed_seq}" onclick = "following(${feed.feed_seq},${sessionScope.customer.customer_seq},${feed.customer.customer_seq})" class="kafe kafe-btn-mint-small"><i class="fa fa-check-square"></i> <span id="followSpan${feed.feed_seq }" style = "color : white;">Following</span></a> 
              </c:if>
 		     <a href="javascript:void(0)" onclick = "showInputNumber(${feed.feed_seq })" class="kafe kafe-btn-mint-small"><i class="fas fa-envelope-open"></i>문자전송</a>
             </div><!--/ img-poster -->

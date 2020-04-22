@@ -228,6 +228,18 @@ public class CustomerController {
 		
 		return result;
 	}
+	
+	@RequestMapping(value = "/chat", method = RequestMethod.GET)
+	public String chat() {
+		return "customer/chat";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getCustomer_seq", method = RequestMethod.GET)
+	public int getCustomer_seq(HttpSession session) {
+		Customer customer = (Customer) session.getAttribute("customer");
+		return customer.getCustomer_seq();
+	}
 
 }
 	

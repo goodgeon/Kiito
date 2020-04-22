@@ -18,7 +18,8 @@ function following(feed_seq, customer_seq, following_seq){
 		success : function(){
 			alert("팔로우 성공");
 			$("#followBt"+feed_seq).css('background-color','gray');
-			$("#followBt"+feed_seq).attr('onclick','cancleFollowing('+feed_seq+','+customer_seq+','+following_seq+')')
+			$("#followBt"+feed_seq).attr('onclick','cancleFollowing('+feed_seq+','+customer_seq+','+following_seq+')');
+			$("#followSpan"+feed_seq).text("UNFOLLOW");
 		}
 	})
 	
@@ -36,6 +37,7 @@ function cancleFollowing(feed_seq, customer_seq, following_seq){
 			alert("팔로우 취소");
 			$("#followBt"+feed_seq).css('background-color','#1fa881');
 			$("#followBt"+feed_seq).attr('onclick','following('+feed_seq+','+customer_seq+','+following_seq+')');
+			$("#followSpan"+feed_seq).text("FOLLOW");
 		}
 	})
 }

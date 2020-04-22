@@ -1959,10 +1959,11 @@ a.navbar-brand:hover {
 .convo-box.pull-right .convo-area {
  padding-left: 0;
  padding-right: 85px;
+ width : 100%;
 }
 .convo-area {
  float: left;
- width: auto;
+ width: 100%;
  padding-left: 85px;
 }
 .convo-message {
@@ -1976,7 +1977,8 @@ a.navbar-brand:hover {
 }
 .convo-message > p {
  float: right;
- width: 60%;
+ width: auto;
+ max-width : 60%;
  background-color: #0fc19e;
  font-family: 'Abhaya Libre', serif;	
  color: #848484;
@@ -2047,6 +2049,18 @@ a.navbar-brand:hover {
  color: #beced7;
  width: 80%;
 }
+
+.type_messages .input-field input[type=text] {
+ margin: 0;
+ outline: none;
+ resize: none;
+ border: 0;
+ box-shadow: none;
+ color: #beced7;
+ width: 80%;
+ height : 59px;
+}
+
 .type_messages .input-field .imoji {
  position: absolute;
  top: 2px;
