@@ -27,4 +27,6 @@ public interface CustomerMapper {
 
 	ArrayList<Customer> getFollowingList(int customer_seq);
 
+	void updateC(Customer c);
+
 }

@@ -98,12 +98,26 @@
 		where customer_seq = #{customer_seq} and following_seq = #{following_seq}
 	</select>
 	
-	
+<!-- 	프로필 사진 업데이트 -->
 	<update id="updateP" parameterType="customer">
 
 		update customer set
 
 		 profileImg=#{profileImg}
+
+		where customer_seq like #{customer_seq}
+
+
+	</update>
+	
+	<!-- <프로필 나머지 업데이트 -->
+	<update id="updateC" parameterType="customer">
+
+		update customer set
+
+  			 nick=#{nick}, 
+ 			 pw=#{pw}
+		 
 
 		where customer_seq like #{customer_seq}
 

@@ -216,7 +216,7 @@
 		   </span>
 		   <!-- hidden-xs hides the username on small devices so only the image appears. -->
 		   <span class="hidden-xs">
-			${sessionScope.customer.name }
+			${sessionScope.customer.nick }
 		   </span>
 		  </a>
 		  <div class="dropdown-menu w dropdown-menu-scale pull-right">
@@ -789,7 +789,7 @@
 			
 				
 			},
-			error : function(o) {
+			error : function(a) {
 				alert("걍 에러")
 			}
 		});
@@ -799,8 +799,8 @@
     function submit4() {
     	var pw = $('#password').val();  var p1 = $('#password1').val();  var nick = $('#nick').val();
  
-    	if (p != p1) {alert('비밀번호가 일치하지 않아요');return;}
-    	if (n.length < 2) {alert('닉네임을 다시 입력해주세요');return;}
+    	if (pw != p1) {alert('비밀번호가 일치하지 않아요');return;}
+    	if (nick.length < 2) {alert('닉네임을 다시 입력해주세요');return;}
 
     	$.ajax({
     		url : 'editP',
@@ -810,12 +810,17 @@
     			pw : pw
     },
     	
-    		success : function() {
-    				alert("성공");
-    				location.reload();
+    		success : function(a) {
+    			if(a=="ok"){		
+					alert("수정성공");
+					location.reload();
+				
+				}
+				else{
+					alert("개씨발");}
     		},
-    		error : function() {
-    			alert("실패")
+    		error : function(a) {
+    			alert("걍 에러")
     		}
     	});
 

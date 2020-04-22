@@ -198,17 +198,23 @@ public class CustomerController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/editP", method = RequestMethod.POST)
-	public void editP(String nick,String pw,HttpSession session) {
+	public String editP(String nick,String pw,HttpSession session) {
 		
-		Customer c = new Customer();
-		c.setNick(nick);  c.setPw(pw);
 		
 		 Customer login_customer = (Customer) session.getAttribute("customer");
+		 Customer c = new Customer();
+		 c.setNick(nick);  c.setPw(pw); c.setCustomer_seq(login_customer.getCustomer_seq());
+		 c.setEmail(login_customer.getEmail()); c.setName(login_customer.getName()); c.setProfileImg(login_customer.getProfileImg());
 		 
+		 dao.updateC(c);
+		 	session.removeAttribute("customer");
+			session.setAttribute("customer", c);
+	
+		 String a ="ok";
 		// p.setCustomer_seq(login_customer.getCustomer_seq());
 
 		
-		return;
+		return a;
 	}
 	
 	@ResponseBody

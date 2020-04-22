@@ -102,4 +102,16 @@ public class CustomerDAO {
 		return list;
 	}
 
+
+
+	/* 프로필 수정 */
+	public void updateC(Customer c) {
+		
+		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		mapper.updateC(c);
+		
+		
+		
+	}
+
 }
