@@ -139,10 +139,13 @@ public class CustomerController {
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String profile(HttpSession session,Model model) {
 		
-		ArrayList<Feed> ff = dao1.feedList();
+		 Customer login_customer = (Customer) session.getAttribute("customer");
+		 int customer_seq = login_customer.getCustomer_seq();
+		 ArrayList<Feed> ff1 = dao1.feedList1(customer_seq);
+		//ArrayList<Feed> ff = dao1.feedList();
 		
 		
-		model.addAttribute("feed",ff);
+		model.addAttribute("feed",ff1);
 		
 		ArrayList<Hashtag> hashtagList = hashtagdao.getList();
 		//System.out.println(hashtagList);
@@ -151,8 +154,7 @@ public class CustomerController {
 		ArrayList<ImageFile> imageList = imageFileDao.getList();
 		model.addAttribute("imageFile", imageList);
 		
-		Customer c = (Customer) session.getAttribute("customer");
-		int customer_seq = c.getCustomer_seq();
+
 		int cf = dao1.countF(customer_seq);
 		model.addAttribute("countf",cf);
 		

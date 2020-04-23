@@ -1,11 +1,4 @@
-$(document).ready(function(){
-	/*$("#commentSubmit").on('click', function(feed_seq, customer_seq){
-		console.log(feed_seq);
-		
-	})*/
-	
-	
-})
+
 
 function following(feed_seq, customer_seq, following_seq){
 	$.ajax({

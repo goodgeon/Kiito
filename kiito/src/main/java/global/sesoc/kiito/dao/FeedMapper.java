@@ -19,6 +19,8 @@ public interface FeedMapper {
 
 	int countF(int customer_seq);
 
+	ArrayList<Feed> feedList1(int customer_seq);
+
 
 
 }

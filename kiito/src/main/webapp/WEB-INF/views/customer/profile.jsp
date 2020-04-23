@@ -20,7 +20,50 @@
         <meta property="og:title" content="" />
         <meta property="og:url" content="" />
         
-        
+          <!-- bxSlider -->
+		  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+		  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+		  <script src = "../resources/modal/js/modal.js"></script>	
+		  <script>
+		  	var slider = '';
+			 /* $(document).ready(function(){
+			    slider = $('.bxslider').bxSlider({
+				    adaptiveHeight: true
+				});
+				
+
+			}); 
+ */
+			function openModal(feedNum,customer_seq,following_seq){
+				var modalId = "#myModal"+feedNum;
+				$(modalId).modal("show");
+
+			
+	
+				var config = {
+					adaptiveHeight : true
+				}
+	
+				var ulId = "#sliderId" + feedNum;
+
+				sliderModal = $(ulId).bxSlider({
+					adaptiveHeight : true
+			  	});
+
+			  	//sliderModal.reloadSlider();
+	
+				 setTimeout(function(){
+					sliderModal.reloadSlider(config); 
+				}, 300); 
+
+				getCommentList(feedNum);
+					 
+			}
+				  	
+		  </script>
+		  
+		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		
         
         
         
@@ -300,7 +343,7 @@
 		  <div class="col-lg-6">
 		  
 		     
-			 <a href="#myModal" data-toggle="modal">
+			 <a href="" data-toggle="modal" onclick = "openModal(${feed.feed_seq },${sessionScope.customer.customer_seq},${feed.customer.customer_seq})" >
 			 <div class="explorebox" 
 			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/6.jpg') no-repeat;
 					  background-size: cover;
@@ -321,136 +364,23 @@
 			 	
 		  </div>
 		 </c:forEach> 
-	<!-- 	  <div class="col-lg-6">
-			 <a href="#myModal" data-toggle="modal">
-			 <div class="explorebox" 
-			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/9.jpg') no-repeat;
-					  background-size: cover;
-					  background-position: center center;
-					  -webkit-background-size: cover;
-					  -moz-background-size: cover;
-					  -o-background-size: cover;">
-			  <div class="explore-top">
-			   <div class="explore-like"><i class="fa fa-heart"></i> <span>624</span></div>
-			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-			  </div>		  
-			 </div>
-			 </a>
-		  </div> -->
+	
 		  
 		 </div><!--/ row -->
 		 
 		 <div class="row">
 		 
-		<!--   <div class="col-lg-6">
-			 <a href="#myModal" data-toggle="modal">
-			 <div class="explorebox" 
-			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/32.jpg') no-repeat;
-					  background-size: cover;
-					  background-position: center center;
-					  -webkit-background-size: cover;
-					  -moz-background-size: cover;
-					  -o-background-size: cover;">
-			  <div class="explore-top">
-			   <div class="explore-like"><i class="fa fa-heart"></i> <span>12</span></div>
-			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-			  </div>		  
-			 </div>
-			 </a>
-		  </div> -->
+	
 		 
-	<!-- 	  <div class="col-lg-6">
-			 <a href="#myModal" data-toggle="modal">
-			 <div class="explorebox" 
-			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/30.jpg') no-repeat;
-					  background-size: cover;
-					  background-position: center center;
-					  -webkit-background-size: cover;
-					  -moz-background-size: cover;
-					  -o-background-size: cover;">
-			  <div class="explore-top">
-			   <div class="explore-like"><i class="fa fa-heart"></i> <span>1499</span></div>
-			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-			  </div>		  
-			 </div>
-			 </a>
-		  </div> -->
+
 		  
 		 </div><!--/ row -->
 		 
-		<!--  <div class="row">
-		 
-		  <div class="col-lg-6">
-			 <a href="#myModal" data-toggle="modal">
-			 <div class="explorebox" 
-			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/19.jpg') no-repeat;
-					  background-size: cover;
-					  background-position: center center;
-					  -webkit-background-size: cover;
-					  -moz-background-size: cover;
-					  -o-background-size: cover;">
-			  <div class="explore-top">
-			   <div class="explore-like"><i class="fa fa-heart"></i> <span>1742</span></div>
-			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-			  </div>		  
-			 </div>
-			 </a>
-		  </div>
-		 
-		  <div class="col-lg-6">
-			 <a href="#myModal" data-toggle="modal">
-			 <div class="explorebox" 
-			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/8.jpg') no-repeat;
-					  background-size: cover;
-					  background-position: center center;
-					  -webkit-background-size: cover;
-					  -moz-background-size: cover;
-					  -o-background-size: cover;">
-			  <div class="explore-top">
-			   <div class="explore-like"><i class="fa fa-heart"></i> <span>1269</span></div>
-			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-			  </div>		  
-			 </div>
-			 </a>
-		  </div>
-		  
-		 </div>/ row -->
+	
 		 
 		 <div class="row">
 		 
-		<!--   <div class="col-lg-6">
-			 <a href="#myModal" data-toggle="modal">
-			 <div class="explorebox" 
-			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/36.jpg') no-repeat;
-					  background-size: cover;
-					  background-position: center center;
-					  -webkit-background-size: cover;
-					  -moz-background-size: cover;
-					  -o-background-size: cover;">
-			  <div class="explore-top">
-			   <div class="explore-like"><i class="fa fa-heart"></i> <span>12456</span></div>
-			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-			  </div>		  
-			 </div>
-			 </a>
-		  </div> -->
-		 
-	<!-- 	  <div class="col-lg-6">
-			 <a href="#myModal" data-toggle="modal">
-			 <div class="explorebox" 
-			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/25.jpg') no-repeat;
-					  background-size: cover;
-					  background-position: center center;
-					  -webkit-background-size: cover;
-					  -moz-background-size: cover;
-					  -o-background-size: cover;">
-			  <div class="explore-top">
-			   <div class="explore-like"><i class="fa fa-heart"></i> <span>10945</span></div>
-			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-			  </div>		  
-			 </div>
-			 </a>
-		  </div> -->
+	
 		  
 		 </div><!--/ row -->
 		
@@ -555,7 +485,7 @@
 	 <!-- ==============================================
 	 Modal Section
 	 =============================================== -->
-     <div id="myModal" class="modal fade">
+       <div id="myModal${feed.feed_seq }" class="modal fade" style = "z-index : 99999;">
       <div class="modal-dialog">
        <div class="modal-content">
         <div class="modal-body">
@@ -563,7 +493,29 @@
          <div class="row">
 		 
           <div class="col-md-8 modal-image">
-           <img class="img-responsive" src="../resources/assets/img/posts/9.jpg" alt="Image"/>
+             <c:if test="${fn:length(feed.imageFile) > 0 || fn:length(feed.videoFile) > 0}">
+	           		<ul id = "sliderId${feed.feed_seq}" class = "bxsliderModal">
+			           	<c:forEach var ="i" items = "${feed.imageFile}">
+							<li >
+							<img class="img-responsive" src="<c:url value = '/img/${i.savedFilename}'/>" alt="Image">
+							</li>          	
+			   	       	</c:forEach>
+			   	       	
+			   	       	<c:forEach var ="i" items = "${feed.videoFile}">
+							<li>
+							<video width="500" height="500" src="<c:url value = '/img/${i.savedFilename}'/>" controls></video>
+							</li>          	
+			   	       	</c:forEach>
+					</ul>   	
+			   	</c:if>
+			   	<div id = "modalContents${feed.feed_seq }">${feed.contents }</div>
+			   	<div id = "modalCheckin${feed.feed_seq }">${feed.checkin }</div>
+			   	<div id = "modalCongestion${feed.feed_seq }">${feed.congestion }</div>
+          
+         
+          
+         <!--  
+           <img class="img-responsive" src="../resources/assets/img/posts/9.jpg" alt="Image"/> -->
           </div><!--/ col-md-8 -->
           <div class="col-md-4 modal-meta">
            <div class="modal-meta-top">
@@ -573,12 +525,23 @@
             <div class="img-poster clearfix">
              <a href=""><img class="img-responsive img-circle" src="${sessionScope.customer.profileImg }" alt="Image"/></a>
              <strong><a href="">${sessionScope.customer.nick }</a></strong>
-             <span>12 minutes ago</span><br/>
-		     <a href="" class="kafe kafe-btn-mint-small"><i class="fa fa-check-square"></i> Following</a>
+             <br>
+             <span>${feed.inputdate }</span><br/>
+			 <a href="javascript:void(0)" onclick = "showInputNumber(${feed.feed_seq })" class="kafe kafe-btn-mint-small"><i class="fas fa-envelope-open"></i>문자전송</a>
             </div><!--/ img-poster -->
+            
+              <div id = "smsInput${feed.feed_seq }" class = "smsInput">
+           		전화번호를 입력해 주세요 : 
+            	<div style = "display : flex;">
+            		<input id = "smsPhoneNumber${feed.feed_seq }" type = "text" class = "form-control input-sm">
+            		<button type = "button" class="kafe kafe-btn-mint-small" onclick = "sendSms(${feed.feed_seq })">전송</button>
+            	</div>
+            	
+            </div>
 			  
-            <ul class="img-comment-list">
-             <li>
+			  
+            <ul id = "commentListUl${feed.feed_seq }" class="img-comment-list">
+           <!--   <li>
               <div class="comment-img">
                <img src="../resources/assets/img/users/17.jpeg" class="img-responsive img-circle" alt="Image"/>
               </div>
@@ -586,7 +549,7 @@
                <strong><a href="">Anthony McCartney</a></strong>
                <p>Hello this is a test comment.</p> <span class="date sub-text">on December 5th, 2016</span>
               </div>
-             </li><!--/ li -->
+             </li>/ li
              <li>
               <div class="comment-img">
                <img src="../resources/assets/img/users/15.jpg" class="img-responsive img-circle" alt="Image"/>
@@ -595,7 +558,7 @@
                <strong><a href="">Vanessa Wells</a></strong>
                <p>Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p> <span>on December 5th, 2016</span>
               </div>
-             </li><!--/ li -->
+             </li>/ li
              <li>
               <div class="comment-img">
                <img src="../resources/assets/img/users/14.jpg" class="img-responsive img-circle" alt="Image"/>
@@ -604,7 +567,7 @@
                <strong><a href="">Sean Coleman</a></strong>
                <p class="">Hello this is a test comment.</p> <span class="date sub-text">on December 5th, 2016</span>
               </div>
-             </li><!--/ li -->
+             </li>/ li
              <li>
               <div class="comment-img">
                <img src="../resources/assets/img/users/13.jpeg" class="img-responsive img-circle" alt="Image"/>
@@ -613,7 +576,7 @@
                <strong><a href="">Anna Morgan</a></strong>
                <p class="">Hello this is a test comment.</p> <span class="date sub-text">on December 5th, 2016</span>
               </div>
-             </li><!--/ li -->
+             </li>/ li
              <li>
               <div class="comment-img">
                <img src="../resources/assets/img/users/3.jpg" class="img-responsive img-circle" alt="Image"/>
@@ -621,20 +584,23 @@
               <div class="comment-text">
                <strong><a href="">Allison Fowler</a></strong>
                <p class="">Hello this is a test comment.</p> <span class="date sub-text">on December 5th, 2016</span>
-              </div>
-             </li><!--/ li -->
+              </div> -->
+ 
             </ul><!--/ comment-list -->
 			  
-            <div class="modal-meta-bottom">
+        <div class="modal-meta-bottom">
 			 <ul>
-			  <li><a class="modal-like" href="#"><i class="fa fa-heart"></i></a><span class="modal-one"> 786,286</span> | 
-			      <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span> 786,286</span> </li>
+			  <li><a class="modal-like" href="#"><i class="fa fa-heart"></i></a><span class="modal-one"> ${feed.likes }</span> | 
+			      <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span id = "modalCommentsCount${feed.feed_seq }"> </span> </li>
 			  <li>
 			   <span class="thumb-xs">
-				<img class="img-responsive img-circle" src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>"  alt="Image">
+				<img class="img-responsive img-circle"  src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>"  alt="Image">
 			   </span>
 			   <div class="comment-body">
-				 <input class="form-control input-sm" type="text" placeholder="Write your comment...">
+			   	<div id = "commentForm">
+			   		<input id = "inputComment${feed.feed_seq}" class="form-control input-sm" type="text" name = "text" placeholder="Write your comment..." data-customer="${sessionScope.customer.customer_seq}" data-feed="${feed.feed_seq}">
+			   		<a href = "javacsript:void(0)" class="kafe kafe-btn-mint-small" id = "commentSubmit" onclick = "submitComment(${feed.feed_seq}, ${sessionScope.customer.customer_seq})">Submit</a>
+			   	</div>
 			   </div><!--/ comment-body -->	
               </li>				
              </ul>				
@@ -648,7 +614,7 @@
 		
        </div><!--/ modal-content -->
       </div><!--/ modal-dialog -->
-     </div><!--/ modal -->	 
+     </div><!--/ modal -->
 	   
      <!-- ==============================================
 	 Scripts

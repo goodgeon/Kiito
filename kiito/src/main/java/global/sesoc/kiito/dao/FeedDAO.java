@@ -56,6 +56,13 @@ public class FeedDAO {
 		
 	}
 
+	public ArrayList<Feed> feedList1(int customer_seq) {
+		
+		FeedMapper mapper = session.getMapper(FeedMapper.class);
+		ArrayList<Feed> r = mapper.feedList1(customer_seq);
+		return r;
+	}
+
 
 
 	
