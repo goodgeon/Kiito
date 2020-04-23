@@ -161,7 +161,7 @@ public class CustomerController {
 		
 		return "customer/followers";}
 	
-	
+	/* 사진수정 */
 	@ResponseBody
 	@RequestMapping(value = "/changef", method = RequestMethod.POST)
 	public String changef(HttpSession session,MultipartFile upload) {
@@ -196,6 +196,7 @@ public class CustomerController {
 		return a;
 	}
 	
+	/* 프로필수정 */
 	@ResponseBody
 	@RequestMapping(value = "/editP", method = RequestMethod.POST)
 	public String editP(String nick,String pw,HttpSession session) {
