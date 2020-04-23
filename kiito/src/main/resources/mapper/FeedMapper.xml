@@ -93,6 +93,13 @@
 	where f.feed_seq = #{feed_seq} and f.customer_seq = c.customer_seq
 	</select>
 	
+	<!-- 작성 글 갯수 -->
+	<select id="countF" parameterType="int" resultType="int">
+	select count(*) from feed
+	where customer_seq = #{customer_seq}
+	
+	</select>
+	
 	
 
 </mapper>

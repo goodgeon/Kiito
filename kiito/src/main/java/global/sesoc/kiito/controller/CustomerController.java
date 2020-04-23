@@ -137,7 +137,7 @@ public class CustomerController {
 	
 	
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
-	public String profile(HttpSession hh,Model model) {
+	public String profile(HttpSession session,Model model) {
 		
 		ArrayList<Feed> ff = dao1.feedList();
 		
@@ -151,6 +151,10 @@ public class CustomerController {
 		ArrayList<ImageFile> imageList = imageFileDao.getList();
 		model.addAttribute("imageFile", imageList);
 		
+		Customer c = (Customer) session.getAttribute("customer");
+		int customer_seq = c.getCustomer_seq();
+		int cf = dao1.countF(customer_seq);
+		model.addAttribute("countf",cf);
 		
 		return "customer/profile";}
 	

@@ -48,6 +48,14 @@ public class FeedDAO {
 		return feed;
 	}
 
+	public int countF(int customer_seq) {
+		
+		FeedMapper mapper = session.getMapper(FeedMapper.class);
+		int cf = mapper.countF(customer_seq);
+		return cf;
+		
+	}
+
 
 
 	

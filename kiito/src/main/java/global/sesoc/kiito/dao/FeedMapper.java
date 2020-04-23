@@ -17,6 +17,8 @@ public interface FeedMapper {
 
 	Feed getFeed(int feed_seq);
 
+	int countF(int customer_seq);
+
 
 
 }
