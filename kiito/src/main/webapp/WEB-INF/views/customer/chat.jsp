@@ -53,34 +53,29 @@
                 var socket = io("http://localhost:82");
                 var text = '';
                 var customer_seq = '';
+                var followingList;
                 
+                var chatList = [];
+
+                //로그인한 customer_seq
                 $.get('getCustomer_seq', function(data){
                     customer_seq = data;
                 });
-                
+
+                //로그인한 customer의 following list
                 $.get('getFollowList', function(list){
-					var followingList = list;
-					console.log(followingList);
-					var str = '';
-					$.each(followingList, function(index,item){
-						str = '';
-						
-						str += '<li id = "customer-list'+item.customer_seq+'" class="active" onclick = "sendTo('+item.customer_seq+')">';
-						str += '<div class="user-message-details">';
-						str += '<div class="user-message-img">';
-						str += '<img src="../resources/assets/img/users/6.jpg" class="img-responsive img-circle" alt="">';
-						str += '<span class="user-online"></span></div>';
-						str += '<div class="user-message-info">';
-						str += '<h4>'+item.name+'</h4>';
-						str += '<p>Lorem ipsum dolor ...</p>';
-						str += '<span class="time-posted">1:55 PM</span></div>';
-						str += '<span class="message-notification">1</span>';
-						str += '</div></li>';
-						
-						$("#chat-list").append(str);
-					})
+                    followingList = list;
+
+                    for(var i = 0; i<followingList.length; i++){
+                        chatList.push({customer1_seq : customer_seq, customer2_seq : followingList[i].customer_seq});
+                    } 
+
+                   
+					console.log(chatList);
+					setChatList(followingList);
                 });
 
+                
                 $("#msg").on('keydown',function(key){
                 	text = $("#msg").val();    
                     
@@ -101,7 +96,26 @@
 
             	//소켓 서버로 부터 send_msg를 통해 이벤트를 받을 경우 
                 socket.on('send_msg', function(msg) {
+                    
                     if(msg.sender == customer_seq){
+                        
+                    	$.get("getChatList", function(list){
+                            var flag = true;
+
+                            //로그인유저가 들어가있는 채팅검색
+    						for(var i = 0; i<list.length; i++){
+    							console.log(list[i].customer1_seq);
+    							if(customer_seq == list[i].customer1_seq || customer_seq == list[i].customer2_seq){
+    								flag = false;
+    							}
+    						}
+    						//없으면
+    						if(flag){
+    							$.post("insertChat", {customer1_seq : msg.sender, customer2_seq : msg.receiver}).done(function(){
+    								console.log("insert chat");
+    							})
+    						}
+                        })
                         
 	                    var str = '';
 	                    str += '<div class="convo-area">';
@@ -116,8 +130,40 @@
 	                    $('<div class = "convo-box pull-right"></div>').html(str).appendTo(".conversation-container");
 	                    $(".conversation-container").scrollTop($(document).height());
                 	}else if(msg.receiver == customer_seq){
-                    	console.log(msg.text);
+                    	var flag = true;
 
+                    	for(var i = 0; i<followingList.length; i++){
+                        	console.log(followingList[i].customer_seq);
+                        	
+                        	//팔로우 안돼있는사람한테 온 채팅
+							if(msg.sender == followingList[i].customer_seq){
+								
+								flag = false;
+								console.log("팔로우되잇는새끼");
+							}
+						};
+						
+						//팔로우 안돼잇으면
+                    	if(flag){
+                    		$.get("getCustomer", {customer_seq : msg.sender}).done(function(customer){
+                    			var str = '';
+            					str += '<li id = "customer-list'+customer.customer_seq+'" class="active" onclick = "sendTo('+customer.customer_seq+')">';
+            					str += '<div class="user-message-details">';
+            					str += '<div class="user-message-img">';
+            					str += '<img src="../'+customer.profileImg+'" class="img-responsive img-circle" alt="">';
+            					str += '<span class="user-online"></span></div>';
+            					str += '<div class="user-message-info">';
+            					str += '<h4>'+customer.name+'</h4>';
+            					str += '<p>'+msg.text+'</p>';
+            					str += '<span class="time-posted">1:55 PM</span></div>';
+            					str += '<span class="message-notification">1</span>';
+            					str += '</div></li>';
+            					
+            					$("#chat-list").append(str);
+							})
+                       	}
+						
+                		
 						var str = '';
 						str += '<div class="convo-area convo-left">';
 						str += '<div class="convo-message">';
@@ -138,9 +184,36 @@
             function sendTo(num){
                 console.log(num);
 				receiver = num;
-            }
-            
+            };
 
+            function setChatList(followingList){
+                
+            	var str = '';
+            	
+            	$.each(followingList, function(index,item){
+                	var customer;
+
+                	$.get("getFollowingCustomer",{customer_seq : item.customer_seq}).done(function(data){
+						console.log(data);
+						customer = data;
+						value = '/img/${i.savedFilename}'
+						str = '';
+						str += '<li id = "customer-list'+customer.customer_seq+'" class="active" onclick = "sendTo('+customer.customer_seq+')">';
+						str += '<div class="user-message-details">';
+						str += '<div class="user-message-img">';
+						str += '<img src="<c:url value = "/img/'+customer.profileImg+'"/>" class="img-responsive img-circle" alt="">';
+						str += '<span class="user-online"></span></div>';
+						str += '<div class="user-message-info">';
+						str += '<h4>'+item.name+'</h4>';
+						str += '<p>Lorem ipsum dolor ...</p>';
+						str += '<span class="time-posted">1:55 PM</span></div>';
+						str += '<span class="message-notification">1</span>';
+						str += '</div></li>';
+						
+						$("#chat-list").append(str);
+                    });
+				})
+            }
         </script>
 		
   </head>
@@ -291,7 +364,7 @@
 								<img src="../resources/login/images/profileImg_null2.png" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
 			</c:if>
 			<c:if test="${sessionScope.customer.profileImg != null }">
-				<img src="${sessionScope.customer.profileImg }" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+				<img src="<c:url value = '/img/${sessionScope.customer.profileImg}'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
 			</c:if>
 		   </span>
 		   <!-- hidden-xs hides the username on small devices so only the image appears. -->

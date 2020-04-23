@@ -2,6 +2,7 @@ package global.sesoc.kiito.dao;
 
 import java.util.ArrayList;
 
+import global.sesoc.kiito.vo.Chat;
 import global.sesoc.kiito.vo.Customer;
 import global.sesoc.kiito.vo.Follow;
 
@@ -30,5 +31,9 @@ public interface CustomerMapper {
 	void updateC(Customer c);
 
 	void deru(int customer_seq);
+
+	ArrayList<Chat> getChatList(int customer_seq);
+
+	void insertChat(Chat chat);
 
 }

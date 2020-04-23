@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import global.sesoc.kiito.vo.Chat;
 import global.sesoc.kiito.vo.Customer;
 import global.sesoc.kiito.vo.Follow;
 
@@ -124,6 +125,25 @@ public class CustomerDAO {
 		
 		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
 		mapper.deru(customer_seq);
+		
+	}
+
+
+
+	public ArrayList<Chat> getChatList(int customer_seq) {
+		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		ArrayList<Chat> list = null;
+		
+		list = mapper.getChatList(customer_seq);
+
+		return list;
+	}
+
+
+
+	public void insertChat(Chat chat) {
+		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		mapper.insertChat(chat);
 		
 	}
 
