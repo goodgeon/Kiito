@@ -15,6 +15,7 @@
 		<typeAlias type="global.sesoc.kiito.vo.Comments" alias="comments" />
 		<typeAlias type="global.sesoc.kiito.vo.Pfile" alias="pfile"/>
 		<typeAlias type="global.sesoc.kiito.vo.Follow" alias="follow"/>
+		<typeAlias type="global.sesoc.kiito.vo.Chat" alias="chat"/>
 	</typeAliases>
 
 

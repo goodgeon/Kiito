@@ -22,12 +22,15 @@
 	<select id="getFollowingList" parameterType="int" resultType="customer">
 		select c.customer_seq, c.email, c.pw, c.name, c.profileImg, c.customer_type
 		from customer c
-		where c.customer_seq = (
-		select following_seq 
+		where c.customer_seq in (
+		<!-- select following_seq 
 		from customer , follow 
-		where customer.customer_seq = follow.customer_seq and follow.customer_seq = #{customer_seq}
-		)
-
+		where customer.customer_seq = follow.customer_seq and follow.customer_seq = #{customer_seq} -->
+		select f.customer_seq
+		from follow f, (select * from follow where customer_seq = #{customer_seq}) A
+		where f.customer_seq = A.following_seq and f.following_seq = A.customer_seq
+		) 
+		
 	</select>
 	
 	<select id="getCustomer" parameterType = "int" resultType="customer" resultMap="customerMap">
@@ -122,9 +125,22 @@
 
 	</update>
 	
-<!-- 	탈퇴 -->
-<delete id="deru" parameterType="int">
-delete from customer where customer_seq like #{customer_seq}
-</delete>
+	<!-- 	탈퇴 -->
+	<delete id="deru" parameterType="int">
+	delete from customer where customer_seq like #{customer_seq}
+	</delete>
+
+	<select id="getChatList" parameterType="int" resultType="chat">
+		select *
+		from chat
+		where customer1_seq = #{customer_seq} OR customer2_seq = #{customer_seq}
+	</select>
+	
+	<insert id="insertChat" parameterType="chat">
+		insert into chat 
+		(chat_seq, customer1_seq, customer2_seq)
+		values
+		(chat_seq.nextval, #{customer1_seq}, #{customer2_seq})
+	</insert>
 
 </mapper>

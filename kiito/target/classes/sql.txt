@@ -97,7 +97,16 @@ CREATE TABLE FOLLOW (
 
 CREATE SEQUENCE follow_seq;
 
+create table chat (
+    chat_seq NUMBER PRIMARY KEY,
+    customer1_seq NUMBER REFERENCES customer(customer_seq) on delete cascade,
+    customer2_seq NUMBER REFERENCES customer(customer_seq) on delete cascade,
+    inputdate date default sysdate,
+    UNIQUE(customer1_seq, customer2_seq),
+    UNIQUE(customer2_seq, customer1_seq)
+);
 
-CREATE SEQUENCE following_seq;
+create sequence chat_seq;
+
 
 

@@ -31,6 +31,7 @@ import global.sesoc.kiito.dao.FeedDAO;
 import global.sesoc.kiito.dao.HashtagDAO;
 import global.sesoc.kiito.dao.ImageFileDAO;
 import global.sesoc.kiito.dao.PfileDAO;
+import global.sesoc.kiito.vo.Chat;
 import global.sesoc.kiito.vo.Customer;
 import global.sesoc.kiito.vo.Feed;
 import global.sesoc.kiito.vo.Follow;
@@ -292,11 +293,54 @@ public class CustomerController {
 		Customer customer = (Customer) session.getAttribute("customer");
 		int customer_seq = customer.getCustomer_seq();
 		
-		System.out.println(customer_seq);
-		
 		list = dao.getFollowingList(customer_seq);
 		
 		return list;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getChatList", method = RequestMethod.GET)
+	public ArrayList<Chat> getChatList(HttpSession session){
+		ArrayList<Chat> list = null;
+		
+		Customer customer = (Customer) session.getAttribute("customer");
+		//System.out.println(customer.toString());
+		if(customer != null) {
+			int customer_seq = customer.getCustomer_seq();
+			System.out.println("not null");
+			list = dao.getChatList(customer_seq);
+		}
+		
+		//System.out.println(customer_seq);
+		
+		return list;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/insertChat", method = RequestMethod.POST)
+	public void insertChat(int customer1_seq, int customer2_seq) {
+		Chat chat = new Chat();
+		chat.setCustomer1_seq(customer1_seq);
+		chat.setCustomer2_seq(customer2_seq);
+		
+		dao.insertChat(chat);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getCustomer", method = RequestMethod.GET)
+	public Customer getCustomer(int customer_seq) {
+		Customer customer = new Customer();
+		customer = dao.getCustomer(customer_seq);
+		
+		return customer;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getFollowingCustomer", method = RequestMethod.GET)
+	public Customer getFollowingCustomer(int customer_seq){
+		Customer customer = dao.getCustomer(customer_seq);
+		
+		return customer;
 	}
 
 
