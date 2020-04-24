@@ -142,6 +142,10 @@ public class CustomerController {
 		 Customer login_customer = (Customer) session.getAttribute("customer");
 		 int customer_seq = login_customer.getCustomer_seq();
 		 ArrayList<Feed> ff1 = dao1.feedList1(customer_seq);
+		 int a = ff1.get(0).getFeed_seq();
+		 System.out.println(a);
+		 
+		 
 		//ArrayList<Feed> ff = dao1.feedList();
 		
 		

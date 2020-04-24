@@ -19,21 +19,21 @@
         <meta name="keywords" content="" />
         <meta property="og:title" content="" />
         <meta property="og:url" content="" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         
           <!-- bxSlider -->
 		  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 		  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 		  <script src = "../resources/modal/js/modal.js"></script>	
 		  <script>
-		  	var slider = '';
-			 /* $(document).ready(function(){
+			var slider = '';
+			 $(document).ready(function(){
 			    slider = $('.bxslider').bxSlider({
 				    adaptiveHeight: true
 				});
-				
 
 			}); 
- */
+
 			function openModal(feedNum,customer_seq,following_seq){
 				var modalId = "#myModal"+feedNum;
 				$(modalId).modal("show");
@@ -343,14 +343,16 @@
 		  <div class="col-lg-6">
 		  
 		     
-			 <a href="" data-toggle="modal" onclick = "openModal(${feed.feed_seq },${sessionScope.customer.customer_seq},${feed.customer.customer_seq})" >
+			 <a href="" data-toggle="modal" onclick = "openModal(${s.feed_seq },${sessionScope.customer.customer_seq},${s.customer.customer_seq})" >
 			 <div class="explorebox" 
 			   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/6.jpg') no-repeat;
 					  background-size: cover;
 					  background-position: center center;
 					  -webkit-background-size: cover;
 					  -moz-background-size: cover;
-					  -o-background-size: cover;">
+					  -o-background-size: cover;
+					  background-image : url(/kiito/img/${s.imageFile[0].savedFilename})">
+				
 			  <div class="explore-top">
 			   <div class="explore-like"><i class="fa fa-heart"></i> <span>${s.likes}</span></div>
 			   			<p>체크인 : ${s.checkin}</p>
@@ -363,6 +365,97 @@
 			 
 			 	
 		  </div>
+		  
+		  <!-- ==============================================
+	 Modal Section
+	 =============================================== -->
+       <div id="myModal${s.feed_seq }" class="modal fade" style = "z-index : 99999;">
+      <div class="modal-dialog">
+       <div class="modal-content">
+        <div class="modal-body">
+		
+         <div class="row">
+		 
+          <div class="col-md-8 modal-image">
+             <c:if test="${fn:length(s.imageFile) > 0 || fn:length(s.videoFile) > 0}">
+	           		<ul id = "sliderId${s.feed_seq}" class = "bxsliderModal">
+			           	<c:forEach var ="i" items = "${s.imageFile}">
+							<li >
+							<img class="img-responsive" src="<c:url value = '/img/${i.savedFilename}'/>" alt="Image">
+							</li>          	
+			   	       	</c:forEach>
+			   	       	
+			   	       	<c:forEach var ="i" items = "${s.videoFile}">
+							<li>
+							<video width="500" height="500" src="<c:url value = '/img/${i.savedFilename}'/>" controls></video>
+							</li>          	
+			   	       	</c:forEach>
+					</ul>   	
+			   	</c:if>
+			   	<div id = "modalContents${s.feed_seq }">${s.contents }</div>
+			   	<div id = "modalCheckin${s.feed_seq }">${s.checkin }</div>
+			   	<div id = "modalCongestion${s.feed_seq }">${s.congestion }</div>
+          
+         
+          
+         <!--  
+           <img class="img-responsive" src="../resources/assets/img/posts/9.jpg" alt="Image"/> -->
+          </div><!--/ col-md-8 -->
+          <div class="col-md-4 modal-meta">
+           <div class="modal-meta-top">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+			 <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+			</button><!--/ button -->
+            <div class="img-poster clearfix">
+             <a href=""><img class="img-responsive img-circle" src="${sessionScope.customer.profileImg }" alt="Image"/></a>
+             <strong><a href="">${sessionScope.customer.nick }</a></strong>
+             <br>
+             <span>${s.inputdate }</span><br/>
+			 <a href="javascript:void(0)" onclick = "showInputNumber(${s.feed_seq })" class="kafe kafe-btn-mint-small"><i class="fas fa-envelope-open"></i>문자전송</a>
+            </div><!--/ img-poster -->
+            
+              <div id = "smsInput${s.feed_seq }" class = "smsInput">
+           		전화번호를 입력해 주세요 : 
+            	<div style = "display : flex;">
+            		<input id = "smsPhoneNumber${s.feed_seq }" type = "text" class = "form-control input-sm">
+            		<button type = "button" class="kafe kafe-btn-mint-small" onclick = "sendSms(${s.feed_seq })">전송</button>
+            	</div>
+            	
+            </div>
+			  
+			  
+            <ul id = "commentListUl${s.feed_seq }" class="img-comment-list">
+          
+ 
+            </ul><!--/ comment-list -->
+			  
+        <div class="modal-meta-bottom">
+			 <ul>
+			  <li><a class="modal-like" href="#"><i class="fa fa-heart"></i></a><span class="modal-one"> ${s.likes }</span> | 
+			      <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span id = "modalCommentsCount${s.feed_seq }"> </span> </li>
+			  <li>
+			   <span class="thumb-xs">
+				<img class="img-responsive img-circle"  src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>"  alt="Image">
+			   </span>
+			   <div class="comment-body">
+			   	<div id = "commentForm">
+			   		<input id = "inputComment${s.feed_seq}" class="form-control input-sm" type="text" name = "text" placeholder="Write your comment..." data-customer="${sessionScope.customer.customer_seq}" data-feed="${s.feed_seq}">
+			   		<a href = "javacsript:void(0)" class="kafe kafe-btn-mint-small" id = "commentSubmit" onclick = "submitComment(${s.feed_seq}, ${sessionScope.customer.customer_seq})">Submit</a>
+			   	</div>
+			   </div><!--/ comment-body -->	
+              </li>				
+             </ul>				
+            </div><!--/ modal-meta-bottom -->
+			  
+           </div><!--/ modal-meta-top -->
+          </div><!--/ col-md-4 -->
+		  
+         </div><!--/ row -->
+        </div><!--/ modal-body -->
+		
+       </div><!--/ modal-content -->
+      </div><!--/ modal-dialog -->
+     </div><!--/ modal -->
 		 </c:forEach> 
 	
 		  
@@ -482,144 +575,11 @@
 	  </div><!--/ container -->
 	 </section><!--/ profile -->
   
-	 <!-- ==============================================
-	 Modal Section
-	 =============================================== -->
-       <div id="myModal${feed.feed_seq }" class="modal fade" style = "z-index : 99999;">
-      <div class="modal-dialog">
-       <div class="modal-content">
-        <div class="modal-body">
-		
-         <div class="row">
-		 
-          <div class="col-md-8 modal-image">
-             <c:if test="${fn:length(feed.imageFile) > 0 || fn:length(feed.videoFile) > 0}">
-	           		<ul id = "sliderId${feed.feed_seq}" class = "bxsliderModal">
-			           	<c:forEach var ="i" items = "${feed.imageFile}">
-							<li >
-							<img class="img-responsive" src="<c:url value = '/img/${i.savedFilename}'/>" alt="Image">
-							</li>          	
-			   	       	</c:forEach>
-			   	       	
-			   	       	<c:forEach var ="i" items = "${feed.videoFile}">
-							<li>
-							<video width="500" height="500" src="<c:url value = '/img/${i.savedFilename}'/>" controls></video>
-							</li>          	
-			   	       	</c:forEach>
-					</ul>   	
-			   	</c:if>
-			   	<div id = "modalContents${feed.feed_seq }">${feed.contents }</div>
-			   	<div id = "modalCheckin${feed.feed_seq }">${feed.checkin }</div>
-			   	<div id = "modalCongestion${feed.feed_seq }">${feed.congestion }</div>
-          
-         
-          
-         <!--  
-           <img class="img-responsive" src="../resources/assets/img/posts/9.jpg" alt="Image"/> -->
-          </div><!--/ col-md-8 -->
-          <div class="col-md-4 modal-meta">
-           <div class="modal-meta-top">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-			 <span aria-hidden="true">×</span><span class="sr-only">Close</span>
-			</button><!--/ button -->
-            <div class="img-poster clearfix">
-             <a href=""><img class="img-responsive img-circle" src="${sessionScope.customer.profileImg }" alt="Image"/></a>
-             <strong><a href="">${sessionScope.customer.nick }</a></strong>
-             <br>
-             <span>${feed.inputdate }</span><br/>
-			 <a href="javascript:void(0)" onclick = "showInputNumber(${feed.feed_seq })" class="kafe kafe-btn-mint-small"><i class="fas fa-envelope-open"></i>문자전송</a>
-            </div><!--/ img-poster -->
-            
-              <div id = "smsInput${feed.feed_seq }" class = "smsInput">
-           		전화번호를 입력해 주세요 : 
-            	<div style = "display : flex;">
-            		<input id = "smsPhoneNumber${feed.feed_seq }" type = "text" class = "form-control input-sm">
-            		<button type = "button" class="kafe kafe-btn-mint-small" onclick = "sendSms(${feed.feed_seq })">전송</button>
-            	</div>
-            	
-            </div>
-			  
-			  
-            <ul id = "commentListUl${feed.feed_seq }" class="img-comment-list">
-           <!--   <li>
-              <div class="comment-img">
-               <img src="../resources/assets/img/users/17.jpeg" class="img-responsive img-circle" alt="Image"/>
-              </div>
-              <div class="comment-text">
-               <strong><a href="">Anthony McCartney</a></strong>
-               <p>Hello this is a test comment.</p> <span class="date sub-text">on December 5th, 2016</span>
-              </div>
-             </li>/ li
-             <li>
-              <div class="comment-img">
-               <img src="../resources/assets/img/users/15.jpg" class="img-responsive img-circle" alt="Image"/>
-              </div>
-              <div class="comment-text">
-               <strong><a href="">Vanessa Wells</a></strong>
-               <p>Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p> <span>on December 5th, 2016</span>
-              </div>
-             </li>/ li
-             <li>
-              <div class="comment-img">
-               <img src="../resources/assets/img/users/14.jpg" class="img-responsive img-circle" alt="Image"/>
-              </div>
-              <div class="comment-text">
-               <strong><a href="">Sean Coleman</a></strong>
-               <p class="">Hello this is a test comment.</p> <span class="date sub-text">on December 5th, 2016</span>
-              </div>
-             </li>/ li
-             <li>
-              <div class="comment-img">
-               <img src="../resources/assets/img/users/13.jpeg" class="img-responsive img-circle" alt="Image"/>
-              </div>
-              <div class="comment-text">
-               <strong><a href="">Anna Morgan</a></strong>
-               <p class="">Hello this is a test comment.</p> <span class="date sub-text">on December 5th, 2016</span>
-              </div>
-             </li>/ li
-             <li>
-              <div class="comment-img">
-               <img src="../resources/assets/img/users/3.jpg" class="img-responsive img-circle" alt="Image"/>
-              </div>
-              <div class="comment-text">
-               <strong><a href="">Allison Fowler</a></strong>
-               <p class="">Hello this is a test comment.</p> <span class="date sub-text">on December 5th, 2016</span>
-              </div> -->
- 
-            </ul><!--/ comment-list -->
-			  
-        <div class="modal-meta-bottom">
-			 <ul>
-			  <li><a class="modal-like" href="#"><i class="fa fa-heart"></i></a><span class="modal-one"> ${feed.likes }</span> | 
-			      <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span id = "modalCommentsCount${feed.feed_seq }"> </span> </li>
-			  <li>
-			   <span class="thumb-xs">
-				<img class="img-responsive img-circle"  src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>"  alt="Image">
-			   </span>
-			   <div class="comment-body">
-			   	<div id = "commentForm">
-			   		<input id = "inputComment${feed.feed_seq}" class="form-control input-sm" type="text" name = "text" placeholder="Write your comment..." data-customer="${sessionScope.customer.customer_seq}" data-feed="${feed.feed_seq}">
-			   		<a href = "javacsript:void(0)" class="kafe kafe-btn-mint-small" id = "commentSubmit" onclick = "submitComment(${feed.feed_seq}, ${sessionScope.customer.customer_seq})">Submit</a>
-			   	</div>
-			   </div><!--/ comment-body -->	
-              </li>				
-             </ul>				
-            </div><!--/ modal-meta-bottom -->
-			  
-           </div><!--/ modal-meta-top -->
-          </div><!--/ col-md-4 -->
-		  
-         </div><!--/ row -->
-        </div><!--/ modal-body -->
-		
-       </div><!--/ modal-content -->
-      </div><!--/ modal-dialog -->
-     </div><!--/ modal -->
+	 
 	   
      <!-- ==============================================
 	 Scripts
 	 =============================================== -->
-	<script src="../resources/assets/js/jquery.min.js"></script>
 	<script src="../resources/assets/js/bootstrap.min.js"></script>
 	<script src="../resources/assets/js/base.js"></script>
 	<script src="../resources/assets/plugins/slimscroll/jquery.slimscroll.js"></script>
@@ -715,7 +675,6 @@
 		<script src = "../resources/writef/js/kakaomap.js"></script>
 		
 		<script src="../resources/writef/js/main.js"></script>
-		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
 
 
@@ -809,8 +768,6 @@
 	
    
 		</div>
-		<script src="lib/jquery/2.2.3/jquery.min.js"></script>
-
 
     <script type="text/javascript">
     var base = $("#base");
