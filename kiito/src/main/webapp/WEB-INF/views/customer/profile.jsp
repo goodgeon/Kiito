@@ -486,48 +486,44 @@
 				<div class="suggestion-body">
 					<img class="img-responsive img-circle" src="../resources/assets/img/users/1.jpg" alt="">
 					<div class="name-box">
-						<h4>Vanessa Wells</h4>
-						<span>@vannessa</span>
+						<br><h4>Vanessa Wells</h4>
 					</div>
 					<span><i class="fa fa-plus"></i></span>
 				</div>
 				<div class="suggestion-body">
 					<img class="img-responsive img-circle" src="../resources/assets/img/users/2.jpg" alt="">
 					<div class="name-box">
-						<h4>Anthony McCartney</h4>
-						<span>@antony</span>
+						<br><h4>Anthony McCartney</h4>
 					</div>
 					<span><i class="fa fa-plus"></i></span>
 				</div>
 				<div class="suggestion-body">
 					<img class="img-responsive img-circle" src="../resources/assets/img/users/3.jpg" alt="">
 					<div class="name-box">
-						<h4>Anna Morgan</h4>
-						<span>@anna</span>
+						<br><h4>Anna Morgan</h4>
 					</div>
 					<span><i class="fa fa-plus"></i></span>
 				</div>
 				<div class="suggestion-body">
 					<img class="img-responsive img-circle" src="../resources/assets/img/users/4.jpg" alt="">
 					<div class="name-box">
-						<h4>Sean Coleman</h4>
-						<span>@sean</span>
+						<br><h4>Sean Coleman</h4>
+					
 					</div>
 					<span><i class="fa fa-plus"></i></span>
 				</div>
 				<div class="suggestion-body">
 					<img class="img-responsive img-circle" src="../resources/assets/img/users/5.jpg" alt="">
 					<div class="name-box">
-						<h4>Grace Karen</h4>
-						<span>@grace</span>
-					</div>
+						<br><h4>Grace Karen</h4>
+									</div>
 					<span><i class="fa fa-plus"></i></span>
 				</div>
 				<div class="suggestion-body">
 					<img class="img-responsive img-circle" src="../resources/assets/img/users/6.jpg" alt="">
 					<div class="name-box">
-						<h4>Clifford Graham</h4>
-						<span>@clifford</span>
+						<br><h4>Clifford Graham</h4>
+				
 					</div>
 					<span><i class="fa fa-plus"></i></span>
 				</div>
