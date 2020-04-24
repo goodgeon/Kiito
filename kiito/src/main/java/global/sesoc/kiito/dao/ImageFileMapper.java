@@ -10,4 +10,6 @@ public interface ImageFileMapper {
 
 	ArrayList<ImageFile> getList();
 
+	ArrayList<ImageFile> getBp();
+
 }

@@ -142,12 +142,7 @@ public class CustomerController {
 		 Customer login_customer = (Customer) session.getAttribute("customer");
 		 int customer_seq = login_customer.getCustomer_seq();
 		 ArrayList<Feed> ff1 = dao1.feedList1(customer_seq);
-		 int a = ff1.get(0).getFeed_seq();
-		 System.out.println(a);
 		 
-		 
-		//ArrayList<Feed> ff = dao1.feedList();
-		
 		
 		model.addAttribute("feed",ff1);
 		
@@ -158,9 +153,11 @@ public class CustomerController {
 		ArrayList<ImageFile> imageList = imageFileDao.getList();
 		model.addAttribute("imageFile", imageList);
 		
-
 		int cf = dao1.countF(customer_seq);
 		model.addAttribute("countf",cf);
+		
+		ArrayList<ImageFile> bestP = imageFileDao.getBp();
+		model.addAttribute("bestp",bestP);
 		
 		return "customer/profile";}
 	

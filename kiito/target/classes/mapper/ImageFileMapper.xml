@@ -25,6 +25,13 @@
 	</select>
 
 
+	<select id="getBp" resultType="imageFile">
+		select i.originalFilename, i.savedFilename
+		from imageFile i,feed f
+		where i.feed_seq = f.feed_seq
+		order by f.likes desc
+	</select>
+
 
 	
 

@@ -351,6 +351,7 @@
 					  -webkit-background-size: cover;
 					  -moz-background-size: cover;
 					  -o-background-size: cover;
+					 
 					  background-image : url(/kiito/img/${s.imageFile[0].savedFilename})">
 				
 			  <div class="explore-top">
@@ -540,32 +541,33 @@
 		  </div>
 		 </div>
         </div>
-		
+ 
         <div class="trending-box">
 		 <div class="row">
+		   <c:forEach var = "p" items="${bestp}">
+		   <c:if test="${fn:length(p.savedFilename) > 0 }">
 		  <div class="col-lg-6">
-		   <a href="#"><img src="../resources/assets/img/posts/17.jpg" class="img-responsive" alt="Image"/></a>
+		   <a href="#"><img src="<c:url value = '/img/${p.savedFilename}'/>" class="img-responsive" alt="Image"/></a>
 		  </div>
-		  <div class="col-lg-6">
-		   <a href="#"><img src="../resources/assets/img/posts/12.jpg" class="img-responsive" alt="Image"/></a>
-		  </div>
+		  </c:if>
+		  </c:forEach>
 		 </div>
-		 <div class="row">
+		<!--  <div class="row">
 		  <div class="col-lg-6">
 		   <a href="#"><img src="../resources/assets/img/posts/21.gif" class="img-responsive" alt="Image"/></a>
 		  </div>
 		  <div class="col-lg-6">
 		   <a href="#"><img src="../resources/assets/img/posts/23.gif" class="img-responsive" alt="Image"/></a>
 		  </div>
-		 </div>
-		 <div class="row">
+		 </div> -->
+	<!-- 	 <div class="row">
 		  <div class="col-lg-6">
 		   <a href="#"><img src="../resources/assets/img/posts/11.jpg" class="img-responsive" alt="Image"/></a>
 		  </div>
 		  <div class="col-lg-6">
 		   <a href="#"><img src="../resources/assets/img/posts/20.jpg" class="img-responsive" alt="Image"/></a>
 		  </div>
-		 </div>
+		 </div> -->
         </div>		
 		
 		

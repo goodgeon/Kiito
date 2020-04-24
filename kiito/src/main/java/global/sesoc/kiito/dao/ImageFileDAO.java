@@ -28,4 +28,12 @@ public class ImageFileDAO {
 		return list;
 	}
 
+	public ArrayList<ImageFile> getBp() {
+		
+		ImageFileMapper mapper = session.getMapper(ImageFileMapper.class);
+		ArrayList<ImageFile> list = mapper.getBp();
+	
+	return list;
+	}
+
 }
