@@ -1,6 +1,7 @@
 package global.sesoc.kiito.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,11 +95,11 @@ public class CustomerDAO {
 		
 	}
 
-	public ArrayList<Customer> getFollowingList(int customer_seq) {
+	public ArrayList<Customer> getFollowList(int customer_seq) {
 		ArrayList<Customer> list = null;
 		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
 		
-		list = mapper.getFollowingList(customer_seq);
+		list = mapper.getFollowList(customer_seq);
 		
 		return list;
 	}
@@ -145,6 +146,34 @@ public class CustomerDAO {
 		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
 		mapper.insertChat(chat);
 		
+	}
+
+
+
+	public ArrayList<Integer> getFollowingList(int customer_seq) {
+		ArrayList<Integer> list = null;
+		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		
+		list = mapper.getFollowingList(customer_seq);
+		
+		return list;
+	}
+
+
+
+	public Integer getChat_seq(int customer1_seq, int customer2_seq) {
+		Integer chat_seq = null;
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("customer1_seq", customer1_seq);
+		map.put("customer2_seq", customer2_seq);
+		
+		
+		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		chat_seq = mapper.getChat_seq(map);
+		
+		
+		return chat_seq;
 	}
 
 }

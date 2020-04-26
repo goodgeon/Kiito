@@ -336,10 +336,9 @@
            <!-- END dropdown-->
            
            
-           
            <div class="media m-0">
             <div class="d-flex mr-3">
-			 <a href="#"><img class="img-responsive img-circle" src="${feed.customer.profileImg }" alt="User"></a>
+			 <a href="#"><img class="img-responsive img-circle" src="<c:url value = '/img/${feed.customer.profileImg }'/>" alt="User"></a>
 			</div>
             <div class="media-body">
              <p class="m-0">${feed.customer.nick }</p><p>${feed.checkin}

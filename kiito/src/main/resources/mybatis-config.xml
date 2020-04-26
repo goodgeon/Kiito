@@ -5,8 +5,7 @@
 <configuration>
 
 	<typeAliases>
-		<typeAlias type="global.sesoc.kiito.vo.Customer"
-			alias="customer" />
+		<typeAlias type="global.sesoc.kiito.vo.Customer" alias="customer" />
 		<typeAlias type="global.sesoc.kiito.vo.Feed" alias="feed" />
 		<typeAlias type="global.sesoc.kiito.vo.Hashtag" alias="hash" />
 		<typeAlias type="global.sesoc.kiito.vo.Likes" alias="likes" />

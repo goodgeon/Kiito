@@ -17,20 +17,26 @@
 		select follow_seq, customer_seq, following_seq
 		from follow
 		where customer_seq = #{customer_seq}
-	</select>
+	</select> 
 	
-	<select id="getFollowingList" parameterType="int" resultType="customer">
+	<!-- <select id="getFollowingList" parameterType="int" resultType="customer">
 		select c.customer_seq, c.email, c.pw, c.name, c.profileImg, c.customer_type
 		from customer c
 		where c.customer_seq in (
-		<!-- select following_seq 
+		select following_seq 
 		from customer , follow 
-		where customer.customer_seq = follow.customer_seq and follow.customer_seq = #{customer_seq} -->
+		where customer.customer_seq = follow.customer_seq and follow.customer_seq = #{customer_seq}
 		select f.customer_seq
 		from follow f, (select * from follow where customer_seq = #{customer_seq}) A
 		where f.customer_seq = A.following_seq and f.following_seq = A.customer_seq
 		) 
 		
+	</select> -->
+	
+	<select id="getFollowingList" parameterType="int" resultType="int">
+		select following_seq
+		from follow
+		where customer_seq = #{customer_seq}
 	</select>
 	
 	<select id="getCustomer" parameterType = "int" resultType="customer" resultMap="customerMap">
@@ -142,5 +148,11 @@
 		values
 		(chat_seq.nextval, #{customer1_seq}, #{customer2_seq})
 	</insert>
+	
+	<select id="getChat_seq" parameterType="map" resultType="int">
+		select chat_seq
+		from chat
+		where (customer1_seq = #{customer1_seq} and customer2_seq = #{customer2_seq}) OR (customer1_seq = #{customer2_seq} and customer2_seq = #{customer1_seq})
+	</select>
 
 </mapper>

@@ -49,74 +49,165 @@
 		<!-- socket.io -->
         <script src="http://localhost:82/socket.io/socket.io.js"></script>
         <script>
+        	var customer_seq = ${sessionScope.customer.customer_seq};
+        	var dbChatList;
+        	var receiver;
+        	
+        	function getChatList(){
+        		var chatList=[];
+        		
+        		
+        		chatList = test(chatList);
+        		return chatList;
+            }
+
+
+            
             $(document).ready(function(){
-                var socket = io("http://localhost:82");
-                var text = '';
-                var customer_seq = '';
-                var followingList;
-                
+            	var socket = io("http://localhost:82");
                 var chatList = [];
-
-                //로그인한 customer_seq
-                $.get('getCustomer_seq', function(data){
-                    customer_seq = data;
-                });
-
-                //로그인한 customer의 following list
-                $.get('getFollowList', function(list){
-                    followingList = list;
-
-                    for(var i = 0; i<followingList.length; i++){
-                        chatList.push({customer1_seq : customer_seq, customer2_seq : followingList[i].customer_seq});
-                    } 
-
-                   
-					console.log(chatList);
-					setChatList(followingList);
-                });
-
+            	var dbChatList = [];
                 
+                $.get({
+					url : "getChatList",
+					data : {
+						customer_seq : customer_seq
+					},
+					success : function(result){
+	                    dbChatList = result;
+
+	                },
+	                async : false
+                });
+                
+                chatList = getChatList();
+                setChatList(chatList);
+                
+                
+
                 $("#msg").on('keydown',function(key){
-                	text = $("#msg").val();    
                     
+                	text = $("#msg").val();    
                     var msg = {
 						sender : customer_seq,
 						text : text,
 						receiver : receiver
-                    }
+                    };
+                    var flag = true;
                     
                     if(key.keyCode == 13){
+                        for(var i = 0; i<dbChatList.length; i++){
+							if(dbChatList[i].customer1_seq == msg.receiver || dbChatList[i].customer2_seq == msg.receiver){
+								flag = false;
+							}
+                        }
+
+                        if(flag){
+                            //새로운 채팅 생성
+                        	/* $.post("insertChat", {customer1_seq : msg.sender, customer2_seq : msg.receiver}).done(function(){
+								console.log("insert chat");
+								getChatList();
+							}); */
+							/* $.post({
+								url : "insertChat",
+								data : {
+									customer1_seq : msg.sender, 
+									customer2_seq : msg.receiver
+								},
+								success : function(){
+									console.log("insert chat");
+									getChatList();
+								},
+								async : false
+							}) */
+							
+                        };
+                        
                     	//소켓에 send_msg라는 이벤트로 input에 #msg의 벨류를 담고 보내준다.
                         socket.emit("send_msg", msg);
-                       //#msg에 벨류값을 비워준다.
-                       $("#msg").val("");
-                       $(".conversation-container").scrollTop($(document).height());
+                       	//#msg에 벨류값을 비워준다.
+                       	$("#msg").val("");
+                       	$(".conversation-container").scrollTop($(document).height());
                     }
+                    
                 });
 
-            	//소켓 서버로 부터 send_msg를 통해 이벤트를 받을 경우 
                 socket.on('send_msg', function(msg) {
+                	var dbChatList = [];
                     
-                    if(msg.sender == customer_seq){
-                        
-                    	$.get("getChatList", function(list){
-                            var flag = true;
+                    $.get({
+    					url : "getChatList",
+    					data : {
+    						customer_seq : customer_seq
+    					},
+    					success : function(result){
+    	                    dbChatList = result;
 
-                            //로그인유저가 들어가있는 채팅검색
-    						for(var i = 0; i<list.length; i++){
-    							console.log(list[i].customer1_seq);
-    							if(customer_seq == list[i].customer1_seq || customer_seq == list[i].customer2_seq){
-    								flag = false;
-    							}
-    						}
-    						//없으면
-    						if(flag){
-    							$.post("insertChat", {customer1_seq : msg.sender, customer2_seq : msg.receiver}).done(function(){
-    								console.log("insert chat");
-    							})
-    						}
-                        })
-                        
+    	                },
+    	                async : false
+                    });
+                    
+                	var receiver;
+    				$.get({
+    					url : "getCustomer",
+    					data : {
+    						customer_seq : msg.receiver
+    					},
+    					success : function(data){
+    						receiver = data;
+    					},
+    					async : false
+    				});
+
+    				var sender;
+    				$.get({
+    					url : "getCustomer",
+    					data : {
+    						customer_seq : msg.sender
+    					},
+    					success : function(data){
+    						sender = data;
+    					},
+    					async : false
+    				});
+                    if(typeof msg.receiver == "undefined"){
+                        alert("대화상대를 선택하세요");
+                        return false;
+                    }
+                	if(msg.sender == customer_seq){
+                    	/* var obj = {
+            					sender :  customer_seq,
+            					text : msg.text
+                        }; */
+                        var chat_seq;
+
+                        for(var i = 0; i < dbChatList.length; i++){
+							if((dbChatList[i].customer1_seq == msg.sender && dbChatList[i].customer2_seq == msg.receiver) || (dbChatList[i].customer1_seq == msg.receiver && dbChatList[i].customer2_seq == msg.sender)){
+								chat_seq = dbChatList[i].chat_seq;
+								break;
+							}
+                        }
+                        console.log(chat_seq);
+
+                        //const json = '{"result":true, "count":42}';
+                        //const obj = JSON.parse(json);
+                        const obj = '{"chat_seq" : '+chat_seq+', "chat" : {"sender" : '+msg.sender+',"receiver" : '+msg.receiver+',"text" : "'+msg.text+'"}}';
+                        /* $.getJSON("../resources/chatLog/chatLog"+chat_seq+".json", function(data){
+                        	data.push(JSON.parse(obj)); 
+                        	console.log(data);
+                        	$.each(data, function(I, item){
+                        		console.log(item.chat_seq);
+                        		console.log(item.chat.sender);
+                        		console.log(item.chat.text);
+                        	}); 
+                        	
+                        });*/
+                        socket.emit("saveChat", obj, chat_seq);
+                         
+                        //var chatLog = JSON.parse(obj);
+                        //console.log(chatLog);
+                       
+                        //console.log(obj);
 	                    var str = '';
 	                    str += '<div class="convo-area">';
 	                    str += '<div class="convo-message">';
@@ -124,7 +215,7 @@
 	                    str += msg.text;
 	                    str += '</p></div></div>';
 	                    str += '<div class="convo-img">';
-	                    str += '<img src="../resources/assets/img/users/2.jpg" alt="" class="img-responsive img-circle"></div>';
+	                    str += '<img src="<c:url value = "/img/'+sender.profileImg+'"/>" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;"></div>';
                     
     	                //div 태그를 만들어 텍스트를 msg로 지정을 한뒤 #chat_box에 추가를 시켜준다.
 	                    $('<div class = "convo-box pull-right"></div>').html(str).appendTo(".conversation-container");
@@ -132,15 +223,14 @@
                 	}else if(msg.receiver == customer_seq){
                     	var flag = true;
 
-                    	for(var i = 0; i<followingList.length; i++){
-                        	console.log(followingList[i].customer_seq);
+                    	for(var i = 0; i<chatList.length; i++){
                         	
                         	//팔로우 안돼있는사람한테 온 채팅
-							if(msg.sender == followingList[i].customer_seq){
-								
+							if(msg.sender == chatList[i].customer1_seq || msg.sender == chatList[i].customer2_seq){
 								flag = false;
-								console.log("팔로우되잇는새끼");
+								console.log("채팅방있음");
 							}
+
 						};
 						
 						//팔로우 안돼잇으면
@@ -150,7 +240,7 @@
             					str += '<li id = "customer-list'+customer.customer_seq+'" class="active" onclick = "sendTo('+customer.customer_seq+')">';
             					str += '<div class="user-message-details">';
             					str += '<div class="user-message-img">';
-            					str += '<img src="../'+customer.profileImg+'" class="img-responsive img-circle" alt="">';
+            					str += '<img src="<c:url value = "/img/'+customer.profileImg+'"/>" class="img-responsive img-circle" alt="">';
             					str += '<span class="user-online"></span></div>';
             					str += '<div class="user-message-info">';
             					str += '<h4>'+customer.name+'</h4>';
@@ -161,7 +251,7 @@
             					
             					$("#chat-list").append(str);
 							})
-                       	}
+                       	} 
 						
                 		
 						var str = '';
@@ -171,29 +261,200 @@
 						str += msg.text;
 						str += '</p></div></div>';
 						str += '<div class="convo-img">';
-						str += '<img src="../resources/assets/img/users/6.jpg" alt="" class="img-responsive img-circle"></div>';
+						str += '<img src="<c:url value = "/img/'+receiver.profileImg+'"/>" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;"></div>';
 						$('<div class = "convo-box convo-left"></div>').html(str).appendTo(".conversation-container");
 						$(".conversation-container").scrollTop($(document).height());
 
                     }
                 });
+
             });
 
-            var receiver;
+			function test(chatList){
+                
+                $.get({
+					url : "getChatList",
+					data : {
+						customer_seq : customer_seq
+					},
+					success : function(result){
+	                    dbChatList = result;
+	                    //array copy
+	                    chatList = JSON.parse(JSON.stringify(dbChatList));
+	                    var followingList;
+
+	                    getFollowingList(chatList,dbChatList);
+	                },
+	                async : false
+                });
+                return chatList;
+            }
+
+            function getFollowingList(chatList, dbChatList){
+                $.get({
+					url : 'getFollowingList',
+					success : function(list){
+	                    followingList = list;
+	                    //console.log(followingList);
+	                    
+
+	                    for(var i = 0; i<followingList.length; i++){
+	                    	var chat = {
+	                                chat_seq : -1,
+	                                customer1_seq : customer_seq,
+	                                customer2_seq : followingList[i]
+	                        }
+	                        
+	                    	var flag = false;
+	                        for(var j = 0; j<dbChatList.length; j++){
+	                            //flag = false;
+	                            //중복검사
+								if((dbChatList[j].customer1_seq == chat.customer1_seq && dbChatList[j].customer2_seq == chat.customer2_seq) || (dbChatList[j].customer1_seq == chat.customer2_seq && dbChatList[j].customer2_seq == chat.customer1_seq)){
+									console.log("중복");
+									flag = true;	
+								} 
+	                        }
+	                        
+	                        if(!flag){
+								chatList.push(chat);
+							} 
+	                    }
+	                },
+	                async : false
+                })
+            }
+
 
             function sendTo(num){
-                console.log(num);
-				receiver = num;
-            };
+            	var socket = io("http://localhost:82");
+            	var customer_seq = "${sessionScope.customer.customer_seq}";
+            	var chat_seq;
 
-            function setChatList(followingList){
+                $.get({
+					url : "getChat_seq",
+					data : {
+						customer1_seq : customer_seq, 
+						customer2_seq : num
+					},
+					success : function(data){
+						chat_seq = data;
+					},
+					async : false
+                });
+
+                if(chat_seq == ""){
+					console.log("undefined");
+					$.post({
+						url : "insertChat",
+						data : {
+							customer1_seq : customer_seq, 
+							customer2_seq : num
+						},
+						success : function(){
+							console.log("insert chat");
+							getChatList();
+						},
+						async : false
+					});
+					$.get({
+						url : "getChat_seq",
+						data : {
+							customer1_seq : customer_seq, 
+							customer2_seq : num
+						},
+						success : function(data){
+							chat_seq = data;
+						},
+						async : false
+	                });
+	                console.log(chat_seq);
+                }
+                console.log(chat_seq);
+            	socket.emit("getHistory", chat_seq);
+            	
+            	socket.on('getHistory', function(data){
+                	$(".conversation-container").html('');
+                	$.each(data,function(index, item){
+						if(item.chat.sender == customer_seq){
+							var str = '';
+		                    str += '<div class="convo-area">';
+		                    str += '<div class="convo-message">';
+		                    str += '<p>';
+		                    str += item.chat.text;
+		                    str += '</p></div></div>';
+		                    str += '<div class="convo-img">';
+		                    str += '<img src="<c:url value = "/img/'+customer1.profileImg+'"/>" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;" ></div>';
+	                    
+	    	                //div 태그를 만들어 텍스트를 msg로 지정을 한뒤 #chat_box에 추가를 시켜준다.
+		                    $('<div class = "convo-box pull-right"></div>').html(str).appendTo(".conversation-container");
+		                    $(".conversation-container").scrollTop($(document).height());
+						}else{
+							var str = '';
+							str += '<div class="convo-area convo-left">';
+							str += '<div class="convo-message">';
+							str += '<p>';
+							str += item.chat.text;
+							str += '</p></div></div>';
+							str += '<div class="convo-img">';
+							str += '<img src="<c:url value = "/img/'+customer.profileImg+'"/>" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;"></div>';
+							$('<div class = "convo-box convo-left"></div>').html(str).appendTo(".conversation-container");
+							$(".conversation-container").scrollTop($(document).height());
+						}
+                    })
+                })
+            	
+				receiver = num;
+
+				var customer;
+				$.get({
+					url : "getCustomer",
+					data : {
+						customer_seq : num
+					},
+					success : function(data){
+						customer = data;
+					},
+					async : false
+				});
+
+				var customer1;
+				$.get({
+					url : "getCustomer",
+					data : {
+						customer_seq : customer_seq
+					},
+					success : function(data){
+						customer1 = data;
+					},
+					async : false
+				});
+
+				$("#chatRoomCustomerProfileImg").attr("src",'<c:url value = "/img/'+customer.profileImg+'"/>');
+				$("#chatRoomCustomerName").html(customer.name);
+				$("#chatroomonline").html("ONLINE");
+				$(".conversation-container").html('');
+				//@todo : 대화내용불러오기
+				
+			};
+
+            function setChatList(chatList){
                 
             	var str = '';
+            	var seqList = [];
+            	var customer_seq = "${sessionScope.customer.customer_seq}";
             	
-            	$.each(followingList, function(index,item){
+            	for(var i = 0; i<chatList.length; i++){
+					if(chatList[i].customer1_seq == customer_seq){
+						seqList[i] = chatList[i].customer2_seq;
+					}else if(chatList[i].customer2_seq == customer_seq){
+						seqList[i] = chatList[i].customer1_seq;
+					}
+                }
+                
+            	$.each(seqList, function(index,item){
                 	var customer;
 
-                	$.get("getFollowingCustomer",{customer_seq : item.customer_seq}).done(function(data){
+                	$.get("getFollowingCustomer",{customer_seq : item}).done(function(data){
 						console.log(data);
 						customer = data;
 						value = '/img/${i.savedFilename}'
@@ -201,10 +462,10 @@
 						str += '<li id = "customer-list'+customer.customer_seq+'" class="active" onclick = "sendTo('+customer.customer_seq+')">';
 						str += '<div class="user-message-details">';
 						str += '<div class="user-message-img">';
-						str += '<img src="<c:url value = "/img/'+customer.profileImg+'"/>" class="img-responsive img-circle" alt="">';
+						str += '<img src="<c:url value = "/img/'+customer.profileImg+'"/>" class="img-responsive img-circle" alt="" style = "width : 40px; height : 40px;">';
 						str += '<span class="user-online"></span></div>';
 						str += '<div class="user-message-info">';
-						str += '<h4>'+item.name+'</h4>';
+						str += '<h4>'+customer.name+'</h4>';
 						str += '<p>Lorem ipsum dolor ...</p>';
 						str += '<span class="time-posted">1:55 PM</span></div>';
 						str += '<span class="message-notification">1</span>';
@@ -212,7 +473,7 @@
 						
 						$("#chat-list").append(str);
                     });
-				})
+				}) 
             }
         </script>
 		
@@ -572,11 +833,11 @@
 			<div class="conversation-header">
 			 <div class="user-message-details">
 			  <div class="user-message-img">
-			   <img src="../resources/assets/img/users/6.jpg" class="img-responsive img-circle" alt="">
+			   <img id = "chatRoomCustomerProfileImg" src="" class="img-responsive img-circle" alt="" style = "width : 40px; height : 40px;">
 			  </div>
 			  <div class="user-message-info">
-			   <h4>John Doe</h4>
-			   <p>Online</p>
+			   <h4 id = "chatRoomCustomerName"></h4>
+			   <p id = "chatRoomOnline"></p>
 			  </div><!--/ user-message-info -->
 			 </div><!--/ user-message-details -->
 			 <a href="#" title=""><i class="fa fa-ellipsis-v"></i></a>

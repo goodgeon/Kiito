@@ -1,6 +1,7 @@
 package global.sesoc.kiito.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import global.sesoc.kiito.vo.Chat;
 import global.sesoc.kiito.vo.Customer;
@@ -26,7 +27,7 @@ public interface CustomerMapper {
 
 	void updateP(Customer login_customer);
 
-	ArrayList<Customer> getFollowingList(int customer_seq);
+	ArrayList<Customer> getFollowList(int customer_seq);
 
 	void updateC(Customer c);
 
@@ -35,5 +36,9 @@ public interface CustomerMapper {
 	ArrayList<Chat> getChatList(int customer_seq);
 
 	void insertChat(Chat chat);
+
+	ArrayList<Integer> getFollowingList(int customer_seq);
+
+	Integer getChat_seq(HashMap<String, Object> map);
 
 }

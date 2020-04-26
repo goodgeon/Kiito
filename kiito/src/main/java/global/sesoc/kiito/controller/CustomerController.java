@@ -121,7 +121,7 @@ public class CustomerController {
 		System.out.println(cus);
 		cus.setNick(cus.getName());
 		cus.setCustomer_type(0);
-		cus.setProfileImg("resources/login/images/profileImg_null2.png");
+		cus.setProfileImg("");
 		dao.insertC(cus);
 	}
 
@@ -300,25 +300,31 @@ public class CustomerController {
 		Customer customer = (Customer) session.getAttribute("customer");
 		int customer_seq = customer.getCustomer_seq();
 		
+		list = dao.getFollowList(customer_seq);
+		
+		return list;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getFollowingList", method = RequestMethod.GET)
+	public ArrayList<Integer> getFollowingList(HttpSession session) {
+		ArrayList<Integer> list = null;
+		
+		Customer customer = (Customer) session.getAttribute("customer");
+		int customer_seq = customer.getCustomer_seq();
+		
 		list = dao.getFollowingList(customer_seq);
+		System.out.println(list);
 		
 		return list;
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/getChatList", method = RequestMethod.GET)
-	public ArrayList<Chat> getChatList(HttpSession session){
+	public ArrayList<Chat> getChatList(int customer_seq, HttpSession session){
 		ArrayList<Chat> list = null;
+		list = dao.getChatList(customer_seq);
 		
-		Customer customer = (Customer) session.getAttribute("customer");
-		//System.out.println(customer.toString());
-		if(customer != null) {
-			int customer_seq = customer.getCustomer_seq();
-			System.out.println("not null");
-			list = dao.getChatList(customer_seq);
-		}
-		
-		//System.out.println(customer_seq);
 		
 		return list;
 	}
@@ -349,7 +355,15 @@ public class CustomerController {
 		
 		return customer;
 	}
-
+	
+	@ResponseBody
+	@RequestMapping(value = "getChat_seq", method = RequestMethod.GET)
+	public Integer getChat_seq(int customer1_seq, int customer2_seq){
+		Integer chat_seq;
+		chat_seq = dao.getChat_seq(customer1_seq, customer2_seq);
+		
+		return chat_seq;
+	}
 
 }
 	
