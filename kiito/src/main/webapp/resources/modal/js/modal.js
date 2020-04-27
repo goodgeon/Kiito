@@ -92,7 +92,7 @@ function submitComment(feed_seq, customer_seq){
 			}
 		})
 }
-
+//<c:url value = '/img/item.customer.profileImg'/>
 function getCommentList(feed_seq){
 	var commentList = [];
 	$.ajax({
@@ -103,11 +103,10 @@ function getCommentList(feed_seq){
 		},
 		success : function(list){
 			var html = '';
-			
 			$.each(list, function(key,item){
 				html += '<li>';
 				html += '<div class = "comment-img">';
-				html += '<img src = "'+item.customer.profileImg + '" class = "img-responsive img-circle" alt="Image"/>';
+				html += '<img src = "<c:url value = \'/img/'+item.customer.profileImg+'\' />" class = "img-responsive img-circle" alt="Image"/>';
 				html += '</div>';
 				html += '<div class = "comment-text">';
 				html += '<strong><a href="">' + item.customer.nick + '</a></strong>';

@@ -216,7 +216,12 @@
 	                    str += msg.text;
 	                    str += '</p></div></div>';
 	                    str += '<div class="convo-img">';
-	                    str += '<img src="<c:url value = "/img/'+sender.profileImg+'"/>" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;"></div>';
+	                    if(sender.profileImg.substring(0,4) == 'http'){
+	                    	str += '<img src="'+sender.profileImg+'" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;"></div>';
+			            }else{
+			            	str += '<img src="<c:url value = "/img/'+sender.profileImg+'"/>" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;"></div>';	
+					    }
+	                    //str += '<img src="'+sender.profileImg+'" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;"></div>';
                     
     	                //div 태그를 만들어 텍스트를 msg로 지정을 한뒤 #chat_box에 추가를 시켜준다.
 	                    $('<div class = "convo-box pull-right"></div>').html(str).appendTo(".conversation-container");
@@ -242,7 +247,11 @@
             					str += '<li id = "customer-list'+customer.customer_seq+'" class="active" onclick = "sendTo('+customer.customer_seq+')">';
             					str += '<div class="user-message-details">';
             					str += '<div class="user-message-img">';
-            					str += '<img src="<c:url value = "/img/'+customer.profileImg+'"/>" class="img-responsive img-circle" alt="">';
+            					if(customer.profileImg.substring(0,4) == 'http'){
+            						str += '<img src="'+customer.profileImg+'" class="img-responsive img-circle" alt="">';
+                    			}else{
+                    				str += '<img src="<c:url value = "/img/'+customer.profileImg+'"/>" class="img-responsive img-circle" alt="">';
+                            	}
             					str += '<span class="user-online"></span></div>';
             					str += '<div class="user-message-info">';
             					str += '<h4>'+customer.name+'</h4>';
@@ -263,7 +272,12 @@
 						str += msg.text;
 						str += '</p></div></div>';
 						str += '<div class="convo-img">';
-						str += '<img src="<c:url value = "/img/'+sender.profileImg+'"/>" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;"></div>';
+						if(sender.profileImg.substring(0,4) == 'http'){
+							str += '<img src= "'+sender.profileImg+'" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;"></div>';
+						}else{
+							str += '<img src="<c:url value = "/img/'+sender.profileImg+'"/>" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;"></div>';
+						}
+						
 						$('<div class = "convo-box convo-left"></div>').html(str).appendTo(".conversation-container");
 						$(".conversation-container").scrollTop($(document).height());
 						$("#latest"+msg.sender).html(msg.text);
@@ -385,7 +399,12 @@
 		                    str += item.chat.text;
 		                    str += '</p></div></div>';
 		                    str += '<div class="convo-img">';
-		                    str += '<img src="<c:url value = "/img/'+customer1.profileImg+'"/>" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;" ></div>';
+		                    if(customer1.profileImg.substring(0,4) == 'http'){
+		                    	str += '<img src="'+customer1.profileImg+'" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;" ></div>';
+			                }else{
+			                	str += '<img src="<c:url value = "/img/'+customer1.profileImg+'"/>" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;" ></div>';
+				            }
+		                    
 	                    
 	    	                //div 태그를 만들어 텍스트를 msg로 지정을 한뒤 #chat_box에 추가를 시켜준다.
 		                    $('<div class = "convo-box pull-right"></div>').html(str).appendTo(".conversation-container");
@@ -398,7 +417,11 @@
 							str += item.chat.text;
 							str += '</p></div></div>';
 							str += '<div class="convo-img">';
-							str += '<img src="<c:url value = "/img/'+customer.profileImg+'"/>" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;"></div>';
+							if(customer.profileImg.substring(0,4) == 'http'){
+		                    	str += '<img src="'+customer.profileImg+'" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;" ></div>';
+			                }else{
+			                	str += '<img src="<c:url value = "/img/'+customer.profileImg+'"/>" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;" ></div>';
+				            }
 							$('<div class = "convo-box convo-left"></div>').html(str).appendTo(".conversation-container");
 							$(".conversation-container").scrollTop($(document).height());
 						}
@@ -432,6 +455,19 @@
 				});
 
 				$("#chatRoomCustomerProfileImg").attr("src",'<c:url value = "/img/'+customer.profileImg+'"/>');
+
+				
+
+				if(customer.profileImg.substring(0,4) == 'http'){
+					$("#chatRoomCustomerProfileImg").attr("src",customer.profileImg);
+				}else{
+					$("#chatRoomCustomerProfileImg").attr("src",'<c:url value = "/img/'+customer.profileImg+'"/>');
+				}
+			
+
+
+
+				
 				$("#chatRoomCustomerName").html(customer.name);
 				$("#chatroomonline").html("ONLINE");
 				$(".conversation-container").html('');
@@ -466,7 +502,11 @@
 						str += '<li id = "customer-list'+customer.customer_seq+'" class="active" onclick = "sendTo('+customer.customer_seq+')">';
 						str += '<div class="user-message-details">';
 						str += '<div class="user-message-img">';
-						str += '<img src="<c:url value = "/img/'+customer.profileImg+'"/>" class="img-responsive img-circle" alt="" style = "width : 40px; height : 40px;">';
+						if(customer.profileImg.substring(0,4) == 'http'){
+							str += '<img src="'+customer.profileImg+'" class="img-responsive img-circle" alt="" style = "width : 40px; height : 40px;">';
+						}else{
+							str += '<img src="<c:url value = "/img/'+customer.profileImg+'"/>" class="img-responsive img-circle" alt="" style = "width : 40px; height : 40px;">';
+						}
 						str += '<span class="user-online"></span></div>';
 						str += '<div class="user-message-info">';
 						str += '<h4>'+customer.name+'</h4>';
@@ -639,11 +679,15 @@
 		  
 		 <li class="dropdown mega-avatar">
 		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-		   <span class="avatar w-32"><c:if test="${sessionScope.customer.profileImg == null }">
-								<img src="../resources/login/images/profileImg_null2.png" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+		   <span class="avatar w-32">
+		   	<c:if test="${sessionScope.customer.profileImg == null }">
+				<img src="../resources/login/images/profileImg_null2.png" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
 			</c:if>
-			<c:if test="${sessionScope.customer.profileImg != null }">
-				<img src="<c:url value = '/img/${sessionScope.customer.profileImg}'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+			<c:if test="${sessionScope.customer.profileImg.substring(0,4) == 'http' }">
+				<img src="<c:url value = '${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+			</c:if>
+			<c:if test="${sessionScope.customer.profileImg.substring(0,4) != 'http' }">
+				<img src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
 			</c:if>
 		   </span>
 		   <!-- hidden-xs hides the username on small devices so only the image appears. -->

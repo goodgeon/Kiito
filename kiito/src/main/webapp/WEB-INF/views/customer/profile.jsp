@@ -253,8 +253,11 @@
 		   	<c:if test="${sessionScope.customer.profileImg == null }">
 								<img src="resources/login/images/profileImg_null2.png" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
 			</c:if>
-			<c:if test="${sessionScope.customer.profileImg != null }">
-				<img  src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>"  class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+			<c:if test="${sessionScope.customer.profileImg.substring(0,4) == 'http' }">
+			<img src="<c:url value = '${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+			</c:if>
+			<c:if test="${sessionScope.customer.profileImg.substring(0,4) != 'http' }">
+				<img src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
 			</c:if>
 		   </span>
 		   <!-- hidden-xs hides the username on small devices so only the image appears. -->
@@ -300,11 +303,17 @@
 			<div class="user-info">			<!-- 	자기 프로필 -->
 			 <div class="image">
 		       <a href="#preview" data-toggle="modal" rel="modal:open">
-			   <img src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>" class="img-responsive img-circle" alt="User">	<br>	
+		       <c:if test="${sessionScope.customer.profileImg.substring(0,4) == 'http' }">
+				<img src="<c:url value = '${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" alt="..."/>
+				</c:if>
+				<c:if test="${sessionScope.customer.profileImg.substring(0,4) != 'http' }">
+					<img src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" alt="..."/>
+				</c:if>
+			   	<br>	
 			   <span class="online-status online"></span>
 			  </a>
 			 </div>
-		     <div class="detail">
+		     <div class="detail" style = "margin-top : 20px;">
 			  <h4>${sessionScope.customer.nick }</h4><br>
 		<%-- 	  <small>@${sessionScope.customer.nick }</small>     --%>                    
 			 </div>
