@@ -305,20 +305,20 @@ iframe {
 	  width: 450px;
   min-height: 80vh;
   display: block;
-  background-color: rgba( 255, 255, 255, 0.5 );
+  background-color: rgba( 57, 70, 105, 0.75 );
   padding: 20px 35px 15px 35px;
   border-radius : 20px;
 }
 
 .contact100-form-title {
 	display: block;
-	font-family: Ubuntu-Bold;
-	font-size: 30px;
-	color: #403866;
+	font-family: "Sawarabi Mincho";
+	font-size: 65px;
+	color: #ecececc4;
 	line-height: 1.2;
 	text-transform: uppercase;
 	text-align: center;
-	padding-bottom: 49px;
+	padding-bottom: 10px;
 }
 
 /*------------------------------------------------------------------
@@ -327,7 +327,7 @@ iframe {
 	width: 100%;
 	background-color: #fff;
 	border-radius: 31px;
-	margin-bottom: 16px;
+	margin-bottom: 10px;
 	position: relative;
 	z-index: 1;
 }

@@ -625,14 +625,15 @@
 					<span class="focus-input100"></span>
 				</div>
 				
-				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
-				
-				<div>
-					<input type = "file" id = "input_imgs" name = "imagefile"  multiple accept="image/gif, image/jpeg, image/png" />
-				</div>
-				<div>
-					<input type = "file" id = "input_video" name = "videofile" multiple accept="video/*" />
-				</div>
+				<div data-validate = "이거 왜뜨지 씨발">
+
+					<input type = "file" id = "input_imgs" name = "imagefile"  multiple accept="image/gif, image/jpeg, image/png" style="display:none" />
+					<input type='text' name='imagefile2' id='imagefile2' style="display:none;"> 
+				<img src='resources/images/picture.png' border='0' onclick='document.all.imagefile.click(); document.all.imagefile2.value=document.all.imagefile.value'> 
+				<input type = "file" id = "input_video" name = "videofile" multiple accept="video/*" style="display:none" />
+					<input type='text' name='videofile2' id='videofile2' style="display:none;"> 
+				<img src='resources/images/video.png' border='0' onclick='document.all.videofile.click(); document.all.videofile2.value=document.all.videofile.value'> 
+
 				
 				
 					<!-- <input class="input100" multiple = "multiple" type="file" name="upload" id="file" value="파일선택" size="30">

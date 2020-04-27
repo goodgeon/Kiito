@@ -595,9 +595,9 @@
 <!-- write form -->
 		<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" id = "writeForm" action = "/kiito/feed/insertFeed" method = "POST" enctype="multipart/form-data" >
+			<form class="contact100-form validate-form" id = "writeForm" action = "feed/insertFeed" method = "POST" enctype="multipart/form-data" >
 			<input type = "hidden" name = "customer_seq" value = "${sessionScope.customer.customer_seq }" id="cs">
-				<span class="contact100-form-title">Upload</span>
+				<span class="contact100-form-title">私がいるとごろ</span>
 				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
 					<input class="input100" type="text" id="checkin" placeholder = "Please enter a search term">
 					
@@ -627,10 +627,24 @@
 					<span class="focus-input100"></span>
 				</div>
 				
-				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
-				<br>
-					<input class="input100" type="file" name="upload" id="file" value="파일선택" size="30">
-					<span class="focus-input100"></span>
+				<div data-validate = "이거 왜뜨지 씨발">
+
+					<input type = "file" id = "input_imgs" name = "imagefile"  multiple accept="image/gif, image/jpeg, image/png" style="display:none" />
+					<input type='text' name='imagefile2' id='imagefile2' style="display:none;"> 
+				<img src='../resources/images/picture.png' border='0' onclick='document.all.imagefile.click(); document.all.imagefile2.value=document.all.imagefile.value'> 
+				<input type = "file" id = "input_video" name = "videofile" multiple accept="video/*" style="display:none" />
+					<input type='text' name='videofile2' id='videofile2' style="display:none;"> 
+				<img src='../resources/images/video.png' border='0' onclick='document.all.videofile.click(); document.all.videofile2.value=document.all.videofile.value'> 
+
+				
+				
+					<!-- <input class="input100" multiple = "multiple" type="file" name="upload" id="file" value="파일선택" size="30">
+					<span class="focus-input100"></span> -->
+				</div>
+				<div>
+					<div class = "imgs_wrap" style = "margin-bottom : 10px;">
+					
+					</div>
 				</div>
 				
 				
