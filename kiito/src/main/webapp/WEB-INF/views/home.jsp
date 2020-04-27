@@ -332,7 +332,7 @@
 		   </li>
 
 		   <li class="dropdown notification-list">
-			<a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="customer/chat" role="button" aria-haspopup="false" aria-expanded="false">
+			<a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
 			 <i class="fa fa-envelope noti-icon"></i>
 			 <span class="badge badge-success badge-pill noti-icon-badge">6</span>
 			</a>
@@ -670,6 +670,7 @@
 				<c:if test="${sessionScope.customer.profileImg.substring(0,4) != 'http' }">
 					<img src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
 				</c:if>
+
 			   </span>
 			   <div class="comment-body">
 			   	<div id = "commentForm">
@@ -765,15 +766,15 @@
 					<span class="focus-input100"></span>
 				</div>
 				
-				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
-				
-				
-				<div>
-					<input type = "file" id = "input_imgs" name = "imagefile" multiple accept="image/gif, image/jpeg, image/png" />
-				</div>
-				<div>
-					<input type = "file" id = "input_video" name = "videofile" multiple accept="video/*" />
-				</div>
+				<div data-validate = "이거 왜뜨지 씨발">
+
+					<input type = "file" id = "input_imgs" name = "imagefile"  multiple accept="image/gif, image/jpeg, image/png" style="display:none" />
+					<input type='text' name='imagefile2' id='imagefile2' style="display:none;"> 
+				<img src='resources/images/picture.png' border='0' onclick='document.all.imagefile.click(); document.all.imagefile2.value=document.all.imagefile.value'> 
+				<input type = "file" id = "input_video" name = "videofile" multiple accept="video/*" style="display:none" />
+					<input type='text' name='videofile2' id='videofile2' style="display:none;"> 
+				<img src='resources/images/video.png' border='0' onclick='document.all.videofile.click(); document.all.videofile2.value=document.all.videofile.value'> 
+
 				
 				
 					<!-- <input class="input100" multiple = "multiple" type="file" name="upload" id="file" value="파일선택" size="30">
