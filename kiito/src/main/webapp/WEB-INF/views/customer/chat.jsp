@@ -67,6 +67,7 @@
             	var socket = io("http://localhost:82");
                 var chatList = [];
             	var dbChatList = [];
+            	
                 
                 $.get({
 					url : "getChatList",
@@ -220,6 +221,7 @@
     	                //div 태그를 만들어 텍스트를 msg로 지정을 한뒤 #chat_box에 추가를 시켜준다.
 	                    $('<div class = "convo-box pull-right"></div>').html(str).appendTo(".conversation-container");
 	                    $(".conversation-container").scrollTop($(document).height());
+	                    $("#latest"+msg.receiver).html(msg.text);
                 	}else if(msg.receiver == customer_seq){
                     	var flag = true;
 
@@ -244,7 +246,7 @@
             					str += '<span class="user-online"></span></div>';
             					str += '<div class="user-message-info">';
             					str += '<h4>'+customer.name+'</h4>';
-            					str += '<p>'+msg.text+'</p>';
+            					str += '<p id = "latest'+customer.customer_seq+'">'+msg.text+'</p>';
             					str += '<span class="time-posted">1:55 PM</span></div>';
             					str += '<span class="message-notification">1</span>';
             					str += '</div></li>';
@@ -261,10 +263,10 @@
 						str += msg.text;
 						str += '</p></div></div>';
 						str += '<div class="convo-img">';
-						str += '<img src="<c:url value = "/img/'+receiver.profileImg+'"/>" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;"></div>';
+						str += '<img src="<c:url value = "/img/'+sender.profileImg+'"/>" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;"></div>';
 						$('<div class = "convo-box convo-left"></div>').html(str).appendTo(".conversation-container");
 						$(".conversation-container").scrollTop($(document).height());
-
+						$("#latest"+msg.sender).html(msg.text);
                     }
                 });
 
@@ -438,7 +440,7 @@
 			};
 
             function setChatList(chatList){
-                
+            	var socket = io("http://localhost:82");
             	var str = '';
             	var seqList = [];
             	var customer_seq = "${sessionScope.customer.customer_seq}";
@@ -450,6 +452,8 @@
 						seqList[i] = chatList[i].customer1_seq;
 					}
                 }
+                
+                
                 
             	$.each(seqList, function(index,item){
                 	var customer;
@@ -466,12 +470,26 @@
 						str += '<span class="user-online"></span></div>';
 						str += '<div class="user-message-info">';
 						str += '<h4>'+customer.name+'</h4>';
-						str += '<p>Lorem ipsum dolor ...</p>';
-						str += '<span class="time-posted">1:55 PM</span></div>';
+						str += '<p id = "latest'+customer.customer_seq+'"></p>';
+						str += '<span class="time-posted"></span></div>';
 						str += '<span class="message-notification">1</span>';
 						str += '</div></li>';
 						
 						$("#chat-list").append(str);
+						
+						$.each(chatList, function(index,item){
+		                	socket.emit('getHistory',item.chat_seq);
+		                	socket.on('getHistory',function(data){
+		                    	var text = data[data.length-1].chat.text;
+		                    	var num;
+		                    	if(data[data.length-1].chat.sender == customer_seq){
+									num = data[data.length-1].chat.receiver;
+		                        }else{
+									num = data[data.length-1].chat.sender;
+		                        }
+		                    	$("#latest"+num).html(text);
+		                    })
+		                })
                     });
 				}) 
             }

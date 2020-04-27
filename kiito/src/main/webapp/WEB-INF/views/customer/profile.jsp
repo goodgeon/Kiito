@@ -733,39 +733,38 @@
 
 <!-- 프로필 사진 바꾸기 -->
 		
-		
+
 	<div id="preview" class="modal">
 
-		<form id = "changef" >
-	
-    <p>
-        <label for="image">Image:</label>
+		<form id = "changef"  class="contact100-form validate-form" >
+        <span><label for="image">Image:</label></span>
         <br />
-        <input type="file" name="upload" id="image" />
-     
-        
-        
-        <input type="button" value="submit" id="sub"/>
-        
-    </p>
- 
-    	</form>
-
-	<div class="modal-meta-top">
+        <input class="input100" type="file" name="upload" id="image" />
+<img style = "width : 96px; height : 96px;" src="${sessionScope.customer.profileImg }" class="img-responsive img-circle" alt="User" id="base"> 
+        <input class="input100" type="button" value="submit" id="sub"/>
+    	<div class="modal-meta-top">
 	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 			 <span aria-hidden="true">×××××××××</span><span class="sr-only">Close</span>
-			</button>/ button</div> 
+			</button></div> 
 			
 			<div id="ssss">
-		
-				<img style = "width : 96px; height : 96px;" src="${sessionScope.customer.profileImg }" class="img-responsive img-circle" alt="User" id="base"> 
 			 <br />
 		
         <a href="#">Remove</a>
 			</div>
+ 
+    	</form>
 	
-   
+  </div>
+</div>
+</div>
 		</div>
+<<<<<<< HEAD
+		
+		<script src="lib/jquery/2.2.3/jquery.min.js"></script>
+
+=======
+>>>>>>> 1606cc47d9511762387914ddd042501ee62f6c1f
 
     <script type="text/javascript">
     var base = $("#base");

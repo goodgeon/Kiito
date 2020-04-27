@@ -586,6 +586,7 @@ a.navbar-brand:hover {
 .newsfeed {
   background: #f4f4f4;	
   padding: 40px 0px;
+  min-height: 100vh;
 }   
 .cardbox {
   border-radius: 3px;
