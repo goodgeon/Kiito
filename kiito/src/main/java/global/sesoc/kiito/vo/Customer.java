@@ -15,4 +15,5 @@ public class Customer {
 	private String profileImg;
 	private int customer_type;
 	private ArrayList<Follow> follow;
+	private ArrayList<Follow> follower;
 }

@@ -162,10 +162,23 @@ public class CustomerController {
 		return "customer/profile";}
 	
 	@RequestMapping(value = "/followers", method = RequestMethod.GET)
-	public String follwers(HttpSession hh,Model model) {
+	public String follwers(HttpSession session,Model model) {
+		Customer customer = (Customer) session.getAttribute("customer");
+		ArrayList<Follow> followseqList = customer.getFollower();
+		ArrayList<Customer> list = new ArrayList<Customer>();
 		
-
+		for(int i=0; i<followseqList.size(); i++) {
+			Customer temp = new Customer();
+			temp = dao.getCustomer(followseqList.get(i).getCustomer_seq());
+			list.add(temp);
+		}
 		
+		for(int i=0; i<list.size(); i++) {
+			System.out.println("zzz");
+			System.out.println(list.get(i));
+		}
+		
+		model.addAttribute("followerList", list);
 		
 		return "customer/followers";}
 	
