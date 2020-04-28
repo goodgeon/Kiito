@@ -14,6 +14,6 @@ public class Customer {
 	private String nick;
 	private String profileImg;
 	private int customer_type;
-	private ArrayList<Follow> follow;
-	private ArrayList<Follow> follower;
+	private ArrayList<Customer> follow;
+	private ArrayList<Customer> follower;
 }

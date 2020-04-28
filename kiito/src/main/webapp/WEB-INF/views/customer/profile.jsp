@@ -348,8 +348,8 @@
            </li>
            <li>
             <small class="text-muted"><a href="profile">${countf} Posts <em class="fa fa-angle-right pull-right"></em></a> </small><br/>
-            <small class="text-muted"><a href="followers?type=1">${fn:length(sessionScope.customer.follower)} Followers <em class="fa fa-angle-right pull-right"></em></a> </small><br/>
-            <small class="text-muted"><a href="followers?type=2">${fn:length(sessionScope.customer.follow)} Following <em class="fa fa-angle-right pull-right"></em></a> </small>
+            <small class="text-muted"><a href="followers?type=1">${fn:length(ccc.follower)} Followers <em class="fa fa-angle-right pull-right"></em></a> </small><br/>
+            <small class="text-muted"><a href="followers?type=2">${fn:length(ccc.follow)} Following <em class="fa fa-angle-right pull-right"></em></a> </small>
 
             <hr>
 <!--             <small class="text-muted">Bio: </small>

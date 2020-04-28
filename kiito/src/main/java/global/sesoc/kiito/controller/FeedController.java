@@ -24,6 +24,7 @@ import global.sesoc.kiito.dao.HashtagDAO;
 import global.sesoc.kiito.dao.ImageFileDAO;
 import global.sesoc.kiito.dao.LikesDAO;
 import global.sesoc.kiito.dao.VideoFileDAO;
+import global.sesoc.kiito.vo.Customer;
 import global.sesoc.kiito.vo.Feed;
 import global.sesoc.kiito.vo.Hashtag;
 import global.sesoc.kiito.vo.ImageFile;
@@ -256,6 +257,7 @@ public class FeedController {
 	@RequestMapping(value = "explore", method = RequestMethod.GET)
 	public String explore(Model model) {
 		ArrayList<Feed> ff = dao.feedList();
+		ArrayList<Customer> entry = dao.getEntryList();
 		String temp;
 		
 		for(int i=0; i<ff.size(); i++) {
@@ -270,6 +272,8 @@ public class FeedController {
 		
 		ArrayList<ImageFile> imageList = imgDao.getList();
 		model.addAttribute("imageFile", imageList);
+		
+		model.addAttribute("entry", entry);
 		
 		return "board/explore";
 	}

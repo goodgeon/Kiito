@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
+import global.sesoc.kiito.vo.Customer;
 import global.sesoc.kiito.vo.Feed;
 import global.sesoc.kiito.vo.Hashtag;
 
@@ -68,6 +68,13 @@ public class FeedDAO {
 		ArrayList<Feed> list = mapper.search(search);
 		
 		return list;
+	}
+
+	public ArrayList<Customer> getEntryList() {
+		FeedMapper mapper = session.getMapper(FeedMapper.class);
+		ArrayList<Customer> entryList = mapper.getEntryList();
+		
+		return entryList;
 	}
 
 

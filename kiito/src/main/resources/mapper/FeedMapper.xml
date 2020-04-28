@@ -121,4 +121,13 @@
 		where f.customer_seq = c.customer_seq and f.feed_seq = h.feed_seq and (checkin like '%' || #{search} || '%' OR h.contents like '%' || #{search} || '%') 
 		order by f.inputdate desc
 	</select>
+	
+	<select id="getEntryList" resultType="customer">
+		select c.*
+		from customer c, (select following_seq , count(customer_seq) co
+                        from follow
+                        group by following_seq) f
+		where c.customer_seq = f.following_seq
+		order by f.co desc
+	</select>
 </mapper>
