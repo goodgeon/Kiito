@@ -38,7 +38,84 @@
 		<!-- ==============================================
 		Feauture Detection
 		=============================================== -->
-		<script src="../resources/assets/js/modernizr-custom.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script>
+		$(document).ready(function(){
+			var customer_seq = ${sessionScope.customer.customer_seq};
+			var customer;
+
+			$.ajax({
+				url : "getCustomer",
+				type : "GET",
+				data : {
+					customer_seq : customer_seq
+				},
+				success : function(data){
+					customer = data;
+					console.log(customer);
+				},
+				async : false
+			})
+			var follower = customer.follower;
+			var following = customer.follow;
+
+			console.log(follower);
+			console.log(following);
+
+			for(var i = 0; i<follower.length; i++){
+				for(var j= 0; j<following.length; j++){
+					if(follower[i].customer_seq == following[j].following_seq){
+						$("#bt"+follower[i].customer_seq).css('background-color', 'gray');
+						$("#bt"+follower[i].customer_seq).html('Unfollow');
+						$("#bt"+follower[i].customer_seq).attr('onclick', 'unfollow('+follower[i].customer_seq+')');
+
+					}
+				}
+			}
+
+		})
+		
+		function follow(following_seq){
+			var customer_seq = ${sessionScope.customer.customer_seq};
+			
+			$.ajax({
+				type : "POST",
+				url : "follow",
+				data : {
+					follower_seq : customer_seq,
+					following_seq : following_seq
+				},
+				success : function(){
+					alert("팔로우 성공");
+					$("#bt"+following_seq).css('background-color','gray');
+					$("#bt"+following_seq).attr('onclick','unfollow('+following_seq+')');
+					$("#bt"+following_seq).text("Unfollow");
+				}
+			})
+		}
+
+		function unfollow(following_seq){
+			var customer_seq = ${sessionScope.customer.customer_seq};
+			
+			$.ajax({
+				type : "POST",
+				url : "cancleFollow",
+				data : {
+					customer_seq : customer_seq,
+					following_seq : following_seq
+				},
+				success : function(){
+					alert("팔로우 취소");
+					$("#bt"+following_seq).css('background-color','#05CB95');
+					$("#bt"+following_seq).attr('onclick','follow('+following_seq+')');
+					$("#bt"+following_seq).text("Follow");
+				}
+			})
+		}
+	
+			
+			
+		</script>
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -190,7 +267,17 @@
 		  
 		 <li class="dropdown mega-avatar">
 		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-		   <span class="avatar w-32"><img src="${sessionScope.customer.profileImg }" class="img-resonsive img-circle" width="25" height="25" alt="..."></span>
+		   <span class="avatar w-32">
+		   	<c:if test="${sessionScope.customer.profileImg == null }">
+								<img src="resources/login/images/profileImg_null2.png" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+			</c:if>
+			<c:if test="${sessionScope.customer.profileImg.substring(0,4) == 'http' }">
+			<img src="<c:url value = '${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+			</c:if>
+			<c:if test="${sessionScope.customer.profileImg.substring(0,4) != 'http' }">
+				<img src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+			</c:if>
+		   </span>
 		   <!-- hidden-xs hides the username on small devices so only the image appears. -->
 		   <span class="hidden-xs">
 			${sessionScope.customer.nick }
@@ -259,7 +346,7 @@
          <div class="followers-box full-width">
 			<div class="followers-list">
 				<c:forEach var = 'customer' items = '${followerList}'>
-					<div class="followers-body">
+					<div class="followers-body" id = "follower${customer.customer_seq}">
 						<img class="img-responsive img-circle" src="<c:url value = '/img/${customer.profileImg }'/>" alt="">
 						<div class="name-box">
 						<h4>${customer.nick}</h4>
@@ -267,7 +354,7 @@
 						<div class="followers-base">
 						</div><!--/ followers-base -->
 				     </div><!--/ name-box -->
-					 <span><a href="" class="kafe-btn kafe-btn-mint-small"> Follow</a></span>
+					 <span><a href="javascript:void(0)" id = "bt${customer.customer_seq}"class="kafe-btn kafe-btn-mint-small" onclick = follow(${customer.customer_seq})> Follow</a></span>
 					</div><!--/ followers-body -->
 				</c:forEach>
 			</div><!--suggestions-list end-->
@@ -282,7 +369,6 @@
      <!-- ==============================================
 	 Scripts
 	 =============================================== -->
-	<script src="../resources/assets/js/jquery.min.js"></script>
 	<script src="../resources/assets/js/bootstrap.min.js"></script>
 	<script src="../resources/assets/js/base.js"></script>
 	<script src="../resources/assets/plugins/slimscroll/jquery.slimscroll.js"></script>

@@ -161,5 +161,7 @@
 		from chat
 		where (customer1_seq = #{customer1_seq} and customer2_seq = #{customer2_seq}) OR (customer1_seq = #{customer2_seq} and customer2_seq = #{customer1_seq})
 	</select>
+	
+	
 
 </mapper>

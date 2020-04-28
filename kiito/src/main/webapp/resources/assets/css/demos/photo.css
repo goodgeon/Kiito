@@ -1624,6 +1624,7 @@ a.navbar-brand:hover {
 .followers{
   background: #f4f4f4;	
   padding: 20px 0px 20px 0px;
+  min-height : 100vh;
 }
 
 .followers-box {

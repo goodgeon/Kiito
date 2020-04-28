@@ -41,4 +41,5 @@ public interface CustomerMapper {
 
 	Integer getChat_seq(HashMap<String, Object> map);
 
+
 }

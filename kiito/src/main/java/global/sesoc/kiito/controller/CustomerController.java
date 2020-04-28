@@ -19,6 +19,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -171,11 +172,6 @@ public class CustomerController {
 			Customer temp = new Customer();
 			temp = dao.getCustomer(followseqList.get(i).getCustomer_seq());
 			list.add(temp);
-		}
-		
-		for(int i=0; i<list.size(); i++) {
-			System.out.println("zzz");
-			System.out.println(list.get(i));
 		}
 		
 		model.addAttribute("followerList", list);
@@ -377,7 +373,7 @@ public class CustomerController {
 		
 		return chat_seq;
 	}
-
+	
 }
 	
 
