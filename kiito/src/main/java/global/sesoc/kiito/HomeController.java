@@ -86,6 +86,7 @@ public class HomeController {
 			temp = ff.get(i).getContents().replace("\r\n", "<br>");
 			ff.get(i).setContents(temp);
 		}
+		System.out.println(ff.get(0).getHashtag());
 		model.addAttribute("feed",ff);
 		
 		ArrayList<Hashtag> hashtagList = hashtagdao.getList();
