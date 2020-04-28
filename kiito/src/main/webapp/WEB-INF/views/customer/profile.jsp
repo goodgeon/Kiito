@@ -209,17 +209,17 @@
             </div><!--/ dropdown-menu-->
          </li>
 
-         <li class="dropdown notification-list">
-         <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-          <i class="fa fa-envelope noti-icon"></i>
-          <span class="badge badge-success badge-pill noti-icon-badge">6</span>
-         </a>
-         <div class="dropdown-menu dropdown-menu-right dropdown-lg dropdown-new">
+  	   <li class="dropdown notification-list">
+			<a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="/kiito/customer/chat" role="button" aria-haspopup="false" aria-expanded="false">
+			 <i class="fa fa-envelope noti-icon"></i>
+			 <span class="badge badge-success badge-pill noti-icon-badge">6</span>
+			</a>
+			<div class="dropdown-menu dropdown-menu-right dropdown-lg dropdown-new">
              <div class="dropdown-item noti-title">
-           <h6 class="m-0">
-            <span class="float-right">
-             <a href="" class="text-dark"><small>Clear All</small></a> 
-            </span>Chat
+			  <h6 class="m-0">
+			   <span class="float-right">
+			    <a href="" class="text-dark"><small>Clear All</small></a> 
+			   </span>Chat
            </h6>
           </div>
 
