@@ -253,8 +253,11 @@
 		   	<c:if test="${sessionScope.customer.profileImg == null }">
 								<img src="resources/login/images/profileImg_null2.png" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
 			</c:if>
-			<c:if test="${sessionScope.customer.profileImg != null }">
-				<img  src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>"  class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+			<c:if test="${sessionScope.customer.profileImg.substring(0,4) == 'http' }">
+			<img src="<c:url value = '${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+			</c:if>
+			<c:if test="${sessionScope.customer.profileImg.substring(0,4) != 'http' }">
+				<img src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
 			</c:if>
 		   </span>
 		   <!-- hidden-xs hides the username on small devices so only the image appears. -->
@@ -300,11 +303,17 @@
 			<div class="user-info">			<!-- 	자기 프로필 -->
 			 <div class="image">
 		       <a href="#preview" data-toggle="modal" rel="modal:open">
-			   <img src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>" class="img-responsive img-circle" alt="User">	<br>	
+		       <c:if test="${sessionScope.customer.profileImg.substring(0,4) == 'http' }">
+				<img src="<c:url value = '${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" alt="..."/>
+				</c:if>
+				<c:if test="${sessionScope.customer.profileImg.substring(0,4) != 'http' }">
+					<img src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" alt="..."/>
+				</c:if>
+			   	<br>	
 			   <span class="online-status online"></span>
 			  </a>
 			 </div>
-		     <div class="detail">
+		     <div class="detail" style = "margin-top : 20px;">
 			  <h4>${sessionScope.customer.nick }</h4><br>
 		<%-- 	  <small>@${sessionScope.customer.nick }</small>     --%>                    
 			 </div>
@@ -319,8 +328,8 @@
            </li>
            <li>
             <small class="text-muted"><a href="profile">${countf} Posts <em class="fa fa-angle-right pull-right"></em></a> </small><br/>
-            <small class="text-muted"><a href="followers">2456 Followers <em class="fa fa-angle-right pull-right"></em></a> </small><br/>
-            <small class="text-muted"><a href="followers">456 Following <em class="fa fa-angle-right pull-right"></em></a> </small>
+            <small class="text-muted"><a href="followers">${fn:length(sessionScope.customer.follower)} Followers <em class="fa fa-angle-right pull-right"></em></a> </small><br/>
+            <small class="text-muted"><a href="followers">${fn:length(sessionScope.customer.follow)} Following <em class="fa fa-angle-right pull-right"></em></a> </small>
             <hr>
 <!--             <small class="text-muted">Bio: </small>
             <p>795 Folsom Ave, Suite 600 San Francisco, CADGE 94107</p>
@@ -595,9 +604,9 @@
 <!-- write form -->
 		<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" id = "writeForm" action = "/kiito/feed/insertFeed" method = "POST" enctype="multipart/form-data" >
+			<form class="contact100-form validate-form" id = "writeForm" action = "feed/insertFeed" method = "POST" enctype="multipart/form-data" >
 			<input type = "hidden" name = "customer_seq" value = "${sessionScope.customer.customer_seq }" id="cs">
-				<span class="contact100-form-title">Upload</span>
+				<span class="contact100-form-title">私がいるとごろ</span>
 				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
 					<input class="input100" type="text" id="checkin" placeholder = "Please enter a search term">
 					
@@ -627,10 +636,24 @@
 					<span class="focus-input100"></span>
 				</div>
 				
-				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
-				<br>
-					<input class="input100" type="file" name="upload" id="file" value="파일선택" size="30">
-					<span class="focus-input100"></span>
+				<div data-validate = "이거 왜뜨지 씨발">
+
+					<input type = "file" id = "input_imgs" name = "imagefile"  multiple accept="image/gif, image/jpeg, image/png" style="display:none" />
+					<input type='text' name='imagefile2' id='imagefile2' style="display:none;"> 
+				<img src='../resources/images/picture.png' border='0' onclick='document.all.imagefile.click(); document.all.imagefile2.value=document.all.imagefile.value'> 
+				<input type = "file" id = "input_video" name = "videofile" multiple accept="video/*" style="display:none" />
+					<input type='text' name='videofile2' id='videofile2' style="display:none;"> 
+				<img src='../resources/images/video.png' border='0' onclick='document.all.videofile.click(); document.all.videofile2.value=document.all.videofile.value'> 
+
+				
+				
+					<!-- <input class="input100" multiple = "multiple" type="file" name="upload" id="file" value="파일선택" size="30">
+					<span class="focus-input100"></span> -->
+				</div>
+				<div>
+					<div class = "imgs_wrap" style = "margin-bottom : 10px;">
+					
+					</div>
 				</div>
 				
 				
@@ -733,39 +756,47 @@
 
 <!-- 프로필 사진 바꾸기 -->
 		
-		
-	<div id="preview" class="modal">
 
-		<form id = "changef" >
-	
-    <p>
-        <label for="image">Image:</label>
+	<div id="preview" class="modal">
+<br><br><br><br>
+		<form id = "changef" style="text-align: -webkit-center;">
+		<span style="font-size: 70px; font-family: fantasy; font-style: italic; color: antiquewhite;">Profile img</span>
         <br />
-        <input type="file" name="upload" id="image" />
-     
-        
-        
-        <input type="button" value="submit" id="sub"/>
-        
-    </p>
+        <div style="background-color: #daf6ffa6; width: 400px; min-height: 45vh; border-radius: 30px;">
+        <br>
+<img style = "border:1px solid #642EFE; width : 150px; height : 150px;" src="../img/${sessionScope.customer.profileImg }" class="img-responsive img-circle" id="base">
+<br>
+					<input type = "file" id = "image" name = "upload"  multiple accept="image/gif, image/jpeg, image/png" style="display:none" />
+					<input type='text' name='upload2' id='image2' style="display:none;"> 
+				<img src='../resources/images/picture.png' border='0' onclick='document.all.upload.click(); document.all.upload2.value=document.all.upload.value'> 
+				<br><br>
+							<div style="display: -webkit-inline-box;">
+					<button type = "button" id = "sub"class="contact100-form-btn">
+						<span>
+							<i class="fa fa-paper-plane-o m-r-6" aria-hidden="true"></i>
+							submit
+						</span>
+					</button>
+					　　<div class="modal-meta-top">
+					<button type = "button" id = "closeWrite" data-dismiss="modal" class="contact100-form-btn">
+						<span>
+							<i class="fa fa-paper-plane-o m-r-6" aria-hidden="true"></i>
+							close
+						</span>
+					</button>
+					</div>
+				</div>
+</div>
  
     	</form>
-
-	<div class="modal-meta-top">
-	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-			 <span aria-hidden="true">×××××××××</span><span class="sr-only">Close</span>
-			</button>/ button</div> 
-			
-			<div id="ssss">
-		
-				<img style = "width : 96px; height : 96px;" src="${sessionScope.customer.profileImg }" class="img-responsive img-circle" alt="User" id="base"> 
-			 <br />
-		
-        <a href="#">Remove</a>
-			</div>
 	
-   
+  </div>
+</div>
+</div>
 		</div>
+		
+		<script src="lib/jquery/2.2.3/jquery.min.js"></script>
+
 
     <script type="text/javascript">
     var base = $("#base");

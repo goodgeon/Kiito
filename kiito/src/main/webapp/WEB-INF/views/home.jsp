@@ -27,7 +27,125 @@
 		  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 		  
 		  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-		  <script src = "resources/modal/js/modal.js"></script>	
+		  <script>
+		  function following(feed_seq, customer_seq, following_seq){
+				$.ajax({
+					type : "POST",
+					url : "customer/follow",
+					data : {
+						follower_seq : customer_seq,
+						following_seq : following_seq
+					},
+					success : function(){
+						alert("팔로우 성공");
+						$("#followBt"+feed_seq).css('background-color','gray');
+						$("#followBt"+feed_seq).attr('onclick','cancleFollowing('+feed_seq+','+customer_seq+','+following_seq+')');
+						$("#followSpan"+feed_seq).text("UNFOLLOW");
+					}
+				})
+				
+			}
+
+			function cancleFollowing(feed_seq, customer_seq, following_seq){
+				$.ajax({
+					type : "POST",
+					url : "customer/cancleFollow",
+					data : {
+						customer_seq : customer_seq,
+						following_seq : following_seq
+					},
+					success : function(){
+						alert("팔로우 취소");
+						$("#followBt"+feed_seq).css('background-color','#1fa881');
+						$("#followBt"+feed_seq).attr('onclick','following('+feed_seq+','+customer_seq+','+following_seq+')');
+						$("#followSpan"+feed_seq).text("FOLLOW");
+					}
+				})
+			}
+
+
+
+			function showInputNumber(feed_seq){
+				$("#smsInput"+feed_seq).toggle();
+			}
+
+			function sendSms(feed_seq){
+				var phoneNumber = $("#smsPhoneNumber"+feed_seq).val();
+				var checkin = $("#modalCheckin"+feed_seq).html();
+				var congestion = $("#modalCongestion"+feed_seq).html();
+				var contents = $("#modalContents"+feed_seq).html();
+				
+				console.log(phoneNumber);
+				console.log(checkin);
+				console.log(congestion);
+				console.log(contents);
+
+				$.ajax({
+					type : "POST",
+					url : "feed/sendSms",
+					data : {
+						phoneNumber : phoneNumber,
+						checkin : checkin,
+						congestion : congestion,
+						contents : contents
+					},
+					success : function(){
+						alert("문자전송번호 : " + phoneNumber);
+					}
+				})
+			}
+
+
+			function submitComment(feed_seq, customer_seq){
+					var text = $("#inputComment"+feed_seq).val();
+					console.log(text);
+					$.ajax({
+						type : "POST",
+						url : "comment/insertComment",
+						data : {
+							feed_seq : feed_seq,
+							customer_seq : customer_seq,
+							text : text
+						},
+						success : function(){
+							$("#inputComment"+feed_seq).val('');
+							getCommentList(feed_seq);
+						}
+					})
+			}
+			//<c:url value = '/img/item.customer.profileImg'/>
+			function getCommentList(feed_seq){
+				var commentList = [];
+				$.ajax({
+					type : "GET",
+					url : "comment/getCommentList",
+					data : {
+						feed_seq : feed_seq
+					},
+					success : function(list){
+						var html = '';
+						$.each(list, function(key,item){
+							html += '<li>';
+							html += '<div class = "comment-img">';
+							if(item.customer.profileImg.substring(0,4) == 'http'){
+								html += '<img src = "'+item.customer.profileImg+'" class = "img-responsive img-circle" alt="Image"/>';
+							}else{
+								html += '<img src = "<c:url value = "/img/'+item.customer.profileImg+'" />" class = "img-responsive img-circle" alt="Image"/>';
+							}
+							html += '</div>';
+							html += '<div class = "comment-text">';
+							html += '<strong><a href="">' + item.customer.nick + '</a></strong>';
+							html += '<p>' + item.text + '</p> <span class="date sub-text">' + item.inputdate + '</span>';
+							html += '</div></li>';
+						})
+						
+						$("#commentListUl"+feed_seq).html(html);
+						$("#commentsCount"+feed_seq).html(list.length);
+						$("#modalCommentsCount"+feed_seq).html(list.length);
+					}
+				})
+			}
+		  </script>	
 		  <script>
 		  	var slider = '';
 			 $(document).ready(function(){
@@ -272,7 +390,10 @@
 		   	<c:if test="${sessionScope.customer.profileImg == null }">
 								<img src="resources/login/images/profileImg_null2.png" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
 			</c:if>
-			<c:if test="${sessionScope.customer.profileImg != null }">
+			<c:if test="${sessionScope.customer.profileImg.substring(0,4) == 'http' }">
+				<img src="<c:url value = '${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+			</c:if>
+			<c:if test="${sessionScope.customer.profileImg.substring(0,4) != 'http' }">
 				<img src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
 			</c:if>
 		   </span>
@@ -338,10 +459,18 @@
            
            <div class="media m-0">
             <div class="d-flex mr-3">
-			 <a href="#"><img class="img-responsive img-circle" src="<c:url value = '/img/${feed.customer.profileImg }'/>" alt="User"></a>
+			 <a href="#">
+			 	<c:if test="${feed.customer.profileImg.substring(0,4) == 'http' }">
+				<img src="<c:url value = '${feed.customer.profileImg }'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+				</c:if>
+				<c:if test="${feed.customer.profileImg.substring(0,4) != 'http' }">
+					<img src="<c:url value = '/img/${feed.customer.profileImg }'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+				</c:if>
+			 </a>
 			</div>
             <div class="media-body">
-             <p class="m-0">${feed.customer.nick }</p><p>${feed.checkin}
+             <p class="m-0">${feed.customer.nick }</p>
+             <p><img src="resources/images/map.png" style="max-width: 20px; max-height:20px">${feed.checkin}
              <p>
              <c:choose>
              	<c:when test="${feed.congestion == 3 }">혼잡</c:when>
@@ -383,17 +512,18 @@
 		   	
 		    
 		   
-		   <span>${feed.contents }</span> 
+		   <div style = "margin-left : 75px;">${feed.contents }</div>
+	
           </div><!--/ cardbox-item -->
           
 	      <div class="cardbox-base">
 		   <ul>
-		   	<%-- <c:forEach var="hashtag" items="${hashtag }">
+		   	<c:forEach var="hashtag" items="${hashtag }">
 		   		<c:if test="${feed.feed_seq == hashtag.feed_seq }">
 		   			<li>#${hashtag.contents }</li>
 		   		</c:if>
-		   	</c:forEach> --%>
-			<li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/1.jpg" class="img-responsive img-circle" alt="User"></a></li>
+		   	</c:forEach> 
+			<!-- <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/1.jpg" class="img-responsive img-circle" alt="User"></a></li>
 		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/2.jpg" class="img-responsive img-circle" alt="User"></a></li>
 		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/3.jpg" class="img-responsive img-circle" alt="User"></a></li>
 		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/4.jpg" class="img-responsive img-circle" alt="User"></a></li>
@@ -402,13 +532,13 @@
 		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/7.jpg" class="img-responsive img-circle" alt="User"></a></li>
 		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/8.jpg" class="img-responsive img-circle" alt="User"></a></li>
 		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/9.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/10.jpg" class="img-responsive img-circle" alt="User"></a></li> 
+		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/10.jpg" class="img-responsive img-circle" alt="User"></a></li> --> 
 		   </ul>
 		  </div><!--/ cardbox-base -->
           <div class="cardbox-like">
 		   <ul style = "display : flex; justify-content : center">
 			<li><a href="" style = "padding-top : 6px;"><i class="fa fa-heart"></i><span> ${feed.likes }</span></a></li>
-		    <li><a href="" title="" class="com"><i class="fa fa-comments"></i></a> <a href = "" onclick = "openModal(${feed.feed_seq },${sessionScope.customer.customer_seq},${feed.customer.customer_seq})" data-toggle="modal" style = "display : flex; justify-content : center"><span id = "commentsCount${feed.feed_seq}" class="span-last"> ${fn:length(feed.comments)}</span></a></li>
+		    <li onclick = "openModal(${feed.feed_seq },${sessionScope.customer.customer_seq},${feed.customer.customer_seq})"><a href="javascript:void()" title="" class="com"><i class="fa fa-comments"></i></a> <a href = "" onclick = "openModal(${feed.feed_seq },${sessionScope.customer.customer_seq},${feed.customer.customer_seq})" data-toggle="modal" style = "display : flex; justify-content : center"><span id = "commentsCount${feed.feed_seq}" class="span-last"> ${fn:length(feed.comments)}</span></a></li>
 		   </ul>
           </div><!--/ cardbox-like -->			  
                 
@@ -435,7 +565,6 @@
 							<img class="img-responsive" src="<c:url value = '/img/${i.savedFilename}'/>" alt="Image">
 							</li>          	
 			   	       	</c:forEach>
-			   	       	
 			   	       	<c:forEach var ="i" items = "${feed.videoFile}">
 							<li>
 							<video width="500" height="500" src="<c:url value = '/img/${i.savedFilename}'/>" controls></video>
@@ -443,10 +572,12 @@
 			   	       	</c:forEach>
 					</ul>   	
 			   	</c:if>
-			   	<div id = "modalContents${feed.feed_seq }">${feed.contents }</div>
+			   	<div style="display: flex;">
+			   	<img src="resources/images/map.png" style="max-width: 20px; max-height:20px">
 			   	<div id = "modalCheckin${feed.feed_seq }">${feed.checkin }</div>
-			   	<div id = "modalCongestion${feed.feed_seq }">${feed.congestion }</div>
-			
+			   	　　혼잡도 : <div id = "modalCongestion${feed.feed_seq }">${feed.congestion }</div>
+			</div>
+			<div id = "modalContents${feed.feed_seq }">${feed.contents }</div>
           	
            <%--  <img class="img-responsive" src="<c:url value = '/img/20200415.png'/>" alt="Image"/>   --%>
           </div><!--/ col-md-8 -->
@@ -456,7 +587,14 @@
 			 <span aria-hidden="true">×</span><span class="sr-only">Close</span>
 			</button><!--/ button -->
             <div class="img-poster clearfix">
-             <a href=""><img class="img-responsive img-circle" src="${feed.customer.profileImg }" alt="Image"/></a>
+             <a href="">
+             	<c:if test="${feed.customer.profileImg.substring(0,4) == 'http' }">
+				<img src="<c:url value = '${feed.customer.profileImg }'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+				</c:if>
+				<c:if test="${feed.customer.profileImg.substring(0,4) != 'http' }">
+					<img src="<c:url value = '/img/${feed.customer.profileImg }'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+				</c:if>
+             </a>
              <strong><a href="">${feed.customer.nick }</a></strong>
              <br>
              <span>${feed.inputdate }</span><br/>
@@ -529,7 +667,13 @@
 			      <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span id = "modalCommentsCount${feed.feed_seq }"> </span> </li>
 			  <li>
 			   <span class="thumb-xs">
-				<img class="img-responsive img-circle"  src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>"  alt="Image">
+			   	<c:if test="${sessionScope.customer.profileImg.substring(0,4) == 'http' }">
+				<img src="<c:url value = '${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+				</c:if>
+				<c:if test="${sessionScope.customer.profileImg.substring(0,4) != 'http' }">
+					<img src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+				</c:if>
+
 			   </span>
 			   <div class="comment-body">
 			   	<div id = "commentForm">
@@ -625,15 +769,15 @@
 					<span class="focus-input100"></span>
 				</div>
 				
-				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
-				
-				
-				<div>
-					<input type = "file" id = "input_imgs" name = "imagefile" multiple accept="image/gif, image/jpeg, image/png" />
-				</div>
-				<div>
-					<input type = "file" id = "input_video" name = "videofile" multiple accept="video/*" />
-				</div>
+				<div data-validate = "이거 왜뜨지 씨발">
+
+					<input type = "file" id = "input_imgs" name = "imagefile"  multiple accept="image/gif, image/jpeg, image/png" style="display:none" />
+					<input type='text' name='imagefile2' id='imagefile2' style="display:none;"> 
+				<img src='resources/images/picture.png' border='0' onclick='document.all.imagefile.click(); document.all.imagefile2.value=document.all.imagefile.value'> 
+				<input type = "file" id = "input_video" name = "videofile" multiple accept="video/*" style="display:none" />
+					<input type='text' name='videofile2' id='videofile2' style="display:none;"> 
+				<img src='resources/images/video.png' border='0' onclick='document.all.videofile.click(); document.all.videofile2.value=document.all.videofile.value'> 
+
 				
 				
 					<!-- <input class="input100" multiple = "multiple" type="file" name="upload" id="file" value="파일선택" size="30">

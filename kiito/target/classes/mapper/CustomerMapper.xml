@@ -11,13 +11,20 @@
 		 <result column="customer_type" property="customer_type"/>
 		 
 		 <collection property="follow" column="customer_seq" javaType="java.util.ArrayList" ofType="follow" select="getFollowList"/>
+		 <collection property="follower" column="customer_seq" javaType="java.util.ArrayList" ofType="follow" select="getFollowerList"/>
 	</resultMap>
 	
 	<select id="getFollowList" resultType="follow">
 		select follow_seq, customer_seq, following_seq
 		from follow
 		where customer_seq = #{customer_seq}
-	</select> 
+	</select>
+	
+	<select id="getFollowerList" resultType = "follow">
+		select follow_seq, customer_seq, following_seq
+		from follow
+		where following_seq = #{customer_seq}
+	</select>
 	
 	<!-- <select id="getFollowingList" parameterType="int" resultType="customer">
 		select c.customer_seq, c.email, c.pw, c.name, c.profileImg, c.customer_type
@@ -154,5 +161,7 @@
 		from chat
 		where (customer1_seq = #{customer1_seq} and customer2_seq = #{customer2_seq}) OR (customer1_seq = #{customer2_seq} and customer2_seq = #{customer1_seq})
 	</select>
+	
+	
 
 </mapper>
