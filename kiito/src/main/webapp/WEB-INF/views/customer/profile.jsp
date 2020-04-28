@@ -770,7 +770,7 @@
       <form id = "changef" style="text-align: -webkit-center;">
       <span style="font-size: 70px; font-family: fantasy; font-style: italic; color: antiquewhite;">Profile img</span>
         <br />
-        <div style="background-color: #daf6ffa6; width: 400px; min-height: 47vh; border-radius: 30px;">
+        <div style="background-color: #7b969ea6; width: 400px; min-height: 47vh; border-radius: 30px;">
         <br>
 <img style = "border:1px solid #642EFE; width : 150px; height : 150px;" src="../img/${sessionScope.customer.profileImg }" class="img-responsive img-circle" id="base">
 <br>
