@@ -46,6 +46,10 @@ public class FeedController {
 	private ImageFileDAO imgDao;
 	@Autowired
 	private VideoFileDAO videoDao;
+	
+	@Autowired
+	private HashtagDAO hashtagdao;
+	
 
 	@Autowired
 	private LikesDAO dao3;
@@ -250,7 +254,23 @@ public class FeedController {
 	 */
 	
 	@RequestMapping(value = "explore", method = RequestMethod.GET)
-	public String explore() {
+	public String explore(Model model) {
+		ArrayList<Feed> ff = dao.feedList();
+		String temp;
+		
+		for(int i=0; i<ff.size(); i++) {
+			temp = ff.get(i).getContents().replace("\r\n", "<br>");
+			ff.get(i).setContents(temp);
+		}
+		model.addAttribute("feed",ff);
+		
+		ArrayList<Hashtag> hashtagList = hashtagdao.getList();
+		//System.out.println(hashtagList);
+		model.addAttribute("hashtag",hashtagList);
+		
+		ArrayList<ImageFile> imageList = imgDao.getList();
+		model.addAttribute("imageFile", imageList);
+		
 		return "board/explore";
 	}
 	

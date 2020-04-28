@@ -169,20 +169,38 @@ public class CustomerController {
 		return "customer/profile";}
 	
 	@RequestMapping(value = "/followers", method = RequestMethod.GET)
-	public String follwers(HttpSession session,Model model) {
+	public String follwers(HttpSession session,Model model, int type) {
 		Customer customer = (Customer) session.getAttribute("customer");
-		ArrayList<Follow> followseqList = customer.getFollower();
+		ArrayList<Follow> followseqList = null;
 		ArrayList<Customer> list = new ArrayList<Customer>();
+			if(type == 1) {
+				followseqList = customer.getFollower();
+				
+				for(int i=0; i<followseqList.size(); i++) {
+					Customer temp = new Customer();
+					temp = dao.getCustomer(followseqList.get(i).getCustomer_seq());
+					list.add(temp);
+				}
+				
+				model.addAttribute("followerList", list);
+				System.out.println(list);
+			}else if(type == 2) {
+				followseqList = customer.getFollow();
+				
+				for(int i=0; i<followseqList.size(); i++) {
+					Customer temp = new Customer();
+					
+					temp = dao.getCustomer(followseqList.get(i).getFollowing_seq());
+					list.add(temp);
+				}
+				
+				model.addAttribute("followerList", list);
+				System.out.println(list);
+			}
+			
+			return "customer/followers";
 		
-		for(int i=0; i<followseqList.size(); i++) {
-			Customer temp = new Customer();
-			temp = dao.getCustomer(followseqList.get(i).getCustomer_seq());
-			list.add(temp);
 		}
-		
-		model.addAttribute("followerList", list);
-		
-		return "customer/followers";}
 	
 	/* 사진수정 */
 	@ResponseBody

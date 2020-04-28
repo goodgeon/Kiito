@@ -42,6 +42,186 @@
 		Feauture Detection
 		=============================================== -->
 		<script src="../resources/assets/js/modernizr-custom.js"></script>
+		  <!-- bxSlider -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+        <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+        <script src = "../resources/modal/js/modal.js"></script>   
+   
+		<script>
+		function following(feed_seq, customer_seq, following_seq){
+			$.ajax({
+				type : "POST",
+				url : "customer/follow",
+				data : {
+					follower_seq : customer_seq,
+					following_seq : following_seq
+				},
+				success : function(){
+					alert("팔로우 성공");
+					$("#followBt"+feed_seq).css('background-color','gray');
+					$("#followBt"+feed_seq).attr('onclick','cancleFollowing('+feed_seq+','+customer_seq+','+following_seq+')');
+					$("#followSpan"+feed_seq).text("UNFOLLOW");
+				}
+			})
+			
+		}
+
+		function cancleFollowing(feed_seq, customer_seq, following_seq){
+			$.ajax({
+				type : "POST",
+				url : "customer/cancleFollow",
+				data : {
+					customer_seq : customer_seq,
+					following_seq : following_seq
+				},
+				success : function(){
+					alert("팔로우 취소");
+					$("#followBt"+feed_seq).css('background-color','#1fa881');
+					$("#followBt"+feed_seq).attr('onclick','following('+feed_seq+','+customer_seq+','+following_seq+')');
+					$("#followSpan"+feed_seq).text("FOLLOW");
+				}
+			})
+		}
+
+
+
+		function showInputNumber(feed_seq){
+			$("#smsInput"+feed_seq).toggle();
+		}
+
+		function sendSms(feed_seq){
+			var phoneNumber = $("#smsPhoneNumber"+feed_seq).val();
+			var checkin = $("#modalCheckin"+feed_seq).html();
+			var congestion = $("#modalCongestion"+feed_seq).html();
+			var contents = $("#modalContents"+feed_seq).html();
+			
+			console.log(phoneNumber);
+			console.log(checkin);
+			console.log(congestion);
+			console.log(contents);
+
+			$.ajax({
+				type : "POST",
+				url : "feed/sendSms",
+				data : {
+					phoneNumber : phoneNumber,
+					checkin : checkin,
+					congestion : congestion,
+					contents : contents
+				},
+				success : function(){
+					alert("문자전송번호 : " + phoneNumber);
+				}
+			})
+		}
+
+
+		function submitComment(feed_seq, customer_seq){
+				var text = $("#inputComment"+feed_seq).val();
+				console.log(text);
+				$.ajax({
+					type : "POST",
+					url : "comment/insertComment",
+					data : {
+						feed_seq : feed_seq,
+						customer_seq : customer_seq,
+						text : text
+					},
+					success : function(){
+						$("#inputComment"+feed_seq).val('');
+						getCommentList(feed_seq);
+					}
+				})
+		}
+		//<c:url value = '/img/item.customer.profileImg'/>
+		function getCommentList(feed_seq){
+			var commentList = [];
+			$.ajax({
+				type : "GET",
+				url : "comment/getCommentList",
+				data : {
+					feed_seq : feed_seq
+				},
+				success : function(list){
+					var html = '';
+					$.each(list, function(key,item){
+						html += '<li>';
+						html += '<div class = "comment-img">';
+						if(item.customer.profileImg.substring(0,4) == 'http'){
+							html += '<img src = "'+item.customer.profileImg+'" class = "img-responsive img-circle" alt="Image"/>';
+						}else{
+							html += '<img src = "<c:url value = "/img/'+item.customer.profileImg+'" />" class = "img-responsive img-circle" alt="Image"/>';
+						}
+						html += '</div>';
+						html += '<div class = "comment-text">';
+						html += '<strong><a href="">' + item.customer.nick + '</a></strong>';
+						html += '<p>' + item.text + '</p> <span class="date sub-text">' + item.inputdate + '</span>';
+						html += '</div></li>';
+					})
+					
+					$("#commentListUl"+feed_seq).html(html);
+					$("#commentsCount"+feed_seq).html(list.length);
+					$("#modalCommentsCount"+feed_seq).html(list.length);
+				}
+			})
+		}
+	  </script>
+		</script>   
+        <script>
+        var slider = '';
+		 $(document).ready(function(){
+		    slider = $('.bxslider').bxSlider({
+			    adaptiveHeight: true
+			});
+		});
+
+          function openModal(feedNum,customer_seq,following_seq){
+				var modalId = "#myModal"+feedNum;
+				$(modalId).modal("show");
+
+				$.ajax({
+					type : "POST",
+					url : "../customer/checkFollowing",
+					data : {
+						customer_seq : customer_seq,
+						following_seq : following_seq
+					},
+					success : function(result){
+						if(result == 1){
+							$("#followBt"+feedNum).css('background-color','#1fa881');
+							$("#followBt"+feedNum).attr('onclick','following('+feedNum+','+customer_seq+','+following_seq+')');
+							$("#followSpan"+feedNum).text("FOLLOW");
+						}else if(result == 0){
+							$("#followBt"+feedNum).css('background-color','gray');
+							$("#followBt"+feedNum).attr('onclick','cancleFollowing('+feedNum+','+customer_seq+','+following_seq+')');
+							$("#followSpan"+feedNum).text("UNFOLLOW");
+						}
+					}
+				})
+
+	
+				var config = {
+					adaptiveHeight : true
+				}
+	
+				var ulId = "#sliderId" + feedNum;
+
+				sliderModal = $(ulId).bxSlider({
+					adaptiveHeight : true
+			  	});
+
+			  	//sliderModal.reloadSlider();
+	
+				 setTimeout(function(){
+					sliderModal.reloadSlider(config); 
+				}, 300); 
+
+				getCommentList(feedNum);
+					 
+			}
+                 
+        </script>
 
 		
 		
@@ -341,16 +521,17 @@
 	   </div>
 	  
 	   <div class="row">
-	   
-	    <div class="col-lg-4">
-		 <a href="#myModal" data-toggle="modal">
+	   <c:forEach var="s" items="${feed}">
+	   	<div class="col-lg-4">
+		 <a href="" data-toggle="modal" onclick = "openModal(${s.feed_seq },${sessionScope.customer.customer_seq},${s.customer.customer_seq})" >
 		 <div class="explorebox" 
 		   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/22.gif') no-repeat;
 		          background-size: cover;
                   background-position: center center;
                   -webkit-background-size: cover;
                   -moz-background-size: cover;
-                  -o-background-size: cover;">
+                  -o-background-size: cover;
+                  background-image : url(/kiito/img/${s.imageFile[0].savedFilename})">
 		  <div class="explore-top">
 		   <div class="explore-like"><i class="fa fa-heart"></i> <span>14,100</span></div>
 		   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
@@ -361,176 +542,97 @@
 		 </div>
 		 </a>
 		</div><!--/ col-lg-4 -->
-	   
-	    <div class="col-lg-4">
-		 <a href="#myModal" data-toggle="modal">
-		 <div class="explorebox" 
-		   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/7.jpg') no-repeat;
-		          background-size: cover;
-                  background-position: center center;
-                  -webkit-background-size: cover;
-                  -moz-background-size: cover;
-                  -o-background-size: cover;">
-		  <div class="explore-top">
-		   <div class="explore-like"><i class="fa fa-heart"></i> <span>100,100</span></div>
-		   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-          </div>		  
-          <div class="explore-body">
-           <div class=""><img class="img-circle" src="assets/img/users/1.jpg" alt="user"></div>
-          </div>		  
-		 </div>
-		 </a>
-		</div><!--/ col-lg-4 -->
-	   
-	    <div class="col-lg-4">
-		 <a href="#myModal" data-toggle="modal">
-		 <div class="explorebox" 
-		   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/19.jpg') no-repeat;
-		          background-size: cover;
-                  background-position: center center;
-                  -webkit-background-size: cover;
-                  -moz-background-size: cover;
-                  -o-background-size: cover;">
-		  <div class="explore-top">
-		   <div class="explore-like"><i class="fa fa-heart"></i> <span>100</span></div>
-		   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-          </div>		  
-          <div class="explore-body">
-           <div class=""><img class="img-circle" src="assets/img/users/2.jpg" alt="user"></div>
-          </div>		  
-		 </div>
-		 </a>
-		</div><!--/ col-lg-4 -->
 		
-	   </div><!--/ row -->
+		<div id="myModal${s.feed_seq }" class="modal fade" style = "z-index : 99999;">
+      <div class="modal-dialog">
+       <div class="modal-content">
+        <div class="modal-body">
+      
+         <div class="row">
+       
+          <div class="col-md-8 modal-image">
+             <c:if test="${fn:length(s.imageFile) > 0 || fn:length(s.videoFile) > 0}">
+                    <ul id = "sliderId${s.feed_seq}" class = "bxsliderModal">
+                       <c:forEach var ="i" items = "${s.imageFile}">
+                     <li >
+                     <img class="img-responsive" src="<c:url value = '/img/${i.savedFilename}'/>" alt="Image">
+                     </li>             
+                         </c:forEach>
+                         
+                         <c:forEach var ="i" items = "${s.videoFile}">
+                     <li>
+                     <video width="500" height="500" src="<c:url value = '/img/${i.savedFilename}'/>" controls></video>
+                     </li>             
+                         </c:forEach>
+               </ul>      
+               </c:if>
+               <div id = "modalContents${s.feed_seq }">${s.contents }</div>
+               <div id = "modalCheckin${s.feed_seq }">${s.checkin }</div>
+               <div id = "modalCongestion${s.feed_seq }">${s.congestion }</div>
+          
+         
+          
+         <!--  
+           <img class="img-responsive" src="../resources/assets/img/posts/9.jpg" alt="Image"/> -->
+          </div><!--/ col-md-8 -->
+          <div class="col-md-4 modal-meta">
+           <div class="modal-meta-top">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+         </button>
+            <div class="img-poster clearfix">
+             <a href=""><img class="img-responsive img-circle" src="${sessionScope.customer.profileImg }" alt="Image"/></a>
+             <strong><a href="">${sessionScope.customer.nick }</a></strong>
+             <br>
+             <span>${s.inputdate }</span><br/>
+          <a href="javascript:void(0)" onclick = "showInputNumber(${s.feed_seq })" class="kafe kafe-btn-mint-small"><i class="fas fa-envelope-open"></i>문자전송</a>
+            </div><!--/ img-poster -->
+            
+              <div id = "smsInput${s.feed_seq }" class = "smsInput">
+                 전화번호를 입력해 주세요 : 
+               <div style = "display : flex;">
+                  <input id = "smsPhoneNumber${s.feed_seq }" type = "text" class = "form-control input-sm">
+                  <button type = "button" class="kafe kafe-btn-mint-small" onclick = "sendSms(${s.feed_seq })">전송</button>
+               </div>
+               
+            </div>
+           
+           
+            <ul id = "commentListUl${s.feed_seq }" class="img-comment-list">
+          
+ 
+            </ul><!--/ comment-list -->
+           
+        <div class="modal-meta-bottom">
+          <ul>
+           <li><a class="modal-like" href="#"><i class="fa fa-heart"></i></a><span class="modal-one"> ${s.likes }</span> | 
+               <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span id = "modalCommentsCount${s.feed_seq }"> </span> </li>
+           <li>
+            <span class="thumb-xs">
+            <img class="img-responsive img-circle"  src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>"  alt="Image">
+            </span>
+            <div class="comment-body">
+               <div id = "commentForm">
+                  <input id = "inputComment${s.feed_seq}" class="form-control input-sm" type="text" name = "text" placeholder="Write your comment..." data-customer="${sessionScope.customer.customer_seq}" data-feed="${s.feed_seq}">
+                  <a href = "javacsript:void(0)" class="kafe kafe-btn-mint-small" id = "commentSubmit" onclick = "submitComment(${s.feed_seq}, ${sessionScope.customer.customer_seq})">Submit</a>
+               </div>
+            </div><!--/ comment-body -->   
+              </li>            
+             </ul>            
+            </div><!--/ modal-meta-bottom -->
+           
+           </div><!--/ modal-meta-top -->
+          </div><!--/ col-md-4 -->
+        
+         </div><!--/ row -->
+        </div><!--/ modal-body -->
+      
+       </div><!--/ modal-content -->
+      </div><!--/ modal-dialog -->
+     </div><!--/ modal -->
+	   </c:forEach>
 	   
-	   <div class="row">
-	   
-	    <div class="col-lg-4">
-		 <a href="#myModal" data-toggle="modal">
-		 <div class="explorebox" 
-		   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/16.jpg') no-repeat;
-		          background-size: cover;
-                  background-position: center center;
-                  -webkit-background-size: cover;
-                  -moz-background-size: cover;
-                  -o-background-size: cover;">
-		  <div class="explore-top">
-		   <div class="explore-like"><i class="fa fa-heart"></i> <span>324</span></div>
-		   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-          </div>		  
-          <div class="explore-body">
-           <div class=""><img class="img-circle" src="assets/img/users/3.jpg" alt="user"></div>
-          </div>		  
-		 </div>
-		 </a>
-		</div><!--/ col-lg-4 -->
-	   
-	    <div class="col-lg-4">
-		 <a href="#myModal" data-toggle="modal">
-		 <div class="explorebox" 
-		   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/17.jpg') no-repeat;
-		          background-size: cover;
-                  background-position: center center;
-                  -webkit-background-size: cover;
-                  -moz-background-size: cover;
-                  -o-background-size: cover;">
-		  <div class="explore-top">
-		   <div class="explore-like"><i class="fa fa-heart"></i> <span>1023</span></div>
-		   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-          </div>		  
-          <div class="explore-body">
-           <div class=""><img class="img-circle" src="assets/img/users/4.jpg" alt="user"></div>
-          </div>		  
-		 </div>
-		 </a>
-		</div><!--/ col-lg-4 -->
-	   
-	    <div class="col-lg-4">
-		 <a href="#myModal" data-toggle="modal">
-		 <div class="explorebox" 
-		   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/20.jpg') no-repeat;
-		          background-size: cover;
-                  background-position: center center;
-                  -webkit-background-size: cover;
-                  -moz-background-size: cover;
-                  -o-background-size: cover;">
-		  <div class="explore-top">
-		   <div class="explore-like"><i class="fa fa-heart"></i> <span>40</span></div>
-		   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-          </div>		  
-          <div class="explore-body">
-           <div class=""><img class="img-circle" src="assets/img/users/5.jpg" alt="user"></div>
-          </div>		  
-		 </div>
-		 </a>
-		</div><!--/ col-lg-4 -->
-		
-	   </div><!--/ row -->
-	   
-	   <div class="row">
-	   
-	    <div class="col-lg-4">
-		 <a href="#myModal" data-toggle="modal">
-		 <div class="explorebox" 
-		   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/8.jpg') no-repeat;
-		          background-size: cover;
-                  background-position: center center;
-                  -webkit-background-size: cover;
-                  -moz-background-size: cover;
-                  -o-background-size: cover;">
-		  <div class="explore-top">
-		   <div class="explore-like"><i class="fa fa-heart"></i> <span>63,453</span></div>
-		   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-          </div>		  
-          <div class="explore-body">
-           <div class=""><img class="img-circle" src="assets/img/users/6.jpg" alt="user"></div>
-          </div>		  
-		 </div>
-		 </a>
-		</div><!--/ col-lg-4 -->
-	   
-	    <div class="col-lg-4">
-		 <a href="#myModal" data-toggle="modal">
-		 <div class="explorebox" 
-		   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/9.jpg') no-repeat;
-		          background-size: cover;
-                  background-position: center center;
-                  -webkit-background-size: cover;
-                  -moz-background-size: cover;
-                  -o-background-size: cover;">
-		  <div class="explore-top">
-		   <div class="explore-like"><i class="fa fa-heart"></i> <span>1243</span></div>
-		   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-          </div>		  
-          <div class="explore-body">
-           <div class=""><img class="img-circle" src="assets/img/users/7.jpg" alt="user"></div>
-          </div>		  
-		 </div>
-		 </a>
-		</div><!--/ col-lg-4 -->
-	   
-	    <div class="col-lg-4">
-		 <a href="#myModal" data-toggle="modal">
-		 <div class="explorebox" 
-		   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/10.jpg') no-repeat;
-		          background-size: cover;
-                  background-position: center center;
-                  -webkit-background-size: cover;
-                  -moz-background-size: cover;
-                  -o-background-size: cover;">
-		  <div class="explore-top">
-		   <div class="explore-like"><i class="fa fa-heart"></i> <span>645</span></div>
-		   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-          </div>		  
-          <div class="explore-body">
-           <div class=""><img class="img-circle" src="assets/img/users/8.jpg" alt="user"></div>
-          </div>		  
-		 </div>
-		 </a>
-		</div><!--/ col-lg-4 -->
-		
-	   </div><!--/ row -->
+	    
 	   
 	  </div><!--/ container -->
 	 </section><!--/ newsfeed -->
@@ -637,7 +739,6 @@
      <!-- ==============================================
 	 Scripts
 	 =============================================== -->
-	<script src="../resources/assets/js/jquery.min.js"></script>
 	<script src="../resources/assets/js/bootstrap.min.js"></script>
 	<script src="../resources/assets/js/base.js"></script>
 	<script src="../resources/assets/plugins/slimscroll/jquery.slimscroll.js"></script>
