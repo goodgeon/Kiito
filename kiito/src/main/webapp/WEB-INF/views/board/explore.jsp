@@ -207,6 +207,7 @@
 		}
 		//<c:url value = '/img/item.customer.profileImg'/>
 		function getCommentList(feed_seq){
+			console.log("getcom")
 			var commentList = [];
 			$.ajax({
 				type : "GET",
@@ -293,6 +294,7 @@
 			}
                  
         </script>
+
 
 		
 		
@@ -460,17 +462,15 @@
 		   </span>
 		   <!-- hidden-xs hides the username on small devices so only the image appears. -->
 		   <span class="hidden-xs">
-			${sessionScope.customer.name }
+			${sessionScope.customer.nick }
 		   </span>
 		  </a>
 		  <div class="dropdown-menu w dropdown-menu-scale pull-right">
-<!-- 		   <a class="dropdown-item" href="#"><span>New Story</span></a>  -->
 		   <div class="dropdown-divider"></div>
 		   <a class="dropdown-item" href="customer/profile?profileImg=${sessionScope.customer.profileImg }"><span>Profile</span></a> 
 		   <a class="dropdown-item" href="#editp" data-toggle="modal" rel="modal:open"><span>Settings</span></a> 
-<!-- 		   <a class="dropdown-item" href="#">Need help?</a>  -->
 		   <div class="dropdown-divider"></div>
-		   <a class="dropdown-item" href="customer/logout">Sign out</a>
+		   <a class="dropdown-item" href="/kiito/customer/logout">Sign out</a>
 		  </div>
 		 </li><!-- /navbar-item -->	
 		 
@@ -663,8 +663,136 @@
       </div><!--/ modal-dialog -->
      </div><!--/ modal -->
 	   </c:forEach>
+	   </div><!--/ row -->
 	   
-	    
+	   <div class="row">
+	   
+	    <div class="col-lg-4">
+		 <a href="#myModal" data-toggle="modal">
+		 <div class="explorebox" 
+		   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/16.jpg') no-repeat;
+		          background-size: cover;
+                  background-position: center center;
+                  -webkit-background-size: cover;
+                  -moz-background-size: cover;
+                  -o-background-size: cover;">
+		  <div class="explore-top">
+		   <div class="explore-like"><i class="fa fa-heart"></i> <span>324</span></div>
+		   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
+          </div>		  
+          <div class="explore-body">
+           <div class=""><img class="img-circle" src="assets/img/users/3.jpg" alt="user"></div>
+          </div>		  
+		 </div>
+		 </a>
+		</div><!--/ col-lg-4 -->
+	   
+	    <div class="col-lg-4">
+		 <a href="#myModal" data-toggle="modal">
+		 <div class="explorebox" 
+		   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/17.jpg') no-repeat;
+		          background-size: cover;
+                  background-position: center center;
+                  -webkit-background-size: cover;
+                  -moz-background-size: cover;
+                  -o-background-size: cover;">
+		  <div class="explore-top">
+		   <div class="explore-like"><i class="fa fa-heart"></i> <span>1023</span></div>
+		   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
+          </div>		  
+          <div class="explore-body">
+           <div class=""><img class="img-circle" src="assets/img/users/4.jpg" alt="user"></div>
+          </div>		  
+		 </div>
+		 </a>
+		</div><!--/ col-lg-4 -->
+	   
+	    <div class="col-lg-4">
+		 <a href="#myModal" data-toggle="modal">
+		 <div class="explorebox" 
+		   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/20.jpg') no-repeat;
+		          background-size: cover;
+                  background-position: center center;
+                  -webkit-background-size: cover;
+                  -moz-background-size: cover;
+                  -o-background-size: cover;">
+		  <div class="explore-top">
+		   <div class="explore-like"><i class="fa fa-heart"></i> <span>40</span></div>
+		   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
+          </div>		  
+          <div class="explore-body">
+           <div class=""><img class="img-circle" src="assets/img/users/5.jpg" alt="user"></div>
+          </div>		  
+		 </div>
+		 </a>
+		</div><!--/ col-lg-4 -->
+		
+	   </div><!--/ row -->
+	   
+	   <div class="row">
+	   
+	    <div class="col-lg-4">
+		 <a href="#myModal" data-toggle="modal">
+		 <div class="explorebox" 
+		   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/8.jpg') no-repeat;
+		          background-size: cover;
+                  background-position: center center;
+                  -webkit-background-size: cover;
+                  -moz-background-size: cover;
+                  -o-background-size: cover;">
+		  <div class="explore-top">
+		   <div class="explore-like"><i class="fa fa-heart"></i> <span>63,453</span></div>
+		   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
+          </div>		  
+          <div class="explore-body">
+           <div class=""><img class="img-circle" src="assets/img/users/6.jpg" alt="user"></div>
+          </div>		  
+		 </div>
+		 </a>
+		</div><!--/ col-lg-4 -->
+>>>>>>> 5e859bb624696cac9910981a88fd3a3b79bb10de
+	   
+	    <div class="col-lg-4">
+		 <a href="#myModal" data-toggle="modal">
+		 <div class="explorebox" 
+		   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/9.jpg') no-repeat;
+		          background-size: cover;
+                  background-position: center center;
+                  -webkit-background-size: cover;
+                  -moz-background-size: cover;
+                  -o-background-size: cover;">
+		  <div class="explore-top">
+		   <div class="explore-like"><i class="fa fa-heart"></i> <span>1243</span></div>
+		   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
+          </div>		  
+          <div class="explore-body">
+           <div class=""><img class="img-circle" src="assets/img/users/7.jpg" alt="user"></div>
+          </div>		  
+		 </div>
+		 </a>
+		</div><!--/ col-lg-4 -->
+	   
+	    <div class="col-lg-4">
+		 <a href="#myModal" data-toggle="modal">
+		 <div class="explorebox" 
+		   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/10.jpg') no-repeat;
+		          background-size: cover;
+                  background-position: center center;
+                  -webkit-background-size: cover;
+                  -moz-background-size: cover;
+                  -o-background-size: cover;">
+		  <div class="explore-top">
+		   <div class="explore-like"><i class="fa fa-heart"></i> <span>645</span></div>
+		   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
+          </div>		  
+          <div class="explore-body">
+           <div class=""><img class="img-circle" src="assets/img/users/8.jpg" alt="user"></div>
+          </div>		  
+		 </div>
+		 </a>
+		</div><!--/ col-lg-4 -->
+		
+	   </div><!--/ row -->
 	   
 	  </div><!--/ container -->
 	 </section><!--/ newsfeed -->
@@ -784,6 +912,60 @@
 		});		
 	</script>
 	
+	  <script type="text/javascript">
+
+
+    $(document).ready(function() {
+      $('#sub').on('click', submit1);
+      $('#bt3').on('click',submit4);
+      $('#bt7').on('click',submit7);})
+
+   function submit1() {
+   
+       var form = $('#changef')[0];
+        var formData = new FormData(form);
+
+      $.ajax({
+         url : '/kiito/customer/changef',
+         type : 'POST',
+         data : formData,
+           contentType : false,
+           processData : false, 
+         success : function(a) {if(a=="ok"){alert("수정성공");location.href="/kiito/feed/explore";}
+            else{alert("개씨발");}},
+         error : function(a) {alert("걍 에러");},
+         async : false
+      });}
+
+    function submit4() {
+       var pw = $('#password').val();  var p1 = $('#password1').val();  var nick = $('#nick').val();
+       if (pw != p1) {alert('비밀번호가 일치하지 않아요');return;}
+       if (nick.length < 2) {alert('닉네임을 다시 입력해주세요');return;}
+       $.ajax({
+          url : '/kiito/customer/editP',
+          type : 'POST',
+          data : {nick : nick,pw : pw},
+          success : function(a) {if(a=="ok"){alert("수정성공");location.reload();}
+            else{alert("개씨발");}},
+          error : function(a) {alert("걍 에러");}});}
+
+    function submit7(){
+
+       var pw = $('#password').val(); var p1 = $('#password1').val();
+       if (pw.length <1 || p1.length<1 || pw != p1) {alert('비밀번호 제대로 입력해주세요.');return;}
+
+       $.ajax({
+          url:'/kiito/customer/deru',
+          type:'POST',
+          data:{pw:pw},
+          dataType:'text',
+          success : function(e){
+             if(e=="ok"){
+                alert("탈퇴성공");location.href="/kiito";}else{alert("다시입력해주세요");};},
+          error : function(n){alert("걍오류")}})}
+
+    </script>
+	
 	<!-- write form -->
 		<div class="container-contact100">
 		<div class="wrap-contact100">
@@ -829,9 +1011,7 @@
 				<img src='../resources/images/video.png' border='0' onclick='document.all.videofile.click(); document.all.videofile2.value=document.all.videofile.value'> 
 
 				
-				
-					<!-- <input class="input100" multiple = "multiple" type="file" name="upload" id="file" value="파일선택" size="30">
-					<span class="focus-input100"></span> -->
+
 				</div>
 				<div>
 					<div class = "imgs_wrap" style = "margin-bottom : 10px;">
@@ -890,7 +1070,7 @@
    <a>${sessionScope.customer.nick }</a><br>
 
          <span class="input input--haruki">
-               <input class="input__field input__field--haruki" type="text"  id="nick" />
+               <input class="input__field input__field--haruki" type="text"  id="nick" value="${sessionScope.customer.nick }"/>
                <label class="input__label input__label--haruki" for="input-1">
                   <span class="input__label-content input__label-content--haruki">NickName</span>
                </label>

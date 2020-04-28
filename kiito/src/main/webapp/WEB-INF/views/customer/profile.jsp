@@ -882,7 +882,7 @@
    <a>${sessionScope.customer.nick }</a><br>
 
          <span class="input input--haruki">
-               <input class="input__field input__field--haruki" type="text"  id="nick" />
+               <input class="input__field input__field--haruki" type="text"  id="nick" value="${sessionScope.customer.nick }"/>
                <label class="input__label input__label--haruki" for="input-1">
                   <span class="input__label-content input__label-content--haruki">NickName</span>
                </label>
