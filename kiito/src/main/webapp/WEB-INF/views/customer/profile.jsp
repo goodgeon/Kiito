@@ -124,7 +124,7 @@
 	   </div>
 
 	   <div class="p-2 nav-icon-lg dark-black">
-	   <a class="nav-icon" href="profile"><em class="fa fa-user"></em>
+	   <a class="nav-icon" href="profile?profileImg=${sessionScope.customer.profileImg }"><em class="fa fa-user"></em>
 		<span>Profile</span>
 	   </a>
 	   </div>
@@ -269,7 +269,7 @@
 		   <a class="dropdown-item" href="#"><span>New Story</span></a> 
 		 <!--   <a class="dropdown-item" href="#"><span>Become a Member</span></a>  -->
 		   <div class="dropdown-divider"></div>
-		   <a class="dropdown-item" href="profile"><span>Profile</span></a> 
+		   <a class="dropdown-item" href="profile?profileImg=${sessionScope.customer.profileImg }"><span>Profile</span></a> 
 		   <a class="dropdown-item" href="#"><span>Settings</span></a> 
 		   <a class="dropdown-item" href="#">Need help?</a> 
 		   <div class="dropdown-divider"></div>
