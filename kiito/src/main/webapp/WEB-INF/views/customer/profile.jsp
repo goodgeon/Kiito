@@ -20,11 +20,22 @@
         <meta property="og:title" content="" />
         <meta property="og:url" content="" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        
+                		<meta name="description" content="Simple ideas for enhancing text input interactions" />
+		<meta name="keywords" content="input, text, effect, focus, transition, interaction, inspiration, web design" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="..resources/nick/css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="..resources/nickfonts/font-awesome-4.2.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="..resources/nickcss/demo.css" />
+		<link rel="stylesheet" type="text/css" href="..resources/nickcss/set1.css" />
           <!-- bxSlider -->
 		  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 		  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 		  <script src = "../resources/modal/js/modal.js"></script>	
+	
 		  <script>
 			var slider = '';
 			 $(document).ready(function(){
@@ -320,7 +331,7 @@
 			 <div class="row">
 			  <div class="col-12">
 			<!--    <a title="facebook" href="#" class=" waves-effect waves-block"><i class="fab fa-facebook"></i></a> -->
-			   <a title="개인정보수정" href="#editp" data-toggle="modal" rel="modal:open" class=" waves-effect waves-block"><i class="fab fa-twitter"></i></a>
+			   <a title="개인정보수정" href="#editp" data-toggle="modal" rel="modal:open" class=" waves-effect waves-block"><img src="../resources/images/setting.png"></a>
 		<!-- 	   <a title="instagram" href="#" class=" waves-effect waves-block"><i class="fab fa-instagram"></i></a> -->
 			  </div>                                
 			 </div>
@@ -755,7 +766,42 @@
 
 
 <!-- 프로필 사진 바꾸기 -->
-		
+			  		<script src="../resources/nick/js/classie.js"></script>
+		<script>
+			(function() {
+				// trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
+				if (!String.prototype.trim) {
+					(function() {
+						// Make sure we trim BOM and NBSP
+						var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+						String.prototype.trim = function() {
+							return this.replace(rtrim, '');
+						};
+					})();
+				}
+
+				[].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+					// in case the input is already filled..
+					if( inputEl.value.trim() !== '' ) {
+						classie.add( inputEl.parentNode, 'input--filled' );
+					}
+
+					// events:
+					inputEl.addEventListener( 'focus', onInputFocus );
+					inputEl.addEventListener( 'blur', onInputBlur );
+				} );
+
+				function onInputFocus( ev ) {
+					classie.add( ev.target.parentNode, 'input--filled' );
+				}
+
+				function onInputBlur( ev ) {
+					if( ev.target.value.trim() === '' ) {
+						classie.remove( ev.target.parentNode, 'input--filled' );
+					}
+				}
+			})();
+		</script>
 
 	<div id="preview" class="modal">
 <br><br><br><br>
@@ -865,34 +911,33 @@
     
  <!--    개인정보수정 -->
     <div id="editp" class="modal">
-	<form id="editForm">
-		<table border=1>
-
-			<tr>
-				<th>PASSWORD</th>
-				<td><input type="password" name="password" id="password"
-					placeholder="비밀번호 입력"><br> <input type="password"
-					name="password1" id="password1" placeholder="비밀번호 다시 입력"></td>
-			</tr>
-			<tr>
-				<th>NICKNAME</th>
-				<td><input type="text" name="nick" id="nick" value="${sessionScope.customer.nick }" ></td>
-			</tr>
-			
-	
-			<tr>
-				<th colspan="2"><input type="button" value="수정" id="bt3">   <input
-					type="reset" value="다시쓰기">    <input type="button" value="탈퇴" id="bt7"></th>
-			</tr>
-		</table>
-	</form>
-	
-		<div class="modal-meta-top">
-	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-			 <span aria-hidden="true">×××××××××</span><span class="sr-only">Close</span>
-			</button>/ button</div> 
-
-
+	<form id="editForm" style="text-align: -webkit-center;">
+	<span style="font-size: 70px; font-family: fantasy; font-style: italic; color: antiquewhite;">Info.</span><br>
+	<img style = "border:1px solid #642EFE; width : 150px; height : 150px;" src="../img/${sessionScope.customer.profileImg }" class="img-responsive img-circle" id="base"><br>
+	<input type="text" name="nick" id="nick" value="${sessionScope.customer.nick }" >
+	<input type="button" value="수정" id="bt3"> <br>
+			<span class="input input--haruki">
+					<input class="input__field input__field--haruki" type="text" id="input-1" />
+					<label class="input__label input__label--haruki" for="input-1">
+						<span class="input__label-content input__label-content--haruki">NickName</span>
+					</label>
+				</span>
+		<input type="password" name="password" id="password" placeholder="비밀번호 입력"> <br>
+		<input type="password" name="password1" id="password1" placeholder="비밀번호 다시 입력"><br>  
+	<inputtype="reset" value="다시쓰기"> 
+	   <input type="button" value="탈퇴" id="bt7">
+<br>
+			<div style="display: -webkit-inline-box;">
+					　　<div class="modal-meta-top">
+					<button type = "button" id = "closeWrite" data-dismiss="modal" class="contact100-form-btn">
+						<span>
+							<i class="fa fa-paper-plane-o m-r-6" aria-hidden="true"></i>
+							close
+						</span>
+					</button>
+					</div>
+				</div>
+</form>
 </div>
 
 		
