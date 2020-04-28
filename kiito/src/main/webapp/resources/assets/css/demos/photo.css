@@ -1570,7 +1570,7 @@ a.navbar-brand:hover {
  width: 15px;
 }
 .sidebar .user-info .detail{
-  margin-bottom: 0px;
+  margin-bottom: 10px;
 }
 .sidebar .user-info .detail h4 {
  font-family: 'Abhaya Libre', serif;	
