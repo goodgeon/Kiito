@@ -693,7 +693,7 @@
 <!-- write form -->
 		<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" id = "writeForm" action = "feed/insertFeed" method = "POST" enctype="multipart/form-data" >
+			<form class="contact100-form validate-form" id = "writeForm" action = "/kiito/feed/insertFeed" method = "POST" enctype="multipart/form-data" >
 			<input type = "hidden" name = "customer_seq" value = "${sessionScope.customer.customer_seq }" id="cs">
 				<span class="contact100-form-title">私がいるとごろ</span>
 				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">

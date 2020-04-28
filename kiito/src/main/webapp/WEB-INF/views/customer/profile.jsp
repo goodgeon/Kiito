@@ -273,7 +273,7 @@
 		   <a class="dropdown-item" href="#"><span>Settings</span></a> 
 		   <a class="dropdown-item" href="#">Need help?</a> 
 		   <div class="dropdown-divider"></div>
-		   <a class="dropdown-item" href="customer/logout">Sign out</a>
+		   <a class="dropdown-item" href="logout">Sign out</a>
 		  </div>
 		 </li><!-- /navbar-item -->	
 		 
@@ -304,24 +304,24 @@
 			 <div class="image">
 		       <a href="#preview" data-toggle="modal" rel="modal:open">
 		       <c:if test="${sessionScope.customer.profileImg.substring(0,4) == 'http' }">
-				<img src="<c:url value = '${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" alt="..."/>
+				<img src="<c:url value = '${ccc.profileImg }'/>" class="img-resonsive img-circle" alt="..."/>
 				</c:if>
 				<c:if test="${sessionScope.customer.profileImg.substring(0,4) != 'http' }">
-					<img src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" alt="..."/>
+					<img src="<c:url value = '/img/${ccc.profileImg }'/>" class="img-resonsive img-circle" alt="..."/>
 				</c:if>
 			   	<br>	
 			   <span class="online-status online"></span>
 			  </a>
 			 </div>
 		     <div class="detail" style = "margin-top : 20px;">
-			  <h4>${sessionScope.customer.nick }</h4><br>
-		<%-- 	  <small>@${sessionScope.customer.nick }</small>     --%>                    
+			  <h4>${ccc.nick }</h4><br>
+               
 			 </div>
 			 <div class="row">
 			  <div class="col-12">
-			<!--    <a title="facebook" href="#" class=" waves-effect waves-block"><i class="fab fa-facebook"></i></a> -->
+			
 			   <a title="개인정보수정" href="#editp" data-toggle="modal" rel="modal:open" class=" waves-effect waves-block"><i class="fab fa-twitter"></i></a>
-		<!-- 	   <a title="instagram" href="#" class=" waves-effect waves-block"><i class="fab fa-instagram"></i></a> -->
+		
 			  </div>                                
 			 </div>
 			</div>
@@ -720,9 +720,11 @@
 			data : formData,
 	        contentType : false,
 	        processData : false, 
-			success : function(a) {if(a=="ok"){alert("수정성공");location.reload();}
+			success : function(a) {if(a=="ok"){alert("수정성공");location.href="profile?profileImg=${sessionScope.customer.profileImg }";}
 				else{alert("개씨발");}},
-			error : function(a) {alert("걍 에러");}});}
+			error : function(a) {alert("걍 에러");},
+			async : false
+		});}
 
     function submit4() {
     	var pw = $('#password').val();  var p1 = $('#password1').val();  var nick = $('#nick').val();
