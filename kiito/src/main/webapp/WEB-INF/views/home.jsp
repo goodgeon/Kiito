@@ -743,6 +743,7 @@
 					<input type = "file" id = "input_imgs" name = "imagefile"  multiple accept="image/gif, image/jpeg, image/png" style="display:none" />
 					<input type='text' name='imagefile2' id='imagefile2' style="display:none;"> 
 				<img src='resources/images/picture.png' border='0' onclick='document.all.imagefile.click(); document.all.imagefile2.value=document.all.imagefile.value'> 
+				  
 				<input type = "file" id = "input_video" name = "videofile" multiple accept="video/*" style="display:none" />
 					<input type='text' name='videofile2' id='videofile2' style="display:none;"> 
 				<img src='resources/images/video.png' border='0' onclick='document.all.videofile.click(); document.all.videofile2.value=document.all.videofile.value'> 
