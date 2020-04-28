@@ -572,10 +572,12 @@
 			   	       	</c:forEach>
 					</ul>   	
 			   	</c:if>
-			   	<div id = "modalContents${feed.feed_seq }">${feed.contents }</div>
+			   	<div style="display: flex;">
+			   	<img src="resources/images/map.png">
 			   	<div id = "modalCheckin${feed.feed_seq }">${feed.checkin }</div>
 			   	<div id = "modalCongestion${feed.feed_seq }">${feed.congestion }</div>
-			
+			</div>
+			<div id = "modalContents${feed.feed_seq }">${feed.contents }</div>
           	
            <%--  <img class="img-responsive" src="<c:url value = '/img/20200415.png'/>" alt="Image"/>   --%>
           </div><!--/ col-md-8 -->

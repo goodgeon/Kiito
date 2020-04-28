@@ -758,45 +758,35 @@
 		
 
 	<div id="preview" class="modal">
-
-		<form id = "changef">
+<br><br><br><br>
+		<form id = "changef" style="text-align: -webkit-center;">
 		<span style="font-size: 70px; font-family: fantasy; font-style: italic; color: antiquewhite;">Profile img</span>
-        <span><label for="image">Image:</label></span>
         <br />
-        <input class="input100" type="file" name="upload" id="image" />
-<img style = "width : 96px; height : 96px;" src="${sessionScope.customer.profileImg }" class="img-responsive img-circle" alt="User" id="base"> 
-       
-       
-       
-        <input class="input100" type="button" value="submit" id="sub"/>
-    	<div class="modal-meta-top">
-	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-			 <span aria-hidden="true">×××××××××</span><span class="sr-only">Close</span>
-			</button></div> 
-			
-			<div id="ssss">
-			 <br />
-		
-        <a href="#">Remove</a>
-			</div>
-			
-			
-			
-							<div class="container-contact100-form-btn">
+        <div style="background-color: #daf6ffa6; width: 400px; min-height: 45vh; border-radius: 30px;">
+        <br>
+<img style = "border:1px solid #642EFE; width : 150px; height : 150px;" src="../img/${sessionScope.customer.profileImg }" class="img-responsive img-circle" id="base">
+<br>
+					<input type = "file" id = "image" name = "upload"  multiple accept="image/gif, image/jpeg, image/png" style="display:none" />
+					<input type='text' name='upload2' id='image2' style="display:none;"> 
+				<img src='../resources/images/picture.png' border='0' onclick='document.all.upload.click(); document.all.upload2.value=document.all.upload.value'> 
+				<br><br>
+							<div style="display: -webkit-inline-box;">
 					<button type = "button" id = "sub"class="contact100-form-btn">
 						<span>
 							<i class="fa fa-paper-plane-o m-r-6" aria-hidden="true"></i>
 							submit
 						</span>
 					</button>
-					　　
-					<button type = "button" data-dismiss="modal" id = "close"class="contact100-form-btn">
-						<span class="sr-only">
+					　　<div class="modal-meta-top">
+					<button type = "button" id = "closeWrite" data-dismiss="modal" class="contact100-form-btn">
+						<span>
 							<i class="fa fa-paper-plane-o m-r-6" aria-hidden="true"></i>
 							close
 						</span>
 					</button>
+					</div>
 				</div>
+</div>
  
     	</form>
 	
