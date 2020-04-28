@@ -469,7 +469,8 @@
 			 </a>
 			</div>
             <div class="media-body">
-             <p class="m-0">${feed.customer.nick }</p><p>${feed.checkin}
+             <p class="m-0">${feed.customer.nick }</p>
+             <p><img src="resources/images/map.png" style="max-width: 20px; max-height:20px">${feed.checkin}
              <p>
              <c:choose>
              	<c:when test="${feed.congestion == 3 }">혼잡</c:when>
@@ -564,7 +565,6 @@
 							<img class="img-responsive" src="<c:url value = '/img/${i.savedFilename}'/>" alt="Image">
 							</li>          	
 			   	       	</c:forEach>
-			   	       	
 			   	       	<c:forEach var ="i" items = "${feed.videoFile}">
 							<li>
 							<video width="500" height="500" src="<c:url value = '/img/${i.savedFilename}'/>" controls></video>
@@ -573,9 +573,9 @@
 					</ul>   	
 			   	</c:if>
 			   	<div style="display: flex;">
-			   	<img src="resources/images/map.png">
+			   	<img src="resources/images/map.png" style="max-width: 20px; max-height:20px">
 			   	<div id = "modalCheckin${feed.feed_seq }">${feed.checkin }</div>
-			   	<div id = "modalCongestion${feed.feed_seq }">${feed.congestion }</div>
+			   	　　혼잡도 : <div id = "modalCongestion${feed.feed_seq }">${feed.congestion }</div>
 			</div>
 			<div id = "modalContents${feed.feed_seq }">${feed.contents }</div>
           	
