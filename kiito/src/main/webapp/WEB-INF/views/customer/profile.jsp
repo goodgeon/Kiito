@@ -698,7 +698,7 @@
       });}
 
     function submit4() {
-       var pw = $('#password').val();  var p1 = $('#password1').val();  var nick = $('#input-1').val();
+       var pw = $('#password').val();  var p1 = $('#password1').val();  var nick = $('#nick').val();
        if (pw != p1) {alert('비밀번호가 일치하지 않아요');return;}
        if (nick.length < 2) {alert('닉네임을 다시 입력해주세요');return;}
        $.ajax({
@@ -873,7 +873,6 @@
     
  <!--    개인정보수정 -->
     <div id="editp" class="modal">
-<<<<<<< HEAD
    <form id="editForm" style="text-align: -webkit-center;">
    <span style="font-size: 70px; font-family: fantasy; font-style: italic; color: antiquewhite;">Info.</span><br>
    <div style="background-color: #daf6ffa6; width: 400px; min-height: 45vh; border-radius: 30px;">
@@ -882,7 +881,7 @@
    <a>${sessionScope.customer.nick }</a><br>
 
          <span class="input input--haruki">
-               <input class="input__field input__field--haruki" type="text" id="input-1" name="nick" />
+               <input class="input__field input__field--haruki" type="text"  id="nick" />
                <label class="input__label input__label--haruki" for="input-1">
                   <span class="input__label-content input__label-content--haruki">NickName</span>
                </label>
@@ -890,14 +889,14 @@
             <button id="bt3" value="수정" ><img src="../resources/images/check.png"></button>
             
                      <span class="input input--haruki">
-               <input type="password" class="input__field input__field--haruki" id="input-1" />
+               <input type="password" class="input__field input__field--haruki"  id="password" />
                <label class="input__label input__label--haruki" for="input-1">
-                  <span class="input__label-content input__label-content--haruki" id="password">password</span>
+                  <span class="input__label-content input__label-content--haruki">password</span>
                </label>
             </span>
             
                      <span class="input input--haruki">
-               <input type="password" class="input__field input__field--haruki" id="input-1" />
+               <input type="password" class="input__field input__field--haruki"  id="password1"/>
                <label class="input__label input__label--haruki" for="input-1">
                   <span class="input__label-content input__label-content--haruki" id="password1">password check</span>
                </label>
