@@ -24,6 +24,7 @@
 		 <collection property="imageFile" column="feed_seq" javaType="java.util.ArrayList" ofType="imageFile" select="getImageList"/>
 		 <collection property="videoFile" column="feed_seq" javaType="java.util.ArrayList" ofType="videoFile" select="getVideoList"/>
 		 <collection property="comments" column="feed_seq" javaType="java.util.ArrayList" ofType="comments" select="getCommentList"/>
+		 <collection property="hashtag" column="feed_seq" javaType="java.util.ArrayList" ofType="hash" select="getHashtagList"/>
 	</resultMap>
 	
 	<select id="getImageList" resultType="imageFile">
@@ -42,6 +43,12 @@
 		select comments_seq, feed_seq, customer_seq, text, inputdate
 		from comments
 		where feed_seq = #{feed_seq}
+	</select>
+	
+	<select id="getHashtagList" resultType="hash">
+		select hashtag_seq, feed_seq, contents
+		from hashtag
+		where feed_seq = #{hashtag_seq}
 	</select>
 
 
@@ -109,9 +116,9 @@
 	</select>
 	
 	<select id="search" parameterType="String" resultType="feed" resultMap="feedMap">
-		select f.feed_seq,f.customer_seq,f.checkin,f.contents,f.congestion,f.likes, f.inputdate, c.customer_seq, c.email, c.pw, c.name, c.nick, c.profileimg, c.customer_type 
-		from feed f,customer c
-		where f.customer_seq = c.customer_seq and checkin like '%' || #{search} || '%' 
+		select distinct f.feed_seq,f.customer_seq,f.checkin,f.contents,f.congestion,f.likes, f.inputdate, c.customer_seq, c.email, c.pw, c.name, c.nick, c.profileimg, c.customer_type 
+		from feed f,customer c, hashtag h
+		where f.customer_seq = c.customer_seq and f.feed_seq = h.feed_seq and (checkin like '%' || #{search} || '%' OR h.contents like '%' || #{search} || '%') 
 		order by f.inputdate desc
 	</select>
 </mapper>
