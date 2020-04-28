@@ -321,28 +321,21 @@
 			  </a>
 			 </div>
 		     <div class="detail" style = "margin-top : 20px;">
-<<<<<<< HEAD
-			  <h4>${sessionScope.customer.nick }</h4>
-		<%-- 	  <small>@${sessionScope.customer.nick }</small>     --%>                    
-=======
+
 			  <h4>${ccc.nick }</h4><br>
                
->>>>>>> 75aa7e056692003f80491d08b6a34e786b6af310
+
 			 </div>
 			 
 			  <c:if test="${sessionScope.customer.customer_seq == ccc.customer_seq }">
 			 
 			 <div class="row">
 			  <div class="col-12">
-<<<<<<< HEAD
+
 			<!--    <a title="facebook" href="#" class=" waves-effect waves-block"><i class="fab fa-facebook"></i></a> -->
 			   <a title="개인정보수정" href="#editp" data-toggle="modal" rel="modal:open" class=" waves-effect waves-block"><img src="../resources/images/setting.png"></a>
 		<!-- 	   <a title="instagram" href="#" class=" waves-effect waves-block"><i class="fab fa-instagram"></i></a> -->
-=======
-			
-			   <a title="개인정보수정" href="#editp" data-toggle="modal" rel="modal:open" class=" waves-effect waves-block"><i class="fab fa-twitter"></i></a>
-		
->>>>>>> 75aa7e056692003f80491d08b6a34e786b6af310
+
 			  </div>                                
 			 </div>
 			 
@@ -532,29 +525,14 @@
 		  </c:if>
 		  </c:forEach>
 		 </div>
-		<!--  <div class="row">
-		  <div class="col-lg-6">
-		   <a href="#"><img src="../resources/assets/img/posts/21.gif" class="img-responsive" alt="Image"/></a>
-		  </div>
-		  <div class="col-lg-6">
-		   <a href="#"><img src="../resources/assets/img/posts/23.gif" class="img-responsive" alt="Image"/></a>
-		  </div>
-		 </div> -->
-	<!-- 	 <div class="row">
-		  <div class="col-lg-6">
-		   <a href="#"><img src="../resources/assets/img/posts/11.jpg" class="img-responsive" alt="Image"/></a>
-		  </div>
-		  <div class="col-lg-6">
-		   <a href="#"><img src="../resources/assets/img/posts/20.jpg" class="img-responsive" alt="Image"/></a>
-		  </div>
-		 </div> -->
+	
         </div>		
 		
 		
 		</div>
 		
        </div><!--/ row-->	
-	  </div><!--/ container -->
+	
 	 </section><!--/ profile -->
   
 	 
@@ -842,7 +820,6 @@
     
  <!--    개인정보수정 -->
     <div id="editp" class="modal">
-<<<<<<< HEAD
 	<form id="editForm" style="text-align: -webkit-center;">
 	<span style="font-size: 70px; font-family: fantasy; font-style: italic; color: antiquewhite;">Info.</span><br>
 	<img style = "border:1px solid #642EFE; width : 150px; height : 150px;" src="../img/${sessionScope.customer.profileImg }" class="img-responsive img-circle" id="base"><br>
@@ -874,36 +851,7 @@
 					</div>
 				</div>
 </form>
-=======
-	<form id="editForm">
-		<table border=1>
 
-			<tr>
-				<th>PASSWORD</th>
-				<td><input type="password" name="password" id="password"
-					placeholder="비밀번호 입력"><br> <input type="password"
-					name="password1" id="password1" placeholder="비밀번호 다시 입력"></td>
-			</tr>
-			<tr>
-				<th>NICKNAME</th>
-				<td><input type="text" name="nick" id="nick" value="${sessionScope.customer.nick }" ></td>
-			</tr>
-			
-	
-			<tr>
-				<th colspan="2"><input type="button" value="수정" id="bt3">   <input
-					type="reset" value="다시쓰기">    <input type="button" value="탈퇴" id="bt7"></th>
-			</tr>
-		</table>
-	</form>
-	
-		<div class="modal-meta-top">
-	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-			 <span aria-hidden="true">×××××××××</span><span class="sr-only">Close</span>
-			</button></div> 
-
-
->>>>>>> 75aa7e056692003f80491d08b6a34e786b6af310
 </div>
 		
 		
