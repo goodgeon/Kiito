@@ -317,6 +317,9 @@
 			  <h4>${ccc.nick }</h4><br>
                
 			 </div>
+			 
+			  <c:if test="${sessionScope.customer.customer_seq == ccc.customer_seq }">
+			 
 			 <div class="row">
 			  <div class="col-12">
 			
@@ -324,6 +327,9 @@
 		
 			  </div>                                
 			 </div>
+			 
+			 </c:if>
+			 
 			</div>
            </li>
            <li>
@@ -335,7 +341,7 @@
             <p>795 Folsom Ave, Suite 600 San Francisco, CADGE 94107</p>
             <hr> -->
             <small class="text-muted">E-mail: </small>
-            <p>${sessionScope.customer.email } </p> 
+            <p>${ccc.email } </p> 
             <hr>                      
            </li>                    
           </ul>
