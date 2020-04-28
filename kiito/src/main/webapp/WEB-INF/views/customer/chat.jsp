@@ -228,6 +228,7 @@
 	                    $("#latest"+msg.receiver).html(msg.text);
                 	}else if(msg.receiver == customer_seq){
                     	var flag = true;
+                    	console.log(chatList);
 
                     	for(var i = 0; i<chatList.length; i++){
                         	
@@ -241,6 +242,7 @@
 						
 						//팔로우 안돼잇으면
                     	if(flag){
+                        	console.log("씨발");
                     		$.get("getCustomer", {customer_seq : msg.sender}).done(function(customer){
                     			var str = '';
             					str += '<li id = "customer-list'+customer.customer_seq+'" class="active" onclick = "sendTo('+customer.customer_seq+')">';
@@ -260,7 +262,13 @@
             					str += '</div></li>';
             					
             					$("#chat-list").append(str);
+            					chatList.push({
+                					chat_seq : -1,
+                					customer1_seq : msg.sender,
+                					custoemr2_seq : msg.receiver
+                				})
 							})
+							flag = false;
                        	} 
 						
                 		

@@ -19,4 +19,5 @@ public class Feed {
 	private ArrayList<ImageFile> imageFile;
 	private ArrayList<VideoFile> videoFile;
 	private ArrayList<Comments> comments;
+	private ArrayList<Hashtag> hashtag;
 }
