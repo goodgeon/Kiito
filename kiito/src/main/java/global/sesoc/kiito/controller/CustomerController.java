@@ -138,10 +138,16 @@ public class CustomerController {
 	
 	
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
-	public String profile(HttpSession session,Model model) {
+	public String profile(HttpSession session,Model model,String profileImg) {
 		
-		 Customer login_customer = (Customer) session.getAttribute("customer");
-		 int customer_seq = login_customer.getCustomer_seq();
+		System.out.println("프로필 이미지   : " + profileImg);
+		
+		Customer ccc = dao.getC1(profileImg);
+		model.addAttribute("ccc",ccc);
+		
+		// Customer login_customer = (Customer) session.getAttribute("customer");
+		 int customer_seq = ccc.getCustomer_seq();
+		 System.out.println("커스터머 시퀀스   : " + customer_seq);
 		 ArrayList<Feed> ff1 = dao1.feedList1(customer_seq);
 		 
 		

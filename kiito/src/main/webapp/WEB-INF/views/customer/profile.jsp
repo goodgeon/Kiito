@@ -131,7 +131,7 @@
 	   </div>
 
 	   <div class="p-2 nav-icon-lg dark-black">
-	   <a class="nav-icon" href="profile"><em class="fa fa-user"></em>
+	   <a class="nav-icon" href="profile?profileImg=${sessionScope.customer.profileImg }"><em class="fa fa-user"></em>
 		<span>Profile</span>
 	   </a>
 	   </div>
@@ -273,14 +273,14 @@
 		   </span>
 		  </a>
 		  <div class="dropdown-menu w dropdown-menu-scale pull-right">
-		   <a class="dropdown-item" href="#"><span>New Story</span></a> 
+<!-- 		   <a class="dropdown-item" href="#"><span>New Story</span></a>  -->
 		 <!--   <a class="dropdown-item" href="#"><span>Become a Member</span></a>  -->
 		   <div class="dropdown-divider"></div>
-		   <a class="dropdown-item" href="profile"><span>Profile</span></a> 
+		   <a class="dropdown-item" href="profile?profileImg=${sessionScope.customer.profileImg }"><span>Profile</span></a> 
 		   <a class="dropdown-item" href="#"><span>Settings</span></a> 
-		   <a class="dropdown-item" href="#">Need help?</a> 
+<!-- 		   <a class="dropdown-item" href="#">Need help?</a>  -->
 		   <div class="dropdown-divider"></div>
-		   <a class="dropdown-item" href="customer/logout">Sign out</a>
+		   <a class="dropdown-item" href="logout">Sign out</a>
 		  </div>
 		 </li><!-- /navbar-item -->	
 		 
@@ -311,26 +311,43 @@
 			 <div class="image">
 		       <a href="#preview" data-toggle="modal" rel="modal:open">
 		       <c:if test="${sessionScope.customer.profileImg.substring(0,4) == 'http' }">
-				<img src="<c:url value = '${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" alt="..."/>
+				<img src="<c:url value = '${ccc.profileImg }'/>" class="img-resonsive img-circle" alt="..."/>
 				</c:if>
 				<c:if test="${sessionScope.customer.profileImg.substring(0,4) != 'http' }">
-					<img src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" alt="..."/>
+					<img src="<c:url value = '/img/${ccc.profileImg }'/>" class="img-resonsive img-circle" alt="..."/>
 				</c:if>
 			   		
 			   <span class="online-status online"></span>
 			  </a>
 			 </div>
 		     <div class="detail" style = "margin-top : 20px;">
+<<<<<<< HEAD
 			  <h4>${sessionScope.customer.nick }</h4>
 		<%-- 	  <small>@${sessionScope.customer.nick }</small>     --%>                    
+=======
+			  <h4>${ccc.nick }</h4><br>
+               
+>>>>>>> 75aa7e056692003f80491d08b6a34e786b6af310
 			 </div>
+			 
+			  <c:if test="${sessionScope.customer.customer_seq == ccc.customer_seq }">
+			 
 			 <div class="row">
 			  <div class="col-12">
+<<<<<<< HEAD
 			<!--    <a title="facebook" href="#" class=" waves-effect waves-block"><i class="fab fa-facebook"></i></a> -->
 			   <a title="개인정보수정" href="#editp" data-toggle="modal" rel="modal:open" class=" waves-effect waves-block"><img src="../resources/images/setting.png"></a>
 		<!-- 	   <a title="instagram" href="#" class=" waves-effect waves-block"><i class="fab fa-instagram"></i></a> -->
+=======
+			
+			   <a title="개인정보수정" href="#editp" data-toggle="modal" rel="modal:open" class=" waves-effect waves-block"><i class="fab fa-twitter"></i></a>
+		
+>>>>>>> 75aa7e056692003f80491d08b6a34e786b6af310
 			  </div>                                
 			 </div>
+			 
+			 </c:if>
+			 
 			</div>
            </li>
            <li>
@@ -342,7 +359,7 @@
             <p>795 Folsom Ave, Suite 600 San Francisco, CADGE 94107</p>
             <hr> -->
             <small class="text-muted">E-mail: </small>
-            <p>${sessionScope.customer.email } </p> 
+            <p>${ccc.email } </p> 
             <hr>                      
            </li>                    
           </ul>
@@ -422,7 +439,7 @@
            <div class="modal-meta-top">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 			 <span aria-hidden="true">×</span><span class="sr-only">Close</span>
-			</button><!--/ button -->
+			</button>
             <div class="img-poster clearfix">
              <a href=""><img class="img-responsive img-circle" src="${sessionScope.customer.profileImg }" alt="Image"/></a>
              <strong><a href="">${sessionScope.customer.nick }</a></strong>
@@ -678,9 +695,11 @@
 			data : formData,
 	        contentType : false,
 	        processData : false, 
-			success : function(a) {if(a=="ok"){alert("수정성공");location.reload();}
+			success : function(a) {if(a=="ok"){alert("수정성공");location.href="profile?profileImg=${sessionScope.customer.profileImg }";}
 				else{alert("개씨발");}},
-			error : function(a) {alert("걍 에러");}});}
+			error : function(a) {alert("걍 에러");},
+			async : false
+		});}
 
     function submit4() {
     	var pw = $('#password').val();  var p1 = $('#password1').val();  var nick = $('#nick').val();
@@ -823,6 +842,7 @@
     
  <!--    개인정보수정 -->
     <div id="editp" class="modal">
+<<<<<<< HEAD
 	<form id="editForm" style="text-align: -webkit-center;">
 	<span style="font-size: 70px; font-family: fantasy; font-style: italic; color: antiquewhite;">Info.</span><br>
 	<img style = "border:1px solid #642EFE; width : 150px; height : 150px;" src="../img/${sessionScope.customer.profileImg }" class="img-responsive img-circle" id="base"><br>
@@ -854,6 +874,36 @@
 					</div>
 				</div>
 </form>
+=======
+	<form id="editForm">
+		<table border=1>
+
+			<tr>
+				<th>PASSWORD</th>
+				<td><input type="password" name="password" id="password"
+					placeholder="비밀번호 입력"><br> <input type="password"
+					name="password1" id="password1" placeholder="비밀번호 다시 입력"></td>
+			</tr>
+			<tr>
+				<th>NICKNAME</th>
+				<td><input type="text" name="nick" id="nick" value="${sessionScope.customer.nick }" ></td>
+			</tr>
+			
+	
+			<tr>
+				<th colspan="2"><input type="button" value="수정" id="bt3">   <input
+					type="reset" value="다시쓰기">    <input type="button" value="탈퇴" id="bt7"></th>
+			</tr>
+		</table>
+	</form>
+	
+		<div class="modal-meta-top">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+			 <span aria-hidden="true">×××××××××</span><span class="sr-only">Close</span>
+			</button></div> 
+
+
+>>>>>>> 75aa7e056692003f80491d08b6a34e786b6af310
 </div>
 		
 		
