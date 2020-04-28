@@ -69,7 +69,7 @@
 /* Haruki */
 
 .input--haruki {
-	margin: 4em 1em 1em;
+	margin: 1em 1em 1em;
 }
 
 .input__field--haruki {
@@ -78,6 +78,7 @@
 	background: transparent;
 	color: #AFB5BB;
 	font-size: 1.55em;
+	text-align: end;
 }
 
 .input__label--haruki {
