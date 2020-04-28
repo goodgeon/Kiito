@@ -703,12 +703,11 @@
 		   </span>
 		  </a>
 		  <div class="dropdown-menu w dropdown-menu-scale pull-right">
-<!-- 		   <a class="dropdown-item" href="#"><span>New Story</span></a> 
-		   <a class="dropdown-item" href="#"><span>Become a Member</span></a>  -->
+
 		   <div class="dropdown-divider"></div>
 		   <a class="dropdown-item" href="profile?profileImg=${sessionScope.customer.profileImg }"><span>Profile</span></a> 
 		   <a class="dropdown-item" href="#editp" data-toggle="modal" rel="modal:open"><span>Settings</span></a> 
-<!-- 		   <a class="dropdown-item" href="#">Need help?</a>  -->
+
 		   <div class="dropdown-divider"></div>
 		   <a class="dropdown-item" href="logout">Sign out</a>
 		  </div>
@@ -740,11 +739,7 @@
 		<span>Upload</span>
 	   </a>
 	   </div>
-	 <!--   <div class="p-2 nav-icon-lg clean-black">
-	   <a class="nav-icon" href="photo_stories.html"><em class="fa fa-align-left"></em>
-		<span>Stories</span>
-	   </a>
-	   </div> -->
+
 	   <div class="p-2 nav-icon-lg mint-green">
 	   <a class="nav-icon" href="profile?profileImg=${sessionScope.customer.profileImg }"><em class="fa fa-user"></em>
 		<span>Profile</span>
@@ -892,9 +887,7 @@
             <img src='../resources/images/video.png' border='0' onclick='document.all.videofile.click(); document.all.videofile2.value=document.all.videofile.value'> 
 
             
-            
-               <!-- <input class="input100" multiple = "multiple" type="file" name="upload" id="file" value="파일선택" size="30">
-               <span class="focus-input100"></span> -->
+      
             </div>
             <div>
                <div class = "imgs_wrap" style = "margin-bottom : 10px;">

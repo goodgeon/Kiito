@@ -209,17 +209,7 @@
 					var search = $("#search").val();
 					if(key.keyCode == 13){
 						location.href = "search?search="+search;
-						
-						/* $.get({
-							url : "feed/search",
-							type : "GET",
-							data : {
-								search : search
-							},
-							success : function(data){
-								console.log(data);
-							}
-						}) */
+					
 					}
 				})
 			})
@@ -426,12 +416,11 @@
 		   </span>
 		  </a>
 		  <div class="dropdown-menu w dropdown-menu-scale pull-right">
-		 <!--   <a class="dropdown-item" href="#"><span>New Story</span></a>  -->
-		 <!--   <a class="dropdown-item" href="#"><span>Become a Member</span></a>  -->
+
 		   <div class="dropdown-divider"></div>
 		   <a class="dropdown-item" href="customer/profile?profileImg=${sessionScope.customer.profileImg }"><span>Profile</span></a> 
 		   <a class="dropdown-item" href="#editp" data-toggle="modal" rel="modal:open"><span>Settings</span></a> 
-<!-- 		   <a class="dropdown-item" href="#">Need help?</a>  -->
+
 		   <div class="dropdown-divider"></div>
 		   <a class="dropdown-item" href="customer/logout">Sign out</a>
 		  </div>
@@ -551,14 +540,6 @@
 		   		</c:if>
 		   	</c:forEach> 
 			<!-- <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/1.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/2.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/3.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/4.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/5.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/6.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/7.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/8.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/9.jpg" class="img-responsive img-circle" alt="User"></a></li>
 		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/10.jpg" class="img-responsive img-circle" alt="User"></a></li> --> 
 		   </ul>
 		  </div><!--/ cardbox-base -->
