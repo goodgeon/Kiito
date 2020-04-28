@@ -14,7 +14,7 @@
 		<meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">  
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>KIITO - 君がいるとごろ</title>
+        <title>KIITO - 君がいるところ</title>
 		<meta name="description" content="" />
         <meta name="keywords" content="" />
         <meta property="og:title" content="" />
@@ -43,11 +43,7 @@
 		=============================================== -->
 		<script src="../resources/assets/js/modernizr-custom.js"></script>
 
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->	
+		
 		
   </head>
 
@@ -149,7 +145,7 @@
 		   </li>
 
 		   <li class="dropdown notification-list">
-			<a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+			<a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="/kiito/customer/chat" role="button" aria-haspopup="false" aria-expanded="false">
 			 <i class="fa fa-envelope noti-icon"></i>
 			 <span class="badge badge-success badge-pill noti-icon-badge">6</span>
 			</a>
@@ -217,12 +213,11 @@
 		   </span>
 		  </a>
 		  <div class="dropdown-menu w dropdown-menu-scale pull-right">
-		   <a class="dropdown-item" href="#"><span>New Story</span></a> 
-		 <!--   <a class="dropdown-item" href="#"><span>Become a Member</span></a>  -->
+<!-- 		   <a class="dropdown-item" href="#"><span>New Story</span></a>  -->
 		   <div class="dropdown-divider"></div>
 		   <a class="dropdown-item" href="customer/profile?profileImg=${sessionScope.customer.profileImg }"><span>Profile</span></a> 
-		   <a class="dropdown-item" href="#"><span>Settings</span></a> 
-		   <a class="dropdown-item" href="#">Need help?</a> 
+		   <a class="dropdown-item" href="#editp" data-toggle="modal" rel="modal:open"><span>Settings</span></a> 
+<!-- 		   <a class="dropdown-item" href="#">Need help?</a>  -->
 		   <div class="dropdown-divider"></div>
 		   <a class="dropdown-item" href="customer/logout">Sign out</a>
 		  </div>
@@ -263,7 +258,6 @@
 		    </div><!-- /author -->
 			<div class="card-content">
 			 <h4>Alex Grantte</h4>
-		     <span>@alex</span>
 			</div>
 			 <a href="" class="kafe-btn kafe-btn-mint-small full-width"> Follow
 			 </a>		  
@@ -286,7 +280,6 @@
 		    </div><!-- /author -->
 			<div class="card-content">
 			 <h4>Anna Morgan</h4>
-		     <span>@anna</span>
 			</div>
 			 <a href="" class="kafe-btn kafe-btn-mint-small full-width"> Follow
 			 </a>		  
@@ -309,7 +302,6 @@
 		    </div><!-- /author -->
 			<div class="card-content">
 			 <h4>Sean Coleman</h4>
-		     <span>@sean</span>
 			</div>
 			 <a href="" class="kafe-btn kafe-btn-mint-small full-width"> Follow
 			 </a>		  
@@ -332,8 +324,7 @@
 		    </div><!-- /author -->
 			<div class="card-content">
 			 <h4>Vanessa Wells</h4>
-		     <span>@vanessa</span>
-			</div>
+		</div>
 			 <a href="" class="kafe-btn kafe-btn-mint-small full-width"> Follow
 			 </a>		  
 		   </div><!-- /.post-content -->									
@@ -665,7 +656,7 @@
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form" id = "writeForm" action = "feed/insertFeed" method = "POST" enctype="multipart/form-data" >
 			<input type = "hidden" name = "customer_seq" value = "${sessionScope.customer.customer_seq }" id="cs">
-				<span class="contact100-form-title">私がいるとごろ</span>
+				<span class="contact100-form-title">私がいるところ</span>
 				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
 					<input class="input100" type="text" id="checkin" placeholder = "Please enter a search term">
 					

@@ -14,7 +14,7 @@
 		<meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">  
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>KIITO - 君がいるとごろ</title>
+        <title>KIITO - 君がいるところ</title>
 		<meta name="description" content="" />
         <meta name="keywords" content="" />
         <meta property="og:title" content="" />
@@ -33,18 +33,17 @@
 	    <!-- ==============================================
 		CSS
 		=============================================== -->
-        <link type="text/css" href="../resources/assets/css/demos/photo.css" rel="stylesheet" />
+             <link type="text/css" href="../resources/assets/css/demos/photo.css" rel="stylesheet" />
+       	<link rel="stylesheet" href="../resources/writef/css/main.css">
+       	<link rel="stylesheet" type="text/css" href="../resources/writef/css/kakaomap.css">
+       	<link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho" rel="stylesheet">
 				
 		<!-- ==============================================
 		Feauture Detection
 		=============================================== -->
 		<script src="../resources/assets/js/modernizr-custom.js"></script>
 
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->	
+	
 		
 		<!-- socket.io -->
         <script src="http://localhost:82/socket.io/socket.io.js"></script>
@@ -633,7 +632,7 @@
 		   </li>
 
 		   <li class="dropdown notification-list">
-			<a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+			<a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="/kiito/customer/chat" role="button" aria-haspopup="false" aria-expanded="false">
 			 <i class="fa fa-envelope noti-icon"></i>
 			 <span class="badge badge-success badge-pill noti-icon-badge">6</span>
 			</a>
@@ -737,7 +736,7 @@
 	   </a>
 	   </div>
 	   <div class="p-2 nav-icon-lg dark-black">
-	   <a class="nav-icon" href="photo_upload.html"><em class="fab fa-instagram"></em>
+	 <a class="nav-icon" onclick = "writeBt()" style="cursor:pointer"><em class="fab fa-instagram"  ></em>
 		<span>Upload</span>
 	   </a>
 	   </div>
@@ -780,116 +779,7 @@
 								
 			<div class="messages-list">
 			  <ul id = "chat-list">
-			   <!-- <li class="active">
-				<div class="user-message-details">
-				 <div class="user-message-img">
-				  <img src="../resources/assets/img/users/6.jpg" class="img-responsive img-circle" alt="">
-				  <span class="user-online"></span>
-				 </div>
-				 <div class="user-message-info">
-				  <h4>Anthony McCartney</h4>
-				  <p>Lorem ipsum dolor ...</p>
-				  <span class="time-posted">1:55 PM</span>
-			     </div>/ user-message-info
-				 <span class="message-notification">1</span>
-			    </div>/ user-message-details
-			   </li>
-			   <li>
-				<div class="user-message-details">
-				 <div class="user-message-img">
-				  <img src="../resources/assets/img/users/10.jpg" class="img-responsive img-circle" alt="">
-				 </div>
-				 <div class="user-message-info">
-				  <h4>Sean Coleman</h4>
-				  <p>Lorem ipsum dolor ...</p>
-				  <span class="time-posted">1:55 PM</span>
-			     </div>/ user-message-info
-			    </div>/ user-message-details
-			   </li>
-			   <li>
-				<div class="user-message-details">
-				 <div class="user-message-img">
-				  <img src="../resources/assets/img/users/3.jpg" class="img-responsive img-circle" alt="">
-				 </div>
-				 <div class="user-message-info">
-				  <h4>Vanessa Wells</h4>
-				  <p>Lorem ipsum dolor ...</p>
-				  <span class="time-posted">1:55 PM</span>
-			     </div>/ user-message-info
-			    </div>/ user-message-details
-			   </li>
-			   <li>
-				<div class="user-message-details">
-				 <div class="user-message-img">
-				  <img src="../resources/assets/img/users/4.jpg" class="img-responsive img-circle" alt="">
-				 </div>
-				 <div class="user-message-info">
-				  <h4>Clifford Graham</h4>
-				  <p>Lorem ipsum dolor ...</p>
-				  <span class="time-posted">1:55 PM</span>
-			     </div>/ user-message-info
-			    </div>/ user-message-details
-			   </li>
-			   <li>
-				<div class="user-message-details">
-				 <div class="user-message-img">
-				  <img src="../resources/assets/img/users/5.jpg" class="img-responsive img-circle" alt="">
-				 </div>
-				 <div class="user-message-info">
-				  <h4>Grace Karen</h4>
-				  <p>Lorem ipsum dolor ...</p>
-				  <span class="time-posted">1:55 PM</span>
-			     </div>/ user-message-info
-			    </div>/ user-message-details
-			   </li>
-			   <li>
-				<div class="user-message-details">
-				 <div class="user-message-img">
-				  <img src="../resources/assets/img/users/14.jpg" class="img-responsive img-circle" alt="">
-				 </div>
-				 <div class="user-message-info">
-				  <h4>Alex Grantte</h4>
-				  <p>Lorem ipsum dolor ...</p>
-				  <span class="time-posted">1:55 PM</span>
-			     </div>/ user-message-info
-			    </div>/ user-message-details
-			   </li>
-			   <li>
-				<div class="user-message-details">
-				 <div class="user-message-img">
-				  <img src="../resources/assets/img/users/7.jpg" class="img-responsive img-circle" alt="">
-				 </div>
-				 <div class="user-message-info">
-				  <h4>Anna Morgan</h4>
-				  <p>Lorem ipsum dolor ...</p>
-				  <span class="time-posted">1:55 PM</span>
-			     </div>/ user-message-info
-			    </div>/ user-message-details
-			   </li>
-			   <li>
-				<div class="user-message-details">
-				 <div class="user-message-img">
-				  <img src="../resources/assets/img/users/8.jpg" class="img-responsive img-circle" alt="">
-				 </div>
-				 <div class="user-message-info">
-				  <h4>Francis Long</h4>
-				  <p>Lorem ipsum dolor ...</p>
-				  <span class="time-posted">1:55 PM</span>
-			     </div>/ user-message-info
-			    </div>/ user-message-details
-			   </li>
-			   <li>
-				<div class="user-message-details">
-				 <div class="user-message-img">
-				  <img src="../resources/assets/img/users/9.jpg" class="img-responsive img-circle" alt="">
-				 </div>
-				 <div class="user-message-info">
-				  <h4>Eleanor Harper</h4>
-				  <p>Lorem ipsum dolor ...</p>
-				  <span class="time-posted">1:55 PM</span>
-			     </div>/ user-message-info
-			    </div>/ user-message-details
-			   </li> -->
+			 
 										
 			  </ul>
 			</div><!--/ messages-list -->
@@ -956,6 +846,102 @@
 			size:"8px",
 		});		
 	</script>
+	
+	<!-- write form -->
+      <div class="container-contact100">
+      <div class="wrap-contact100">
+         <form class="contact100-form validate-form" id = "writeForm" action = "/kiito/feed/insertFeed" method = "POST" enctype="multipart/form-data" >
+         <input type = "hidden" name = "customer_seq" value = "${sessionScope.customer.customer_seq }" id="cs">
+            <span class="contact100-form-title">私がいるところ</span>
+            <div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
+               <input class="input100" type="text" id="checkin" placeholder = "Please enter a search term">
+               
+               <input class = "input100" id = "checkinBt" type = "button" value = "search">
+               <!-- 같은 이름 ㄴㄴ -->
+               <span class="focus-input100"></span>
+            </div>
+            <input type = "text" id = "dataSelected" name = "checkin" style = "display : none;">
+            
+            <div class="map_wrap">
+                <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+            
+                <div id="menu_wrap" class="bg_white">
+                    <hr>
+                    <ul id="placesList"></ul>
+                    <div id="pagination"></div>
+                </div>
+            </div>
+            <div class = "wrap-input100">
+               <input type = "radio" name = "congestion" value = "3" checked = "checked" style = "margin-left : 20px;">congestion
+               <input type = "radio" name = "congestion" value = "2">smoothness
+               <input type = "radio" name = "congestion" value = "1">dullness
+            </div>
+                  
+            <div class="wrap-input100 validate-input" data-validate = "Please enter your message">
+               <textarea id = "contents" class="input100" name="contents" placeholder="Your Message" style = "resize : none"></textarea>
+               <span class="focus-input100"></span>
+            </div>
+            
+            <div data-validate = "이거 왜뜨지 씨발">
+
+               <input type = "file" id = "input_imgs" name = "imagefile"  multiple accept="image/gif, image/jpeg, image/png" style="display:none" />
+               <input type='text' name='imagefile2' id='imagefile2' style="display:none;"> 
+            <img src='../resources/images/picture.png' border='0' onclick='document.all.imagefile.click(); document.all.imagefile2.value=document.all.imagefile.value'> 
+            <input type = "file" id = "input_video" name = "videofile" multiple accept="video/*" style="display:none" />
+               <input type='text' name='videofile2' id='videofile2' style="display:none;"> 
+            <img src='../resources/images/video.png' border='0' onclick='document.all.videofile.click(); document.all.videofile2.value=document.all.videofile.value'> 
+
+            
+            
+               <!-- <input class="input100" multiple = "multiple" type="file" name="upload" id="file" value="파일선택" size="30">
+               <span class="focus-input100"></span> -->
+            </div>
+            <div>
+               <div class = "imgs_wrap" style = "margin-bottom : 10px;">
+               
+               </div>
+            </div>
+            
+            
+            <div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
+            <br>
+                  <input type="text" id="tag" class="input100" placeholder="tag" />
+               <span class="focus-input100"></span>
+            </div>
+   
+
+            
+         <ul id="tag-list">
+              </ul>
+
+
+         <input type="hidden" value="" name="arr" id="rdTag" />
+         
+      
+
+            <div class="container-contact100-form-btn">
+               <button type = "button" id = "submitFeed"class="contact100-form-btn">
+                  <span>
+                     <i class="fa fa-paper-plane-o m-r-6" aria-hidden="true"></i>
+                     submit
+                  </span>
+               </button>
+               　　
+               <button type = "button" id = "closeWrite"class="contact100-form-btn">
+                  <span>
+                     <i class="fa fa-paper-plane-o m-r-6" aria-hidden="true"></i>
+                     close
+                  </span>
+               </button>
+            </div>
+         </form>
+      </div>
+   </div>
+   
+         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab38e188d1015fa32fe5df13ab040fa&libraries=services,clusterer,drawing"></script>
+      <script src = "../resources/writef/js/kakaomap.js"></script>
+      
+      <script src="../resources/writef/js/main.js"></script>
 
   </body>
 </html>
