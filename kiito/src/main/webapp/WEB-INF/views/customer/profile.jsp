@@ -761,27 +761,9 @@
 
 		<form id = "changef">
 		<span style="font-size: 70px; font-family: fantasy; font-style: italic; color: antiquewhite;">Profile img</span>
-        <span><label for="image">Image:</label></span>
         <br />
         <input class="input100" type="file" name="upload" id="image" />
 <img style = "width : 96px; height : 96px;" src="${sessionScope.customer.profileImg }" class="img-responsive img-circle" alt="User" id="base"> 
-       
-       
-       
-        <input class="input100" type="button" value="submit" id="sub"/>
-    	<div class="modal-meta-top">
-	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-			 <span aria-hidden="true">×××××××××</span><span class="sr-only">Close</span>
-			</button></div> 
-			
-			<div id="ssss">
-			 <br />
-		
-        <a href="#">Remove</a>
-			</div>
-			
-			
-			
 							<div class="container-contact100-form-btn">
 					<button type = "button" id = "sub"class="contact100-form-btn">
 						<span>
@@ -789,14 +771,16 @@
 							submit
 						</span>
 					</button>
-					　　
-					<button type = "button" data-dismiss="modal" id = "close"class="contact100-form-btn">
-						<span class="sr-only">
+					　　<div class="modal-meta-top">
+					<button type = "button" id = "closeWrite" data-dismiss="modal" class="contact100-form-btn">
+						<span>
 							<i class="fa fa-paper-plane-o m-r-6" aria-hidden="true"></i>
 							close
 						</span>
 					</button>
+					</div>
 				</div>
+
  
     	</form>
 	
