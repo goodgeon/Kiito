@@ -14,7 +14,7 @@
 		<meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">  
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>KIITO - 君がいるとごろ</title>
+        <title>KIITO - 君がいるところ</title>
 		<meta name="description" content="" />
         <meta name="keywords" content="" />
         <meta property="og:title" content="" />
@@ -656,7 +656,7 @@
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form" id = "writeForm" action = "feed/insertFeed" method = "POST" enctype="multipart/form-data" >
 			<input type = "hidden" name = "customer_seq" value = "${sessionScope.customer.customer_seq }" id="cs">
-				<span class="contact100-form-title">私がいるとごろ</span>
+				<span class="contact100-form-title">私がいるところ</span>
 				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
 					<input class="input100" type="text" id="checkin" placeholder = "Please enter a search term">
 					
