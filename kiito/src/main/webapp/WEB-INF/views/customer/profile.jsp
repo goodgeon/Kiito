@@ -488,56 +488,7 @@
 		 </div><!--/ row -->
 		
 		</div>
-		<div class="col-lg-3">
-		
-         <div class="suggestion-box full-width">
-			<div class="suggestions-list">
-				<div class="suggestion-body">
-					<img class="img-responsive img-circle" src="../resources/assets/img/users/1.jpg" alt="">
-					<div class="name-box">
-						<br><h4>Vanessa Wells</h4>
-					</div>
-					<span><i class="fa fa-plus"></i></span>
-				</div>
-				<div class="suggestion-body">
-					<img class="img-responsive img-circle" src="../resources/assets/img/users/2.jpg" alt="">
-					<div class="name-box">
-						<br><h4>Anthony McCartney</h4>
-					</div>
-					<span><i class="fa fa-plus"></i></span>
-				</div>
-				<div class="suggestion-body">
-					<img class="img-responsive img-circle" src="../resources/assets/img/users/3.jpg" alt="">
-					<div class="name-box">
-						<br><h4>Anna Morgan</h4>
-					</div>
-					<span><i class="fa fa-plus"></i></span>
-				</div>
-				<div class="suggestion-body">
-					<img class="img-responsive img-circle" src="../resources/assets/img/users/4.jpg" alt="">
-					<div class="name-box">
-						<br><h4>Sean Coleman</h4>
-					
-					</div>
-					<span><i class="fa fa-plus"></i></span>
-				</div>
-				<div class="suggestion-body">
-					<img class="img-responsive img-circle" src="../resources/assets/img/users/5.jpg" alt="">
-					<div class="name-box">
-						<br><h4>Grace Karen</h4>
-									</div>
-					<span><i class="fa fa-plus"></i></span>
-				</div>
-				<div class="suggestion-body">
-					<img class="img-responsive img-circle" src="../resources/assets/img/users/6.jpg" alt="">
-					<div class="name-box">
-						<br><h4>Clifford Graham</h4>
-				
-					</div>
-					<span><i class="fa fa-plus"></i></span>
-				</div>
-			</div><!--suggestions-list end-->
-		</div>	
+
 
         <div class="trending-box">
 		 <div class="row">

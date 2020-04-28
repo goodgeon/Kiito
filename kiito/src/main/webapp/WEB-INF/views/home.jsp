@@ -25,7 +25,7 @@
         
         <!-- bxSlider -->
 		  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-		  
+
 		  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 		  <script>
 		  function following(feed_seq, customer_seq, following_seq){
@@ -439,11 +439,13 @@
 <!------------------------FEED---------------------------------->
 	    <div class="col-lg-6">
 		
+		 
         <c:forEach var = "feed" items="${feed}">
          <div class="cardbox">
 		 
           <div class="cardbox-heading">
            <!-- START dropdown-->
+           
            <div class="dropdown pull-right">
             <button class="btn btn-secondary btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false">
 		     <em class="fa fa-ellipsis-h"></em>
@@ -453,7 +455,9 @@
 			 <a class="dropdown-item" href="#">Stop following</a>
 			 <a class="dropdown-item" href="#">Report</a>
             </div>
-           </div><!--/ dropdown -->
+           </div>
+           
+           <!--/ dropdown -->
            <!-- END dropdown-->
            
            
@@ -542,7 +546,9 @@
 		   </ul>
           </div><!--/ cardbox-like -->			  
                 
-		 </div><!--/ cardbox -->	
+		 </div>
+		
+		 <!--/ cardbox -->	
 		 
 		 
 		 
