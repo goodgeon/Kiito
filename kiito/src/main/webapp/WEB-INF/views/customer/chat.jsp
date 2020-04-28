@@ -624,7 +624,7 @@
 		   </li>
 
 		   <li class="dropdown notification-list">
-			<a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+			<a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="/kiito/customer/chat" role="button" aria-haspopup="false" aria-expanded="false">
 			 <i class="fa fa-envelope noti-icon"></i>
 			 <span class="badge badge-success badge-pill noti-icon-badge">6</span>
 			</a>

@@ -145,7 +145,7 @@
 		   </li>
 
 		   <li class="dropdown notification-list">
-			<a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+			<a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="/kiito/customer/chat" role="button" aria-haspopup="false" aria-expanded="false">
 			 <i class="fa fa-envelope noti-icon"></i>
 			 <span class="badge badge-success badge-pill noti-icon-badge">6</span>
 			</a>
@@ -216,7 +216,7 @@
 <!-- 		   <a class="dropdown-item" href="#"><span>New Story</span></a>  -->
 		   <div class="dropdown-divider"></div>
 		   <a class="dropdown-item" href="customer/profile?profileImg=${sessionScope.customer.profileImg }"><span>Profile</span></a> 
-		   <a class="dropdown-item" href="#"><span>Settings</span></a> 
+		   <a class="dropdown-item" href="#editp" data-toggle="modal" rel="modal:open"><span>Settings</span></a> 
 <!-- 		   <a class="dropdown-item" href="#">Need help?</a>  -->
 		   <div class="dropdown-divider"></div>
 		   <a class="dropdown-item" href="customer/logout">Sign out</a>

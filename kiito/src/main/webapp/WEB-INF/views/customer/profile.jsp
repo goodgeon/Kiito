@@ -210,7 +210,7 @@
          </li>
 
          <li class="dropdown notification-list">
-         <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+         <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="chat" role="button" aria-haspopup="false" aria-expanded="false">
           <i class="fa fa-envelope noti-icon"></i>
           <span class="badge badge-success badge-pill noti-icon-badge">6</span>
          </a>
@@ -887,7 +887,7 @@
             </span>
       <input type="password" name="password" id="password" placeholder="비밀번호 입력"> <br>
       <input type="password" name="password1" id="password1" placeholder="비밀번호 다시 입력"><br>  
-   <inputtype="reset" value="다시쓰기"> 
+   <input type="reset" value="다시쓰기"> 
       <input type="button" value="탈퇴" id="bt7">
 <br>
          <div style="display: -webkit-inline-box;">

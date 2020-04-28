@@ -430,7 +430,7 @@
 		 <!--   <a class="dropdown-item" href="#"><span>Become a Member</span></a>  -->
 		   <div class="dropdown-divider"></div>
 		   <a class="dropdown-item" href="customer/profile?profileImg=${sessionScope.customer.profileImg }"><span>Profile</span></a> 
-		   <a class="dropdown-item" href="#"><span>Settings</span></a> 
+		   <a class="dropdown-item" href="#editp" data-toggle="modal" rel="modal:open"><span>Settings</span></a> 
 <!-- 		   <a class="dropdown-item" href="#">Need help?</a>  -->
 		   <div class="dropdown-divider"></div>
 		   <a class="dropdown-item" href="customer/logout">Sign out</a>
@@ -815,6 +815,37 @@
 		<script src="resources/writef/js/main.js"></script>
 		<script src = "resources/writef/js/kakaomap.js"></script>
 		
+		 <!--    개인정보수정 -->
+    <div id="editp" class="modal">
+   <form id="editForm" style="text-align: -webkit-center;">
+   <span style="font-size: 70px; font-family: fantasy; font-style: italic; color: antiquewhite;">Info.</span><br>
+   <img style = "border:1px solid #642EFE; width : 150px; height : 150px;" src="../img/${sessionScope.customer.profileImg }" class="img-responsive img-circle" id="base"><br>
+   <input type="text" name="nick" id="nick" value="${sessionScope.customer.nick }" >
+   <input type="button" value="수정" id="bt3"> <br>
+
+         <span class="input input--haruki">
+               <input class="input__field input__field--haruki" type="text" id="input-1" />
+               <label class="input__label input__label--haruki" for="input-1">
+                  <span class="input__label-content input__label-content--haruki">NickName</span>
+               </label>
+            </span>
+      <input type="password" name="password" id="password" placeholder="비밀번호 입력"> <br>
+      <input type="password" name="password1" id="password1" placeholder="비밀번호 다시 입력"><br>  
+   <input type="reset" value="다시쓰기"> 
+      <input type="button" value="탈퇴" id="bt7">
+<br>
+         <div style="display: -webkit-inline-box;">
+               　　<div class="modal-meta-top">
+               <button type = "button" id = "closeWrite" data-dismiss="modal" class="contact100-form-btn">
+                  <span>
+                     <i class="fa fa-paper-plane-o m-r-6" aria-hidden="true"></i>
+                     close
+                  </span>
+               </button>
+               </div>
+            </div>
+</form>
+</div>
 		
 		
   </body>
