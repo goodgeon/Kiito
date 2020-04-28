@@ -20,24 +20,21 @@
         <meta property="og:title" content="" />
         <meta property="og:url" content="" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<<<<<<< HEAD
-                		<meta name="description" content="Simple ideas for enhancing text input interactions" />
+		<meta name="description" content="Simple ideas for enhancing text input interactions" />
 		<meta name="keywords" content="input, text, effect, focus, transition, interaction, inspiration, web design" />
 		<meta name="author" content="Codrops" />
 		<link rel="shortcut icon" href="../favicon.ico">
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-=======
         		<meta name="description" content="Simple ideas for enhancing text input interactions" />
 		<meta name="keywords" content="input, text, effect, focus, transition, interaction, inspiration, web design" />
 		<meta name="author" content="Codrops" />
 		<link rel="shortcut icon" href="../favicon.ico">
->>>>>>> 3d53755b0d5e84d4739c2df09ef498418c9d5ce5
-		<link rel="stylesheet" type="text/css" href="..resources/nick/css/normalize.css" />
-		<link rel="stylesheet" type="text/css" href="..resources/nickfonts/font-awesome-4.2.0/css/font-awesome.min.css" />
-		<link rel="stylesheet" type="text/css" href="..resources/nickcss/demo.css" />
-		<link rel="stylesheet" type="text/css" href="..resources/nickcss/set1.css" />
+		<link rel="stylesheet" type="text/css" href="../resources/nick/css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../resources/nickfonts/font-awesome-4.2.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="../resources/nickcss/demo.css" />
+		<link rel="stylesheet" type="text/css" href="../resources/nickcss/set1.css" />
           <!-- bxSlider -->
 		  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 		  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
@@ -332,28 +329,20 @@
 			  </a>
 			 </div>
 		     <div class="detail" style = "margin-top : 20px;">
-<<<<<<< HEAD
 			  <h4>${sessionScope.customer.nick }</h4>
 		<%-- 	  <small>@${sessionScope.customer.nick }</small>     --%>                    
-=======
-			  <h4>${ccc.nick }</h4><br>
-               
->>>>>>> 75aa7e056692003f80491d08b6a34e786b6af310
+			  <h4>${ccc.nick }</h4>
+
 			 </div>
 			 
 			  <c:if test="${sessionScope.customer.customer_seq == ccc.customer_seq }">
 			 
 			 <div class="row">
 			  <div class="col-12">
-<<<<<<< HEAD
 			<!--    <a title="facebook" href="#" class=" waves-effect waves-block"><i class="fab fa-facebook"></i></a> -->
 			   <a title="개인정보수정" href="#editp" data-toggle="modal" rel="modal:open" class=" waves-effect waves-block"><img src="../resources/images/setting.png"></a>
 		<!-- 	   <a title="instagram" href="#" class=" waves-effect waves-block"><i class="fab fa-instagram"></i></a> -->
-=======
 			
-			   <a title="개인정보수정" href="#editp" data-toggle="modal" rel="modal:open" class=" waves-effect waves-block"><i class="fab fa-twitter"></i></a>
-		
->>>>>>> 75aa7e056692003f80491d08b6a34e786b6af310
 			  </div>                                
 			 </div>
 			 
@@ -538,7 +527,7 @@
 		   <c:forEach var = "p" items="${bestp}">
 		   <c:if test="${fn:length(p.savedFilename) > 0 }">
 		  <div class="col-lg-6">
-		   <a href="#"><img src="<c:url value = '/img/${p.savedFilename}'/>" class="img-responsive" alt="Image"/></a>
+		   <a href="#"><img src="<c:url value = '../img/${p.savedFilename}'/>" class="img-responsive" alt="Image"/></a>
 		  </div>
 		  </c:if>
 		  </c:forEach>
@@ -888,31 +877,21 @@
     
  <!--    개인정보수정 -->
     <div id="editp" class="modal">
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 3d53755b0d5e84d4739c2df09ef498418c9d5ce5
 	<form id="editForm" style="text-align: -webkit-center;">
 	<span style="font-size: 70px; font-family: fantasy; font-style: italic; color: antiquewhite;">Info.</span><br>
 	<img style = "border:1px solid #642EFE; width : 150px; height : 150px;" src="../img/${sessionScope.customer.profileImg }" class="img-responsive img-circle" id="base"><br>
 	<input type="text" name="nick" id="nick" value="${sessionScope.customer.nick }" >
 	<input type="button" value="수정" id="bt3"> <br>
-<<<<<<< HEAD
-=======
 	<div class="container">
 	<section class="content bgcolor-1">
->>>>>>> 3d53755b0d5e84d4739c2df09ef498418c9d5ce5
 			<span class="input input--haruki">
 					<input class="input__field input__field--haruki" type="text" id="input-1" />
 					<label class="input__label input__label--haruki" for="input-1">
 						<span class="input__label-content input__label-content--haruki">NickName</span>
 					</label>
 				</span>
-<<<<<<< HEAD
-=======
 				</section>
 				</div>
->>>>>>> 3d53755b0d5e84d4739c2df09ef498418c9d5ce5
 		<input type="password" name="password" id="password" placeholder="비밀번호 입력"> <br>
 		<input type="password" name="password1" id="password1" placeholder="비밀번호 다시 입력"><br>  
 	<inputtype="reset" value="다시쓰기"> 
@@ -929,39 +908,6 @@
 					</div>
 				</div>
 </form>
-<<<<<<< HEAD
-=======
-=======
-	<form id="editForm">
-		<table border=1>
-
-			<tr>
-				<th>PASSWORD</th>
-				<td><input type="password" name="password" id="password"
-					placeholder="비밀번호 입력"><br> <input type="password"
-					name="password1" id="password1" placeholder="비밀번호 다시 입력"></td>
-			</tr>
-			<tr>
-				<th>NICKNAME</th>
-				<td><input type="text" name="nick" id="nick" value="${sessionScope.customer.nick }" ></td>
-			</tr>
-			
-	
-			<tr>
-				<th colspan="2"><input type="button" value="수정" id="bt3">   <input
-					type="reset" value="다시쓰기">    <input type="button" value="탈퇴" id="bt7"></th>
-			</tr>
-		</table>
-	</form>
-	
-		<div class="modal-meta-top">
-	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-			 <span aria-hidden="true">×××××××××</span><span class="sr-only">Close</span>
-			</button></div> 
-
-
->>>>>>> 75aa7e056692003f80491d08b6a34e786b6af310
->>>>>>> 3d53755b0d5e84d4739c2df09ef498418c9d5ce5
 </div>
 		
 		
