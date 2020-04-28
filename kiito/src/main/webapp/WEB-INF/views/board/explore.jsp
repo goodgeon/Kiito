@@ -347,7 +347,6 @@
 		   <li class="dropdown notification-list">
 		    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
 			 <i class="fa fa-bell noti-icon"></i>
-			 <span class="badge badge-danger badge-pill noti-icon-badge">4</span>
 			</a>
 			<div class="dropdown-menu dropdown-menu-right dropdown-lg">
              
@@ -400,7 +399,6 @@
 		   <li class="dropdown notification-list">
 			<a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="/kiito/customer/chat" role="button" aria-haspopup="false" aria-expanded="false">
 			 <i class="fa fa-envelope noti-icon"></i>
-			 <span class="badge badge-success badge-pill noti-icon-badge">6</span>
 			</a>
 			<div class="dropdown-menu dropdown-menu-right dropdown-lg dropdown-new">
              <div class="dropdown-item noti-title">

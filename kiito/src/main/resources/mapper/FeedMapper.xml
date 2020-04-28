@@ -25,6 +25,7 @@
 		 <collection property="videoFile" column="feed_seq" javaType="java.util.ArrayList" ofType="videoFile" select="getVideoList"/>
 		 <collection property="comments" column="feed_seq" javaType="java.util.ArrayList" ofType="comments" select="getCommentList"/>
 		 <collection property="hashtag" column="feed_seq" javaType="java.util.ArrayList" ofType="hash" select="getHashtagList"/>
+		 <collection property="like" column="feed_seq" javaType="java.util.ArrayList" ofType="likes" select="getLikesList"/>
 	</resultMap>
 	
 	<select id="getImageList" resultType="imageFile">
@@ -49,6 +50,12 @@
 		select hashtag_seq, feed_seq, contents
 		from hashtag
 		where feed_seq = #{hashtag_seq}
+	</select>
+	
+	<select id="getLikesList" resultType="likes">
+		select likes_seq, feed_seq, customer_seq
+		from likes
+		where feed_seq = #{feed_seq}
 	</select>
 
 
@@ -116,9 +123,9 @@
 	</select>
 	
 	<select id="search" parameterType="String" resultType="feed" resultMap="feedMap">
-		select distinct f.feed_seq,f.customer_seq,f.checkin,f.contents,f.congestion,f.likes, f.inputdate, c.customer_seq, c.email, c.pw, c.name, c.nick, c.profileimg, c.customer_type 
+		select distinct f.feed_seq,f.customer_seq,f.checkin,f.contents,f.congestion,f.likes, f.inputdate, c.customer_seq, c.email, c.pw, c.name, c.nick, c.profileimg, c.customer_type , h.feed_seq, h.contents
 		from feed f,customer c, hashtag h
-		where f.customer_seq = c.customer_seq and f.feed_seq = h.feed_seq and (checkin like '%' || #{search} || '%' OR h.contents like '%' || #{search} || '%') 
+		where f.customer_seq = c.customer_seq and (checkin like '%' || #{search} || '%' OR (f.feed_seq = h.feed_seq and h.contents = #{search})) 
 		order by f.inputdate desc
 	</select>
 	
@@ -136,7 +143,7 @@
 		from feed fe, customer cu
 		where fe.customer_seq = cu.customer_seq and fe.customer_seq in (select f.following_seq
 		from customer c, follow f
-		where c.customer_seq = #{customer_seq} and c.customer_seq = f.customer_seq)
+		where c.customer_seq = #{customer_seq} and c.customer_seq = f.customer_seq or f.following_seq = #{customer_seq})
 		order by fe.inputdate desc
 	</select>
 </mapper>

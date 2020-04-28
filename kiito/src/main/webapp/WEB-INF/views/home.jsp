@@ -200,17 +200,37 @@
 				getCommentList(feedNum);
 					 
 			}
+
+			function like(feed_seq){
+				var customer_seq = ${sessionScope.customer.customer_seq};
+				$.ajax({
+					url : "feed/likes",
+					type : "POST",
+					data : {
+						feed_seq : feed_seq,
+						customer_seq : customer_seq
+					},
+					success : function(data){
+						$("#like"+feed_seq).text(data);
+						$("#modalLike"+feed_seq).text(data);
+					}
+				})
+			}
 		  </script>
 		  
 		  <script>
 			$(document).ready(function(){
+				var search;
 				
 				$("#search").on('keydown', function(key){
-					var search = $("#search").val();
+					search = $("#search").val();
 					if(key.keyCode == 13){
 						location.href = "search?search="+search;
-					
 					}
+				})
+
+				$("#searchSubmit").on('click', function(){
+					location.href = "search?search="+$("#search").val();
 				})
 			})
 		  </script>
@@ -341,7 +361,7 @@
 		   <div class="search-dashboard">
                <form onSubmit="return false;">
                     <input id = "search" placeholder="Search here" type="text">
-                    <button type="submit"><i class="fa fa-search"></i></button>
+                    <button id = "searchSubmit" type="submit"><i class="fa fa-search"></i></button>
                </form>
           </div>							
 		   </li>
@@ -349,7 +369,6 @@
 		   <li class="dropdown notification-list">
 		    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
 			 <i class="fa fa-bell noti-icon"></i>
-			 <span class="badge badge-danger badge-pill noti-icon-badge">4</span>
 			</a>
 			<div class="dropdown-menu dropdown-menu-right dropdown-lg">
              
@@ -402,7 +421,6 @@
 		   <li class="dropdown notification-list">
 			<a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="customer/chat" role="button" aria-haspopup="false" aria-expanded="false">
 			 <i class="fa fa-envelope noti-icon"></i>
-			 <span class="badge badge-success badge-pill noti-icon-badge">6</span>
 			</a>
 			<div class="dropdown-menu dropdown-menu-right dropdown-lg dropdown-new">
              <div class="dropdown-item noti-title">
@@ -600,7 +618,7 @@
 		  </div><!--/ cardbox-base -->
           <div class="cardbox-like">
 		   <ul style = "display : flex; justify-content : center">
-			<li><a href="" style = "padding-top : 6px;"><i class="fa fa-heart"></i><span> ${feed.likes }</span></a></li>
+			<li onclick = "like(${feed.feed_seq})"><a href="javascript:void(0)" style = "padding-top : 6px;"><i class="fa fa-heart"></i><span id="like${feed.feed_seq}"> ${feed.likes }</span></a></li>
 		    <li onclick = "openModal(${feed.feed_seq },${sessionScope.customer.customer_seq},${feed.customer.customer_seq})"><a href="javascript:void()" title="" class="com"><i class="fa fa-comments"></i></a> <a href = "" onclick = "openModal(${feed.feed_seq },${sessionScope.customer.customer_seq},${feed.customer.customer_seq})" data-toggle="modal" style = "display : flex; justify-content : center"><span id = "commentsCount${feed.feed_seq}" class="span-last"> ${fn:length(feed.comments)}</span></a></li>
 		   </ul>
           </div><!--/ cardbox-like -->			  
@@ -684,7 +702,7 @@
 			  
             <div class="modal-meta-bottom">
 			 <ul>
-			  <li><a class="modal-like" href="#"><i class="fa fa-heart"></i></a><span class="modal-one"> ${feed.likes }</span> | 
+			  <li><a class="modal-like" href="#"><i class="fa fa-heart"></i></a><span id= "modalLike${feed.feed_seq}" class="modal-one"> ${feed.likes }</span> | 
 			      <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span id = "modalCommentsCount${feed.feed_seq }"> </span> </li>
 			  <li>
 			   <span class="thumb-xs">
