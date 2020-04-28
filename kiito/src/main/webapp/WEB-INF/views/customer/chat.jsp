@@ -42,6 +42,7 @@
       Feauture Detection
       =============================================== -->
       <script src="../resources/assets/js/modernizr-custom.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       
       <!-- socket.io -->
         <script src="http://localhost:82/socket.io/socket.io.js"></script>
@@ -49,6 +50,7 @@
            var customer_seq = ${sessionScope.customer.customer_seq};
            var dbChatList;
            var receiver;
+           var nullcheck;
            
            function getChatList(){
               var chatList=[];
@@ -240,7 +242,6 @@
                   
                   //팔로우 안돼잇으면
                        if(flag){
-                           console.log("씨발");
                           $.get("getCustomer", {customer_seq : msg.sender}).done(function(customer){
                              var str = '';
                            str += '<li id = "customer-list'+customer.customer_seq+'" class="active" onclick = "sendTo('+customer.customer_seq+')">';
@@ -256,7 +257,6 @@
                            str += '<h4>'+customer.name+'</h4>';
                            str += '<p id = "latest'+customer.customer_seq+'">'+msg.text+'</p>';
                            str += '<span class="time-posted">1:55 PM</span></div>';
-                           str += '<span class="message-notification">1</span>';
                            str += '</div></li>';
                            
                            $("#chat-list").append(str);
@@ -269,23 +269,27 @@
                      flag = false;
                           } 
                   
-                      
-                  var str = '';
-                  str += '<div class="convo-area convo-left">';
-                  str += '<div class="convo-message">';
-                  str += '<p>';
-                  str += msg.text;
-                  str += '</p></div></div>';
-                  str += '<div class="convo-img">';
-                  if(sender.profileImg.substring(0,4) == 'http'){
-                     str += '<img src= "'+sender.profileImg+'" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;"></div>';
-                  }else{
-                     str += '<img src="<c:url value = "/img/'+sender.profileImg+'"/>" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;"></div>';
-                  }
+                      if(msg.receiver == customer_seq){
+                          if(typeof nullcheck != "undefined"){
+                        	  var str = '';
+                              str += '<div class="convo-area convo-left">';
+                              str += '<div class="convo-message">';
+                              str += '<p>';
+                              str += msg.text;
+                              str += '</p></div></div>';
+                              str += '<div class="convo-img">';
+                              if(sender.profileImg.substring(0,4) == 'http'){
+                                 str += '<img src= "'+sender.profileImg+'" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;"></div>';
+                              }else{
+                                 str += '<img src="<c:url value = "/img/'+sender.profileImg+'"/>" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;"></div>';
+                              }
+                              
+                              $('<div class = "convo-box convo-left"></div>').html(str).appendTo(".conversation-container");
+                              $(".conversation-container").scrollTop($(document).height());
+                              $("#latest"+msg.sender).html(msg.text);
+                          }
+                      }
                   
-                  $('<div class = "convo-box convo-left"></div>').html(str).appendTo(".conversation-container");
-                  $(".conversation-container").scrollTop($(document).height());
-                  $("#latest"+msg.sender).html(msg.text);
                     }
                 });
 
@@ -347,6 +351,7 @@
 
 
             function sendTo(num){
+                nullcheck = false;
                var socket = io("http://localhost:82");
                var customer_seq = "${sessionScope.customer.customer_seq}";
                var chat_seq;
@@ -391,46 +396,50 @@
                    console.log(chat_seq);
                 }
                 console.log(chat_seq);
-               socket.emit("getHistory", chat_seq);
+               socket.emit("getHistory", chat_seq, customer_seq);
                
-               socket.on('getHistory', function(data){
-                   $(".conversation-container").html('');
-                   $.each(data,function(index, item){
-                  if(item.chat.sender == customer_seq){
-                     var str = '';
-                          str += '<div class="convo-area">';
-                          str += '<div class="convo-message">';
-                          str += '<p>';
-                          str += item.chat.text;
-                          str += '</p></div></div>';
-                          str += '<div class="convo-img">';
-                          if(customer1.profileImg.substring(0,4) == 'http'){
-                             str += '<img src="'+customer1.profileImg+'" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;" ></div>';
-                         }else{
-                            str += '<img src="<c:url value = "/img/'+customer1.profileImg+'"/>" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;" ></div>';
-                        }
-                          
-                       
-                          //div 태그를 만들어 텍스트를 msg로 지정을 한뒤 #chat_box에 추가를 시켜준다.
-                          $('<div class = "convo-box pull-right"></div>').html(str).appendTo(".conversation-container");
-                          $(".conversation-container").scrollTop($(document).height());
-                  }else{
-                     var str = '';
-                     str += '<div class="convo-area convo-left">';
-                     str += '<div class="convo-message">';
-                     str += '<p>';
-                     str += item.chat.text;
-                     str += '</p></div></div>';
-                     str += '<div class="convo-img">';
-                     if(customer.profileImg.substring(0,4) == 'http'){
-                             str += '<img src="'+customer.profileImg+'" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;" ></div>';
-                         }else{
-                            str += '<img src="<c:url value = "/img/'+customer.profileImg+'"/>" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;" ></div>';
-                        }
-                     $('<div class = "convo-box convo-left"></div>').html(str).appendTo(".conversation-container");
-                     $(".conversation-container").scrollTop($(document).height());
-                  }
-                    })
+               socket.on('getHistory', function(data, token){
+                   console.log(token);
+                   if(token == customer_seq){
+                	   $(".conversation-container").html('');
+                       $.each(data,function(index, item){
+                           
+                      if(item.chat.sender == customer_seq){
+                         var str = '';
+                              str += '<div class="convo-area">';
+                              str += '<div class="convo-message">';
+                              str += '<p>';
+                              str += item.chat.text;
+                              str += '</p></div></div>';
+                              str += '<div class="convo-img">';
+                              if(customer1.profileImg.substring(0,4) == 'http'){
+                                 str += '<img src="'+customer1.profileImg+'" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;" ></div>';
+                             }else{
+                                str += '<img src="<c:url value = "/img/'+customer1.profileImg+'"/>" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;" ></div>';
+                            }
+                              //div 태그를 만들어 텍스트를 msg로 지정을 한뒤 #chat_box에 추가를 시켜준다.
+                              $('<div class = "convo-box pull-right"></div>').html(str).appendTo(".conversation-container");
+                              $(".conversation-container").scrollTop($(document).height());
+                      }else{
+                         var str = '';
+                         str += '<div class="convo-area convo-left">';
+                         str += '<div class="convo-message">';
+                         str += '<p>';
+                         str += item.chat.text;
+                         str += '</p></div></div>';
+                         str += '<div class="convo-img">';
+                         if(customer.profileImg.substring(0,4) == 'http'){
+                                 str += '<img src="'+customer.profileImg+'" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;" ></div>';
+                             }else{
+                                str += '<img src="<c:url value = "/img/'+customer.profileImg+'"/>" alt="" class="img-responsive img-circle" style = "width : 50px; height : 50px;" ></div>';
+                            }
+                         $('<div class = "convo-box convo-left"></div>').html(str).appendTo(".conversation-container");
+                         $(".conversation-container").scrollTop($(document).height());
+                      }
+                        })
+
+                   }
+                   
                 })
                
             receiver = num;
@@ -517,7 +526,6 @@
                   str += '<h4>'+customer.name+'</h4>';
                   str += '<p id = "latest'+customer.customer_seq+'"></p>';
                   str += '<span class="time-posted"></span></div>';
-                  str += '<span class="message-notification">1</span>';
                   str += '</div></li>';
                   
                   $("#chat-list").append(str);
@@ -816,7 +824,6 @@
      <!-- ==============================================
     Scripts
     =============================================== -->
-   <script src="../resources/assets/js/jquery.min.js"></script>
    <script src="../resources/assets/js/bootstrap.min.js"></script>
    <script src="../resources/assets/js/base.js"></script>
    <script src="../resources/assets/plugins/slimscroll/jquery.slimscroll.js"></script>

@@ -26,6 +26,8 @@ public interface FeedMapper {
 
 	ArrayList<Customer> getEntryList();
 
+	ArrayList<Feed> followFeedList(int customer_seq);
+
 
 
 

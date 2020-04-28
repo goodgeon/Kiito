@@ -130,4 +130,13 @@
 		where c.customer_seq = f.following_seq
 		order by f.co desc
 	</select>
+	
+	<select id="followFeedList" parameterType="int" resultType="feed" resultMap="feedMap">
+		select fe.feed_seq,fe.customer_seq,fe.checkin,fe.contents,fe.congestion,fe.likes, fe.inputdate, cu.customer_seq, cu.email, cu.pw, cu.name, cu.nick, cu.profileimg, cu.customer_type
+		from feed fe, customer cu
+		where fe.customer_seq = cu.customer_seq and fe.customer_seq in (select f.following_seq
+		from customer c, follow f
+		where c.customer_seq = #{customer_seq} and c.customer_seq = f.customer_seq)
+		order by fe.inputdate desc
+	</select>
 </mapper>

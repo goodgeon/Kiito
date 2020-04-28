@@ -2,6 +2,8 @@ package global.sesoc.kiito;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,9 +74,11 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "home", method = RequestMethod.GET)
-	public String home(Model model) {
+	public String home(Model model, HttpSession session) {
+		Customer c = (Customer) session.getAttribute("customer");
+		int customer_seq = c.getCustomer_seq();
 		
-		ArrayList<Feed> ff = dao.feedList();
+		ArrayList<Feed> ff = dao.followFeedList(customer_seq);
 		String temp;
 		/*
 		 * for(int i=0; i<ff.size(); i++) { Customer customer =

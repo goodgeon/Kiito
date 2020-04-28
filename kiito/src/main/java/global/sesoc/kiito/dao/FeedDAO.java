@@ -77,6 +77,12 @@ public class FeedDAO {
 		return entryList;
 	}
 
+	public ArrayList<Feed> followFeedList(int customer_seq) {
+		FeedMapper mapper = session.getMapper(FeedMapper.class);
+		ArrayList<Feed> list = mapper.followFeedList(customer_seq);
+		return list;
+	}
+
 
 
 

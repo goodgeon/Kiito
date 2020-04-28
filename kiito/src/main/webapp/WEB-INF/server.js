@@ -44,11 +44,11 @@ io.on('connection', function(socket){
     console.log(chat);
   })
 
-  socket.on('getHistory', function(chat_seq){
+  socket.on('getHistory', function(chat_seq, token){
     const chat = loadChat(chat_seq);
     var chatHistory = chat;
     console.log(chatHistory);
-    io.emit('getHistory', chatHistory);
+    io.emit('getHistory', chatHistory, token);
   })
 
   function loadChat(chat_seq){
