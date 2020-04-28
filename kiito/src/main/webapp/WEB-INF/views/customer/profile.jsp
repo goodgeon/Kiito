@@ -350,6 +350,7 @@
             <small class="text-muted"><a href="profile">${countf} Posts <em class="fa fa-angle-right pull-right"></em></a> </small><br/>
             <small class="text-muted"><a href="followers?type=1">${fn:length(sessionScope.customer.follower)} Followers <em class="fa fa-angle-right pull-right"></em></a> </small><br/>
             <small class="text-muted"><a href="followers?type=2">${fn:length(sessionScope.customer.follow)} Following <em class="fa fa-angle-right pull-right"></em></a> </small>
+
             <hr>
 <!--             <small class="text-muted">Bio: </small>
             <p>795 Folsom Ave, Suite 600 San Francisco, CADGE 94107</p>
@@ -770,7 +771,7 @@
       <form id = "changef" style="text-align: -webkit-center;">
       <span style="font-size: 70px; font-family: fantasy; font-style: italic; color: antiquewhite;">Profile img</span>
         <br />
-        <div style="background-color: #daf6ffa6; width: 400px; min-height: 47vh; border-radius: 30px;">
+        <div style="background-color: #7b969ea6; width: 400px; min-height: 47vh; border-radius: 30px;">
         <br>
 <img style = "border:1px solid #642EFE; width : 150px; height : 150px;" src="../img/${sessionScope.customer.profileImg }" class="img-responsive img-circle" id="base">
 <br>
@@ -872,39 +873,7 @@
     
     
  <!--    개인정보수정 -->
-    <div id="editp" class="modal">
-<<<<<<< HEAD
-	<form id="editForm" style="text-align: -webkit-center;">
-	<span style="font-size: 70px; font-family: fantasy; font-style: italic; color: antiquewhite;">Info.</span><br>
-	<div style="background-color: #daf6ffa6; width: 400px; min-height: 45vh; border-radius: 30px;">
-	<section class="content bgcolor-1" style="border-radius: 30px;">
-	<img style = "border:1px solid #642EFE; width : 150px; height : 150px;" src="../img/${sessionScope.customer.profileImg }" class="img-responsive img-circle" id="base">
-	<a>${sessionScope.customer.nick }</a><br>
-
-			<span class="input input--haruki">
-					<input class="input__field input__field--haruki" type="text"  id="nick" />
-					<label class="input__label input__label--haruki" for="input-1">
-						<span class="input__label-content input__label-content--haruki">NickName</span>
-					</label>
-				</span>
-				<button id="bt3" value="수정" ><img src="../resources/images/check.png"></button>
-				
-							<span class="input input--haruki">
-					<input type="password" class="input__field input__field--haruki"  id="password" />
-					<label class="input__label input__label--haruki" for="input-1">
-						<span class="input__label-content input__label-content--haruki">password</span>
-					</label>
-				</span>
-				
-							<span class="input input--haruki">
-					<input type="password" class="input__field input__field--haruki"  id="password1"/>
-					<label class="input__label input__label--haruki" for="input-1">
-						<span class="input__label-content input__label-content--haruki" id="password1">password check</span>
-					</label>
-				</span>
-				<button id="bt7" value="탈퇴" >delete<img src="../resources/images/check.png"></button>
-				<br>
-=======
+   <div id="editp" class="modal">
    <form id="editForm" style="text-align: -webkit-center;">
    <span style="font-size: 70px; font-family: fantasy; font-style: italic; color: antiquewhite;">Info.</span><br>
    <div style="background-color: #daf6ffa6; width: 400px; min-height: 45vh; border-radius: 30px;">
@@ -935,7 +904,6 @@
             </span>
             <button id="bt7" value="탈퇴" >delete<img src="../resources/images/check.png"></button>
             <br>
->>>>>>> 70b00b34a1b798132aa16fa6b7060d44961620c3
                　　<div class="modal-meta-top">
                <button type = "button" id = "closeWrite" data-dismiss="modal" class="contact100-form-btn">
                   <span>
@@ -947,6 +915,7 @@
       </section>
       </div>
 </form>
+
 </div>
       
       
