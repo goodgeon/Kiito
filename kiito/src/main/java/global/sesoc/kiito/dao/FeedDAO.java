@@ -63,6 +63,13 @@ public class FeedDAO {
 		return r;
 	}
 
+	public ArrayList<Feed> search(String search) {
+		FeedMapper mapper = session.getMapper(FeedMapper.class);
+		ArrayList<Feed> list = mapper.search(search);
+		
+		return list;
+	}
+
 
 
 

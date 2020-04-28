@@ -21,6 +21,8 @@ public interface FeedMapper {
 
 	ArrayList<Feed> feedList1(int customer_seq);
 
+	ArrayList<Feed> search(String search);
+
 
 
 
