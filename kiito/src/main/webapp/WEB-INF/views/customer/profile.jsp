@@ -421,7 +421,7 @@
            <div class="modal-meta-top">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 			 <span aria-hidden="true">×</span><span class="sr-only">Close</span>
-			</button><!--/ button -->
+			</button>
             <div class="img-poster clearfix">
              <a href=""><img class="img-responsive img-circle" src="${sessionScope.customer.profileImg }" alt="Image"/></a>
              <strong><a href="">${sessionScope.customer.nick }</a></strong>
@@ -898,7 +898,7 @@
 		<div class="modal-meta-top">
 	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 			 <span aria-hidden="true">×××××××××</span><span class="sr-only">Close</span>
-			</button>/ button</div> 
+			</button></div> 
 
 
 </div>
