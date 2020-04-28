@@ -176,4 +176,12 @@ public class CustomerDAO {
 		return chat_seq;
 	}
 
+
+
+	public Customer getC1(String profileImg) {
+		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		Customer ccc = mapper.getC1(profileImg);
+		return ccc;
+	}
+
 }

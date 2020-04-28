@@ -41,5 +41,7 @@ public interface CustomerMapper {
 
 	Integer getChat_seq(HashMap<String, Object> map);
 
+	Customer getC1(String profileImg);
+
 
 }
