@@ -163,5 +163,12 @@
 	</select>
 	
 	
+	
+	<select id="getC1" parameterType = "String" resultType="customer" >
+		select *
+		from customer
+		where profileImg = #{profileImg}
+	</select>
+	
 
 </mapper>

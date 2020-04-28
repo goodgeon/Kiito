@@ -25,7 +25,7 @@
         
         <!-- bxSlider -->
 		  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-		  
+
 		  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 		  <script>
 		  function following(feed_seq, customer_seq, following_seq){
@@ -261,7 +261,7 @@
 	   </div>
 
 	   <div class="p-2 nav-icon-lg dark-black">
-	   <a class="nav-icon" href="customer/profile"><em class="fa fa-user"></em>
+	   <a class="nav-icon" href="customer/profile?profileImg=${sessionScope.customer.profileImg }"><em class="fa fa-user"></em>
 		<span>Profile</span>
 	   </a>
 	   </div>
@@ -383,7 +383,7 @@
 			 </a>
             </div><!--/ dropdown-menu-->
 		   </li>
-		  
+		<!--   조금만 프로필 -->
 		 <li class="dropdown mega-avatar">
 		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 		   <span class="avatar w-32">
@@ -398,17 +398,17 @@
 			</c:if>
 		   </span>
 		   <!-- hidden-xs hides the username on small devices so only the image appears. -->
-		   <span class="hidden-xs">
-			${sessionScope.customer.name }
+		   <span class="hidden-xs"> 
+			${sessionScope.customer.nick }
 		   </span>
 		  </a>
 		  <div class="dropdown-menu w dropdown-menu-scale pull-right">
 		 <!--   <a class="dropdown-item" href="#"><span>New Story</span></a>  -->
 		 <!--   <a class="dropdown-item" href="#"><span>Become a Member</span></a>  -->
 		   <div class="dropdown-divider"></div>
-		   <a class="dropdown-item" href="customer/profile"><span>Profile</span></a> 
+		   <a class="dropdown-item" href="customer/profile?profileImg=${sessionScope.customer.profileImg }"><span>Profile</span></a> 
 		   <a class="dropdown-item" href="#"><span>Settings</span></a> 
-		   <a class="dropdown-item" href="#">Need help?</a> 
+<!-- 		   <a class="dropdown-item" href="#">Need help?</a>  -->
 		   <div class="dropdown-divider"></div>
 		   <a class="dropdown-item" href="customer/logout">Sign out</a>
 		  </div>
@@ -439,11 +439,13 @@
 <!------------------------FEED---------------------------------->
 	    <div class="col-lg-6">
 		
+		 
         <c:forEach var = "feed" items="${feed}">
          <div class="cardbox">
 		 
           <div class="cardbox-heading">
            <!-- START dropdown-->
+           
            <div class="dropdown pull-right">
             <button class="btn btn-secondary btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false">
 		     <em class="fa fa-ellipsis-h"></em>
@@ -453,13 +455,15 @@
 			 <a class="dropdown-item" href="#">Stop following</a>
 			 <a class="dropdown-item" href="#">Report</a>
             </div>
-           </div><!--/ dropdown -->
+           </div>
+           
+           <!--/ dropdown -->
            <!-- END dropdown-->
            
            
            <div class="media m-0">
             <div class="d-flex mr-3">
-			 <a href="#">
+			 <a href="customer/profile?profileImg=${feed.customer.profileImg }">
 			 	<c:if test="${feed.customer.profileImg.substring(0,4) == 'http' }">
 				<img src="<c:url value = '${feed.customer.profileImg }'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
 				</c:if>
@@ -542,7 +546,9 @@
 		   </ul>
           </div><!--/ cardbox-like -->			  
                 
-		 </div><!--/ cardbox -->	
+		 </div>
+		
+		 <!--/ cardbox -->	
 		 
 		 
 		 
@@ -614,52 +620,8 @@
             </div>
 			  
             <ul id = "commentListUl${feed.feed_seq }" class="img-comment-list">
-             <!-- <li>
-              <div class="comment-img">
-               <img src="resources/assets/img/users/17.jpeg" class="img-responsive img-circle" alt="Image"/>
-              </div>
-              <div class="comment-text">
-               <strong><a href="">작성자1111</a></strong>
-               <p>댓글내용11111111111</p> <span class="date sub-text">작성날짜</span>
-              </div>
-             </li>/ li
-             <li>
-              <div class="comment-img">
-               <img src="resources/assets/img/users/15.jpg" class="img-responsive img-circle" alt="Image"/>
-              </div>
-              <div class="comment-text">
-               <strong><a href="">작성자22222</a></strong>
-               <p>댓글내용</p> <span>작성날짜</span>
-              </div>
-             </li>/ li
-             <li>
-              <div class="comment-img">
-               <img src="resources/assets/img/users/14.jpg" class="img-responsive img-circle" alt="Image"/>
-              </div>
-              <div class="comment-text">
-               <strong><a href="">Sean Coleman</a></strong>
-               <p class="">Hello this is a test comment.</p> <span class="date sub-text">on December 5th, 2016</span>
-              </div>
-             </li>/ li
-             <li>
-              <div class="comment-img">
-               <img src="resources/assets/img/users/13.jpeg" class="img-responsive img-circle" alt="Image"/>
-              </div>
-              <div class="comment-text">
-               <strong><a href="">Anna Morgan</a></strong>
-               <p class="">Hello this is a test comment.</p> <span class="date sub-text">on December 5th, 2016</span>
-              </div>
-             </li>/ li
-             <li>
-              <div class="comment-img">
-               <img src="resources/assets/img/users/3.jpg" class="img-responsive img-circle" alt="Image"/>
-              </div>
-              <div class="comment-text">
-               <strong><a href="">Allison Fowler</a></strong>
-               <p class="">Hello this is a test comment.</p> <span class="date sub-text">on December 5th, 2016</span>
-              </div>
-             </li>/ li -->
-            </ul><!--/ comment-list -->
+           
+            </ul>
 			  
             <div class="modal-meta-bottom">
 			 <ul>
@@ -737,7 +699,7 @@
 <!-- write form -->
 		<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" id = "writeForm" action = "feed/insertFeed" method = "POST" enctype="multipart/form-data" >
+			<form class="contact100-form validate-form" id = "writeForm" action = "/kiito/feed/insertFeed" method = "POST" enctype="multipart/form-data" >
 			<input type = "hidden" name = "customer_seq" value = "${sessionScope.customer.customer_seq }" id="cs">
 				<span class="contact100-form-title">私がいるとごろ</span>
 				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
@@ -779,9 +741,7 @@
 				<img src='resources/images/video.png' border='0' onclick='document.all.videofile.click(); document.all.videofile2.value=document.all.videofile.value'> 
 
 				
-				
-					<!-- <input class="input100" multiple = "multiple" type="file" name="upload" id="file" value="파일선택" size="30">
-					<span class="focus-input100"></span> -->
+			
 				</div>
 				<div>
 					<div class = "imgs_wrap" style = "margin-bottom : 10px;">
