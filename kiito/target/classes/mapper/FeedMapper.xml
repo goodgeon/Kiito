@@ -108,6 +108,10 @@
 	order by f.inputdate desc
 	</select>
 	
-	
-
+	<select id="search" parameterType="String" resultType="feed" resultMap="feedMap">
+		select f.feed_seq,f.customer_seq,f.checkin,f.contents,f.congestion,f.likes, f.inputdate, c.customer_seq, c.email, c.pw, c.name, c.nick, c.profileimg, c.customer_type 
+		from feed f,customer c
+		where f.customer_seq = c.customer_seq and checkin like '%' || #{search} || '%' 
+		order by f.inputdate desc
+	</select>
 </mapper>

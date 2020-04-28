@@ -200,8 +200,31 @@
 				getCommentList(feedNum);
 					 
 			}
-				  	
 		  </script>
+		  
+		  <script>
+			$(document).ready(function(){
+				
+				$("#search").on('keydown', function(key){
+					var search = $("#search").val();
+					if(key.keyCode == 13){
+						location.href = "search?search="+search;
+						
+						/* $.get({
+							url : "feed/search",
+							type : "GET",
+							data : {
+								search : search
+							},
+							success : function(data){
+								console.log(data);
+							}
+						}) */
+					}
+				})
+			})
+		  </script>
+		  
 		  
 		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		
@@ -271,8 +294,8 @@
 		 <ul class="nav navbar-nav">
 		   <li>
 		   <div class="search-dashboard">
-               <form>
-                    <input placeholder="Search here" type="text">
+               <form onSubmit="return false;">
+                    <input id = "search" placeholder="Search here" type="text">
                     <button type="submit"><i class="fa fa-search"></i></button>
                </form>
           </div>							
@@ -714,6 +737,9 @@
 				        <div id="pagination"></div>
 				    </div>
 				</div>
+				<input id = "xLocation" type = "hidden" name = "xLocation">
+				<input id = "yLocation" type = "hidden">
+				
 				<div class = "wrap-input100">
 					<input type = "radio" name = "congestion" value = "3" checked = "checked" style = "margin-left : 20px;">congestion
 					<input type = "radio" name = "congestion" value = "2">smoothness
