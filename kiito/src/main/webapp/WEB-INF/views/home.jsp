@@ -25,7 +25,7 @@
         
         <!-- bxSlider -->
 		  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-		  
+
 		  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 		  <script>
 		  function following(feed_seq, customer_seq, following_seq){
@@ -431,7 +431,7 @@
 		   <div class="dropdown-divider"></div>
 		   <a class="dropdown-item" href="customer/profile?profileImg=${sessionScope.customer.profileImg }"><span>Profile</span></a> 
 		   <a class="dropdown-item" href="#"><span>Settings</span></a> 
-		   <a class="dropdown-item" href="#">Need help?</a> 
+<!-- 		   <a class="dropdown-item" href="#">Need help?</a>  -->
 		   <div class="dropdown-divider"></div>
 		   <a class="dropdown-item" href="customer/logout">Sign out</a>
 		  </div>
@@ -462,11 +462,13 @@
 <!------------------------FEED---------------------------------->
 	    <div class="col-lg-6">
 		
+		 
         <c:forEach var = "feed" items="${feed}">
          <div class="cardbox">
 		 
           <div class="cardbox-heading">
            <!-- START dropdown-->
+           
            <div class="dropdown pull-right">
             <button class="btn btn-secondary btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false">
 		     <em class="fa fa-ellipsis-h"></em>
@@ -476,7 +478,9 @@
 			 <a class="dropdown-item" href="#">Stop following</a>
 			 <a class="dropdown-item" href="#">Report</a>
             </div>
-           </div><!--/ dropdown -->
+           </div>
+           
+           <!--/ dropdown -->
            <!-- END dropdown-->
            
            
@@ -565,7 +569,9 @@
 		   </ul>
           </div><!--/ cardbox-like -->			  
                 
-		 </div><!--/ cardbox -->	
+		 </div>
+		
+		 <!--/ cardbox -->	
 		 
 		 
 		 
@@ -716,7 +722,7 @@
 <!-- write form -->
 		<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" id = "writeForm" action = "feed/insertFeed" method = "POST" enctype="multipart/form-data" >
+			<form class="contact100-form validate-form" id = "writeForm" action = "/kiito/feed/insertFeed" method = "POST" enctype="multipart/form-data" >
 			<input type = "hidden" name = "customer_seq" value = "${sessionScope.customer.customer_seq }" id="cs">
 				<span class="contact100-form-title">私がいるとごろ</span>
 				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
