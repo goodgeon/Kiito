@@ -511,17 +511,18 @@
 		   	
 		    
 		   
-		   <span>${feed.contents }</span> 
+		   <div style = "margin-left : 75px;">${feed.contents }</div>
+	
           </div><!--/ cardbox-item -->
           
 	      <div class="cardbox-base">
 		   <ul>
-		   	<%-- <c:forEach var="hashtag" items="${hashtag }">
+		   	<c:forEach var="hashtag" items="${hashtag }">
 		   		<c:if test="${feed.feed_seq == hashtag.feed_seq }">
 		   			<li>#${hashtag.contents }</li>
 		   		</c:if>
-		   	</c:forEach> --%>
-			<li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/1.jpg" class="img-responsive img-circle" alt="User"></a></li>
+		   	</c:forEach> 
+			<!-- <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/1.jpg" class="img-responsive img-circle" alt="User"></a></li>
 		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/2.jpg" class="img-responsive img-circle" alt="User"></a></li>
 		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/3.jpg" class="img-responsive img-circle" alt="User"></a></li>
 		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/4.jpg" class="img-responsive img-circle" alt="User"></a></li>
@@ -530,7 +531,7 @@
 		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/7.jpg" class="img-responsive img-circle" alt="User"></a></li>
 		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/8.jpg" class="img-responsive img-circle" alt="User"></a></li>
 		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/9.jpg" class="img-responsive img-circle" alt="User"></a></li>
-		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/10.jpg" class="img-responsive img-circle" alt="User"></a></li> 
+		    <li><a href="#myModal" data-toggle="modal"><img src="resources/assets/img/users/10.jpg" class="img-responsive img-circle" alt="User"></a></li> --> 
 		   </ul>
 		  </div><!--/ cardbox-base -->
           <div class="cardbox-like">
