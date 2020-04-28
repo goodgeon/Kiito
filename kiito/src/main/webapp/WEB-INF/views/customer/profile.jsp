@@ -32,9 +32,9 @@
       <meta name="author" content="Codrops" />
       <link rel="shortcut icon" href="../favicon.ico">
       <link rel="stylesheet" type="text/css" href="../resources/nick/css/normalize.css" />
-      <link rel="stylesheet" type="text/css" href="../resources/nickfonts/font-awesome-4.2.0/css/font-awesome.min.css" />
-      <link rel="stylesheet" type="text/css" href="../resources/nickcss/demo.css" />
-      <link rel="stylesheet" type="text/css" href="../resources/nickcss/set1.css" />
+      <link rel="stylesheet" type="text/css" href="../resources/nick/fonts/nick/css/font-awesome.min.css" />
+      <link rel="stylesheet" type="text/css" href="../resources/nick/css/demo.css" />
+      <link rel="stylesheet" type="text/css" href="../resources/nick/css/set1.css" />
           <!-- bxSlider -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
         <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
@@ -210,7 +210,7 @@
          </li>
 
          <li class="dropdown notification-list">
-         <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="chat" role="button" aria-haspopup="false" aria-expanded="false">
+         <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
           <i class="fa fa-envelope noti-icon"></i>
           <span class="badge badge-success badge-pill noti-icon-badge">6</span>
          </a>
@@ -698,7 +698,7 @@
       });}
 
     function submit4() {
-       var pw = $('#password').val();  var p1 = $('#password1').val();  var nick = $('#nick').val();
+       var pw = $('#password').val();  var p1 = $('#password1').val();  var nick = $('#input-1').val();
        if (pw != p1) {alert('비밀번호가 일치하지 않아요');return;}
        if (nick.length < 2) {alert('닉네임을 다시 입력해주세요');return;}
        $.ajax({
@@ -770,7 +770,7 @@
       <form id = "changef" style="text-align: -webkit-center;">
       <span style="font-size: 70px; font-family: fantasy; font-style: italic; color: antiquewhite;">Profile img</span>
         <br />
-        <div style="background-color: #daf6ffa6; width: 400px; min-height: 45vh; border-radius: 30px;">
+        <div style="background-color: #daf6ffa6; width: 400px; min-height: 47vh; border-radius: 30px;">
         <br>
 <img style = "border:1px solid #642EFE; width : 150px; height : 150px;" src="../img/${sessionScope.customer.profileImg }" class="img-responsive img-circle" id="base">
 <br>
@@ -873,24 +873,37 @@
     
  <!--    개인정보수정 -->
     <div id="editp" class="modal">
+<<<<<<< HEAD
    <form id="editForm" style="text-align: -webkit-center;">
    <span style="font-size: 70px; font-family: fantasy; font-style: italic; color: antiquewhite;">Info.</span><br>
-   <img style = "border:1px solid #642EFE; width : 150px; height : 150px;" src="../img/${sessionScope.customer.profileImg }" class="img-responsive img-circle" id="base"><br>
-   <input type="text" name="nick" id="nick" value="${sessionScope.customer.nick }" >
-   <input type="button" value="수정" id="bt3"> <br>
+   <div style="background-color: #daf6ffa6; width: 400px; min-height: 45vh; border-radius: 30px;">
+   <section class="content bgcolor-1" style="border-radius: 30px;">
+   <img style = "border:1px solid #642EFE; width : 150px; height : 150px;" src="../img/${sessionScope.customer.profileImg }" class="img-responsive img-circle" id="base">
+   <a>${sessionScope.customer.nick }</a><br>
 
          <span class="input input--haruki">
-               <input class="input__field input__field--haruki" type="text" id="input-1" />
+               <input class="input__field input__field--haruki" type="text" id="input-1" name="nick" />
                <label class="input__label input__label--haruki" for="input-1">
                   <span class="input__label-content input__label-content--haruki">NickName</span>
                </label>
             </span>
-      <input type="password" name="password" id="password" placeholder="비밀번호 입력"> <br>
-      <input type="password" name="password1" id="password1" placeholder="비밀번호 다시 입력"><br>  
-   <input type="reset" value="다시쓰기"> 
-      <input type="button" value="탈퇴" id="bt7">
-<br>
-         <div style="display: -webkit-inline-box;">
+            <button id="bt3" value="수정" ><img src="../resources/images/check.png"></button>
+            
+                     <span class="input input--haruki">
+               <input type="password" class="input__field input__field--haruki" id="input-1" />
+               <label class="input__label input__label--haruki" for="input-1">
+                  <span class="input__label-content input__label-content--haruki" id="password">password</span>
+               </label>
+            </span>
+            
+                     <span class="input input--haruki">
+               <input type="password" class="input__field input__field--haruki" id="input-1" />
+               <label class="input__label input__label--haruki" for="input-1">
+                  <span class="input__label-content input__label-content--haruki" id="password1">password check</span>
+               </label>
+            </span>
+            <button id="bt7" value="탈퇴" >delete<img src="../resources/images/check.png"></button>
+            <br>
                　　<div class="modal-meta-top">
                <button type = "button" id = "closeWrite" data-dismiss="modal" class="contact100-form-btn">
                   <span>
@@ -899,7 +912,8 @@
                   </span>
                </button>
                </div>
-            </div>
+      </section>
+      </div>
 </form>
 </div>
       
