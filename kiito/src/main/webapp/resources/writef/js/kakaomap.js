@@ -115,7 +115,7 @@ function displayPlaces(places) {
             	//map.setLevel(3);
             	
             	$('#dataSelected').val(places[j].place_name);
-            	$('#dataSelected').css('display','block');
+            	//$('#dataSelected').css('display','block');
             	
             };
         ///////////////////////////////////////////////////////////////////////////	

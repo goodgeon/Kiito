@@ -328,8 +328,8 @@
            </li>
            <li>
             <small class="text-muted"><a href="profile">${countf} Posts <em class="fa fa-angle-right pull-right"></em></a> </small><br/>
-            <small class="text-muted"><a href="followers">2456 Followers <em class="fa fa-angle-right pull-right"></em></a> </small><br/>
-            <small class="text-muted"><a href="followers">456 Following <em class="fa fa-angle-right pull-right"></em></a> </small>
+            <small class="text-muted"><a href="followers">${fn:length(sessionScope.customer.follower)} Followers <em class="fa fa-angle-right pull-right"></em></a> </small><br/>
+            <small class="text-muted"><a href="followers">${fn:length(sessionScope.customer.follow)} Following <em class="fa fa-angle-right pull-right"></em></a> </small>
             <hr>
 <!--             <small class="text-muted">Bio: </small>
             <p>795 Folsom Ave, Suite 600 San Francisco, CADGE 94107</p>
