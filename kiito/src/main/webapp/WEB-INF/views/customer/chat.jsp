@@ -640,11 +640,9 @@
          </li>
 
          <li class="dropdown notification-list">
-<<<<<<< HEAD
          <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="customer/chat" role="button" aria-haspopup="false" aria-expanded="false">
-=======
+
          <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="/kiito/customer/chat" role="button" aria-haspopup="false" aria-expanded="false">
->>>>>>> 70b00b34a1b798132aa16fa6b7060d44961620c3
           <i class="fa fa-envelope noti-icon"></i>
           <span class="badge badge-success badge-pill noti-icon-badge">6</span>
          </a>
