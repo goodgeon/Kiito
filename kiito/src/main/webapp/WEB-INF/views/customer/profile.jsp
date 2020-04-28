@@ -882,16 +882,13 @@
 	<img style = "border:1px solid #642EFE; width : 150px; height : 150px;" src="../img/${sessionScope.customer.profileImg }" class="img-responsive img-circle" id="base"><br>
 	<input type="text" name="nick" id="nick" value="${sessionScope.customer.nick }" >
 	<input type="button" value="수정" id="bt3"> <br>
-	<div class="container">
-	<section class="content bgcolor-1">
+
 			<span class="input input--haruki">
 					<input class="input__field input__field--haruki" type="text" id="input-1" />
 					<label class="input__label input__label--haruki" for="input-1">
 						<span class="input__label-content input__label-content--haruki">NickName</span>
 					</label>
 				</span>
-				</section>
-				</div>
 		<input type="password" name="password" id="password" placeholder="비밀번호 입력"> <br>
 		<input type="password" name="password1" id="password1" placeholder="비밀번호 다시 입력"><br>  
 	<inputtype="reset" value="다시쓰기"> 
