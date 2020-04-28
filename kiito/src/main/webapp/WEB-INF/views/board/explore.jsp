@@ -41,7 +41,260 @@
 		<!-- ==============================================
 		Feauture Detection
 		=============================================== -->
-		<script src="../resources/assets/js/modernizr-custom.js"></script>
+		  <!-- bxSlider -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+        <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+        <script src = "../resources/modal/js/modal.js"></script>
+        <script>
+		$(document).ready(function(){
+			var customer_seq = ${sessionScope.customer.customer_seq};
+			var customer;
+
+			$.ajax({
+				url : "../customer/getCustomer",
+				type : "GET",
+				data : {
+					customer_seq : customer_seq
+				},
+				success : function(data){
+					customer = data;
+					console.log(customer);
+				},
+				async : false
+			})
+			var follower = customer.follower;
+			var following = customer.follow;
+
+			console.log(follower);
+			console.log(following);
+
+			for(var i = 0; i<following.length; i++){
+				$("#bt"+following[i].customer_seq).css('background-color', 'gray');
+				$("#bt"+following[i].customer_seq).html('Unfollow');
+				$("#bt"+following[i].customer_seq).attr('onclick', 'unfollow('+following[i].customer_seq+')');
+			}
+
+		})
+		
+		function follow(following_seq){
+			var customer_seq = ${sessionScope.customer.customer_seq};
+			
+			$.ajax({
+				type : "POST",
+				url : "../customer/follow",
+				data : {
+					follower_seq : customer_seq,
+					following_seq : following_seq
+				},
+				success : function(){
+					alert("팔로우 성공");
+					$("#bt"+following_seq).css('background-color','gray');
+					$("#bt"+following_seq).attr('onclick','unfollow('+following_seq+')');
+					$("#bt"+following_seq).text("Unfollow");
+				}
+			})
+		}
+
+		function unfollow(following_seq){
+			var customer_seq = ${sessionScope.customer.customer_seq};
+			
+			$.ajax({
+				type : "POST",
+				url : "../customer/cancleFollow",
+				data : {
+					customer_seq : customer_seq,
+					following_seq : following_seq
+				},
+				success : function(){
+					alert("팔로우 취소");
+					$("#bt"+following_seq).css('background-color','#05CB95');
+					$("#bt"+following_seq).attr('onclick','follow('+following_seq+')');
+					$("#bt"+following_seq).text("Follow");
+				}
+			})
+		}
+	
+			
+			
+		</script>
+   
+		<script>
+		function following(feed_seq, customer_seq, following_seq){
+			$.ajax({
+				type : "POST",
+				url : "../customer/follow",
+				data : {
+					follower_seq : customer_seq,
+					following_seq : following_seq
+				},
+				success : function(){
+					alert("팔로우 성공");
+					$("#followBt"+feed_seq).css('background-color','gray');
+					$("#followBt"+feed_seq).attr('onclick','cancleFollowing('+feed_seq+','+customer_seq+','+following_seq+')');
+					$("#followSpan"+feed_seq).text("UNFOLLOW");
+				}
+			})
+			
+		}
+
+		function cancleFollowing(feed_seq, customer_seq, following_seq){
+			$.ajax({
+				type : "POST",
+				url : "../customer/cancleFollow",
+				data : {
+					customer_seq : customer_seq,
+					following_seq : following_seq
+				},
+				success : function(){
+					alert("팔로우 취소");
+					$("#followBt"+feed_seq).css('background-color','#1fa881');
+					$("#followBt"+feed_seq).attr('onclick','following('+feed_seq+','+customer_seq+','+following_seq+')');
+					$("#followSpan"+feed_seq).text("FOLLOW");
+				}
+			})
+		}
+
+
+
+		function showInputNumber(feed_seq){
+			$("#smsInput"+feed_seq).toggle();
+		}
+
+		function sendSms(feed_seq){
+			var phoneNumber = $("#smsPhoneNumber"+feed_seq).val();
+			var checkin = $("#modalCheckin"+feed_seq).html();
+			var congestion = $("#modalCongestion"+feed_seq).html();
+			var contents = $("#modalContents"+feed_seq).html();
+			
+			console.log(phoneNumber);
+			console.log(checkin);
+			console.log(congestion);
+			console.log(contents);
+
+			$.ajax({
+				type : "POST",
+				url : "sendSms",
+				data : {
+					phoneNumber : phoneNumber,
+					checkin : checkin,
+					congestion : congestion,
+					contents : contents
+				},
+				success : function(){
+					alert("문자전송번호 : " + phoneNumber);
+				}
+			})
+		}
+
+
+		function submitComment(feed_seq, customer_seq){
+				var text = $("#inputComment"+feed_seq).val();
+				console.log(text);
+				$.ajax({
+					type : "POST",
+					url : "../comment/insertComment",
+					data : {
+						feed_seq : feed_seq,
+						customer_seq : customer_seq,
+						text : text
+					},
+					success : function(){
+						$("#inputComment"+feed_seq).val('');
+						getCommentList(feed_seq);
+					}
+				})
+		}
+		//<c:url value = '/img/item.customer.profileImg'/>
+		function getCommentList(feed_seq){
+			console.log("getcom")
+			var commentList = [];
+			$.ajax({
+				type : "GET",
+				url : "../comment/getCommentList",
+				data : {
+					feed_seq : feed_seq
+				},
+				success : function(list){
+					var html = '';
+					$.each(list, function(key,item){
+						html += '<li>';
+						html += '<div class = "comment-img">';
+						if(item.customer.profileImg.substring(0,4) == 'http'){
+							html += '<img src = "'+item.customer.profileImg+'" class = "img-responsive img-circle" alt="Image"/>';
+						}else{
+							html += '<img src = "<c:url value = "/img/'+item.customer.profileImg+'" />" class = "img-responsive img-circle" alt="Image"/>';
+						}
+						html += '</div>';
+						html += '<div class = "comment-text">';
+						html += '<strong><a href="">' + item.customer.nick + '</a></strong>';
+						html += '<p>' + item.text + '</p> <span class="date sub-text">' + item.inputdate + '</span>';
+						html += '</div></li>';
+					})
+					
+					$("#commentListUl"+feed_seq).html(html);
+					$("#commentsCount"+feed_seq).html(list.length);
+					$("#modalCommentsCount"+feed_seq).html(list.length);
+				}
+			})
+		}
+	  </script>
+		</script>   
+        <script>
+        var slider = '';
+		 $(document).ready(function(){
+		    slider = $('.bxslider').bxSlider({
+			    adaptiveHeight: true
+			});
+		});
+
+          function openModal(feedNum,customer_seq,following_seq){
+				var modalId = "#myModal"+feedNum;
+				$(modalId).modal("show");
+
+				$.ajax({
+					type : "POST",
+					url : "../customer/checkFollowing",
+					data : {
+						customer_seq : customer_seq,
+						following_seq : following_seq
+					},
+					success : function(result){
+						if(result == 1){
+							$("#followBt"+feedNum).css('background-color','#1fa881');
+							$("#followBt"+feedNum).attr('onclick','following('+feedNum+','+customer_seq+','+following_seq+')');
+							$("#followSpan"+feedNum).text("FOLLOW");
+						}else if(result == 0){
+							$("#followBt"+feedNum).css('background-color','gray');
+							$("#followBt"+feedNum).attr('onclick','cancleFollowing('+feedNum+','+customer_seq+','+following_seq+')');
+							$("#followSpan"+feedNum).text("UNFOLLOW");
+						}
+					}
+				})
+
+	
+				var config = {
+					adaptiveHeight : true
+				}
+	
+				var ulId = "#sliderId" + feedNum;
+
+				sliderModal = $(ulId).bxSlider({
+					adaptiveHeight : true
+			  	});
+
+			  	//sliderModal.reloadSlider();
+	
+				 setTimeout(function(){
+					sliderModal.reloadSlider(config); 
+				}, 300); 
+
+				getCommentList(feedNum);
+					 
+			}
+                 
+        </script>
+
 
 		
 		
@@ -209,17 +462,15 @@
 		   </span>
 		   <!-- hidden-xs hides the username on small devices so only the image appears. -->
 		   <span class="hidden-xs">
-			${sessionScope.customer.name }
+			${sessionScope.customer.nick }
 		   </span>
 		  </a>
 		  <div class="dropdown-menu w dropdown-menu-scale pull-right">
-<!-- 		   <a class="dropdown-item" href="#"><span>New Story</span></a>  -->
 		   <div class="dropdown-divider"></div>
 		   <a class="dropdown-item" href="customer/profile?profileImg=${sessionScope.customer.profileImg }"><span>Profile</span></a> 
 		   <a class="dropdown-item" href="#editp" data-toggle="modal" rel="modal:open"><span>Settings</span></a> 
-<!-- 		   <a class="dropdown-item" href="#">Need help?</a>  -->
 		   <div class="dropdown-divider"></div>
-		   <a class="dropdown-item" href="customer/logout">Sign out</a>
+		   <a class="dropdown-item" href="/kiito/customer/logout">Sign out</a>
 		  </div>
 		 </li><!-- /navbar-item -->	
 		 
@@ -243,94 +494,42 @@
 	   </div>
 	  
 	   <div class="row top-row">
+	   	<c:forEach var = "entry" items = "${entry}" begin="0" end="4">
+	   		<c:if test="${entry.customer_seq != sessionScope.customer.customer_seq }">
+	   			<div class="col-lg-3">
+				 <div class="tr-section">
+				  <div class="tr-post">
+				   <div class="entry-header">
+				    <div class="entry-thumbnail">
+				     <a href="#"><img class="img-fluid" src="../resources/assets/img/posts/30.jpg" alt="Image"></a>
+				    </div><!-- /entry-thumbnail -->
+			       </div><!-- /entry-header -->
+				   <div class="post-content">
+				    <div class="author-post text-center">
+				     <a href="#"><c:if test="${entry.profileImg.substring(0,4) == 'http' }">
+						<img src="<c:url value = '${entry.profileImg }'/>" class="img-fluid rounded-circle" alt="..."/>
+						</c:if>
+						<c:if test="${entry.profileImg.substring(0,4) != 'http' }">
+							<img src="<c:url value = '/img/${entry.profileImg }'/>" class="img-fluid rounded-circle" alt="Image"/>
+						</c:if></a>
+				    </div><!-- /author -->
+					<div class="card-content">
+					 <h4>${entry.nick }</h4>
+					 <span>${entry.email }</span>
+					</div>
+					 <a href="javascript:void(0)" class="kafe-btn kafe-btn-mint-small full-width" id = "bt${entry.customer_seq }" onclick="follow(${entry.customer_seq })"> Follow
+					 </a>		  
+				   </div><!-- /.post-content -->									
+				  </div><!-- /.tr-post -->	
+			     </div><!-- /.tr-post -->	
+				</div><!-- /col-sm-3 -->
+	   		</c:if>
+	   		
+	   	</c:forEach>
 	   
-	    <div class="col-lg-3">
-		 <div class="tr-section">
-		  <div class="tr-post">
-		   <div class="entry-header">
-		    <div class="entry-thumbnail">
-		     <a href="#"><img class="img-fluid" src="assets/img/posts/30.jpg" alt="Image"></a>
-		    </div><!-- /entry-thumbnail -->
-	       </div><!-- /entry-header -->
-		   <div class="post-content">
-		    <div class="author-post text-center">
-		     <a href="#"><img class="img-fluid rounded-circle" src="assets/img/users/2.jpg" alt="Image"></a>
-		    </div><!-- /author -->
-			<div class="card-content">
-			 <h4>Alex Grantte</h4>
-			</div>
-			 <a href="" class="kafe-btn kafe-btn-mint-small full-width"> Follow
-			 </a>		  
-		   </div><!-- /.post-content -->									
-		  </div><!-- /.tr-post -->	
-	     </div><!-- /.tr-post -->	
-		</div><!-- /col-sm-3 -->
+	    
 	   
-	    <div class="col-lg-3">
-		 <div class="tr-section">
-		  <div class="tr-post">
-		   <div class="entry-header">
-		    <div class="entry-thumbnail">
-		     <a href="#"><img class="img-fluid" src="assets/img/posts/27.jpg" alt="Image"></a>
-		    </div><!-- /entry-thumbnail -->
-	       </div><!-- /entry-header -->
-		   <div class="post-content">
-		    <div class="author-post text-center">
-		     <a href="#"><img class="img-fluid rounded-circle" src="assets/img/users/3.jpg" alt="Image"></a>
-		    </div><!-- /author -->
-			<div class="card-content">
-			 <h4>Anna Morgan</h4>
-			</div>
-			 <a href="" class="kafe-btn kafe-btn-mint-small full-width"> Follow
-			 </a>		  
-		   </div><!-- /.post-content -->									
-		  </div><!-- /.tr-post -->	
-	     </div><!-- /.tr-post -->	
-		</div><!-- /col-sm-3 -->
-	   
-	    <div class="col-lg-3">
-		 <div class="tr-section">
-		  <div class="tr-post">
-		   <div class="entry-header">
-		    <div class="entry-thumbnail">
-		     <a href="#"><img class="img-fluid" src="assets/img/posts/28.jpg" alt="Image"></a>
-		    </div><!-- /entry-thumbnail -->
-	       </div><!-- /entry-header -->
-		   <div class="post-content">
-		    <div class="author-post text-center">
-		     <a href="#"><img class="img-fluid rounded-circle" src="assets/img/users/6.jpg" alt="Image"></a>
-		    </div><!-- /author -->
-			<div class="card-content">
-			 <h4>Sean Coleman</h4>
-			</div>
-			 <a href="" class="kafe-btn kafe-btn-mint-small full-width"> Follow
-			 </a>		  
-		   </div><!-- /.post-content -->									
-		  </div><!-- /.tr-post -->	
-	     </div><!-- /.tr-post -->	
-		</div><!-- /col-sm-3 -->
-	   
-	    <div class="col-lg-3">
-		 <div class="tr-section">
-		  <div class="tr-post">
-		   <div class="entry-header">
-		    <div class="entry-thumbnail">
-		     <a href="#"><img class="img-fluid" src="assets/img/posts/31.jpg" alt="Image"></a>
-		    </div><!-- /entry-thumbnail -->
-	       </div><!-- /entry-header -->
-		   <div class="post-content">
-		    <div class="author-post text-center">
-		     <a href="#"><img class="img-fluid rounded-circle" src="assets/img/users/15.jpg" alt="Image"></a>
-		    </div><!-- /author -->
-			<div class="card-content">
-			 <h4>Vanessa Wells</h4>
-		</div>
-			 <a href="" class="kafe-btn kafe-btn-mint-small full-width"> Follow
-			 </a>		  
-		   </div><!-- /.post-content -->									
-		  </div><!-- /.tr-post -->	
-	     </div><!-- /.tr-post -->	
-		</div><!-- /col-sm-3 -->
+	    
 		
 	   </div>
 	  
@@ -341,67 +540,129 @@
 	   </div>
 	  
 	   <div class="row">
-	   
-	    <div class="col-lg-4">
-		 <a href="#myModal" data-toggle="modal">
+	   <c:forEach var="s" items="${feed}">
+	   	<div class="col-lg-4">
+		 <a href="" data-toggle="modal" onclick = "openModal(${s.feed_seq },${sessionScope.customer.customer_seq},${s.customer.customer_seq})" >
 		 <div class="explorebox" 
 		   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/22.gif') no-repeat;
 		          background-size: cover;
                   background-position: center center;
                   -webkit-background-size: cover;
                   -moz-background-size: cover;
-                  -o-background-size: cover;">
+                  -o-background-size: cover;
+                  background-image : url(/kiito/img/${s.imageFile[0].savedFilename})">
 		  <div class="explore-top">
 		   <div class="explore-like"><i class="fa fa-heart"></i> <span>14,100</span></div>
 		   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
           </div>		  
           <div class="explore-body">
-           <div class=""><img class="img-circle" src="assets/img/users/13.jpeg" alt="user"></div>
-          </div>		  
-		 </div>
-		 </a>
-		</div><!--/ col-lg-4 -->
-	   
-	    <div class="col-lg-4">
-		 <a href="#myModal" data-toggle="modal">
-		 <div class="explorebox" 
-		   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/7.jpg') no-repeat;
-		          background-size: cover;
-                  background-position: center center;
-                  -webkit-background-size: cover;
-                  -moz-background-size: cover;
-                  -o-background-size: cover;">
-		  <div class="explore-top">
-		   <div class="explore-like"><i class="fa fa-heart"></i> <span>100,100</span></div>
-		   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-          </div>		  
-          <div class="explore-body">
-           <div class=""><img class="img-circle" src="assets/img/users/1.jpg" alt="user"></div>
-          </div>		  
-		 </div>
-		 </a>
-		</div><!--/ col-lg-4 -->
-	   
-	    <div class="col-lg-4">
-		 <a href="#myModal" data-toggle="modal">
-		 <div class="explorebox" 
-		   style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/19.jpg') no-repeat;
-		          background-size: cover;
-                  background-position: center center;
-                  -webkit-background-size: cover;
-                  -moz-background-size: cover;
-                  -o-background-size: cover;">
-		  <div class="explore-top">
-		   <div class="explore-like"><i class="fa fa-heart"></i> <span>100</span></div>
-		   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-          </div>		  
-          <div class="explore-body">
-           <div class=""><img class="img-circle" src="assets/img/users/2.jpg" alt="user"></div>
           </div>		  
 		 </div>
 		 </a>
 		</div><!--/ col-lg-4 -->
 		
+		<div id="myModal${s.feed_seq }" class="modal fade" style = "z-index : 99999;">
+      <div class="modal-dialog">
+       <div class="modal-content">
+        <div class="modal-body">
+		
+         <div class="row">
+		 
+          <div class="col-md-8 modal-image">
+          	
+	           <c:if test="${fn:length(s.imageFile) > 0 || fn:length(s.videoFile) > 0}">
+	           		<ul id = "sliderId${s.feed_seq}" class = "bxsliderModal">
+			           	<c:forEach var ="i" items = "${s.imageFile}">
+							<li >
+							<img class="img-responsive" src="<c:url value = '/img/${i.savedFilename}'/>" alt="Image">
+							</li>          	
+			   	       	</c:forEach>
+			   	       	<c:forEach var ="i" items = "${s.videoFile}">
+							<li>
+							<video width="500" height="500" src="<c:url value = '/img/${i.savedFilename}'/>" controls></video>
+							</li>          	
+			   	       	</c:forEach>
+					</ul>   	
+			   	</c:if>
+			   	<div style="display: flex;">
+			   	<img src="../resources/images/map.png" style="max-width: 20px; max-height:20px">
+			   	<div id = "modalCheckin${s.feed_seq }">${s.checkin }</div>
+			   	　　혼잡도 : <div id = "modalCongestion${s.feed_seq }">${s.congestion }</div>
+			</div>
+			<div id = "modalContents${s.feed_seq }">${s.contents }</div>
+          	
+           <%--  <img class="img-responsive" src="<c:url value = '/img/20200415.png'/>" alt="Image"/>   --%>
+          </div><!--/ col-md-8 -->
+          <div class="col-md-4 modal-meta">
+           <div class="modal-meta-top">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+			 <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+			</button><!--/ button -->
+            <div class="img-poster clearfix">
+             <a href="">
+             	<c:if test="${s.customer.profileImg.substring(0,4) == 'http' }">
+				<img src="<c:url value = '${s.customer.profileImg }'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+				</c:if>
+				<c:if test="${s.customer.profileImg.substring(0,4) != 'http' }">
+					<img src="<c:url value = '/img/${s.customer.profileImg }'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+				</c:if>
+             </a>
+             <strong><a href="">${s.customer.nick }</a></strong>
+             <br>
+             <span>${s.inputdate }</span><br/>
+             <c:if test="${sessionScope.customer.customer_seq != s.customer.customer_seq}">
+            	<a href="javascript:void(0)" id = "followBt${s.feed_seq}" onclick = "following(${s.feed_seq},${sessionScope.customer.customer_seq},${s.customer.customer_seq})" class="kafe kafe-btn-mint-small"><i class="fa fa-check-square"></i> <span id="followSpan${s.feed_seq }" style = "color : white;">Following</span></a> 
+             </c:if>
+		     <a href="javascript:void(0)" onclick = "showInputNumber(${s.feed_seq })" class="kafe kafe-btn-mint-small"><i class="fas fa-envelope-open"></i>문자전송</a>
+            </div><!--/ img-poster -->
+            
+            <div id = "smsInput${s.feed_seq }" class = "smsInput">
+           		전화번호를 입력해 주세요 : 
+            	<div style = "display : flex;">
+            		<input id = "smsPhoneNumber${s.feed_seq }" type = "text" class = "form-control input-sm">
+            		<button type = "button" class="kafe kafe-btn-mint-small" onclick = "sendSms(${s.feed_seq })">전송</button>
+            	</div>
+            	
+            </div>
+			  
+            <ul id = "commentListUl${s.feed_seq }" class="img-comment-list">
+           
+            </ul>
+			  
+            <div class="modal-meta-bottom">
+			 <ul>
+			  <li><a class="modal-like" href="#"><i class="fa fa-heart"></i></a><span class="modal-one"> ${s.likes }</span> | 
+			      <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span id = "modalCommentsCount${s.feed_seq }"> </span> </li>
+			  <li>
+			   <span class="thumb-xs">
+			   	<c:if test="${sessionScope.customer.profileImg.substring(0,4) == 'http' }">
+				<img src="<c:url value = '${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+				</c:if>
+				<c:if test="${sessionScope.customer.profileImg.substring(0,4) != 'http' }">
+					<img src="<c:url value = '/img/${sessionScope.customer.profileImg }'/>" class="img-resonsive img-circle" width="25" height="25" alt="..."/>
+				</c:if>
+
+			   </span>
+			   <div class="comment-body">
+			   	<div id = "commentForm">
+			   		<input id = "inputComment${s.feed_seq}" class="form-control input-sm" type="text" name = "text" placeholder="Write your comment..." data-customer="${sessionScope.customer.customer_seq}" data-feed="${s.feed_seq}">
+			   		<a href = "javacsript:void(0)" class="kafe kafe-btn-mint-small" id = "commentSubmit" onclick = "submitComment(${s.feed_seq}, ${sessionScope.customer.customer_seq})">Submit</a>
+			   	</div>
+			   </div><!--/ comment-body -->	
+              </li>				
+             </ul>				
+            </div><!--/ modal-meta-bottom -->
+			  
+           </div><!--/ modal-meta-top -->
+          </div><!--/ col-md-4 -->
+		  
+         </div><!--/ row -->
+        </div><!--/ modal-body -->
+		
+       </div><!--/ modal-content -->
+      </div><!--/ modal-dialog -->
+     </div><!--/ modal -->
+	   </c:forEach>
 	   </div><!--/ row -->
 	   
 	   <div class="row">
@@ -489,6 +750,7 @@
 		 </div>
 		 </a>
 		</div><!--/ col-lg-4 -->
+>>>>>>> 5e859bb624696cac9910981a88fd3a3b79bb10de
 	   
 	    <div class="col-lg-4">
 		 <a href="#myModal" data-toggle="modal">
@@ -637,7 +899,6 @@
      <!-- ==============================================
 	 Scripts
 	 =============================================== -->
-	<script src="../resources/assets/js/jquery.min.js"></script>
 	<script src="../resources/assets/js/bootstrap.min.js"></script>
 	<script src="../resources/assets/js/base.js"></script>
 	<script src="../resources/assets/plugins/slimscroll/jquery.slimscroll.js"></script>
@@ -651,10 +912,64 @@
 		});		
 	</script>
 	
+	  <script type="text/javascript">
+
+
+    $(document).ready(function() {
+      $('#sub').on('click', submit1);
+      $('#bt3').on('click',submit4);
+      $('#bt7').on('click',submit7);})
+
+   function submit1() {
+   
+       var form = $('#changef')[0];
+        var formData = new FormData(form);
+
+      $.ajax({
+         url : '/kiito/customer/changef',
+         type : 'POST',
+         data : formData,
+           contentType : false,
+           processData : false, 
+         success : function(a) {if(a=="ok"){alert("수정성공");location.href="/kiito/feed/explore";}
+            else{alert("개씨발");}},
+         error : function(a) {alert("걍 에러");},
+         async : false
+      });}
+
+    function submit4() {
+       var pw = $('#password').val();  var p1 = $('#password1').val();  var nick = $('#nick').val();
+       if (pw != p1) {alert('비밀번호가 일치하지 않아요');return;}
+       if (nick.length < 2) {alert('닉네임을 다시 입력해주세요');return;}
+       $.ajax({
+          url : '/kiito/customer/editP',
+          type : 'POST',
+          data : {nick : nick,pw : pw},
+          success : function(a) {if(a=="ok"){alert("수정성공");location.reload();}
+            else{alert("개씨발");}},
+          error : function(a) {alert("걍 에러");}});}
+
+    function submit7(){
+
+       var pw = $('#password').val(); var p1 = $('#password1').val();
+       if (pw.length <1 || p1.length<1 || pw != p1) {alert('비밀번호 제대로 입력해주세요.');return;}
+
+       $.ajax({
+          url:'/kiito/customer/deru',
+          type:'POST',
+          data:{pw:pw},
+          dataType:'text',
+          success : function(e){
+             if(e=="ok"){
+                alert("탈퇴성공");location.href="/kiito";}else{alert("다시입력해주세요");};},
+          error : function(n){alert("걍오류")}})}
+
+    </script>
+	
 	<!-- write form -->
 		<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" id = "writeForm" action = "feed/insertFeed" method = "POST" enctype="multipart/form-data" >
+			<form class="contact100-form validate-form" id = "writeForm" action = "../feed/insertFeed" method = "POST" enctype="multipart/form-data" >
 			<input type = "hidden" name = "customer_seq" value = "${sessionScope.customer.customer_seq }" id="cs">
 				<span class="contact100-form-title">私がいるところ</span>
 				<div class="wrap-input100 validate-input" data-validate = "이거 왜뜨지 씨발">
@@ -696,9 +1011,7 @@
 				<img src='../resources/images/video.png' border='0' onclick='document.all.videofile.click(); document.all.videofile2.value=document.all.videofile.value'> 
 
 				
-				
-					<!-- <input class="input100" multiple = "multiple" type="file" name="upload" id="file" value="파일선택" size="30">
-					<span class="focus-input100"></span> -->
+
 				</div>
 				<div>
 					<div class = "imgs_wrap" style = "margin-bottom : 10px;">
@@ -757,7 +1070,7 @@
    <a>${sessionScope.customer.nick }</a><br>
 
          <span class="input input--haruki">
-               <input class="input__field input__field--haruki" type="text"  id="nick" />
+               <input class="input__field input__field--haruki" type="text"  id="nick" value="${sessionScope.customer.nick }"/>
                <label class="input__label input__label--haruki" for="input-1">
                   <span class="input__label-content input__label-content--haruki">NickName</span>
                </label>

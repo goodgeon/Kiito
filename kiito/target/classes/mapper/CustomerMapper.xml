@@ -10,20 +10,30 @@
 		 <result column="profileImg" property="profileImg"/>
 		 <result column="customer_type" property="customer_type"/>
 		 
-		 <collection property="follow" column="customer_seq" javaType="java.util.ArrayList" ofType="follow" select="getFollowList"/>
-		 <collection property="follower" column="customer_seq" javaType="java.util.ArrayList" ofType="follow" select="getFollowerList"/>
+		 <collection property="follow" column="customer_seq" javaType="java.util.ArrayList" ofType="customer" select="getFollowList"/>
+		 <collection property="follower" column="customer_seq" javaType="java.util.ArrayList" ofType="customer" select="getFollowerList"/>
 	</resultMap>
 	
-	<select id="getFollowList" resultType="follow">
-		select follow_seq, customer_seq, following_seq
+	<select id="getFollowList" parameterType="int" resultType="customer">
+		<!-- select follow_seq, customer_seq, following_seq
 		from follow
-		where customer_seq = #{customer_seq}
+		where customer_seq = #{customer_seq} -->
+		select c.customer_seq, c.email, c.pw, c.name, c.nick, c.profileImg, c.customer_type
+		from customer c, (select follow_seq, customer_seq, following_seq
+        	            from follow
+            	        where customer_seq = #{customer_seq}) f
+		where c.customer_seq = f.following_seq
 	</select>
 	
-	<select id="getFollowerList" resultType = "follow">
-		select follow_seq, customer_seq, following_seq
+	<select id="getFollowerList" parameterType="int" resultType = "customer">
+		<!-- select follow_seq, customer_seq, following_seq
 		from follow
-		where following_seq = #{customer_seq}
+		where following_seq = #{customer_seq} -->
+		select c.customer_seq, c.email, c.pw, c.name, c.nick, c.profileImg, c.customer_type
+		from customer c, (select follow_seq, customer_seq, following_seq
+        	            from follow
+            	        where following_seq = #{customer_seq}) f
+		where c.customer_seq = f.customer_seq
 	</select>
 	
 	<!-- <select id="getFollowingList" parameterType="int" resultType="customer">

@@ -66,15 +66,21 @@
 			console.log(follower);
 			console.log(following);
 
-			for(var i = 0; i<follower.length; i++){
+			/* for(var i = 0; i<follower.length; i++){
 				for(var j= 0; j<following.length; j++){
-					if(follower[i].customer_seq == following[j].following_seq){
+					if(follower[i].customer_seq == following[j].customer_seq){
 						$("#bt"+follower[i].customer_seq).css('background-color', 'gray');
 						$("#bt"+follower[i].customer_seq).html('Unfollow');
 						$("#bt"+follower[i].customer_seq).attr('onclick', 'unfollow('+follower[i].customer_seq+')');
 
 					}
 				}
+			} */
+
+			for(var i = 0; i<following.length; i++){
+				$("#bt"+following[i].customer_seq).css('background-color', 'gray');
+				$("#bt"+following[i].customer_seq).html('Unfollow');
+				$("#bt"+following[i].customer_seq).attr('onclick', 'unfollow('+following[i].customer_seq+')');
 			}
 
 		})
@@ -145,7 +151,7 @@
 	   </a>
 	   </div>
 	   <div class="p-2 nav-icon-lg clean-black">
-	   <a class="nav-icon" href="feed/explore"><em class="fa fa-crosshairs"></em>
+	   <a class="nav-icon" href="../feed/explore"><em class="fa fa-crosshairs"></em>
 		<span>Explore</span>
 	   </a>
 	   </div>
@@ -156,7 +162,7 @@
 	   </div>
 
 	   <div class="p-2 nav-icon-lg dark-black">
-	   <a class="nav-icon" href="customer/profile?profileImg=${sessionScope.customer.profileImg }"><em class="fa fa-user"></em>
+	   <a class="nav-icon" href="../customer/profile?profileImg=${sessionScope.customer.profileImg }"><em class="fa fa-user"></em>
 		<span>Profile</span>
 	   </a>
 	   </div>
@@ -330,7 +336,29 @@
 			<div class="followers-list">
 				<c:forEach var = 'customer' items = '${followerList}'>
 					<div class="followers-body" id = "follower${customer.customer_seq}">
-						<img class="img-responsive img-circle" src="<c:url value = '/img/${customer.profileImg }'/>" alt="">
+						<c:if test="${customer.profileImg.substring(0,4) == 'http' }">
+				         <img src="<c:url value = '${customer.profileImg }'/>" class="img-resonsive img-circle" alt="..."/>
+				         </c:if>
+				         <c:if test="${customer.profileImg.substring(0,4) != 'http' }">
+				            <img src="<c:url value = '/img/${customer.profileImg }'/>" class="img-resonsive img-circle" alt="..."/>
+				         </c:if>
+						<div class="name-box">
+						<h4>${customer.name}</h4>
+						<span>${customer.email}</span>
+						<div class="followers-base">
+						</div><!--/ followers-base -->
+				     </div><!--/ name-box -->
+					 <span><a href="javascript:void(0)" id = "bt${customer.customer_seq}"class="kafe-btn kafe-btn-mint-small" onclick = follow(${customer.customer_seq})> Follow</a></span>
+					</div><!--/ followers-body -->
+				</c:forEach>
+				<c:forEach var = 'customer' items = '${followingList}'>
+					<div class="followers-body" id = "follower${customer.customer_seq}">
+						<c:if test="${customer.profileImg.substring(0,4) == 'http' }">
+				         <img src="<c:url value = '${customer.profileImg }'/>" class="img-resonsive img-circle" alt="..."/>
+				         </c:if>
+				         <c:if test="${customer.profileImg.substring(0,4) != 'http' }">
+				            <img src="<c:url value = '/img/${customer.profileImg }'/>" class="img-resonsive img-circle" alt="..."/>
+				         </c:if>
 						<div class="name-box">
 						<h4>${customer.nick}</h4>
 						<span>${customer.email}</span>

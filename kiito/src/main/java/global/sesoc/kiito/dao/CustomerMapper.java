@@ -43,5 +43,7 @@ public interface CustomerMapper {
 
 	Customer getC1(String profileImg);
 
+	ArrayList<Customer> getFollowerList(int customer_seq);
+
 
 }

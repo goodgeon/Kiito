@@ -184,4 +184,14 @@ public class CustomerDAO {
 		return ccc;
 	}
 
+
+	public ArrayList<Customer> getFollowerList(int customer_seq) {
+		ArrayList<Customer> list = null;
+		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		
+		list = mapper.getFollowerList(customer_seq);
+		
+		return list;
+	}
+
 }

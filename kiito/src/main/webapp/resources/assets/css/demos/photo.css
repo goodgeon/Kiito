@@ -1210,6 +1210,7 @@ a.navbar-brand:hover {
   color: #88898a;
   font-weight: 700;	  
   line-height: 0;
+  margin-top : 20px;
 }
 .tr-section .card-content span{
   font-family: 'Abhaya Libre', serif;
