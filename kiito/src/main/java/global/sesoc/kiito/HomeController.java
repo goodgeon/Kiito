@@ -98,4 +98,28 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "search", method = RequestMethod.GET)
+	public String search(String search, Model model) {
+		ArrayList<Feed> list = null;
+		list = dao.search(search);
+		String temp;
+		
+		for(int i=0; i<list.size(); i++) {
+			temp = list.get(i).getContents().replace("\r\n", "<br>");
+			list.get(i).setContents(temp);
+		}
+		
+		model.addAttribute("feed",list);
+		
+		ArrayList<Hashtag> hashtagList = hashtagdao.getList();
+		//System.out.println(hashtagList);
+		model.addAttribute("hashtag",hashtagList);
+		
+		ArrayList<ImageFile> imageList = imageFileDao.getList();
+		model.addAttribute("imageFile", imageList);
+		
+		
+		return "home";
+	}
+	
 }
