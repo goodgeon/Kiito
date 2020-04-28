@@ -692,18 +692,18 @@
 		   </span>
 		   <!-- hidden-xs hides the username on small devices so only the image appears. -->
 		   <span class="hidden-xs">
-			${sessionScope.customer.name }
+			${sessionScope.customer.nick }
 		   </span>
 		  </a>
 		  <div class="dropdown-menu w dropdown-menu-scale pull-right">
 <!-- 		   <a class="dropdown-item" href="#"><span>New Story</span></a> 
 		   <a class="dropdown-item" href="#"><span>Become a Member</span></a>  -->
 		   <div class="dropdown-divider"></div>
-		   <a class="dropdown-item" href="#"><span>Profile</span></a> 
+		   <a class="dropdown-item" href="profile?profileImg=${sessionScope.customer.profileImg }"><span>Profile</span></a> 
 		   <a class="dropdown-item" href="#"><span>Settings</span></a> 
 <!-- 		   <a class="dropdown-item" href="#">Need help?</a>  -->
 		   <div class="dropdown-divider"></div>
-		   <a class="dropdown-item" href="#">Sign out</a>
+		   <a class="dropdown-item" href="logout">Sign out</a>
 		  </div>
 		 </li><!-- /navbar-item -->	
 		 
@@ -724,7 +724,7 @@
 	   </a>
 	   </div>
 	   <div class="p-2 nav-icon-lg clean-black">
-	   <a class="nav-icon" href="photo_explore.html"><em class="fa fa-crosshairs"></em>
+	   <a class="nav-icon" href="/kiito/feed/explore"><em class="fa fa-crosshairs"></em>
 		<span>Explore</span>
 	   </a>
 	   </div>
@@ -733,13 +733,13 @@
 		<span>Upload</span>
 	   </a>
 	   </div>
-	   <div class="p-2 nav-icon-lg clean-black">
+	 <!--   <div class="p-2 nav-icon-lg clean-black">
 	   <a class="nav-icon" href="photo_stories.html"><em class="fa fa-align-left"></em>
 		<span>Stories</span>
 	   </a>
-	   </div>
+	   </div> -->
 	   <div class="p-2 nav-icon-lg mint-green">
-	   <a class="nav-icon" href="photo_profile.html"><em class="fa fa-user"></em>
+	   <a class="nav-icon" href="profile?profileImg=${sessionScope.customer.profileImg }"><em class="fa fa-user"></em>
 		<span>Profile</span>
 	   </a>
 	   </div>
