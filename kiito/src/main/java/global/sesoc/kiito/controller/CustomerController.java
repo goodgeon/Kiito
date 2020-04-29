@@ -221,7 +221,7 @@ public class CustomerController {
 			session.removeAttribute("customer");
 			session.setAttribute("customer", login_customer);
 	
-		String a = "ok";
+		String a = login_customer.getProfileImg();
 		
 		return a;
 	}

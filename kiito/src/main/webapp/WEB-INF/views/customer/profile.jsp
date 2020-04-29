@@ -690,8 +690,10 @@
          data : formData,
            contentType : false,
            processData : false, 
-         success : function(a) {if(a=="ok"){alert("수정성공");location.href="profile?profileImg=${sessionScope.customer.profileImg }";}
-            else{alert("개씨발");}},
+         success : function(a) {
+	             alert("수정성공");
+	             location.href="profile?profileImg="+a;
+         },
          error : function(a) {alert("걍 에러");},
          async : false
       });}
@@ -704,8 +706,10 @@
           url : 'editP',
           type : 'POST',
           data : {nick : nick,pw : pw},
-          success : function(a) {if(a=="ok"){alert("수정성공");location.reload();}
-            else{alert("개씨발");}},
+          success : function(a) {if(a=="ok"){alert("수정성공");
+          location.reload();
+          }
+            else{console.log("개씨발");}},
           error : function(a) {alert("걍 에러");}});}
 
     function submit7(){
